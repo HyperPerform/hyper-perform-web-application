@@ -1,5 +1,15 @@
 # Hyper Perform
 
-[![Build Status](https://travis-ci.org/ClaudioMDS/hyper-perform.svg?branch=master)](https://travis-ci.org/ClaudioMDS/hyper-perform)
+A simple rest wrap demo that returns hello world.
 
-Hyper Perform is an automated performance tracking tool, which sources information from many different integrations in order to provide information about various employee's performances levels and how they affect the current projects
+## Build instructions
+
+```bash
+mvn clean install
+```
+
+```bash
+mvn wildfly:deploy
+```
+
+The above can be used to deploy the *war* to the wildfly server however the server must be run locally. Deploying to a remote server will be added at a later stage.

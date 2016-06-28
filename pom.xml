@@ -2,6 +2,33 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	 <developers>
+        <developer>
+            <id>14205892</id>
+            <name>Claudio Da Silva</name>
+            <email>c.m.dasilva@live.co.za</email>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+        <developer>
+            <id>14188377</id>
+            <name>Rohan Hemansu Chhipa</name>
+            <email>rohan.chhipa@live.com</email>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+        <developer>
+            <id>14043778</id>
+            <name>Avinash Singh</name>
+            <email>tashan.avi@gmail.com</email>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+        <developer>
+            <id>14405025</id>
+            <name>Jason Gordon</name>
+            <email>gordz.gordon@gmail.com</email>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+    </developers>
+
 	<groupId>me.HyperPerform</groupId>
 	<artifactId>hyperperform-system</artifactId>
 	<packaging>war</packaging>

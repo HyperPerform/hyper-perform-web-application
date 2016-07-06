@@ -23,10 +23,10 @@ public class GitPush extends GitEvent
     {
     }
 
-    public void CreatePushEvent(String repo, Timestamp date, String user)
+    public void CreatePushEvent(String repoName, String date, String user)
     {
-        setRepoName(repo);
-        setDate(date);
+        setRepoName(repoName);
+        setDate(Timestamp.valueOf(date));
         setUser(user);
     }
 

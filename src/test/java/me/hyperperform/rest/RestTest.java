@@ -3,12 +3,12 @@ package me.hyperperform.rest;
 import me.hyperperform.listener.GitListener;
 import me.hyperperform.event.MockEvent;
 
+import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.plugins.server.resourcefactory.POJOResourceFactory;
 import org.jboss.resteasy.mock.*;
 
 import org.junit.Assert;
-import org.junit.Assert.*;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
@@ -16,8 +16,7 @@ import javax.ws.rs.core.MediaType;
 public class RestTest
 {
 	@Test
-	public void simpleTest() throws Exception
-	{
+	public void simpleTest() throws Exception {
 		POJOResourceFactory noDef = new POJOResourceFactory(GitListener.class);
 		Dispatcher dispatcher = MockDispatcherFactory.createDispatcher();
 

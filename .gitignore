@@ -157,3 +157,32 @@ pythontex-files-*/
 
 # Latexian
 TSWLatexianTemp*
+
+# Jetbrains
+lib*
+.idea/
+
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+### Maven template
+target/
+

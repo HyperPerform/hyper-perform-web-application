@@ -7,4 +7,5 @@ public abstract class Event
    protected Timestamp time = null;
 
    public abstract void setDate(Timestamp time);
+   public abstract Timestamp getDate();
 }

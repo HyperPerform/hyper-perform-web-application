@@ -28,4 +28,9 @@ public abstract class GitEvent extends Event
 		time = timestamp;
 	}
 
+	public Timestamp getDate()
+	{
+		return time;
+	}
+
 }

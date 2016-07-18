@@ -13,6 +13,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
+import java.lang.StringBuilder;
+
 
 /**
  * Hyper-perform
@@ -36,19 +38,17 @@ public class GitListener implements IListener
 
         if (eventType.equals("push"))
         {
-//            GitPush push = new GitPush();
-//            JSONObject n = (JSONObject) json.get("repository");
-//            JSONObject d = (JSONObject) json.get("head_commit");
-//            JSONObject u = (JSONObject) json.get("pusher");
-//            String name = "" + n.get("full_name");
-//            String date = "" + d.get("timestamp");
-//            String user = "" + u.get("name");
-//
-//            push.CreatePushEvent(name, date, user);
+           JSONObject repository = (JSONObject)json.get("repository");
+           JSONObject commit = (JSONObject)json.get("head_commit");
+           JSONObject pusher = (JSONObject)json.get("pusher");
+
+           String name = (String)repository.get("full_name");
+           String date = (String)commit.get("timestamp");
+           String user = (String)pusher.get("name");
+
+           GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
+           log(push);
         }
-
-
-//        System.out.println(jsonStr);
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
     }
@@ -60,4 +60,24 @@ public class GitListener implements IListener
         return Response.status(200).entity("Testing the embedded server").build();
     }
 
+    static <T> void log(T t)
+    {
+        System.out.println(t);
+    }
+
+    private String extractDate(String s)
+    {
+        return (s.indexOf('T') != -1) ? s.substring(0, s.indexOf('T')) : s.substring(0, s.indexOf(' '));
+    }
+
+    private String extractTime(String s)
+    {
+        String tmp = s;
+        tmp = s.substring(s.indexOf('T')+1);
+
+        if (tmp.indexOf('-') != -1)
+            tmp = tmp.substring(0, tmp.indexOf('-'));
+
+        return tmp;
+    }
 }

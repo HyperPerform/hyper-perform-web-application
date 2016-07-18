@@ -19,8 +19,11 @@ public class GitPush extends GitEvent
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    public GitPush()
+    public GitPush(String repoName, String date, String user)
     {
+        setRepoName(repoName);
+        setDate(Timestamp.valueOf(date));
+        setUser(user);
     }
 
     public void CreatePushEvent(String repoName, String date, String user)
@@ -55,5 +58,14 @@ public class GitPush extends GitEvent
         user = userName;
     }
 
- 
+    public String toString()
+    {
+        String s = "";
+
+        s += "Repo Name: " + repoName + "\n";
+        s += "Date: " + super.getDate() + "\n";
+        s += "Pusher: " + user;
+
+        return s;
+    }
 }

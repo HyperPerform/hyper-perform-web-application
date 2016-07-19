@@ -12,13 +12,17 @@ import java.sql.Timestamp;
 
 @Entity
 @Table
-public class GitPush extends GitEvent
+public class GitPush implements IGitEvent
 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-
+    
+    String repoName;
+    String user;
+    Timestamp date;
+    
     public GitPush(String repoName, String date, String user)
     {
         setRepoName(repoName);
@@ -26,12 +30,16 @@ public class GitPush extends GitEvent
         setUser(user);
     }
 
-    public void CreatePushEvent(String repoName, String date, String user)
+    public GitPush()
     {
-        setRepoName(repoName);
-        setDate(Timestamp.valueOf(date));
-        setUser(user);
     }
+
+//    public void CreatePushEvent(String repoName, String date, String user)
+//    {
+//        setRepoName(repoName);
+//        setDate(Timestamp.valueOf(date));
+//        setUser(user);
+//    }
 
     public int getId()
     {
@@ -50,7 +58,7 @@ public class GitPush extends GitEvent
 
     public void setDate(Timestamp timestamp)
     {
-        super.setDate(timestamp);
+       date = timestamp;
     }
 
     public void setUser(String userName)
@@ -63,9 +71,14 @@ public class GitPush extends GitEvent
         String s = "";
 
         s += "Repo Name: " + repoName + "\n";
-        s += "Date: " + super.getDate() + "\n";
+        s += "Date: " + getDate() + "\n";
         s += "Pusher: " + user;
 
         return s;
+    }
+
+    public Timestamp getDate()
+    {
+        return date;
     }
 }

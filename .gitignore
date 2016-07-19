@@ -160,7 +160,9 @@ TSWLatexianTemp*
 
 # Jetbrains
 lib*
-.idea/
+.idea/*
+.idea/libraries
+*.iml
 
 ### Java template
 *.class

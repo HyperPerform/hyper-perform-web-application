@@ -1,5 +1,6 @@
 package me.hyperperform.event;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,7 @@ import javax.persistence.Persistence;
  */
 public class PersistenceTest
 {
+    @Ignore
     @Test
     public void jpaTest()
     {

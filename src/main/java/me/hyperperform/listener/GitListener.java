@@ -1,19 +1,14 @@
 package me.hyperperform.listener;
 
 
-import me.hyperperform.event.Event;
-import me.hyperperform.event.Git.GitEvent;
-
 import me.hyperperform.event.Git.GitPush;
+
 import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
-import javax.ws.rs.core.MediaType;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
-
-import java.lang.StringBuilder;
 
 
 /**

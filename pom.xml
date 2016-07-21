@@ -168,7 +168,12 @@
 		    <artifactId>resteasy-jackson-provider</artifactId>
 		    <version>3.0.17.Final</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-calendar</artifactId>
+			<version>v3-rev201-1.22.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

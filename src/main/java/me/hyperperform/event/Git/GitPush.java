@@ -11,23 +11,33 @@ import java.sql.Timestamp;
  */
 
 @Entity
-@Table
-public class GitPush extends GitEvent
+@Table(name = "\"GitPush\"")
+public class GitPush implements IGitEvent
 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "repository")
+    String repository;
+
+    @Column(name = "username")
+    String username;
+
+    @Column(name = "timestamp")
+    Timestamp timestamp;
+    
+    public GitPush(String repoName, String date, String user)
+    {
+        setRepoName(repoName);
+        setDate(Timestamp.valueOf(date));
+        setUser(user);
+    }
 
     public GitPush()
     {
-    }
-
-    public void CreatePushEvent(String repo, Timestamp date, String user)
-    {
-        setRepoName(repo);
-        setDate(date);
-        setUser(user);
     }
 
     public int getId()
@@ -42,18 +52,34 @@ public class GitPush extends GitEvent
 
     public void setRepoName(String name)
     {
-        repoName = name;
+        repository = name;
     }
 
     public void setDate(Timestamp timestamp)
     {
-        super.setDate(timestamp);
+        this.timestamp = timestamp;
     }
 
     public void setUser(String userName)
     {
-        user = userName;
+        username = userName;
     }
 
- 
+    public Timestamp getDate()
+    {
+        return timestamp;
+    }
+
+    public String toString()
+    {
+        String s = "";
+
+        s += "Repo Name: " + repository + "\n";
+        s += "Date: " + getDate() + "\n";
+        s += "Pusher: " + username;
+
+        return s;
+    }
+
+
 }

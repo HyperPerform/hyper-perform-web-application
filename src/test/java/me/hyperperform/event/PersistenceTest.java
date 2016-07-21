@@ -1,5 +1,6 @@
 package me.hyperperform.event;
 
+import me.hyperperform.event.Git.GitPush;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import javax.persistence.Persistence;
  */
 public class PersistenceTest
 {
-    @Ignore
+//    @Ignore
     @Test
     public void jpaTest()
     {
@@ -25,15 +26,16 @@ public class PersistenceTest
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
 
-//		GitPush g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker");
-//
-//		entityTransaction.begin();
-//
-//		entityManager.persist(g);
-//
-//		entityTransaction.commit();
+		GitPush g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker");
+
+		entityTransaction.begin();
+
+		entityManager.persist(g);
+
+		entityTransaction.commit();
 
         entityManager.close();
         entityManagerFactory.close();
+        System.out.println("-------------------   END  -------------------");
     }
 }

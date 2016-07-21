@@ -10,8 +10,8 @@ import java.sql.Timestamp;
  * Feature: Github
  */
 
-@Entity(name = "\"GitPush\"")
-@Table
+@Entity
+@Table(name = "\"GitPush\"")
 public class GitPush implements IGitEvent
 {
 
@@ -21,13 +21,13 @@ public class GitPush implements IGitEvent
     private int id;
 
     @Column(name = "repository")
-    String repoName;
+    String repository;
 
     @Column(name = "username")
-    String user;
+    String username;
 
     @Column(name = "timestamp")
-    Timestamp date;
+    Timestamp timestamp;
     
     public GitPush(String repoName, String date, String user)
     {
@@ -52,32 +52,34 @@ public class GitPush implements IGitEvent
 
     public void setRepoName(String name)
     {
-        repoName = name;
+        repository = name;
     }
 
     public void setDate(Timestamp timestamp)
     {
-       date = timestamp;
+        this.timestamp = timestamp;
     }
 
     public void setUser(String userName)
     {
-        user = userName;
+        username = userName;
+    }
+
+    public Timestamp getDate()
+    {
+        return timestamp;
     }
 
     public String toString()
     {
         String s = "";
 
-        s += "Repo Name: " + repoName + "\n";
+        s += "Repo Name: " + repository + "\n";
         s += "Date: " + getDate() + "\n";
-        s += "Pusher: " + user;
+        s += "Pusher: " + username;
 
         return s;
     }
 
-    public Timestamp getDate()
-    {
-        return date;
-    }
+
 }

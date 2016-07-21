@@ -159,8 +159,7 @@ pythontex-files-*/
 TSWLatexianTemp*
 
 # Jetbrains
-lib*
-.idea/*
+.idea/
 .idea/libraries/
 *.iml
 

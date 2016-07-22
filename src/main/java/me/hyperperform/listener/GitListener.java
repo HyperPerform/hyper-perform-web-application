@@ -22,8 +22,6 @@ import javax.inject.Inject;
 @Path("/gitEvent")
 public class GitListener implements IListener
 {
-    @Inject
-    GitPush g;
 
     @POST
     @Consumes("application/json")
@@ -56,7 +54,7 @@ public class GitListener implements IListener
     @Path("/testing")
     public Response myTest()
     {
-        return Response.status(200).entity("Wow"+g.toString()).build();
+        return Response.status(200).entity("Testing output").build();
     }
 
     static <T> void log(T t)

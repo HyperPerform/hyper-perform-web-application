@@ -15,6 +15,7 @@ import javax.persistence.Persistence;
 public class PersistenceTest
 {
 //    @Ignore
+
     @Test
     public void jpaTest()
     {

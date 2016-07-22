@@ -9,6 +9,7 @@ import org.json.simple.parser.JSONParser;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
+import javax.inject.Inject;
 
 
 /**
@@ -21,6 +22,9 @@ import javax.ws.rs.*;
 @Path("/gitEvent")
 public class GitListener implements IListener
 {
+    @Inject
+    GitPush g;
+
     @POST
     @Consumes("application/json")
     public Response listen(@HeaderParam("X-GitHub-Event") String eventType, String jsonStr) throws ParseException
@@ -52,7 +56,7 @@ public class GitListener implements IListener
     @Path("/testing")
     public Response myTest()
     {
-        return Response.status(200).entity("Testing the embedded server").build();
+        return Response.status(200).entity("Wow"+g.toString()).build();
     }
 
     static <T> void log(T t)

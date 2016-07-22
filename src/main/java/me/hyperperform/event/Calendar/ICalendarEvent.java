@@ -1,6 +1,6 @@
 package me.hyperperform.event.Calendar;
 
-import me.hyperperform.event.Event;
+import me.hyperperform.event.IEvent;
 import java.sql.Timestamp;
 
 /**
@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * Feature: Calendar
  */
 
-public interface ICalendarEvent extends Event
+public interface ICalendarEvent extends IEvent
 {
 
     public String getEventID();

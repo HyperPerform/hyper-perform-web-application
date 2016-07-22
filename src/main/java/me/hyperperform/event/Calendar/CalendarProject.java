@@ -13,12 +13,23 @@ import java.sql.Timestamp;
 //@Table
 public class CalendarProject implements ICalendarEvent
 {
+
     private String eventID;
     private String calendarID;
     private Timestamp dueDate;
     private String repoName;
     private String[] collaborators;
     private Timestamp timestamp;
+
+    public Timestamp getTimestamp()
+    {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
 
     public String getRepoName()
     {

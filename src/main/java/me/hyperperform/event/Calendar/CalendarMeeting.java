@@ -12,6 +12,17 @@ import java.sql.Timestamp;
 public class CalendarMeeting implements ICalendarEvent
 {
     private String eventID;
+
+    public Timestamp getTimestamp()
+    {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
+
     private String calendarID;
     private Timestamp dueDate;
     private String location;

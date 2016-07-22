@@ -50,6 +50,16 @@ public class GitPush implements IGitEvent
         this.id = id;
     }
 
+    public String getRepository()
+    {
+        return repository;
+    }
+
+    public void setRepository(String repository)
+    {
+        this.repository = repository;
+    }
+
     public void setRepoName(String name)
     {
         repository = name;
@@ -58,6 +68,11 @@ public class GitPush implements IGitEvent
     public void setDate(Timestamp timestamp)
     {
         this.timestamp = timestamp;
+    }
+
+    public String getUsername()
+    {
+        return username;
     }
 
     public void setUser(String userName)
@@ -74,9 +89,9 @@ public class GitPush implements IGitEvent
     {
         String s = "";
 
-        s += "Repo Name: " + repository + "\n";
-        s += "Date: " + getDate() + "\n";
-        s += "Pusher: " + username;
+//        s += "Repo Name: " + repository + "\n";
+//        s += "Date: " + getDate() + "\n";
+//        s += "Pusher: " + username;
 
         return s;
     }

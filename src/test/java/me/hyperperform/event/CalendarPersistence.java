@@ -38,8 +38,8 @@ public class CalendarPersistence
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
 
-        CalendarMeeting cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "SA", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
-        CalendarProject cp = new CalendarProject(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
+        cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "SA", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
+        cp = new CalendarProject(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
     }
 
     @Test
@@ -47,9 +47,11 @@ public class CalendarPersistence
     {
 
         entityTransaction.begin();
+        cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "SA", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
+        cp = new CalendarProject(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
 
         entityManager.persist(cm);
-        entityManager.persist(cp);
+        //entityManager.persist(cp);
 
         entityTransaction.commit();
 
@@ -65,10 +67,11 @@ public class CalendarPersistence
         entityManager.persist(cp);
 
         entityTransaction.commit();
-
+        System.out.println(cm);
         Query query = entityManager.createQuery("FROM CalendarMeeting ", CalendarMeeting.class);
         List<CalendarMeeting> result = query.getResultList();
         Assert.assertNotEquals("No Elements", result.size(), 0);
+        Assert.assertEquals("CID", "5",cm.getCalendarID());
         Assert.assertEquals("EventID don't match", cm.getEventID(), result.get(result.size()-1).getEventID());
         Assert.assertEquals("Attendees don't match", cm.getAttendees(), result.get(result.size()-1).getAttendees());
         Assert.assertEquals("CalanderID don't match", cm.getCalendarID(), result.get(result.size()-1).getCalendarID());

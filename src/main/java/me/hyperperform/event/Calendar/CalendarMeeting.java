@@ -1,5 +1,8 @@
 package me.hyperperform.event.Calendar;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
@@ -9,9 +12,34 @@ import java.sql.Timestamp;
  * Feature: Calendar
  */
 
+
+@Entity
+@Table(name = "\"CalendarMeeting\"")
 public class CalendarMeeting implements ICalendarEvent
 {
+    @Id
     private String eventID;
+
+    private String calendarID;
+    private Timestamp dueDate;
+    private String location;
+    private String[] attendees;
+    private Timestamp timestamp;
+
+    public CalendarMeeting()
+    {
+
+    }
+
+    public CalendarMeeting(String eventID, String calendarID, Timestamp dueDate, String location, String[] attendees, Timestamp timestamp)
+    {
+        this.eventID = eventID;
+        this.calendarID = calendarID;
+        this.dueDate = dueDate;
+        this.location = location;
+        this.attendees = attendees;
+        this.timestamp = timestamp;
+    }
 
     public Timestamp getTimestamp()
     {
@@ -22,13 +50,6 @@ public class CalendarMeeting implements ICalendarEvent
     {
         this.timestamp = timestamp;
     }
-
-    private String calendarID;
-    private Timestamp dueDate;
-    private String location;
-    private String[] attendees;
-    private Timestamp timestamp;
-
     public String getLocation()
     {
         return location;

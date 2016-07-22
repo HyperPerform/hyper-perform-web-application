@@ -29,19 +29,7 @@ public class PersistenceTest
         g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker");
 
         // Travis won't build otherwise
-        entityTransaction.begin();entityManager.persist(g);entityTransaction.commit();
-    }
-
-    @Test
-    public void jpaTest()
-    {
-        System.out.print("Starting JPA test ...");
-
-		entityTransaction.begin();
-
-		entityManager.persist(g);
-
-		entityTransaction.commit();
+        //entityTransaction.begin();entityManager.persist(g);entityTransaction.commit();
     }
 
     @Test
@@ -69,6 +57,20 @@ public class PersistenceTest
 //        }
 
     }
+
+    @Test
+    public void jpaTest()
+    {
+        System.out.print("Starting JPA test ...");
+
+		entityTransaction.begin();
+
+		entityManager.persist(g);
+
+		entityTransaction.commit();
+    }
+
+
 
     @After
     public void closeManager()

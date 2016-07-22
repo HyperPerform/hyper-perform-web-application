@@ -11,10 +11,14 @@ import java.sql.Timestamp;
 
 //@Entity
 //@Table
-public class CalendarProject extends CalendarEvent
+public class CalendarProject implements ICalendarEvent
 {
+    private String eventID;
+    private String calendarID;
+    private Timestamp dueDate;
     private String repoName;
     private String[] collaborators;
+    private Timestamp timestamp;
 
     public String getRepoName()
     {
@@ -36,45 +40,38 @@ public class CalendarProject extends CalendarEvent
         collaborators = collabs;
     }
 
-    @Override
     public String getEventID()
     {
         return eventID;
     }
 
-    @Override
     public void setEventID(String eID)
     {
         eventID = eID;
     }
 
-    @Override
     public String getCalendarID()
     {
         return calendarID;
     }
 
-    @Override
     public void setCalendarID(String cID)
     {
         calendarID = cID;
     }
 
-    @Override
     public Timestamp getDueDate()
     {
         return dueDate;
     }
 
-    @Override
     public void setDueDate(Timestamp dDate)
     {
         dueDate = dDate;
     }
 
-    @Override
     public void setDate(Timestamp timestamp)
     {
-        super.setDate(timestamp);
+       this.timestamp = timestamp;
     }
 }

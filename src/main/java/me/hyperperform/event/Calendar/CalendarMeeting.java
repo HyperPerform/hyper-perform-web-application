@@ -9,10 +9,14 @@ import java.sql.Timestamp;
  * Feature: Calendar
  */
 
-public class CalendarMeeting extends CalendarEvent
+public class CalendarMeeting implements ICalendarEvent
 {
+    private String eventID;
+    private String calendarID;
+    private Timestamp dueDate;
     private String location;
     private String[] attendees;
+    private Timestamp timestamp;
 
     public String getLocation()
     {
@@ -34,45 +38,38 @@ public class CalendarMeeting extends CalendarEvent
         attendees = attend;
     }
 
-    @Override
     public String getEventID()
     {
         return eventID;
     }
 
-    @Override
     public void setEventID(String eID)
     {
         eventID = eID;
     }
 
-    @Override
     public String getCalendarID()
     {
         return calendarID;
     }
 
-    @Override
     public void setCalendarID(String cID)
     {
         calendarID = cID;
     }
 
-    @Override
     public Timestamp getDueDate()
     {
         return dueDate;
     }
 
-    @Override
     public void setDueDate(Timestamp dDate)
     {
         dueDate = dDate;
     }
 
-    @Override
     public void setDate(Timestamp timestamp)
     {
-        super.setDate(timestamp);
+        this.timestamp = timestamp;
     }
 }

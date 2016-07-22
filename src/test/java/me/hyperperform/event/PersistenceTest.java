@@ -33,9 +33,26 @@ public class PersistenceTest
     }
 
     @Test
+    public void jpaTest()
+    {
+        System.out.print("Starting JPA test ...");
+
+		entityTransaction.begin();
+
+		entityManager.persist(g);
+
+		entityTransaction.commit();
+    }
+
+    @Test
     public void queryTest()
     {
         System.out.print("Starting QueryTest ...");
+        entityTransaction.begin();
+
+        entityManager.persist(g);
+
+        entityTransaction.commit();
 
         Query query = entityManager.createQuery("FROM GitPush", GitPush.class);
         List<GitPush> result = query.getResultList();
@@ -57,20 +74,6 @@ public class PersistenceTest
 //        }
 
     }
-
-    @Test
-    public void jpaTest()
-    {
-        System.out.print("Starting JPA test ...");
-
-		entityTransaction.begin();
-
-		entityManager.persist(g);
-
-		entityTransaction.commit();
-    }
-
-
 
     @After
     public void closeManager()

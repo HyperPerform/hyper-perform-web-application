@@ -34,12 +34,12 @@ public class CalendarProject implements ICalendarEvent
 
     public CalendarProject(String eventID, String calendarID, Timestamp dueDate, String repoName, String[] collaborators, Timestamp timestamp)
     {
-        this.eventID = eventID;
-        this.calendarID = calendarID;
-        this.dueDate = dueDate;
-        this.repoName = repoName;
-        this.collaborators = collaborators;
-        this.timestamp = timestamp;
+        setEventID(eventID);
+        setCalendarID(calendarID);
+        setDueDate(dueDate);
+        setRepoName(repoName);
+        setCollaborators(collaborators);
+        setTimestamp(timestamp);
 
     }
     public Timestamp getTimestamp()

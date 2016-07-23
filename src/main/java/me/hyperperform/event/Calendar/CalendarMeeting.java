@@ -1,10 +1,10 @@
 package me.hyperperform.event.Calendar;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Hyper-perform
@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "\"CalendarMeeting\"")
-public class CalendarMeeting implements ICalendarEvent
+public class CalendarMeeting implements ICalendarEvent, Serializable
 {
     @Id
     @Column(name = "eventID")
@@ -32,7 +32,10 @@ public class CalendarMeeting implements ICalendarEvent
     private String location;
 
     @Column(name = "attendees")
-    private String[] attendees;
+//    @ElementCollection
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @OneToMany(fetch = FetchType.EAGER)
+    private ArrayList<String> attendees;
 
     @Column(name = "timestamp")
     private Timestamp timestamp;
@@ -42,7 +45,7 @@ public class CalendarMeeting implements ICalendarEvent
 
     }
 
-    public CalendarMeeting(String eventID, String calendarID, Timestamp dueDate, String location, String[] attendees, Timestamp timestamp)
+    public CalendarMeeting(String eventID, String calendarID, Timestamp dueDate, String location, ArrayList<String> attendees, Timestamp timestamp)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
@@ -71,12 +74,12 @@ public class CalendarMeeting implements ICalendarEvent
         location = loc;
     }
 
-    public String[] getAttendees()
+    public List<String> getAttendees()
     {
         return attendees;
     }
 
-    public void setAttendees(String[] attend)
+    public void setAttendees(ArrayList<String> attend)
     {
         attendees = attend;
     }

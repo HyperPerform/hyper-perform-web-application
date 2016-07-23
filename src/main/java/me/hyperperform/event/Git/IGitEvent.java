@@ -1,6 +1,6 @@
 package me.hyperperform.event.Git;
 
-import me.hyperperform.event.Event;
+import me.hyperperform.event.IEvent;
 
 import java.sql.Timestamp;
 
@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  * Feature: Github
  */
 
-public interface IGitEvent extends Event
+public interface IGitEvent extends IEvent
 {
 
 	public void setDate(Timestamp timestamp);

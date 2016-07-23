@@ -3,13 +3,11 @@ package me.hyperperform.event;
 import me.hyperperform.event.Calendar.CalendarMeeting;
 import me.hyperperform.event.Calendar.CalendarProject;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,14 +17,14 @@ import java.util.UUID;
  * Date: 2016/07/22
  * Feature: CalendarTest
  */
-public class CalendarPersistence
+public class CalendarPersistenceTest
 {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EntityTransaction entityTransaction;
     private CalendarMeeting cm;
     private CalendarProject cp;
-    private String[] arr = {"Avi","Rohan","Jason","Claudio"};
+    private ArrayList<String> arr;
 
     @Before
     public void init()
@@ -38,6 +36,15 @@ public class CalendarPersistence
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
 
+
+        arr = new ArrayList<String>();
+        arr.add("Avi");
+        arr.add("Rohan");
+        arr.add("Jason");
+        arr.add("Claudio");
+
+
+
         cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "SA", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
         cp = new CalendarProject(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
     }
@@ -47,16 +54,14 @@ public class CalendarPersistence
     {
 
         entityTransaction.begin();
-        cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "SA", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
-        cp = new CalendarProject(UUID.randomUUID().toString(), "5", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
 
         entityManager.persist(cm);
-        //entityManager.persist(cp);
+        entityManager.persist(cp);
 
         entityTransaction.commit();
 
     }
-
+//    @Ignore
     @Test
     public void meetingQueryTest()
     {
@@ -81,6 +86,7 @@ public class CalendarPersistence
 
         query = entityManager.createQuery("FROM CalendarProject ", CalendarProject.class);
         List<CalendarProject> res = query.getResultList();
+//        System.out.println( res.get(res.size()-1).getCollaborators());
         Assert.assertNotEquals("No Elements", res.size(), 0);
         Assert.assertEquals("EventID don't match", cp.getEventID(), res.get(res.size()-1).getEventID());
         Assert.assertEquals("Collaborators don't match", cp.getCollaborators(), res.get(res.size()-1).getCollaborators());

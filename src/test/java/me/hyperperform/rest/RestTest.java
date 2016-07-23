@@ -9,6 +9,7 @@ import org.jboss.resteasy.plugins.server.resourcefactory.POJOResourceFactory;
 import org.jboss.resteasy.mock.*;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
@@ -18,6 +19,7 @@ import javax.persistence.*;
 public class RestTest
 {
 	@Test
+	@Ignore
 	public void simpleTest() throws Exception {
 
 		System.out.println("-------------------------------------------------");

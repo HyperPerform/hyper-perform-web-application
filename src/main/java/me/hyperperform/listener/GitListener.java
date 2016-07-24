@@ -24,9 +24,6 @@ public class GitListener implements IListener
     @Inject
     QueueConnection queueConnection;
 
-    @Inject
-    GitPush gitPush;
-
     @POST
     @Consumes("application/json")
     public Response listen(@HeaderParam("X-GitHub-Event") String eventType, String jsonStr) throws Exception
@@ -55,8 +52,10 @@ public class GitListener implements IListener
     @Path("/testing")
     public Response myTest() throws Exception
     {
+        GitPush gitPush = new GitPush();
+        
         String out = "---Start Debug Output--- <br/>";
-
+        
         out += "Sending git event object to queue <br/>";
         queueConnection.sendObject(gitPush);
 

@@ -54,8 +54,6 @@ public class CalendarProject implements ICalendarEvent, Serializable
         setRepoName(repoName);
         setCollaborators(collaborators);
         setTimestamp(timestamp);
-        setCalendarID(create);
-
 
     }
     public Timestamp getTimestamp()

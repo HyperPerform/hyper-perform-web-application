@@ -22,6 +22,9 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
     @Column(name = "eventID")
     private String eventID;
 
+    @Column(name = "creator")
+    private String creator;
+
     @Column(name = "calendarID")
     private String calendarID;
 
@@ -45,10 +48,11 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
 
     }
 
-    public CalendarMeeting(String eventID, String calendarID, Timestamp dueDate, String location, ArrayList<String> attendees, Timestamp timestamp)
+    public CalendarMeeting(String eventID, String calendarID, String creator, Timestamp dueDate, String location, ArrayList<String> attendees, Timestamp timestamp)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
+        setCreator(creator);
         setDueDate(dueDate);
         setLocation(location);
         setAttendees(attendees);
@@ -72,6 +76,16 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
     public void setLocation(String loc)
     {
         location = loc;
+    }
+
+    public String getCreator()
+    {
+        return creator;
+    }
+
+    public void setCreator(String creator)
+    {
+        this.creator = creator;
     }
 
     public List<String> getAttendees()

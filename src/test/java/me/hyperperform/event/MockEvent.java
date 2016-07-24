@@ -1,8 +1,5 @@
 package me.hyperperform.event;
 
-/**
- * Created by rohan on 2016/07/06.
- */
 public class MockEvent
 {
     public static String gitPushEvent = "{\n" +
@@ -104,5 +101,102 @@ public class MockEvent
             "  }\n" +
             "}";
 
-
+    public static String calendarEvents = "\n" +
+            "{\n" +
+            " \"kind\": \"calendar#events\",\n" +
+            " \"etag\": \"\\\"p3309lmccg66cs0g\\\"\",\n" +
+            " \"summary\": \"Test Calendar\",\n" +
+            " \"description\": \"\",\n" +
+            " \"updated\": \"2016-07-24T11:35:46.632Z\",\n" +
+            " \"timeZone\": \"Africa/Johannesburg\",\n" +
+            " \"accessRole\": \"owner\",\n" +
+            " \"defaultReminders\": [\n" +
+            " ],\n" +
+            " \"nextSyncToken\": \"CMCa2YyBjM4CEMCa2YyBjM4CGAU=\",\n" +
+            " \"items\": [\n" +
+            "  {\n" +
+            "\n" +
+            "   \"kind\": \"calendar#event\",\n" +
+            "   \"etag\": \"\\\"2938182153886000\\\"\",\n" +
+            "   \"id\": \"4j540gah3cqn78sld9eg9bmtqg\",\n" +
+            "   \"status\": \"confirmed\",\n" +
+            "   \"htmlLink\": \"https://www.google.com/calendar/event?eid=NGo1NDBnYWgzY3FuNzhzbGQ5ZWc5Ym10cWcgaGszNDg3Z2Q3aDU3b2g5ZzcxaGU5dGZqczBAZw\",\n" +
+            "   \"created\": \"2016-07-21T08:51:16.000Z\",\n" +
+            "   \"updated\": \"2016-07-21T08:51:16.943Z\",\n" +
+            "   \"summary\": \"Test\",\n" +
+            "   \"description\": \"Just testing this calendar event.\",\n" +
+            "   \"location\": \"Hatfield, Pretoria, 0083, South Africa\",\n" +
+            "   \"creator\": {\n" +
+            "    \"email\": \"hyperperformteam@gmail.com\"\n" +
+            "   },\n" +
+            "   \"organizer\": {\n" +
+            "    \"email\": \"hk3487gd7h57oh9g71he9tfjs0@group.calendar.google.com\",\n" +
+            "    \"displayName\": \"Test Calendar\",\n" +
+            "    \"self\": true\n" +
+            "   },\n" +
+            "   \"start\": {\n" +
+            "    \"dateTime\": \"2016-07-17T00:30:00+02:00\"\n" +
+            "   },\n" +
+            "   \"end\": {\n" +
+            "    \"dateTime\": \"2016-07-17T01:30:00+02:00\"\n" +
+            "   },\n" +
+            "   \"iCalUID\": \"4j540gah3cqn78sld9eg9bmtqg@google.com\",\n" +
+            "   \"sequence\": 0,\n" +
+            "   \"reminders\": {\n" +
+            "    \"useDefault\": true\n" +
+            "   }\n" +
+            "  },\n" +
+            "  {\n" +
+            "\n" +
+            "   \"kind\": \"calendar#event\",\n" +
+            "   \"etag\": \"\\\"2938562032676000\\\"\",\n" +
+            "   \"id\": \"sk0t2sj8bgaonf67uo00maib74\",\n" +
+            "   \"status\": \"confirmed\",\n" +
+            "   \"htmlLink\": \"https://www.google.com/calendar/event?eid=c2swdDJzajhiZ2FvbmY2N3VvMDBtYWliNzQgaGszNDg3Z2Q3aDU3b2g5ZzcxaGU5dGZqczBAZw\",\n" +
+            "   \"created\": \"2016-07-23T13:21:08.000Z\",\n" +
+            "   \"updated\": \"2016-07-23T13:36:56.338Z\",\n" +
+            "   \"summary\": \"Test2\",\n" +
+            "   \"description\": \"Second mock event to test functionality.\",\n" +
+            "   \"location\": \"Meeting Room 3\",\n" +
+            "   \"colorId\": \"9\",\n" +
+            "   \"creator\": {\n" +
+            "    \"email\": \"hyperperformteam@gmail.com\"\n" +
+            "   },\n" +
+            "   \"organizer\": {\n" +
+            "    \"email\": \"hk3487gd7h57oh9g71he9tfjs0@group.calendar.google.com\",\n" +
+            "    \"displayName\": \"Test Calendar\",\n" +
+            "    \"self\": true\n" +
+            "   },\n" +
+            "   \"start\": {\n" +
+            "    \"dateTime\": \"2016-07-24T13:00:00+02:00\"\n" +
+            "   },\n" +
+            "   \"end\": {\n" +
+            "    \"dateTime\": \"2016-07-24T14:00:00+02:00\"\n" +
+            "   },\n" +
+            "   \"iCalUID\": \"sk0t2sj8bgaonf67uo00maib74@google.com\",\n" +
+            "   \"sequence\": 0,\n" +
+            "   \"attendees\": [\n" +
+            "    {\n" +
+            "     \"email\": \"u14405025@tuks.co.za\",\n" +
+            "     \"responseStatus\": \"declined\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "     \"email\": \"gordz.gordon@gmail.com\",\n" +
+            "     \"displayName\": \"Jason Gordon\",\n" +
+            "     \"responseStatus\": \"accepted\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "     \"email\": \"gordonjdgo@gmail.com\",\n" +
+            "     \"responseStatus\": \"tentative\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "     \"email\": \"hyperperformteam@gmail.com\",\n" +
+            "     \"responseStatus\": \"needsAction\"\n" +
+            "    }\n" +
+            "   ],\n" +
+            "   \"reminders\": {\n" +
+            "    \"useDefault\": true\n" +
+            "   }\n" +
+            "  }\n" +
+            " ]";
 }

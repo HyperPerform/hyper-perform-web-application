@@ -1,15 +1,14 @@
 package me.hyperperform.listener;
 
-
+import me.hyperperform.QueueConnection;
 import me.hyperperform.event.Git.GitPush;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.json.simple.parser.JSONParser;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
-import javax.inject.Inject;
 
 
 /**
@@ -22,16 +21,14 @@ import javax.inject.Inject;
 @Path("/gitEvent")
 public class GitListener implements IListener
 {
+    @Inject
+    QueueConnection queueConnection;
 
     @POST
     @Consumes("application/json")
-    public Response listen(@HeaderParam("X-GitHub-Event") String eventType, String jsonStr) throws ParseException
+    public Response listen(@HeaderParam("X-GitHub-Event") String eventType, String jsonStr) throws Exception
     {
-
         JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
-
-
-        System.out.println("Received " + eventType + " event!");
 
         if (eventType.equals("push"))
         {
@@ -44,17 +41,30 @@ public class GitListener implements IListener
            String user = (String)pusher.get("name");
 
            GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
-           log(push);
         }
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
     }
 
+
+
     @GET
     @Path("/testing")
-    public Response myTest()
+    public Response myTest() throws Exception
     {
-        return Response.status(200).entity("Testing output").build();
+        GitPush gitPush = new GitPush();
+        
+        String out = "---Start Debug Output--- <br/>";
+        
+        out += "Sending git event object to queue <br/>";
+        queueConnection.sendObject(gitPush);
+
+        out += "Getting object from queue <br/>";
+        out += ((GitPush) queueConnection.receive()).toString() + "<br/>";
+
+        out += "---End Debug Output--- <br/>";
+
+        return Response.status(200).entity(out).build();
     }
 
     static <T> void log(T t)

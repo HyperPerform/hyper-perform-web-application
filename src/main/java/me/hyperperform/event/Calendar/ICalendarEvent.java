@@ -19,6 +19,10 @@ public interface ICalendarEvent extends IEvent
 
     public String getCalendarID();
 
+    public void setCreator(String creator);
+
+    public String getCreator();
+
     public void setCalendarID(String calendarID);
 
     public Timestamp getDueDate();

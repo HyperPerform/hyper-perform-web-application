@@ -89,9 +89,9 @@ public class GitPush implements IGitEvent
     {
         String s = "";
 
-//        s += "Repo Name: " + repository + "\n";
-//        s += "Date: " + getDate() + "\n";
-//        s += "Pusher: " + username;
+        s += "Repo Name: " + repository + "\n";
+        s += "Date: " + getDate() + "\n";
+        s += "Pusher: " + username;
 
         return s;
     }

@@ -101,7 +101,7 @@ public class MockEvent
             "  }\n" +
             "}";
 
-    public static String calendarEvents = "\n" +
+    public static String calendarEvent = "\n" +
             "{\n" +
             " \"kind\": \"calendar#events\",\n" +
             " \"etag\": \"\\\"p3309lmccg66cs0g\\\"\",\n" +

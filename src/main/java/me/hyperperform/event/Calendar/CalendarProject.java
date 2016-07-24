@@ -20,13 +20,22 @@ public class CalendarProject implements ICalendarEvent, Serializable
 {
     @Id
     private String eventID;
-
+    private String creator;
     private String calendarID;
     private Timestamp dueDate;
     private String repoName;
 
+    public String getCreator()
+    {
+        return creator;
+    }
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public void setCreator(String creator)
+    {
+        this.creator = creator;
+    }
+
+    //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ArrayList<String> collaborators;
     private Timestamp timestamp;
 

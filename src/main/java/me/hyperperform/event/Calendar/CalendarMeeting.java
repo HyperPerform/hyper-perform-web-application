@@ -48,15 +48,15 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
 
     }
 
-    public CalendarMeeting(String eventID, String calendarID, String creator, Timestamp dueDate, String location, ArrayList<String> attendees, Timestamp timestamp)
+    public CalendarMeeting(String eventID, String calendarID, String creator, String dueDate, String location, ArrayList<String> attendees, String timestamp)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
         setCreator(creator);
-        setDueDate(dueDate);
+        setDueDate(Timestamp.valueOf(dueDate));
         setLocation(location);
         setAttendees(attendees);
-        setTimestamp(timestamp);
+        setTimestamp(Timestamp.valueOf(timestamp));
     }
 
     public Timestamp getTimestamp()

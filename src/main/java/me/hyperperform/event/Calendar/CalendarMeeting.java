@@ -1,6 +1,10 @@
 package me.hyperperform.event.Calendar;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Hyper-perform
@@ -9,15 +13,57 @@ import java.sql.Timestamp;
  * Feature: Calendar
  */
 
-public class CalendarMeeting implements ICalendarEvent
+
+@Entity
+@Table(name = "\"CalendarMeeting\"")
+public class CalendarMeeting implements ICalendarEvent, Serializable
 {
+    @Id
+    @Column(name = "eventID")
     private String eventID;
+
+    @Column(name = "calendarID")
     private String calendarID;
+
+    @Column(name = "duedate")
     private Timestamp dueDate;
+
+    @Column(name = "location")
     private String location;
-    private String[] attendees;
+
+    @Column(name = "attendees")
+//    @ElementCollection
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @OneToMany(fetch = FetchType.EAGER)
+    private ArrayList<String> attendees;
+
+    @Column(name = "timestamp")
     private Timestamp timestamp;
 
+    public CalendarMeeting()
+    {
+
+    }
+
+    public CalendarMeeting(String eventID, String calendarID, Timestamp dueDate, String location, ArrayList<String> attendees, Timestamp timestamp)
+    {
+        setEventID(eventID);
+        setCalendarID(calendarID);
+        setDueDate(dueDate);
+        setLocation(location);
+        setAttendees(attendees);
+        setTimestamp(timestamp);
+    }
+
+    public Timestamp getTimestamp()
+    {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
     public String getLocation()
     {
         return location;
@@ -28,12 +74,12 @@ public class CalendarMeeting implements ICalendarEvent
         location = loc;
     }
 
-    public String[] getAttendees()
+    public List<String> getAttendees()
     {
         return attendees;
     }
 
-    public void setAttendees(String[] attend)
+    public void setAttendees(ArrayList<String> attend)
     {
         attendees = attend;
     }

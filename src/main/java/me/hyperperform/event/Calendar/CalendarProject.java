@@ -1,6 +1,10 @@
 package me.hyperperform.event.Calendar;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 /**
  * Hyper-perform
@@ -9,16 +13,47 @@ import java.sql.Timestamp;
  * Feature: Calendar
  */
 
-//@Entity
-//@Table
-public class CalendarProject implements ICalendarEvent
+@Entity
+@Table(name = "\"CalendarProject\"")
+
+public class CalendarProject implements ICalendarEvent, Serializable
 {
+    @Id
     private String eventID;
+
     private String calendarID;
     private Timestamp dueDate;
     private String repoName;
-    private String[] collaborators;
+
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ArrayList<String> collaborators;
     private Timestamp timestamp;
+
+    public CalendarProject()
+    {
+
+    }
+
+    public CalendarProject(String eventID, String calendarID, Timestamp dueDate, String repoName, ArrayList<String> collaborators, Timestamp timestamp)
+    {
+        setEventID(eventID);
+        setCalendarID(calendarID);
+        setDueDate(dueDate);
+        setRepoName(repoName);
+        setCollaborators(collaborators);
+        setTimestamp(timestamp);
+
+    }
+    public Timestamp getTimestamp()
+    {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp)
+    {
+        this.timestamp = timestamp;
+    }
 
     public String getRepoName()
     {
@@ -30,12 +65,12 @@ public class CalendarProject implements ICalendarEvent
         repoName = rName;
     }
 
-    public String[] getCollaborators()
+    public ArrayList<String> getCollaborators()
     {
         return collaborators;
     }
 
-    public void setCollaborators(String[] collabs)
+    public void setCollaborators(ArrayList<String> collabs)
     {
         collaborators = collabs;
     }

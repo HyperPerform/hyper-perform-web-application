@@ -34,10 +34,8 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
     @Column(name = "location")
     private String location;
 
-    @Column(name = "attendees")
 //    @ElementCollection
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @OneToMany(fetch = FetchType.EAGER)
+    @Column(name = "attendees")
     private ArrayList<String> attendees;
 
     @Column(name = "timestamp")

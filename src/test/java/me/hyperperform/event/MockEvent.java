@@ -101,18 +101,17 @@ public class MockEvent
             "  }\n" +
             "}";
 
-    public static String calendarEvent = "\n" +
-            "{\n" +
+    public static String calendarEvent = "{\n" +
             " \"kind\": \"calendar#events\",\n" +
-            " \"etag\": \"\\\"p3309lmccg66cs0g\\\"\",\n" +
+            " \"etag\": \"\\\"p33o9vuvvs66cs0g\\\"\",\n" +
             " \"summary\": \"Test Calendar\",\n" +
             " \"description\": \"\",\n" +
-            " \"updated\": \"2016-07-24T11:35:46.632Z\",\n" +
+            " \"updated\": \"2016-07-24T18:49:18.166Z\",\n" +
             " \"timeZone\": \"Africa/Johannesburg\",\n" +
             " \"accessRole\": \"owner\",\n" +
             " \"defaultReminders\": [\n" +
             " ],\n" +
-            " \"nextSyncToken\": \"CMCa2YyBjM4CEMCa2YyBjM4CGAU=\",\n" +
+            " \"nextSyncToken\": \"CPCf-__hjM4CEPCf-__hjM4CGAU=\",\n" +
             " \"items\": [\n" +
             "  {\n" +
             "\n" +
@@ -197,6 +196,40 @@ public class MockEvent
             "   \"reminders\": {\n" +
             "    \"useDefault\": true\n" +
             "   }\n" +
+            "  },\n" +
+            "  {\n" +
+            "\n" +
+            "   \"kind\": \"calendar#event\",\n" +
+            "   \"etag\": \"\\\"2938712515030000\\\"\",\n" +
+            "   \"id\": \"iu20v07rf5fk3vjhf56vf2aia4\",\n" +
+            "   \"status\": \"confirmed\",\n" +
+            "   \"htmlLink\": \"https://www.google.com/calendar/event?eid=aXUyMHYwN3JmNWZrM3ZqaGY1NnZmMmFpYTQgaGszNDg3Z2Q3aDU3b2g5ZzcxaGU5dGZqczBAZw\",\n" +
+            "   \"created\": \"2016-07-24T10:30:57.000Z\",\n" +
+            "   \"updated\": \"2016-07-24T10:30:57.515Z\",\n" +
+            "   \"summary\": \"Test3\",\n" +
+            "   \"description\": \"3rd test\",\n" +
+            "   \"colorId\": \"1\",\n" +
+            "   \"creator\": {\n" +
+            "    \"email\": \"hyperperformteam@gmail.com\"\n" +
+            "   },\n" +
+            "   \"organizer\": {\n" +
+            "    \"email\": \"hk3487gd7h57oh9g71he9tfjs0@group.calendar.google.com\",\n" +
+            "    \"displayName\": \"Test Calendar\",\n" +
+            "    \"self\": true\n" +
+            "   },\n" +
+            "   \"start\": {\n" +
+            "    \"date\": \"2016-07-26\"\n" +
+            "   },\n" +
+            "   \"end\": {\n" +
+            "    \"date\": \"2016-07-27\"\n" +
+            "   },\n" +
+            "   \"transparency\": \"transparent\",\n" +
+            "   \"iCalUID\": \"iu20v07rf5fk3vjhf56vf2aia4@google.com\",\n" +
+            "   \"sequence\": 0,\n" +
+            "   \"reminders\": {\n" +
+            "    \"useDefault\": true\n" +
+            "   }\n" +
             "  }\n" +
-            " ]";
+            " ]\n" +
+            "}";
 }

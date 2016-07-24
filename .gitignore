@@ -14,7 +14,7 @@
 # these rules might exclude image files for figures etc.
 # *.ps
 # *.eps
-*.pdf
+# *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
@@ -77,7 +77,7 @@ acs-*.bib
 *-gnuplottex-*
 
 # hyperref
-*.brf
+
 
 # knitr
 *-concordance.tex
@@ -107,7 +107,7 @@ _minted*
 *.mw
 
 # mylatexformat
-*.fmt
+
 
 # nomencl
 *.nlo
@@ -157,31 +157,10 @@ pythontex-files-*/
 
 # Latexian
 TSWLatexianTemp*
-
-# Jetbrains
-.idea
-*.iml
-
-### Java template
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-
-# IntelliJ
-/out/
-
-# mpeltonen/sbt-idea plugin
-.idea_modules/
-
-# JIRA plugin
-atlassian-ide-plugin.xml
-
-### Maven template
+.idea/
+dep.txt
+docs/Architectural/Architectural_Requirements.pdf
+docs/Functional/Functional_Requirements.pdf
+hyperperform-system.iml
+lib/
 target/

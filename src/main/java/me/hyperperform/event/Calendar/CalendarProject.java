@@ -15,28 +15,29 @@ import java.util.ArrayList;
 
 @Entity
 @Table(name = "\"CalendarProject\"")
-
 public class CalendarProject implements ICalendarEvent, Serializable
 {
     @Id
+    @Column(name = "eventID")
     private String eventID;
+
+    @Column(name = "creator")
     private String creator;
+
+    @Column(name = "calendarID")
     private String calendarID;
+
+    @Column(name = "duedate")
     private Timestamp dueDate;
+
+    @Column(name = "reponame")
     private String repoName;
 
-    public String getCreator()
-    {
-        return creator;
-    }
-
-    public void setCreator(String creator)
-    {
-        this.creator = creator;
-    }
-
-    //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @ElementCollection
+    @Column(name = "collaborators")
     private ArrayList<String> collaborators;
+
+    @Column(name = "timestamp")
     private Timestamp timestamp;
 
     public CalendarProject()
@@ -44,14 +45,17 @@ public class CalendarProject implements ICalendarEvent, Serializable
 
     }
 
-    public CalendarProject(String eventID, String calendarID, Timestamp dueDate, String repoName, ArrayList<String> collaborators, Timestamp timestamp)
+    public CalendarProject(String eventID, String calendarID, String create, Timestamp dueDate, String repoName, ArrayList<String> collaborators, Timestamp timestamp)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
+        setCreator(create);
         setDueDate(dueDate);
         setRepoName(repoName);
         setCollaborators(collaborators);
         setTimestamp(timestamp);
+        setCalendarID(create);
+
 
     }
     public Timestamp getTimestamp()
@@ -117,5 +121,15 @@ public class CalendarProject implements ICalendarEvent, Serializable
     public void setDate(Timestamp timestamp)
     {
        this.timestamp = timestamp;
+    }
+
+    public String getCreator()
+    {
+        return creator;
+    }
+
+    public void setCreator(String creator)
+    {
+        this.creator = creator;
     }
 }

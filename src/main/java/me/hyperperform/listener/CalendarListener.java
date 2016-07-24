@@ -12,6 +12,13 @@ import org.json.simple.parser.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Hyper-perform
+ * Group: CodusMaximus
+ * Date: 2016/07/24
+ * Feature: Calendar Listener
+ */
+
 @Path("/calendar")
 public class CalendarListener implements IListener
 {

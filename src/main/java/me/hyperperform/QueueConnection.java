@@ -9,6 +9,8 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 import javax.jms.*;
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import java.io.Serializable;
 
 /**
@@ -26,7 +28,7 @@ public class QueueConnection
     private MessageConsumer messageConsumer;
 
     @PostConstruct
-    public void initConnection() throws JMSException
+    public void initConnection() throws Exception
     {
         System.out.println("-------------------------------------------------");
         System.out.println("Connecting to messaging queue");
@@ -34,14 +36,27 @@ public class QueueConnection
 
         System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
 
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
+//        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
+//
+//        connection = connectionFactory.createConnection();
+//        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+//        Queue queue = session.createQueue("hyperperform");
+//
+//        messageProducer = session.createProducer(queue);
+//        messageConsumer = session.createConsumer(queue);
+//
+//        connection.start();
+
+        Context ctx = new InitialContext();
+
+        ConnectionFactory connectionFactory = (ConnectionFactory) ctx.lookup("queueConnectionFactory");
+        Destination destination = (Destination) ctx.lookup("MsgQueue");
 
         connection = connectionFactory.createConnection();
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        Queue queue = session.createQueue("hyperperform");
 
-        messageProducer = session.createProducer(queue);
-        messageConsumer = session.createConsumer(queue);
+        messageProducer = session.createProducer(destination);
+        messageConsumer = session.createConsumer(destination);
 
         connection.start();
     }

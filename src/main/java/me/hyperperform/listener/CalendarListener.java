@@ -4,7 +4,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
 import me.hyperperform.event.Calendar.CalendarMeeting;
-import me.hyperperform.event.Git.GitPush;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,6 +11,13 @@ import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+/**
+ * Hyper-perform
+ * Group: CodusMaximus
+ * Date: 2016/07/24
+ * Feature: Calendar Listener
+ */
 
 @Path("/calendar")
 public class CalendarListener implements IListener

@@ -1,5 +1,6 @@
 package me.hyperperform.event;
 
+import me.hyperperform.event.Calendar.AttendeeState;
 import me.hyperperform.event.Calendar.CalendarMeeting;
 import me.hyperperform.event.Calendar.CalendarProject;
 
@@ -7,9 +8,7 @@ import org.junit.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * hyperperform-system
@@ -24,7 +23,8 @@ public class CalendarPersistenceTest
     private EntityTransaction entityTransaction;
     private CalendarMeeting cm;
     private CalendarProject cp;
-    private ArrayList<String> arr;
+    private Map<String, AttendeeState> arr;
+
 
     @Before
     public void init()
@@ -37,16 +37,19 @@ public class CalendarPersistenceTest
         entityTransaction = entityManager.getTransaction();
 
 
-        arr = new ArrayList<String>();
-        arr.add("Avi");
-        arr.add("Rohan");
-        arr.add("Jason");
-        arr.add("Claudio");
+        arr = new HashMap<String, AttendeeState>();
+        arr.put("Avi", AttendeeState.ACCEPTED);
+        arr.put("Rohan", AttendeeState.DECLINED);
+        arr.put("Jason", AttendeeState.ACCEPTED);
+        arr.put("Claudio", AttendeeState.DECLINED);
 
-
+        ArrayList<String> tmp = new ArrayList<String>();
+        tmp.add("Avinash");
+        tmp.add("Jason");
+        tmp.add("Rohan");
 
         cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", "2007-09-23 10:10:10.0", "SA", arr, "2008-09-23 10:10:10.0");
-        cp = new CalendarProject(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", arr, Timestamp.valueOf("2008-09-23 10:10:10.0"));
+        cp = new CalendarProject(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", tmp, Timestamp.valueOf("2008-09-23 10:10:10.0"));
     }
 
     @Test
@@ -75,6 +78,7 @@ public class CalendarPersistenceTest
 
         Query query = entityManager.createQuery("FROM CalendarMeeting ", CalendarMeeting.class);
         List<CalendarMeeting> result = query.getResultList();
+        System.out.println("\n\n\n" + result.get(result.size()-1).getAttendees() + "\n\n\n");
         Assert.assertNotEquals("No Elements", result.size(), 0);
         Assert.assertEquals("CalenderID don't match", cm.getCalendarID(), result.get(result.size()-1).getCalendarID());
         Assert.assertEquals("Creators don't match", cm.getCreator(), result.get(result.size()-1).getCreator());

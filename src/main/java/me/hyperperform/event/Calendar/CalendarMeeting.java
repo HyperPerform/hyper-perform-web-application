@@ -36,8 +36,9 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
     @Column(name = "location")
     private String location;
 
-//    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "attendees")
+//    @ManyToMany(cascade = CascadeType.ALL)
     private Map<String, AttendeeState> attendees;
 
     @Column(name = "timestamp")
@@ -98,6 +99,8 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
 
     public void setAttendees(Map<String, AttendeeState> attend)
     {
+        attendees = new HashMap<String, AttendeeState>();
+
         attendees.putAll(attend);
     }
 

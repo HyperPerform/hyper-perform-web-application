@@ -4,7 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Hyper-perform
@@ -36,7 +38,7 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
 
 //    @ElementCollection
     @Column(name = "attendees")
-    private ArrayList<String> attendees;
+    private Map<String, AttendeeState> attendees;
 
     @Column(name = "timestamp")
     private Timestamp timestamp;
@@ -46,7 +48,7 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
 
     }
 
-    public CalendarMeeting(String eventID, String calendarID, String creator, String due, String location, ArrayList<String> attendees, String time)
+    public CalendarMeeting(String eventID, String calendarID, String creator, String due, String location, Map<String, AttendeeState> attendees, String time)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
@@ -89,14 +91,14 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
         this.creator = creator;
     }
 
-    public List<String> getAttendees()
+    public Map<String, AttendeeState> getAttendees()
     {
         return attendees;
     }
 
-    public void setAttendees(ArrayList<String> attend)
+    public void setAttendees(Map<String, AttendeeState> attend)
     {
-        attendees = attend;
+        attendees.putAll(attend);
     }
 
     public String getEventID()

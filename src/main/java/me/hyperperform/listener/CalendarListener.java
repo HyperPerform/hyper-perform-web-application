@@ -3,6 +3,7 @@ package me.hyperperform.listener;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
+import me.hyperperform.event.Calendar.AttendeeState;
 import me.hyperperform.event.Calendar.CalendarMeeting;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,7 +11,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Hyper-perform
@@ -42,14 +45,43 @@ public class CalendarListener implements IListener
                    JSONObject start = (JSONObject) item.get("start");
                    JSONArray attendees = (JSONArray) item.get("attendees");
 
-                   ArrayList<String> attendeeEmails = new ArrayList<String>();
+                   Map<String, AttendeeState> attendeeMap = new HashMap<String, AttendeeState>();
+
 
                    if(attendees != null)
                    {
-                       Iterator<String> iterate = attendees.iterator();
+                       Iterator<JSONObject> iterate = attendees.iterator();
                        while (iterate.hasNext())
                        {
-                           attendeeEmails.add(iterate.next());
+                           JSONObject attend = iterate.next();
+                           String tmp = (String) attend.get("responseStatus");
+                           AttendeeState as;
+                           if (tmp.equals("accepted"))
+                           {
+                               as = AttendeeState.ACCEPTED;
+
+                           }
+                           else if (tmp.equals("declined"))
+                           {
+                               as = AttendeeState.DECLINED;
+
+                           }
+                           else if (tmp.equals("tentative"))
+                           {
+                               as = AttendeeState.TENTATIVE;
+
+                           }
+                           else if (tmp.equals("needsAction"))
+                           {
+                               as = AttendeeState.NEEDSACTION;
+
+                           }
+                           else
+                           {
+                               as = AttendeeState.NEEDSACTION;
+                           }
+
+                           attendeeMap.put((String) attend.get("email"), as);
                        }
                    }
 
@@ -67,7 +99,7 @@ public class CalendarListener implements IListener
                    String timeCreated = (String) item.get("created");
 
                    CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
-                           location, attendeeEmails, extractDate(timeCreated) + " " + extractTime(timeCreated));
+                           location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
                }
            }
        }

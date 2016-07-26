@@ -1,5 +1,6 @@
 package me.hyperperform.rest;
 
+import me.hyperperform.QueueConnection;
 import me.hyperperform.listener.GitListener;
 import me.hyperperform.event.MockEvent;
 
@@ -9,9 +10,15 @@ import org.jboss.resteasy.mock.*;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = RestTestConfig.class)
 public class RestTest
 {
 	@Test

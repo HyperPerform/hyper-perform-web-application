@@ -7,6 +7,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
@@ -23,6 +25,9 @@ public class GitListener implements IListener
 {
     @Inject
     QueueConnection queueConnection;
+
+    @PersistenceContext
+    EntityManager em;
 
     @POST
     @Consumes("application/json")
@@ -41,6 +46,8 @@ public class GitListener implements IListener
            String user = (String)pusher.get("name");
 
            GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
+
+            log("------- " + queueConnection + "-------");
         }
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
@@ -61,6 +68,8 @@ public class GitListener implements IListener
 
         out += "Getting object from queue <br/>";
         out += ((GitPush) queueConnection.receive()).toString() + "<br/>";
+
+        out += "Persistence Context: " + em + "<br/>";
 
         out += "---End Debug Output--- <br/>";
 

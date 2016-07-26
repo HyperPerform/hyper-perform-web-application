@@ -1,12 +1,9 @@
 package me.hyperperform;
 
-import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -17,8 +14,6 @@ import java.io.Serializable;
  * Created by rohan on 2016/07/23.
  */
 
-@Startup
-@Singleton
 public class QueueConnection
 {
     private Connection connection;
@@ -30,11 +25,12 @@ public class QueueConnection
     @PostConstruct
     public void initConnection() throws Exception
     {
+//        System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
+
         System.out.println("-------------------------------------------------");
         System.out.println("Connecting to messaging queue");
         System.out.println("-------------------------------------------------");
 
-        System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
 
 //        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
 //
@@ -49,8 +45,10 @@ public class QueueConnection
 
         Context ctx = new InitialContext();
 
-        ConnectionFactory connectionFactory = (ConnectionFactory) ctx.lookup("queueConnectionFactory");
+        ActiveMQConnectionFactory connectionFactory = (ActiveMQConnectionFactory) ctx.lookup("queueConnectionFactory");
         Destination destination = (Destination) ctx.lookup("MsgQueue");
+
+        connectionFactory.setTrustAllPackages(true);
 
         connection = connectionFactory.createConnection();
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

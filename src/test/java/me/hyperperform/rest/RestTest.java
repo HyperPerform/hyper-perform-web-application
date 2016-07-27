@@ -22,7 +22,7 @@ import javax.ws.rs.core.MediaType;
 public class RestTest
 {
 	@Test
-	public void simpleTest() throws Exception {
+	public void gitEventTest() throws Exception {
 
 		System.out.println("-------------------------------------------------");
 		System.out.println("Starting REST services test");
@@ -44,5 +44,20 @@ public class RestTest
 		dispatcher.invoke(request, response);
 
 		Assert.assertEquals(response.getStatus(), 200);
+	}
+
+	@Test
+	public void invalidLinkTest() throws Exception
+	{
+		POJOResourceFactory noDef = new POJOResourceFactory(GitListener.class);
+		Dispatcher dispatcher = MockDispatcherFactory.createDispatcher();
+
+		dispatcher.getRegistry().addResourceFactory(noDef);
+
+		MockHttpRequest request = MockHttpRequest.get("/gitEvent/random");
+		MockHttpResponse response = new MockHttpResponse();
+		dispatcher.invoke(request, response);
+
+		Assert.assertEquals(response.getStatus(), 404);
 	}
 }

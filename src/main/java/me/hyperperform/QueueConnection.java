@@ -4,6 +4,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -16,6 +17,12 @@ import java.io.Serializable;
 
 public class QueueConnection
 {
+    @Resource(lookup = "java:/ConnectionFactory")
+    private ConnectionFactory connectionFactory;
+
+    // @Resource(lookup = "java:/jms/queue/hyperperform")
+    // private Destination destination;
+
     private Connection connection;
     private Session session;
 
@@ -25,36 +32,26 @@ public class QueueConnection
     @PostConstruct
     public void initConnection() throws Exception
     {
-//        System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
+       System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
 
-        System.out.println("-------------------------------------------------");
-        System.out.println("Connecting to messaging queue");
-        System.out.println("-------------------------------------------------");
-
-
-//        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_BROKER_URL);
-//
-//        connection = connectionFactory.createConnection();
-//        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-//        Queue queue = session.createQueue("hyperperform");
-//
-//        messageProducer = session.createProducer(queue);
-//        messageConsumer = session.createConsumer(queue);
-//
-//        connection.start();
-
-        Context ctx = new InitialContext();
-
-        ActiveMQConnectionFactory connectionFactory = (ActiveMQConnectionFactory) ctx.lookup("queueConnectionFactory");
-        Destination destination = (Destination) ctx.lookup("MsgQueue");
-
-        connectionFactory.setTrustAllPackages(true);
+        // System.out.println("-------------------------------------------------");
+        // System.out.println("Connecting to messaging queue");
 
         connection = connectionFactory.createConnection();
         session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        Destination destination = session.createQueue("hyperperform");   
 
         messageProducer = session.createProducer(destination);
         messageConsumer = session.createConsumer(destination);
+
+        // System.out.println("ConnectionFactory: " + connectionFactory);
+        // System.out.println("Destination: " + destination);
+        // System.out.println("Connection: " + connection);
+        // System.out.println("Session: " + session);
+        // System.out.println("MessageProducer: " + messageProducer);
+        // System.out.println("MessageConsumer: " + messageConsumer);
+        // System.out.println("-------------------------------------------------");
+
 
         connection.start();
     }
@@ -62,10 +59,6 @@ public class QueueConnection
     @PreDestroy
     public void disconnect() throws JMSException
     {
-        System.out.println("-------------------------------------------------");
-        System.out.println("Disconnecting from messaging queue");
-        System.out.println("-------------------------------------------------");
-
         connection.stop();
         session.close();
         connection.close();

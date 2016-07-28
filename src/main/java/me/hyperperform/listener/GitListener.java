@@ -18,17 +18,32 @@ import javax.ws.rs.*;
  * Group: CodusMaximus
  * Date: 2016/07/05
  * Feature: Github Listener
+ *
+ * Provides a URL for GitHub to push events to. From here the events are persisted and placed onto a queue
+ * for CEP at a later stage.
  */
 
 @Path("/gitEvent")
 public class GitListener implements IListener
 {
+    /**
+     * Connection to the messaging queue. The object is provided through dependency injection.
+     */
     @Inject
     QueueConnection queueConnection;
 
+    /**
+     * Persistence context which allows for persisting the events received.
+     */
     @PersistenceContext
     EntityManager em;
 
+    /**
+     *
+     * @param eventType This field identifies the type of GitHub event coming through i.e push, pull, issue closed etc.
+     * @param jsonStr Contains the actual information about the event. This JSON object is processed and persisted.
+     * @return If the persistence was successful a 200 status code is returned.
+     */
     @POST
     @Consumes("application/json")
     public Response listen(@HeaderParam("X-GitHub-Event") String eventType, String jsonStr) throws Exception
@@ -76,16 +91,27 @@ public class GitListener implements IListener
         return Response.status(200).entity(out).build();
     }
 
-    static <T> void log(T t)
+    private static <T> void log(T t)
     {
         System.out.println(t);
     }
 
+    /**
+     * Accepts timestamp as a String. Github event timestamp is not of correct format thus this method has the
+     *          ability to extract the date component of the timestamp.
+     * @param s Timestamp of the event as a String object.
+     * @return Returns the date of the timestamp as a String.
+     */
     private String extractDate(String s)
     {
         return (s.indexOf('T') != -1) ? s.substring(0, s.indexOf('T')) : s.substring(0, s.indexOf(' '));
     }
 
+    /**
+     *  Extracts the time portion from the timestamp.
+     * @param s Timestamp of the event as a String object.
+     * @return Returns the time of the timestamp as a String.
+     */
     private String extractTime(String s)
     {
         String tmp = s;

@@ -1,6 +1,5 @@
 package me.hyperperform.rest;
 
-import me.hyperperform.QueueConnection;
 import me.hyperperform.listener.GitListener;
 import me.hyperperform.event.MockEvent;
 
@@ -14,13 +13,19 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * Class containing JUnit tests for testing the REST component.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = RestTestConfig.class)
 public class RestTest
 {
+	/**
+	 * Test for checking whether or not the GitEvents are being accepted and persisted. A mock git push event is used
+	 * to carry out the test.
+     */
 	@Test
 	public void gitEventTest() throws Exception {
 
@@ -46,6 +51,9 @@ public class RestTest
 		Assert.assertEquals(response.getStatus(), 200);
 	}
 
+	/**
+	 * Test to determine whether or not error codes are received if an invalid URL is accessed.
+     */
 	@Test
 	public void invalidLinkTest() throws Exception
 	{

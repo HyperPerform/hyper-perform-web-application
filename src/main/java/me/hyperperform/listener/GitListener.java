@@ -132,6 +132,9 @@ public class GitListener implements IListener
 
         if (tmp.indexOf('-') != -1)
             tmp = tmp.substring(0, tmp.indexOf('-'));
+        else
+        if (tmp.indexOf('+') != -1)
+            tmp = tmp.substring(0, tmp.indexOf('+'));
 
         return tmp;
     }

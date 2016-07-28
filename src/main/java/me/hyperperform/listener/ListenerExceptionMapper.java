@@ -6,13 +6,18 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 /**
- * Created by rohan on 2016/07/27.
+ * Allows for intercepting exceptions that occur through REST api. Intercepted exceptions can be handled appropriately.
  */
 
 @Provider
-public class ListenerExceptionMapper implements ExceptionMapper<NotFoundException> {
+public class ListenerExceptionMapper implements ExceptionMapper<Exception> {
 
-    public Response toResponse(NotFoundException e) {
+    /**
+     *
+     * @param e Exception that was intercepted.
+     * @return  Returns appropriate response code with regards to exception type. E.g NotFoundException returns 404.
+     */
+    public Response toResponse(Exception e) {
         return Response.status(404).entity("Invalid url").build();
     }
 }

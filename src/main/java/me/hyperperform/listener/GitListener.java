@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
@@ -62,7 +63,19 @@ public class GitListener implements IListener
 
            GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
 
-            log("------- " + queueConnection + "-------");
+            if (queueConnection != null)
+                queueConnection.sendObject(push);
+
+            if (em != null)
+            {
+//                EntityTransaction et = em.getTransaction();
+
+                em.getTransaction().begin();
+
+                em.persist(push);
+
+                em.getTransaction().commit();
+            }
         }
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
@@ -70,26 +83,26 @@ public class GitListener implements IListener
 
 
 
-    @GET
-    @Path("/testing")
-    public Response myTest() throws Exception
-    {
-        GitPush gitPush = new GitPush();
-        
-        String out = "---Start Debug Output--- <br/>";
-        
-        out += "Sending git event object to queue <br/>";
-        queueConnection.sendObject(gitPush);
-
-        out += "Getting object from queue <br/>";
-        out += ((GitPush) queueConnection.receive()).toString() + "<br/>";
-
-        out += "Persistence Context: " + em + "<br/>";
-
-        out += "---End Debug Output--- <br/>";
-
-        return Response.status(200).entity(out).build();
-    }
+//    @GET
+//    @Path("/testing")
+//    public Response myTest() throws Exception
+//    {
+//        GitPush gitPush = new GitPush();
+//
+//        String out = "---Start Debug Output--- <br/>";
+//
+//        out += "Sending git event object to queue <br/>";
+//        queueConnection.sendObject(gitPush);
+//
+//        out += "Getting object from queue <br/>";
+//        out += ((GitPush) queueConnection.receive()).toString() + "<br/>";
+//
+//        out += "Persistence Context: " + em + "<br/>";
+//
+//        out += "---End Debug Output--- <br/>";
+//
+//        return Response.status(200).entity(out).build();
+//    }
 
     private static <T> void log(T t)
     {

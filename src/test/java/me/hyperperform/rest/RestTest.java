@@ -70,7 +70,7 @@ public class RestTest
 	}
 
 	/**
-	 *
+	 * Test to check whether or not listener can handle different timezones
 	 */
 	@Test
 	public void timezoneTest() throws Exception

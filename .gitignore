@@ -164,3 +164,4 @@ docs/Functional/Functional_Requirements.pdf
 hyperperform-system.iml
 lib/
 target/
+wildfly.sh

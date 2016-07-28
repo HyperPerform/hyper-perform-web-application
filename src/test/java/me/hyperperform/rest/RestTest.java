@@ -68,4 +68,28 @@ public class RestTest
 
 		Assert.assertEquals(response.getStatus(), 404);
 	}
+
+	/**
+	 *
+	 */
+	@Test
+	public void timezoneTest() throws Exception
+	{
+		POJOResourceFactory noDef = new POJOResourceFactory(GitListener.class);
+		Dispatcher dispatcher = MockDispatcherFactory.createDispatcher();
+
+		dispatcher.getRegistry().addResourceFactory(noDef);
+
+		MockHttpRequest request = MockHttpRequest.post("/gitEvent");
+
+		request.header("X-GitHub-Event", "push");
+		request.contentType(MediaType.APPLICATION_JSON_TYPE);
+
+		request.content(MockEvent.alternativeGitPush.getBytes());
+
+		MockHttpResponse response = new MockHttpResponse();
+		dispatcher.invoke(request, response);
+
+		Assert.assertEquals(response.getStatus(), 200);
+	}
 }

@@ -78,7 +78,6 @@ acs-*.bib
 
 # hyperref
 
-
 # knitr
 *-concordance.tex
 *.tikz
@@ -158,9 +157,3 @@ pythontex-files-*/
 # Latexian
 TSWLatexianTemp*
 .idea/
-dep.txt
-docs/Architectural/Architectural_Requirements.pdf
-docs/Functional/Functional_Requirements.pdf
-hyperperform-system.iml
-lib/
-target/

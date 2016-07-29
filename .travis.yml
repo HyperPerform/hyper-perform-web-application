@@ -12,3 +12,6 @@ before_script:
 test:
   adapter: postgresql
   database: hyperperform
+
+notifications:
+  slack: codusmaximus:TfshAEu8LRkjOGkyZnOQq5ys

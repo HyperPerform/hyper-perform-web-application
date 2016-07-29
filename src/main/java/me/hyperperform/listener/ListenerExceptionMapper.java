@@ -10,14 +10,14 @@ import javax.ws.rs.ext.Provider;
  */
 
 @Provider
-public class ListenerExceptionMapper implements ExceptionMapper<Exception> {
+public class ListenerExceptionMapper implements ExceptionMapper<NotFoundException> {
 
     /**
      *
      * @param e Exception that was intercepted.
      * @return  Returns appropriate response code with regards to exception type. E.g NotFoundException returns 404.
      */
-    public Response toResponse(Exception e) {
-        return Response.status(404).entity("Invalid url").build();
+    public Response toResponse(NotFoundException e) {
+        return Response.status(404).entity(e.toString()).build();
     }
 }

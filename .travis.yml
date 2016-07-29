@@ -7,7 +7,7 @@ services:
 
 before_script:
   - psql -c 'CREATE DATABASE hyperperform;' -U postgres
-  - psql -c '\connect hyperperform'
+  - psql -c '\connect hyperperform' -U postgres
   - psql -c 'CREATE TABLE public."GitPush" ( id integer NOT NULL, repository character varying(255), "timestamp" timestamp without time zone, username character varying(255), CONSTRAINT "GitPush_pkey" PRIMARY KEY (id) ); ' -U postgres
 
 test:

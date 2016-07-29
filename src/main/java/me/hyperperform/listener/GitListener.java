@@ -7,11 +7,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceContext;
+
+import javax.persistence.*;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 
 /**
@@ -36,8 +39,22 @@ public class GitListener implements IListener
     /**
      * Persistence context which allows for persisting the events received.
      */
-    @PersistenceContext
-    EntityManager em;
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+
+    @PostConstruct
+    private void initConnection()
+    {
+        entityManagerFactory = Persistence.createEntityManagerFactory("PostgreJPA");
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @PreDestroy
+    private void disconnect()
+    {
+        entityManager.close();
+        entityManagerFactory.close();
+    }
 
     /**
      *
@@ -66,15 +83,13 @@ public class GitListener implements IListener
             if (queueConnection != null)
                 queueConnection.sendObject(push);
 
-            if (em != null)
+            if (entityManager != null)
             {
-//                EntityTransaction et = em.getTransaction();
+                entityManager.getTransaction().begin();
 
-                em.getTransaction().begin();
+                entityManager.persist(push);
 
-                em.persist(push);
-
-                em.getTransaction().commit();
+                entityManager.getTransaction().commit();
             }
         }
 

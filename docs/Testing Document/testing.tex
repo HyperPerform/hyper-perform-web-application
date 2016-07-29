@@ -61,13 +61,15 @@ $mvn\ clean\ test$ \\
 All the necessary dependencies for the project will be automatically downloaded. \textbf{Note:} This process of downloading all the project dependencies might consume large amounts of data.
 
 \section{Test items}
-At this point in the project the following features will be tested:
+At this point in the project the following features have been tested:
 \begin{itemize}
 	\item The GitListener which receives events from GitHub.
 	\item GitPushEvent which is a POJO that contains information regarding a GitHub event.
 	\item CalendarListener which receives events from Google Calender service.
 	\item The error codes and exceptions raised when accessing an invalid REST URL.
 \end{itemize}
+
+Mock JSON data has been passed to the GitListener and CalendarListener classes (into the listen functions). 
 
 Each of these components have dependencies on features such as the messaging queue. All of these features are mocked out to ensure each component is tested in isolation. These features were mocked through dependency injection which was provided by Spring. \\
 

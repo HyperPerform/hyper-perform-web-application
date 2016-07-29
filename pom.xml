@@ -234,11 +234,11 @@
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.0.0.Final</version>
-			</plugin>
-			<configuration>
-				<hostname>127.0.0.1</hostname>
-				<port>9993</port>
-			</configuration>	
+				<configuration>
+					<hostname>127.0.0.1</hostname>
+					<port>9993</port>
+				</configuration>
+			</plugin>	
 
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

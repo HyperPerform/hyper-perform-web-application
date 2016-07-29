@@ -49,7 +49,7 @@ public class CalendarPersistenceTest
         tmp.add("Rohan");
 
         cm = new CalendarMeeting(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", "2007-09-23 10:10:10.0", "SA", arr, "2008-09-23 10:10:10.0");
-        cp = new CalendarProject(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", Timestamp.valueOf("2007-09-23 10:10:10.0"), "CodusMaximus", tmp, Timestamp.valueOf("2008-09-23 10:10:10.0"));
+        cp = new CalendarProject(UUID.randomUUID().toString(), "5", "hyperperformteam@gmail.com", "2007-09-23 10:10:10.0", "CodusMaximus", tmp, "2008-09-23 10:10:10.0");
     }
 
     @Test

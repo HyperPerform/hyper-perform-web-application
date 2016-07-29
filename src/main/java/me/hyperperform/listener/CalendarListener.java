@@ -5,15 +5,12 @@ import javax.ws.rs.*;
 
 import me.hyperperform.event.Calendar.AttendeeState;
 import me.hyperperform.event.Calendar.CalendarMeeting;
+import me.hyperperform.event.Calendar.CalendarProject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Hyper-perform
@@ -29,7 +26,6 @@ public class CalendarListener implements IListener
     @Consumes("application/json")
     public Response listen(@HeaderParam("X-Goog-Resource-URI") String link, String jsonStr) throws Exception
     {
-//        System.out.println("Received response from " + link + "\n");
        try
        {
            JSONObject json = (JSONObject) new JSONParser().parse(jsonStr);
@@ -45,46 +41,6 @@ public class CalendarListener implements IListener
                    JSONObject start = (JSONObject) item.get("start");
                    JSONArray attendees = (JSONArray) item.get("attendees");
 
-                   Map<String, AttendeeState> attendeeMap = new HashMap<String, AttendeeState>();
-
-
-                   if(attendees != null)
-                   {
-                       Iterator<JSONObject> iterate = attendees.iterator();
-                       while (iterate.hasNext())
-                       {
-                           JSONObject attend = iterate.next();
-                           String tmp = (String) attend.get("responseStatus");
-                           AttendeeState as;
-                           if (tmp.equals("accepted"))
-                           {
-                               as = AttendeeState.ACCEPTED;
-
-                           }
-                           else if (tmp.equals("declined"))
-                           {
-                               as = AttendeeState.DECLINED;
-
-                           }
-                           else if (tmp.equals("tentative"))
-                           {
-                               as = AttendeeState.TENTATIVE;
-
-                           }
-                           else if (tmp.equals("needsAction"))
-                           {
-                               as = AttendeeState.NEEDSACTION;
-
-                           }
-                           else
-                           {
-                               as = AttendeeState.NEEDSACTION;
-                           }
-
-                           attendeeMap.put((String) attend.get("email"), as);
-                       }
-                   }
-
                    String eID = ((String) item.get("htmlLink")).split(".eid=")[1];
                    String creator = (String) crt.get("email");
                    String cID = link.split("/calendars/")[1].split("/")[0];
@@ -98,8 +54,64 @@ public class CalendarListener implements IListener
                    String location = (String) item.get("location");
                    String timeCreated = (String) item.get("created");
 
-                   CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
-                           location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
+//                   if(location == null)
+//                   {
+                       String summary = ((String) item.get("summary")).toLowerCase();
+                       int ind = summary.indexOf("@reponame");
+//                   }
+
+                   if(location == null && ind != -1)
+                   {
+                       String repoName = summary.substring(0, ind);
+                       ArrayList<String> collaborators = new ArrayList<String>();
+                       for (int i = 0; i < attendees.size(); i++)
+                       {
+                           collaborators.add((String) ((JSONObject) attendees.iterator().next()).get("email"));
+                       }
+
+                       CalendarProject calProject = new CalendarProject(eID, cID, creator, (extractDate(due) + " " + extractTime(due)),
+                               repoName, collaborators, extractDate(timeCreated) + " " + extractTime(timeCreated));
+                   }
+                   else
+                   {
+                       Map<String, AttendeeState> attendeeMap = new HashMap<String, AttendeeState>();
+
+                       if(attendees != null)
+                       {
+                           Iterator<JSONObject> iterate = attendees.iterator();
+                           while (iterate.hasNext())
+                           {
+                               JSONObject attend = iterate.next();
+                               String tmp = (String) attend.get("responseStatus");
+                               AttendeeState as;
+                               if (tmp.equals("accepted"))
+                               {
+                                   as = AttendeeState.ACCEPTED;
+                               }
+                               else if (tmp.equals("declined"))
+                               {
+                                   as = AttendeeState.DECLINED;
+                               }
+                               else if (tmp.equals("tentative"))
+                               {
+                                   as = AttendeeState.TENTATIVE;
+                               }
+                               else if (tmp.equals("needsAction"))
+                               {
+                                   as = AttendeeState.NEEDSACTION;
+                               }
+                               else
+                               {
+                                   as = AttendeeState.NEEDSACTION;
+                               }
+
+                               attendeeMap.put((String) attend.get("email"), as);
+                           }
+                       }
+
+                       CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
+                               location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
+                   }
                }
            }
        }

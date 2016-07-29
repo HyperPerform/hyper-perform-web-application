@@ -45,15 +45,19 @@ public class CalendarProject implements ICalendarEvent, Serializable
 
     }
 
-    public CalendarProject(String eventID, String calendarID, String create, Timestamp dueDate, String repoName, ArrayList<String> collaborators, Timestamp timestamp)
+    public CalendarProject(String eventID, String calendarID, String create, String due, String repoName, ArrayList<String> collaborators, String time)
     {
         setEventID(eventID);
         setCalendarID(calendarID);
         setCreator(create);
-        setDueDate(dueDate);
+        if(due.equals(null))
+            setDueDate(null);
+        else
+            setDueDate(Timestamp.valueOf(due));
+
         setRepoName(repoName);
         setCollaborators(collaborators);
-        setTimestamp(timestamp);
+        setTimestamp(Timestamp.valueOf(time));
 
     }
     public Timestamp getTimestamp()

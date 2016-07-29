@@ -163,9 +163,13 @@ With regards to integration, the system has the following adapters on which to m
 	\item The EntrySystemsAdapter, provides an interface on to which various entry systems such as card readers, biometric scanners and the like can map.
 	\item The VersionControlAdapter, provides an interface on to which various version control systems such as GitHub, BitBucket and GitLab can map.
 	\item The CalenderingSystemAdaoter, provides an interface for various calendering systems such as Google Calender, or Outlook calender can map on to.
-	\item The CommuncationsSystemAdapter, provides an interface on to which various communication systems such as Slacks may map on to.\\\\
+	\item The CommuncationsSystemAdapter, provides an interface on to which various communication systems such as Slacks may map on to.
+	
+	\item Similarly the event that are retrieved will come through the REST wrapping designed specifically for the events. Each system will
+	have its own REST URL to which it will send events. \\\\
 \end{itemize}
-The various adapters are polled, and using a message bus system via ActiveMQ Artemis, one can retrieve the events occurring as messages, ensuring that loss of data doesn't occur easily in the event of a point of failure.
+
+Thus since the events come through the REST URL's we don't have to continuously poll these systems. Instead the seperate systems send the events when ready. Once the events are received they are processed and placed on a messaging queue.
 
 \pagebreak
 
@@ -199,9 +203,9 @@ The build tool to be used for Android will be Gradle, integrated with a Maven re
 \subsection{Back end}
 \begin{itemize}
 	\item WildFly as the JavaEE container and server.
-	\item JUnit as a unit testing framework.
+	\item JUnit as a unit testing framework along with Spring.
 	\item AspectJ as an Aspect Oriented Programming approach.
-	\item Jersey implementation of JAX-RS for REST wrapping.
+	\item RESTEasy implementation of JAX-RS for REST wrapping.
 	\item ActiveMQ Artemis as the message broker for the system.
 	\item Esper for complex event processing (CEP).
 	\item Scala for functional programming on mathematical algorithms.

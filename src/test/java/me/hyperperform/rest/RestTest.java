@@ -59,7 +59,7 @@ public class RestTest
 		request.header("X-Goog-Resource-URI", "https://www.googleapis.com/calendar/v3/calendars/hk3487gd7h57oh9g71he9tfjs0@group.calendar.google.com/events");
 		request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
-		request.content(MockEvent.calendarEvent.getBytes());
+		request.content(MockEvent.calendarEvents.getBytes());
 
 		MockHttpResponse response = new MockHttpResponse();
 		dispatcher.invoke(request, response);

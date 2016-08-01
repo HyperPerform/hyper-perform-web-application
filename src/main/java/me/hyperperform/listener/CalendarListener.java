@@ -19,9 +19,21 @@ import java.util.*;
  * Feature: Calendar Listener
  */
 
+/**
+ * Listener Class to listen for Google Calendar Events
+ * @author CodusMaximus
+ * @version 1.0
+ */
 @Path("/calendar")
 public class CalendarListener implements IListener
 {
+    /**
+     * Listens for a new or updated event made on the calendar being listened to.
+     * @param link - Link received of the calendarID url to make a get request to the google calendar
+     * @param jsonStr - The events returned from the get request
+     * @return A javax.ws.rs.core.Response object with the status of the response
+     * @throws Exception
+     */
     @GET
     @Consumes("application/json")
     public Response listen(@HeaderParam("X-Goog-Resource-URI") String link, String jsonStr) throws Exception
@@ -30,88 +42,76 @@ public class CalendarListener implements IListener
        {
            JSONObject json = (JSONObject) new JSONParser().parse(jsonStr);
            JSONArray items = (JSONArray) json.get("items");
-           Iterator<JSONObject> iterator = items.iterator();
 
-           while (iterator.hasNext())
+           JSONObject item = (JSONObject) items.get(items.size()-1);
+           if (item.get("kind").equals("calendar#event"))
            {
-               JSONObject item = iterator.next();
-               if (item.get("kind").equals("calendar#event"))
+               JSONObject crt = (JSONObject) item.get("creator");
+               JSONObject start = (JSONObject) item.get("start");
+               JSONArray attendees = (JSONArray) item.get("attendees");
+
+               String eID = ((String) item.get("htmlLink")).split(".eid=")[1];
+               String creator = (String) crt.get("email");
+               String cID = link.split("/calendars/")[1].split("/")[0];
+               String due = (String) start.get("dateTime");
+
+               if (due == null)
                {
-                   JSONObject crt = (JSONObject) item.get("creator");
-                   JSONObject start = (JSONObject) item.get("start");
-                   JSONArray attendees = (JSONArray) item.get("attendees");
+                   due = (String) start.get("date");
+               }
 
-                   String eID = ((String) item.get("htmlLink")).split(".eid=")[1];
-                   String creator = (String) crt.get("email");
-                   String cID = link.split("/calendars/")[1].split("/")[0];
-                   String due = (String) start.get("dateTime");
+               String location = (String) item.get("location");
+               String timeCreated = (String) item.get("created");
 
-                   if(due == null)
+               String summary = ((String) item.get("summary")).toLowerCase();
+               int ind = summary.indexOf("@reponame");
+
+               if (location == null && ind != -1)
+               {
+                   String repoName = summary.substring(0, ind);
+                   ArrayList<String> collaborators = new ArrayList<String>();
+                   for (int i = 0; i < attendees.size(); i++)
                    {
-                       due = (String) start.get("date");
+                       collaborators.add((String) ((JSONObject) attendees.iterator().next()).get("email"));
                    }
 
-                   String location = (String) item.get("location");
-                   String timeCreated = (String) item.get("created");
+                   CalendarProject calProject = new CalendarProject(eID, cID, creator, (extractDate(due) + " " + extractTime(due)),
+                           repoName, collaborators, extractDate(timeCreated) + " " + extractTime(timeCreated));
+               } else
+               {
+                   Map<String, AttendeeState> attendeeMap = new HashMap<String, AttendeeState>();
 
-//                   if(location == null)
-//                   {
-                       String summary = ((String) item.get("summary")).toLowerCase();
-                       int ind = summary.indexOf("@reponame");
-//                   }
-
-                   if(location == null && ind != -1)
+                   if (attendees != null)
                    {
-                       String repoName = summary.substring(0, ind);
-                       ArrayList<String> collaborators = new ArrayList<String>();
-                       for (int i = 0; i < attendees.size(); i++)
+                       Iterator<JSONObject> iterate = attendees.iterator();
+                       while (iterate.hasNext())
                        {
-                           collaborators.add((String) ((JSONObject) attendees.iterator().next()).get("email"));
-                       }
-
-                       CalendarProject calProject = new CalendarProject(eID, cID, creator, (extractDate(due) + " " + extractTime(due)),
-                               repoName, collaborators, extractDate(timeCreated) + " " + extractTime(timeCreated));
-                   }
-                   else
-                   {
-                       Map<String, AttendeeState> attendeeMap = new HashMap<String, AttendeeState>();
-
-                       if(attendees != null)
-                       {
-                           Iterator<JSONObject> iterate = attendees.iterator();
-                           while (iterate.hasNext())
+                           JSONObject attend = iterate.next();
+                           String tmp = (String) attend.get("responseStatus");
+                           AttendeeState as;
+                           if (tmp.equals("accepted"))
                            {
-                               JSONObject attend = iterate.next();
-                               String tmp = (String) attend.get("responseStatus");
-                               AttendeeState as;
-                               if (tmp.equals("accepted"))
-                               {
-                                   as = AttendeeState.ACCEPTED;
-                               }
-                               else if (tmp.equals("declined"))
-                               {
-                                   as = AttendeeState.DECLINED;
-                               }
-                               else if (tmp.equals("tentative"))
-                               {
-                                   as = AttendeeState.TENTATIVE;
-                               }
-                               else if (tmp.equals("needsAction"))
-                               {
-                                   as = AttendeeState.NEEDSACTION;
-                               }
-                               else
-                               {
-                                   as = AttendeeState.NEEDSACTION;
-                               }
-
-                               attendeeMap.put((String) attend.get("email"), as);
+                               as = AttendeeState.ACCEPTED;
+                           } else if (tmp.equals("declined"))
+                           {
+                               as = AttendeeState.DECLINED;
+                           } else if (tmp.equals("tentative"))
+                           {
+                               as = AttendeeState.TENTATIVE;
+                           } else if (tmp.equals("needsAction"))
+                           {
+                               as = AttendeeState.NEEDSACTION;
+                           } else
+                           {
+                               as = AttendeeState.NEEDSACTION;
                            }
-                       }
 
-                       CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
-                               location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
+                           attendeeMap.put((String) attend.get("email"), as);
+                       }
                    }
+
+                   CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
+                           location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
                }
            }
        }

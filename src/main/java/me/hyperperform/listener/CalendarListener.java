@@ -1,8 +1,15 @@
 package me.hyperperform.listener;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
+import me.hyperperform.QueueConnection;
 import me.hyperperform.event.Calendar.AttendeeState;
 import me.hyperperform.event.Calendar.CalendarMeeting;
 import me.hyperperform.event.Calendar.CalendarProject;
@@ -27,6 +34,33 @@ import java.util.*;
 @Path("/calendar")
 public class CalendarListener implements IListener
 {
+
+    /**
+     * Connection to the messaging queue. The object is provided through dependency injection.
+     */
+    @Inject
+    QueueConnection queueConnection;
+
+    /**
+     * Persistence context which allows for persisting the events received.
+     */
+    EntityManagerFactory entityManagerFactory;
+    EntityManager entityManager;
+
+    @PostConstruct
+    private void initConnection()
+    {
+        entityManagerFactory = Persistence.createEntityManagerFactory("PostgreJPA");
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @PreDestroy
+    private void disconnect()
+    {
+        entityManager.close();
+        entityManagerFactory.close();
+    }
+
     /**
      * Listens for a new or updated event made on the calendar being listened to.
      * @param link - Link received of the calendarID url to make a get request to the google calendar
@@ -40,6 +74,9 @@ public class CalendarListener implements IListener
     {
        try
        {
+           CalendarMeeting calMeeting = null;
+           CalendarProject calProject = null;
+
            JSONObject json = (JSONObject) new JSONParser().parse(jsonStr);
            JSONArray items = (JSONArray) json.get("items");
 
@@ -75,7 +112,7 @@ public class CalendarListener implements IListener
                        collaborators.add((String) ((JSONObject) attendees.iterator().next()).get("email"));
                    }
 
-                   CalendarProject calProject = new CalendarProject(eID, cID, creator, (extractDate(due) + " " + extractTime(due)),
+                   calProject = new CalendarProject(eID, cID, creator, (extractDate(due) + " " + extractTime(due)),
                            repoName, collaborators, extractDate(timeCreated) + " " + extractTime(timeCreated));
                } else
                {
@@ -110,9 +147,30 @@ public class CalendarListener implements IListener
                        }
                    }
 
-                   CalendarMeeting calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
+                    calMeeting = new CalendarMeeting(eID, cID, creator, extractDate(due) + " " + extractTime(due),
                            location, attendeeMap, extractDate(timeCreated) + " " + extractTime(timeCreated));
+
+
                }
+           }
+
+           if (queueConnection != null)
+           {
+               if (calMeeting != null)
+                   queueConnection.sendObject(calMeeting);
+               if (calProject != null)
+                   queueConnection.sendObject(calProject);
+           }
+           if (entityManager != null)
+           {
+               entityManager.getTransaction().begin();
+
+               if (calMeeting != null)
+                   entityManager.persist(calMeeting);
+               if (calProject != null)
+                   entityManager.persist(calProject);
+
+               entityManager.getTransaction().commit();
            }
        }
        catch(Exception e)

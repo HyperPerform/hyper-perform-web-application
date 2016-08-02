@@ -234,10 +234,6 @@
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<version>1.0.0.Final</version>
-				<configuration>
-					<hostname>127.0.0.1</hostname>
-					<port>9993</port>
-				</configuration>
 			</plugin>	
 
 			<plugin>

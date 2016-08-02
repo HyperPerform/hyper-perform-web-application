@@ -2,12 +2,15 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
   version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
-  <persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="PostgreJPA" transaction-type="RESOURCE_LOCAL">
 
 
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!-- Classes to be persisted must be added here -->
      <class>me.hyperperform.event.Git.GitPush</class>
+    <class>me.hyperperform.event.Git.GitPush</class>
+    <class>me.hyperperform.event.Calendar.CalendarProject</class>
+    <class>me.hyperperform.event.Calendar.CalendarMeeting</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class" />

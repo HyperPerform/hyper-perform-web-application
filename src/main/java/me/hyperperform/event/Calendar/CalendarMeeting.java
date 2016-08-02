@@ -20,7 +20,13 @@ import java.util.Map;
 @Table(name = "\"CalendarMeeting\"")
 public class CalendarMeeting implements ICalendarEvent, Serializable
 {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "meetingID")
+    private int id;
+
+//    @Id
     @Column(name = "eventID")
     private String eventID;
 
@@ -137,5 +143,15 @@ public class CalendarMeeting implements ICalendarEvent, Serializable
     public void setDate(Timestamp timestamp)
     {
         this.timestamp = timestamp;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

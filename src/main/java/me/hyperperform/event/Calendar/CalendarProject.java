@@ -18,6 +18,12 @@ import java.util.ArrayList;
 public class CalendarProject implements ICalendarEvent, Serializable
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "projectID")
+    private int id;
+
+
+    //    @Id
     @Column(name = "eventID")
     private String eventID;
 
@@ -133,5 +139,15 @@ public class CalendarProject implements ICalendarEvent, Serializable
     public void setCreator(String creator)
     {
         this.creator = creator;
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

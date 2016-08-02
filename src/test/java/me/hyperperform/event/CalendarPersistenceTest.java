@@ -78,7 +78,7 @@ public class CalendarPersistenceTest
 
         Query query = entityManager.createQuery("FROM CalendarMeeting ", CalendarMeeting.class);
         List<CalendarMeeting> result = query.getResultList();
-        System.out.println("\n\n\n" + result.get(result.size()-1).getAttendees() + "\n\n\n");
+
         Assert.assertNotEquals("No Elements", result.size(), 0);
         Assert.assertEquals("CalenderID don't match", cm.getCalendarID(), result.get(result.size()-1).getCalendarID());
         Assert.assertEquals("Creators don't match", cm.getCreator(), result.get(result.size()-1).getCreator());

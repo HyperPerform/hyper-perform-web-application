@@ -32,7 +32,7 @@ public class CalendarPersistenceTest
         System.out.println("-------------------------------------------------");
         System.out.println("Starting Calendar Persistence Test");
         System.out.println("-------------------------------------------------");
-        entityManagerFactory = Persistence.createEntityManagerFactory("test");
+        entityManagerFactory = Persistence.createEntityManagerFactory("PostgreJPA");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
 

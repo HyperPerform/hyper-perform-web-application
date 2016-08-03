@@ -44,8 +44,7 @@ public class TravisListener implements IListener
 
     @POST
     @Consumes("application/json")
-    public Response listen(String jsonStr) throws Exception
-    {
+    public Response listen(String jsonStr) throws Exception {
         log(jsonStr);
 //        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
 
@@ -76,27 +75,6 @@ public class TravisListener implements IListener
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
     }
-
-//    @GET
-//    @Path("/testing")
-//    public Response myTest() throws Exception
-//    {
-//        GitPush gitPush = new GitPush();
-//
-//        String out = "---Start Debug Output--- <br/>";
-//
-//        out += "Sending git event object to queue <br/>";
-//        queueConnection.sendObject(gitPush);
-//
-//        out += "Getting object from queue <br/>";
-//        out += ((GitPush) queueConnection.receive()).toString() + "<br/>";
-//
-//        out += "Persistence Context: " + em + "<br/>";
-//
-//        out += "---End Debug Output--- <br/>";
-//
-//        return Response.status(200).entity(out).build();
-//    }
 
     private static <T> void log(T t)
     {

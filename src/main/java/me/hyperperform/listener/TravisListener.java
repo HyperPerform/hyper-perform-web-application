@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import javax.persistence.*;
 
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.*;
 
@@ -43,9 +44,10 @@ public class TravisListener implements IListener
     }
 
     @POST
-    @Consumes("application/json")
-    public Response listen(String jsonStr) throws Exception {
-        log(jsonStr);
+    @Consumes("application/x-www-form-urlencoded")
+    public Response listen(MultivaluedMap<String, String> content) throws Exception {
+
+        log(content.toString());
 //        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
 
 //        if (eventType.equals("push"))

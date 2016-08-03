@@ -2,6 +2,7 @@ package me.hyperperform.listener;
 
 import me.hyperperform.QueueConnection;
 
+import me.hyperperform.event.Travis.TravisEvent;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -47,7 +48,17 @@ public class TravisListener implements IListener
     @Consumes("application/x-www-form-urlencoded")
     public Response listen(MultivaluedMap<String, String> content) throws Exception {
 
-        log(content.toString());
+        TravisEvent t = new TravisEvent();
+
+        t.setCommiter(content.get("committer_name").get(0));
+        t.setBranch(content.get("branch").get(0));
+        t.setStatus(content.get("status_message").get(0));
+        t.setTimestamp(content.get("Started_at").get(0));
+        t.setRepo(content.get("repository").get(0));
+
+        log(t);
+
+//        log(content.toString());
 //        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
 
 //        if (eventType.equals("push"))

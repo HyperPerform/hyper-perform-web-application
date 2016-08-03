@@ -15,4 +15,4 @@ test:
 
 notifications:
   slack: codusmaximus:TfshAEu8LRkjOGkyZnOQq5ys
-  webhooks: hyperperform.me:8080/hyperperform-system-1.0-SNAPSHOT/rs/TravisEvent
+  webhooks: http://hyperperform.me:8080/hyperperform-system-1.0-SNAPSHOT/rs/TravisEvent

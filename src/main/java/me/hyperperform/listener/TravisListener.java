@@ -46,17 +46,20 @@ public class TravisListener implements IListener
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
-    public Response listen(MultivaluedMap<String, String> content) throws Exception {
+//    public Response listen(MultivaluedMap<String, String> content) throws Exception {
+    public Response listen(@FormParam("commiter_name") String name) throws Exception {
 
-        TravisEvent t = new TravisEvent();
+        log(name);
 
-        t.setCommiter(content.get("committer_name").get(0));
-        t.setBranch(content.get("branch").get(0));
-        t.setStatus(content.get("status_message").get(0));
-        t.setTimestamp(content.get("Started_at").get(0));
-        t.setRepo(content.get("repository").get(0));
-
-        log(t);
+//        TravisEvent t = new TravisEvent();
+//
+//        t.setCommiter(content.get("committer_name").get(0));
+//        t.setBranch(content.get("branch").get(0));
+//        t.setStatus(content.get("status_message").get(0));
+//        t.setTimestamp(content.get("Started_at").get(0));
+//        t.setRepo(content.get("repository").get(0));
+//
+//        log(t);
 
 //        log(content.toString());
 //        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);

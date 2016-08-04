@@ -55,7 +55,7 @@ public class TravisListener implements IListener
         t.setBranch((String)json.get("branch"));
         t.setStatus((String)json.get("status_message"));
         t.setTimestamp((String)json.get("Started_at"));
-        t.setRepo((String)json.get("repository"));
+        t.setRepo((String)((JSONObject)json.get("repository")).get("name"));
 
         log(t);
 

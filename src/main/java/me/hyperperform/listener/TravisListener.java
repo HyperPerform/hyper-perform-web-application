@@ -47,7 +47,7 @@ public class TravisListener implements IListener
     @POST
     @Consumes("application/x-www-form-urlencoded")
 //    public Response listen(MultivaluedMap<String, String> content) throws Exception {
-    public Response listen(@FormParam("commiter_name") String name) throws Exception {
+    public Response listen(@FormParam("payload") String name) throws Exception {
 
         log(name);
 

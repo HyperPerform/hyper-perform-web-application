@@ -46,36 +46,19 @@ public class TravisListener implements IListener
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
-//    public Response listen(MultivaluedMap<String, String> content) throws Exception {
-    public Response listen(@FormParam("payload") String name) throws Exception {
+    public Response listen(@FormParam("payload") String jsonStr) throws Exception {
 
-        log(name);
+        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
 
-//        TravisEvent t = new TravisEvent();
-//
-//        t.setCommiter(content.get("committer_name").get(0));
-//        t.setBranch(content.get("branch").get(0));
-//        t.setStatus(content.get("status_message").get(0));
-//        t.setTimestamp(content.get("Started_at").get(0));
-//        t.setRepo(content.get("repository").get(0));
-//
-//        log(t);
+        TravisEvent t = new TravisEvent();
+        t.setCommiter((String)json.get("committer_name"));
+        t.setBranch((String)json.get("branch"));
+        t.setStatus((String)json.get("status_message"));
+        t.setTimestamp((String)json.get("Started_at"));
+        t.setRepo((String)json.get("repository"));
 
-//        log(content.toString());
-//        JSONObject json = (JSONObject)new JSONParser().parse(jsonStr);
+        log(t);
 
-//        if (eventType.equals("push"))
-//        {
-//            JSONObject repository = (JSONObject)json.get("repository");
-//            JSONObject commit = (JSONObject)json.get("head_commit");
-//            JSONObject pusher = (JSONObject)json.get("pusher");
-//
-//            String name = (String)repository.get("full_name");
-//            String date = (String)commit.get("timestamp");
-//            String user = (String)pusher.get("name");
-//
-//            GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
-//
 //            if (queueConnection != null)
 //                queueConnection.sendObject(push);
 //
@@ -87,7 +70,6 @@ public class TravisListener implements IListener
 //
 //                entityManager.getTransaction().commit();
 //            }
-//        }
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
     }

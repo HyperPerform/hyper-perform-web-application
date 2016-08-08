@@ -17,6 +17,8 @@ import javax.ws.rs.*;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import java.lang.StringBuilder;
+
 /**
  * Created by rohan on 2016/08/02.
  */
@@ -54,7 +56,7 @@ public class TravisListener implements IListener
         t.setCommiter((String)json.get("committer_name"));
         t.setBranch((String)json.get("branch"));
         t.setStatus((String)json.get("status_message"));
-        t.setTimestamp((String)json.get("Started_at"));
+        t.setTimestamp(parseTimeStamp((String)json.get("commited_at")));
         t.setRepo((String)((JSONObject)json.get("repository")).get("name"));
 
         log(t);
@@ -77,5 +79,18 @@ public class TravisListener implements IListener
     private static <T> void log(T t)
     {
         System.out.println(t);
+    }
+
+    private String parseTimeStamp(String timestamp)
+    {
+        StringBuilder time = new StringBuilder(timestamp.substring(timestamp.indexOf("T")+1));
+
+        int i = 0;
+        while((i = time.indexOf(" ")) != -1)
+            time.deleteCharAt(i);
+
+        time.deleteCharAt(time.indexOf("Z"));
+
+        return timestamp.substring(0, timestamp.indexOf("T")) + " " + time.toString();
     }
 }

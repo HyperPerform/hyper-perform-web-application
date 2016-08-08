@@ -62,17 +62,17 @@ public class TravisListener implements IListener
 
         log(t);
 
-//            if (queueConnection != null)
-//                queueConnection.sendObject(push);
-//
-//            if (entityManager != null)
-//            {
-//                entityManager.getTransaction().begin();
-//
-//                entityManager.persist(push);
-//
-//                entityManager.getTransaction().commit();
-//            }
+           if (queueConnection != null)
+               queueConnection.sendObject(t);
+
+           if (entityManager != null)
+           {
+               entityManager.getTransaction().begin();
+
+               entityManager.persist(t);
+
+               entityManager.getTransaction().commit();
+           }
 
         return Response.status(200).entity("Successfully received event").header("Access-Control-Allow-Origin", "*").build();
     }

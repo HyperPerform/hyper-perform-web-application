@@ -2,6 +2,8 @@ package me.hyperperform.event.Travis;
 
 import me.hyperperform.event.Event;
 
+import java.sql.Timestamp;
+
 /**
  * Created by rohan on 2016/08/03.
  */
@@ -12,7 +14,7 @@ public class TravisEvent implements Event {
     private String branch;
     private String repo;
     private String status;
-    private String timestamp;
+    private Timestamp timestamp;
 
     public TravisEvent() {
     }
@@ -58,11 +60,11 @@ public class TravisEvent implements Event {
     }
 
     public String getTimestamp() {
-        return timestamp;
+        return timestamp.toString();
     }
 
     public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+        this.timestamp = Timestamp.valueOf(timestamp);
     }
 
     public String toString()

@@ -37,13 +37,12 @@ public class ReportGenerator
 
     public GetSummaryResponse getSummary(GetSummaryRequest getSummaryRequest)
     {
-        Query q = entityManager.createQuery("SELECT a FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
-        List<GitPush> result = q.getResultList();
+        GetSummaryResponse getSummaryResponse = new GetSummaryResponse();
 
-//        System.out.println("-------------------------------------------------");
-//        for (int k = 0; k < result.size(); k++)
-//            System.out.println(result.get(k) + "\n");
-//        System.out.println("-------------------------------------------------");
+//        Query q = entityManager.createQuery("SELECT a FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
+        Query q = entityManager.createQuery("SELECT sum(a.commitSize) FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
+        getSummaryResponse.setGithub((Integer)q.getSingleResult());
+        
 
         return null;
     }

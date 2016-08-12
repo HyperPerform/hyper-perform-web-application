@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 /**
@@ -24,10 +25,11 @@ public class ReportingRest {
     @GET
 //    @Consumes("application/json")
 //    public Response getSummary(GetSummaryRequest getSummaryRequest)
+    @Produces("application/json")
     public Response getSummary()
     {
         GetSummaryRequest getSummaryRequest = new GetSummaryRequest();
-        getSummaryRequest.setName("baxterthehacker");
+        getSummaryRequest.setName("Sven Fuchs");
         getSummaryRequest.setStartDate("2015-05-05 10:00:00");
         getSummaryRequest.setEndDate("2015-05-05 23:00:00");
 

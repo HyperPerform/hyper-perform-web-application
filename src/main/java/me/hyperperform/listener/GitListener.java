@@ -3,6 +3,7 @@ package me.hyperperform.listener;
 import me.hyperperform.QueueConnection;
 import me.hyperperform.event.Git.GitPush;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -73,12 +74,13 @@ public class GitListener implements IListener
            JSONObject repository = (JSONObject)json.get("repository");
            JSONObject commit = (JSONObject)json.get("head_commit");
            JSONObject pusher = (JSONObject)json.get("pusher");
+            JSONArray commits = (JSONArray)json.get("commits");
 
            String name = (String)repository.get("full_name");
            String date = (String)commit.get("timestamp");
            String user = (String)pusher.get("name");
 
-           GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user);
+           GitPush push = new GitPush(name, extractDate(date) + " " + extractTime(date), user, commits.size());
 
             if (queueConnection != null)
                 queueConnection.sendObject(push);

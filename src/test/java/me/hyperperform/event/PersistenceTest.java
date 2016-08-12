@@ -1,6 +1,7 @@
 package me.hyperperform.event;
 
 import me.hyperperform.event.Git.GitPush;
+import me.hyperperform.event.Travis.TravisEvent;
 import org.junit.*;
 
 import javax.persistence.*;
@@ -35,6 +36,21 @@ public class PersistenceTest
         entityTransaction = entityManager.getTransaction();
         g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker", 0);
 
+    }
+
+    @Test
+    public void travisPojoTest()
+    {
+        TravisEvent t = new TravisEvent();
+        t.setCommiter("Sven Fuchs");
+        t.setBranch("master");
+        t.setStatus("Passed");
+        t.setTimestamp("2011-11-11 11:11:11.0");
+        t.setRepo("minimal");
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(t);
+        entityManager.getTransaction().commit();
     }
 
     @Test

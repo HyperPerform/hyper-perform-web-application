@@ -8,6 +8,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!-- Classes to be persisted must be added here -->
      <class>me.hyperperform.event.Git.GitPush</class>
+    <class>me.hyperperform.event.Travis.TravisEvent</class>
 
     <properties>
       <property name="hibernate.archive.autodetection" value="class" />

@@ -3,6 +3,7 @@ package me.hyperperform.rest;
 import me.hyperperform.listener.GitListener;
 import me.hyperperform.event.MockEvent;
 
+import me.hyperperform.listener.TravisListener;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.plugins.server.resourcefactory.POJOResourceFactory;
 import org.jboss.resteasy.mock.*;
@@ -86,6 +87,25 @@ public class RestTest
 		request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
 		request.content(MockEvent.alternativeGitPush.getBytes());
+
+		MockHttpResponse response = new MockHttpResponse();
+		dispatcher.invoke(request, response);
+
+		Assert.assertEquals(response.getStatus(), 200);
+	}
+
+	@Test
+	public void travisTest() throws Exception
+	{
+		POJOResourceFactory noDef = new POJOResourceFactory(TravisListener.class);
+		Dispatcher dispatcher = MockDispatcherFactory.createDispatcher();
+
+		dispatcher.getRegistry().addResourceFactory(noDef);
+
+		MockHttpRequest request = MockHttpRequest.post("/TravisEvent");
+		request.addFormHeader("payload", MockEvent.travisEvent);
+
+		request.contentType(MediaType.APPLICATION_FORM_URLENCODED_TYPE);
 
 		MockHttpResponse response = new MockHttpResponse();
 		dispatcher.invoke(request, response);

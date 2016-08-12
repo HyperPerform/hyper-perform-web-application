@@ -5,16 +5,16 @@ package me.hyperperform.reporting.response;
  */
 public class GetSummaryResponse {
 
-    private int Github;
+    private long Github;
     private double travis;
     private int issuesOpened;
     private int issuesClosed;
 
-    public int getGithub() {
+    public long getGithub() {
         return Github;
     }
 
-    public void setGithub(int github) {
+    public void setGithub(long github) {
         Github = github;
     }
 

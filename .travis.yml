@@ -13,6 +13,7 @@ services:
 before_script:
   - psql -c 'CREATE DATABASE hyperperform;' -U postgres
   - psql -d hyperperform -c 'CREATE TABLE public."GitPush" ( id integer NOT NULL, repository character varying(255), "timestamp" timestamp without time zone, username character varying(255), CONSTRAINT "GitPush_pkey" PRIMARY KEY (id) ); CREATE SEQUENCE public.hibernate_sequence INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;' -U postgres
+  - psql -d hyperperform -c 'CREATE TABLE public."TravisEvent" ( id integer NOT NULL, branch character varying(255), commiter character varying(255), repo character varying(255), status character varying(255), "timestamp" timestamp without time zone, CONSTRAINT "TravisEvent_pkey" PRIMARY KEY (id));' -U postgres
 
 test:
   adapter: postgresql
@@ -23,3 +24,4 @@ after_success:
   
 notifications:
   slack: codusmaximus:TfshAEu8LRkjOGkyZnOQq5ys
+  webhooks: http://hyperperform.me:8080/hyperperform-system-1.0-SNAPSHOT/rs/TravisEvent

@@ -2,18 +2,34 @@ package me.hyperperform.event.Travis;
 
 import me.hyperperform.event.Event;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
  * Created by rohan on 2016/08/03.
  */
+@Entity
+@Table(name = "\"TravisEvent\"")
 public class TravisEvent implements Event {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "commiter")
     private String commiter;
+
+    @Column(name = "branch")
     private String branch;
+
+    @Column(name = "repo")
     private String repo;
+
+    @Column(name = "status")
     private String status;
+
+    @Column(name = "timestamp")
     private Timestamp timestamp;
 
     public TravisEvent() {

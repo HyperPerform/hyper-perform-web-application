@@ -22,7 +22,7 @@ public class PersistenceTest
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EntityTransaction entityTransaction;
-    private  GitPush g;
+//    private  GitPush g;
 
     @Before
     public void init()
@@ -34,8 +34,6 @@ public class PersistenceTest
         entityManagerFactory = Persistence.createEntityManagerFactory("test");
         entityManager = entityManagerFactory.createEntityManager();
         entityTransaction = entityManager.getTransaction();
-        g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker", 0);
-
     }
 
     @Test
@@ -58,7 +56,9 @@ public class PersistenceTest
     {
         System.out.print("Starting JPA test ...");
 
-		entityTransaction.begin();
+        GitPush g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker", 0);
+
+        entityTransaction.begin();
 
 		entityManager.persist(g);
 
@@ -69,6 +69,9 @@ public class PersistenceTest
     public void queryTest()
     {
         System.out.print("Starting QueryTest ...");
+
+        GitPush g = new GitPush("baxterthehacker/public-repo", "2015-05-05 19:40:15.0", "baxterthehacker", 0);
+
         entityTransaction.begin();
 
         entityManager.persist(g);

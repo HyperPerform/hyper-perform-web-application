@@ -1,13 +1,11 @@
 package me.hyperperform.reporting;
 
-import me.hyperperform.event.Git.GitPush;
 import me.hyperperform.reporting.request.*;
 import me.hyperperform.reporting.response.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by rohan on 2016/08/10.
@@ -40,10 +38,28 @@ public class ReportGenerator
         GetSummaryResponse getSummaryResponse = new GetSummaryResponse();
 
 //        Query q = entityManager.createQuery("SELECT a FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
-        Query q = entityManager.createQuery("SELECT sum(a.commitSize) FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
-        getSummaryResponse.setGithub((Integer)q.getSingleResult());
-        
 
-        return null;
+        /*---------------------------Github-----------------------------*/
+        Query q = entityManager.createQuery("SELECT sum(a.commitSize) FROM GitPush a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (username=:uname)").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
+        getSummaryResponse.setGithub((Long)q.getSingleResult());
+        /*--------------------------------------------------------------*/
+
+
+        /*----------------------------Trvis-----------------------------*/
+        q = entityManager.createQuery("SELECT COUNT(a.status) FROM TravisEvent a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (commiter=:uname) AND (status LIKE 'Passed')").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
+        long passed = (Long)q.getSingleResult();
+
+        q = entityManager.createQuery("SELECT COUNT(a.status) FROM TravisEvent a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (commiter=:uname) AND (status LIKE 'Failed')").setParameter("startDate", getSummaryRequest.getStartDate()).setParameter("endDate", getSummaryRequest.getEndDate()).setParameter("uname", getSummaryRequest.getName());
+        long failed = (Long)q.getSingleResult();
+
+        double successRate = ((double)passed/(double)(passed+failed)) * 100.0;
+        int roundTmp = (int)(successRate*100.0);
+        successRate = roundTmp/100.0;
+
+        getSummaryResponse.setTravis(successRate);
+        /*--------------------------------------------------------------*/
+
+
+        return getSummaryResponse;
     }
 }

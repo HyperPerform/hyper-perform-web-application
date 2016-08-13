@@ -25,6 +25,7 @@ public class ReportingRest {
     @GET
 //    @Consumes("application/json")
 //    public Response getSummary(GetSummaryRequest getSummaryRequest)
+    @Path("/getSummary")
     @Produces("application/json")
     public Response getSummary()
     {
@@ -36,5 +37,20 @@ public class ReportingRest {
         GetSummaryResponse getSummaryResponse = reportGenerator.getSummary(getSummaryRequest);
 
         return Response.status(200).entity(getSummaryResponse).build();
+    }
+
+    @GET
+    @Path("/getTravisDetails")
+    @Produces("application/json")
+    public Response getTravisDetails()
+    {
+        GetTravisRequest getTravisRequest = new GetTravisRequest();
+        getTravisRequest.setName("Sven Fuchs");
+        getTravisRequest.setStartDate("2015-05-05 10:00:00");
+        getTravisRequest.setEndDate("2015-05-05 23:00:00");
+
+        GetTravisResponse getTravisResponse = reportGenerator.getTravisDetails(getTravisRequest);
+
+        return Response.status(200).entity(getTravisResponse).build();
     }
 }

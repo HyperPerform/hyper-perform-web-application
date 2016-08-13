@@ -1,11 +1,14 @@
 package me.hyperperform.reporting;
 
+import me.hyperperform.event.Travis.TravisEvent;
 import me.hyperperform.reporting.request.*;
 import me.hyperperform.reporting.response.*;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rohan on 2016/08/10.
@@ -61,5 +64,34 @@ public class ReportGenerator
 
 
         return getSummaryResponse;
+    }
+
+    public GetTravisResponse getTravisDetails(GetTravisRequest getTravisRequest)
+    {
+        GetTravisResponse getTravisResponse = new GetTravisResponse();
+        Query q = entityManager.createQuery("SELECT a FROM TravisEvent a WHERE (timestamp BETWEEN :startDate AND :endDate) AND (commiter=:uname)").setParameter("startDate", getTravisRequest.getStartDate()).setParameter("endDate", getTravisRequest.getEndDate()).setParameter("uname", getTravisRequest.getName());
+
+        List<TravisEvent> result = q.getResultList();
+
+        ArrayList<String> repos = new ArrayList<String>();
+        ArrayList<ArrayList<TravisEvent>> data = new ArrayList<ArrayList<TravisEvent>>();
+
+        for (int k = 0; k < result.size(); k++)
+        {
+            TravisEvent curr = result.get(k);
+
+            if (repos.indexOf(curr.getRepo()) == -1)
+            {
+                repos.add(curr.getRepo());
+                data.add(new ArrayList<TravisEvent>());
+            }
+
+            data.get(repos.indexOf(curr.getRepo())).add(curr);
+        }
+
+        getTravisResponse.setSize(data.size());
+        getTravisResponse.setData(data);
+
+        return getTravisResponse;
     }
 }

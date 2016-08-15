@@ -7,6 +7,9 @@
 
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <!-- Classes to be persisted must be added here -->
+    <class>me.hyperperform.event.Calendar.AttendeeState</class>
+    <class>me.hyperperform.event.Calendar.CalendarMeeting</class>
+    <class>me.hyperperform.event.Calendar.CalendarProject</class>
     <class>me.hyperperform.event.Git.GitPush</class>
     <class>me.hyperperform.event.Travis.TravisEvent</class>
 
@@ -21,6 +24,7 @@
       <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
       <property name="hibernate.flushMode" value="FLUSH_AUTO" />
 
+      <property name="hibernate.hbm2ddl.auto" value="create" />
     </properties>
 
   </persistence-unit>

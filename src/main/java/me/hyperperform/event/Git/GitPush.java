@@ -28,16 +28,28 @@ public class GitPush implements IGitEvent
 
     @Column(name = "timestamp")
     Timestamp timestamp;
-    
-    public GitPush(String repoName, String date, String user)
+
+    @Column(name = "commitSize")
+    int commitSize;
+
+    public GitPush(String repoName, String date, String user, int commit)
     {
         setRepoName(repoName);
         setDate(Timestamp.valueOf(date));
         setUser(user);
+        setCommitSize(commit);
     }
 
     public GitPush()
     {
+    }
+
+    public int getCommitSize() {
+        return commitSize;
+    }
+
+    public void setCommitSize(int commitSize) {
+        this.commitSize = commitSize;
     }
 
     public int getId()

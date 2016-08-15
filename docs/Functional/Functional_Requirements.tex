@@ -102,9 +102,9 @@ Note, it is assumed that a super user is not in anyway an employee within the sy
 \end{figure}
 The scope of the integration module includes:
 \begin{itemize}
-	\item A message broker intercepts the messages and stores them on a message queue.
-	\item Once possible, an Esper query is made in order to filter out the data which is relevant to the system.
-	\item The data that is deemed relevant is then persisted and preprocessed in order to be used by the algorithms module.
+	\item Events are received through a REST URL that is made available to the services. There is no need for polling these systems.
+	\item Each event is converted to a Java object and is persisted. Along with being persisted each event object is also placed onto a message queue where Esper will act as the consumer on the other end.
+	\item Algorithms are applied to the persisted data to generate reports.
 \end{itemize}
 
 \subsection{Domain Model}

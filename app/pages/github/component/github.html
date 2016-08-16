@@ -1,0 +1,21 @@
+<top-nav></top-nav>
+<sidebar-cmp></sidebar-cmp>
+
+<div class="col-xl-3 col-lg-6">
+  <div class="card card-primary card-inverse">
+    <div class="card-header card-primary">
+      <div class="row">
+        <div class="col-xs-3">
+          <i class="fa fa-github fa-5x"></i>
+        </div>
+        <div class="col-xs-9 text-xs-right">
+          <div class="huge">26%</div>
+          <div>Commit Rate</div>
+        </div>
+      </div>
+    </div>
+    <div   class="card-footer card-default">
+      <p style="color: #006dcc" *ngIf="title">not fun {{title.base | json}}</p>
+    </div>
+  </div>
+</div>

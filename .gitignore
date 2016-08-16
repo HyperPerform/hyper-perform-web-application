@@ -157,18 +157,7 @@ pythontex-files-*/
 # Latexian
 TSWLatexianTemp*
 .idea/
-README.md
-app/
-appveyor.yml
 dist/
-gulpfile.ts
-karma.conf.js
 node_modules/
-package.json
-protractor.conf.js
-test-main.js
 tools/
-tsconfig.json
-tslint.json
-typings.json
 typings/

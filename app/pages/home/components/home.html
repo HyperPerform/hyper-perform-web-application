@@ -54,8 +54,8 @@
                             <i class="fa fa-bug fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-xs-right">
-                            <div class="huge" *ngIf="summary">Opened {{ summary.issuesOpened }}</div>
-                            <div class="huge" *ngIf="summary">Closed {{ summary.issuesClosed }}</div>
+                            <div class="huge" *ngIf="summary"><i class=""></i> {{ summary.issuesOpened }}</div>
+                            <div class="huge" *ngIf="summary"><i class=""></i> {{ summary.issuesClosed }}</div>
                             <div>Issues</div>
                         </div>
                     </div>
@@ -93,38 +93,8 @@
         </div>
     </div>
 
-    <!--<alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" dismissible="true" (close)="closeAlert(i)">-->
-        <!--{{ alert?.msg }}-->
-    <!--</alert>-->
     <div class="row">
-        <!--<div class="col-lg-8">-->
-        <!--<div class="card card-default">-->
-        <!--<div class="card-header">-->
-                    <!--<i class="fa fa-clock-o fa-fw"></i> Responsive Timeline-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.card-header &ndash;&gt;-->
-                <!--<timeline-cmp></timeline-cmp>-->
-                <!--&lt;!&ndash; /.card-body &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; /.card &ndash;&gt;-->
-        <!--</div>-->
-        <!-- /.col-lg-8 -->
 
-        <!--<div class="col-lg-4">-->
-        <!--<div class="card card-default">-->
-        <!--<div class="card-header">-->
-        <!--&lt;!&ndash;<i class="fa fa-bell fa-fw"></i> Notifications card&ndash;&gt;-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.card-header &ndash;&gt;-->
-                <!--&lt;!&ndash;<notifications-cmp></notifications-cmp><chat-cmp></chat-cmp>&ndash;&gt;-->
-                <!--&lt;!&ndash; /.card-body &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; /.card &ndash;&gt;-->
-
-
-            <!--&lt;!&ndash; /.card .chat-card &ndash;&gt;-->
-        <!--</div>-->
-        <!-- /.col-lg-4 -->
     </div>
 
 </div>

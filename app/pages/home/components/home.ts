@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
-import {CAROUSEL_DIRECTIVES, DROPDOWN_DIRECTIVES, AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
-import {Routes, ROUTER_PROVIDERS} from '@angular/router';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import {CAROUSEL_DIRECTIVES, AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
+import {ROUTER_PROVIDERS} from '@angular/router';
 import {Http, HTTP_PROVIDERS, Response} from '@angular/http';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 
 
@@ -14,11 +13,6 @@ import {Observable} from "rxjs";
   templateUrl: 'github.html',
   // styleUrls: ['home.css'],
 })
-class GithubComponent { }
-
-@Routes([
-  { path: '/github', component: GithubComponent }
-])
 
 
 @Component({
@@ -45,10 +39,7 @@ class NotificationComponent { }
 })
 
 export class HomeComponent {
-	public commit : any;
-	public buildStatus : any;
-	public issuesO : any;
-	public issuesC : any;
+
 	public summary : string;
 
 	constructor( private http: Http)
@@ -68,6 +59,32 @@ export class HomeComponent {
         let body = res.json();
         return body.data;
     }
+
+	// private buildStatus(travis: any)   {
+    //
+	// 		return "<div class='card card-success card-inverse'>"+
+	// 			"<div class='card-header card-success'>" +
+	// 				"<div class='row'>" +
+	// 		  			"<div class='col-xs-3'>" +
+	// 						"<i class='fa fa-gears fa-5x'></i>" +
+	// 						"</div>" +
+	// 							"<div class='col-xs-9 text-xs-right'>" +
+	// 							"<div class='huge' *ngIf='summary'>{{ summary.travis }}%</div>" +
+	// 							"<div>Build Ratio</div>" +
+	// 						"</div>" +
+	// 					"</div>" +
+	// 				"</div>" +
+	// 			"<div class='card-footer card-green'>" +
+	// 				"<a class='text-success' href='javascript:void(0);'>" +
+	// 				"<span class='pull-xs-left'>View Details</span>" +
+	// 				"<span class='pull-xs-right'><i class='fa fa-arrow-circle-right'></i></span>" +
+	// 				"<div class='clearfix'></div>" +
+	// 				"</a>" +
+	// 			"</div>" +
+	// 	"</div>";
+    //
+    //
+	// }
 
 
 }

@@ -5,6 +5,7 @@ import {LoginComponent} from '../../pages/login/components/login';
 import {SignupComponent} from '../../pages/signup/components/signup';
 import {DashboardComponent} from '../dashboard/components/dashboard';
 import {GithubComponent} from '../../pages/github/component/github';
+import {TravisComponent} from '../../pages/travis/component/travis';
 
 
 @Component({
@@ -19,7 +20,8 @@ import {GithubComponent} from '../../pages/github/component/github';
     { path: '/', component: LoginComponent },
     { path: '/signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent },
-    { path: '/github', component: GithubComponent}
+    { path: '/github', component: GithubComponent},
+    { path: '/travis', component: TravisComponent}
 ])
 
 export class AppComponent {

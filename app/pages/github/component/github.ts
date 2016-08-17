@@ -135,7 +135,7 @@ export class GithubComponent implements OnInit {
   constructor( private http: Http)  {
 
 
-    this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary').map(res => res.json()).subscribe(
+    this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getGitHubDetails').map(res => res.json()).subscribe(
       data => {this.summary = data; });
 
   }

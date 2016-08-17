@@ -83,8 +83,9 @@ export class TravisComponent implements OnInit {
 
   constructor( private http: Http)  {
 
-    this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/geTravisDetails').map(res => res.json()).subscribe(
-      data => {this.summary = data; });
+    this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getTravisDetails').map(res => res.json()).subscribe(
+        data => {this.summary = data; });
+
 
   }
 

@@ -2,7 +2,7 @@
  * Created by avinash on 2016/08/12.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -40,13 +40,13 @@ export class GithubComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Rate'
+          text: 'Snow depth (m)'
         },
         min: 0
       },
       tooltip: {
         headerFormat: '<b>{series.name}</b><br>',
-        pointFormat: '{point.x:%e. %b}: {point.y:.2f} %'
+        pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
       },
 
       plotOptions: {
@@ -130,14 +130,30 @@ export class GithubComponent implements OnInit {
 
   }
 
-   public summary : any;
+   summary : any;
 
   constructor( private http: Http)  {
 
 
-    this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getGitHubDetails').map(res => res.json()).subscribe(
-      data => {this.summary = data; });
+    this.http.get('http://api.fixer.io/latest?base=USD').map(res => res.json()).subscribe(
+      data => {this.summary = data});
 
+    // let jason = JSON.parse(this.title);
+    // this.title = this.title.ZAR;
+
+  }
+
+
+  private handleError (error: any)  {
+    let errMsg = (error.message) ? error.message :
+      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+    return Observable.throw(errMsg);
+  }
+
+  private extractData(res: Response)  {
+    let body = res.json();
+    return body.data;
   }
 
 

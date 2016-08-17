@@ -1,18 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {CAROUSEL_DIRECTIVES, AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
-import {ROUTER_PROVIDERS} from '@angular/router';
-import {Http, HTTP_PROVIDERS} from '@angular/http';
+import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
+import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
-
-
-@Component({
-  moduleId: module.id,
-  selector: 'github-cmp',
-  templateUrl: 'github.html',
-  // styleUrls: ['home.css'],
-})
+//
+// @Component({
+//   moduleId: module.id,
+//   selector: 'github-cmp',
+//   templateUrl: 'github.html',
+//   // styleUrls: ['home.css'],
+// })
+// class GithubComponent { }
 
 
 @Component({
@@ -48,17 +49,17 @@ export class HomeComponent {
 			data => this.summary = data);
 	}
 
-    // private handleError (error: any)  {
-    //     let errMsg = (error.message) ? error.message :
-    //         error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    //     console.error(errMsg); // log to console instead
-    //     return Observable.throw(errMsg);
-    // }
-    //
-    // private extractData(res: Response)  {
-    //     let body = res.json();
-    //     return body.data;
-    // }
+    private handleError (error: any)  {
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
+
+    private extractData(res: Response)  {
+        let body = res.json();
+        return body.data;
+    }
 
 	// private buildStatus(travis: any)   {
     //

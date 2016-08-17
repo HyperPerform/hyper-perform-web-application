@@ -17,7 +17,7 @@ import {Observable} from 'rxjs';
 // @Injectable()
 export class GithubComponent {
 
-   title : Array;
+   title : any;
 
   constructor( private http: Http)  {
 

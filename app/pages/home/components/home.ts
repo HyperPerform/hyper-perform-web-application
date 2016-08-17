@@ -4,7 +4,6 @@ import {CAROUSEL_DIRECTIVES, DROPDOWN_DIRECTIVES, AlertComponent} from 'ng2-boot
 import {Routes, ROUTER_PROVIDERS} from '@angular/router';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import {Http, HTTP_PROVIDERS, Response} from '@angular/http';
-import {build$} from "protractor/built/element";
 import {Observable} from "rxjs";
 
 

@@ -1,26 +1,44 @@
-language: java
+language: node_js
+node_js:
+  - 4
+  - 5
+  - stable
 
-env:
-  global:
-  - secure: ljImdd7PjxKxZkOhuqE9kRcFax1+mHYBOxYHwvrheUTIKdTujohPZx8R8spJAkL1leQSjxjfccbjHhxoYg3tbB0r+JRnllk28+i1iKPoR1tNDtwH9iUQDmNgl44vj7Q9KM1kxuuwHY4KuThWR+RfGfpwcnZbkaQMAbOO31m9u75NGWHX6Aam2loPKuD4nd/DUxhy83TYGLtiH9UMe0dY7b2XZHfsJLuM/Sp/j9UFHuQuRi+ZzLGNLSIiI2tmq3sViQU0UDJoinWg+vAVWkPZYCoh5dANW0O4gCiueQ2lIyEAch0CfZCxmIjR5kOxMIdeFnrpReKia7lGv4AGQDp7htNr6q667RF9SiQPYCPZRvmqXriyey7t3pa1JbdBByMa9oHJMqCCl/+e0695BRszkdwds1pCAJ/PIwT4QaYj4zNzIrT2EWnqsiTLGaLvX12/a4710bTVQFbmQ3HoAV1FP85IeZ/++gT1MxHk18Q1ISNUWGGIthtSbnzdHaIOxGSij0EKRmRI/Vfe+6aYDNAZhF3R1GQrVXS9HkG+RqAjO1d0k0aH+lTz/UQGf66TB+2zD4P7TLFTd/n+rtfashwsUBN8JFjAIVnxlLMWI+58kw/3iAO4UUcVUTEmxhDby4WQUbsK0U2acjB9FDqw5SquLSm+3bDmxEBWyVNPbXTvJJo=
+sudo: false
 
-script:
+os:
+  - linux
+  - osx
 
-services:
-  - postgresql
+matrix:
+  exclude:
+    - os: osx
+      node_js: 4
+    - os: osx
+      node_js: 5
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew outdated xctool || brew upgrade xctool; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap caskroom/cask; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CHROME_BIN=chromium-browser; fi  # Karma CI
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cask install google-chrome; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0; fi
 
 before_script:
-  - psql -c 'CREATE DATABASE hyperperform;' -U postgres
-  - psql -d hyperperform -c 'CREATE TABLE public."GitPush" ( id integer NOT NULL, repository character varying(255), "timestamp" timestamp without time zone, username character varying(255), commitsize integer, CONSTRAINT "GitPush_pkey" PRIMARY KEY (id) ); CREATE SEQUENCE public.hibernate_sequence INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1;' -U postgres
-  - psql -d hyperperform -c 'CREATE TABLE public."TravisEvent" ( id integer NOT NULL, branch character varying(255), commiter character varying(255), repo character varying(255), status character varying(255), "timestamp" timestamp without time zone, CONSTRAINT "TravisEvent_pkey" PRIMARY KEY (id));' -U postgres
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then nohup bash -c "webdriver-manager start 2>&1 &"; fi  # Protractor CI
 
-test:
-  adapter: postgresql
-  database: hyperperform
+after_failure:
+  - cat /home/travis/build/mgechev/angular2-seed/npm-debug.log
 
-after_success:
-  - ./deploy.sh
-  
+
 notifications:
   slack: codusmaximus:TfshAEu8LRkjOGkyZnOQq5ys
   webhooks: http://hyperperform.me:8080/hyperperform-system-1.0-SNAPSHOT/rs/TravisEvent
+
+cache:
+  directories: node_modules
+
+script:
+  - npm run tests.all

@@ -159,5 +159,4 @@ TSWLatexianTemp*
 .idea/
 dist/
 node_modules/
-tools/
 typings/

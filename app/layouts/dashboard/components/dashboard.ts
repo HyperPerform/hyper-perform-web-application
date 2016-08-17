@@ -4,8 +4,9 @@ import { ROUTER_DIRECTIVES, Routes } from '@angular/router';
 import {HomeComponent} from '../../../pages/home/components/home';
 import {ChartComponent} from '../../../pages/charts/components/charts';
 import {SidebarComponent} from '../../../shared/sidebar/sidebar';
-import {GithubComponent} from "../../../pages/github/component/github";
-import {TopNavComponent} from "../../../shared/topnav/topnav";
+import {GithubComponent} from '../../../pages/github/component/github';
+import {TopNavComponent} from '../../../shared/topnav/topnav';
+import {TravisComponent} from '../../../pages/travis/component/travis';
 
 
 @Component({
@@ -19,7 +20,8 @@ import {TopNavComponent} from "../../../shared/topnav/topnav";
 @Routes([
     { path: '/home', component: HomeComponent },
     { path: '/chart', component: ChartComponent },
-    { path: '/github', component: GithubComponent}
+    { path: '/github', component: GithubComponent},
+    { path: '/travis', component: TravisComponent}
 ])
 
 export class DashboardComponent { }

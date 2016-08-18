@@ -16,6 +16,8 @@ import {Observable} from 'rxjs';
 })
 // @Injectable()
 export class GithubComponent implements OnInit {
+  summary : any;
+
   ngOnInit() {
     var gitGraph: any = $('#git-graph');
     gitGraph.highcharts({
@@ -130,13 +132,13 @@ export class GithubComponent implements OnInit {
 
   }
 
-   summary : any;
+
 
   constructor( private http: Http)  {
 
 
     this.http.get('http://api.fixer.io/latest?base=USD').map(res => res.json()).subscribe(
-      data => {this.summary = data});
+      data => {this.summary = data; });
 
     // let jason = JSON.parse(this.title);
     // this.title = this.title.ZAR;

@@ -43,10 +43,9 @@ export class HomeComponent {
 
 	public summary : string;
 
-	constructor( private http: Http)
-	{
+	constructor( private http: Http)	{
 		this.http.get('http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary').map(res => res.json()).subscribe(
-			data => this.summary = data);
+			data => this.summary = data );
 	}
 
     private handleError (error: any)  {

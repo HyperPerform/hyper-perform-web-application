@@ -15,6 +15,7 @@ import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 })
 
 export class TravisComponent implements OnInit {
+  public summary : any;
   ngOnInit() {
     var travisGraph: any = $('#travis-graph');
     travisGraph.highcharts({
@@ -79,7 +80,7 @@ export class TravisComponent implements OnInit {
 
   }
 
-   public summary : any;
+
 
   constructor( private http: Http)  {
 

@@ -39,4 +39,4 @@ cache:
   directories: node_modules
 
 script:
-  - gulp test --color
+  - npm run tests.all

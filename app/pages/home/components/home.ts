@@ -1,26 +1,16 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
-import {CAROUSEL_DIRECTIVES, AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 import {Http, Response, HTTP_PROVIDERS} from '@angular/http';
 import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {Observable} from 'rxjs';
 
-
-//
-// @Component({
-//   moduleId: module.id,
-//   selector: 'github-cmp',
-//   templateUrl: 'github.html',
-//   // styleUrls: ['home.css'],
-// })
-// class GithubComponent { }
 
 
 @Component({
 	moduleId: module.id,
 	selector: 'notifications-cmp',
 	templateUrl: 'notifications.html',
-	styleUrls: ['home.css'],
+	styleUrls: ['home.scss'],
 })
 class NotificationComponent { }
 
@@ -29,12 +19,9 @@ class NotificationComponent { }
 	moduleId: module.id,
 	selector: 'home-cmp',
 	templateUrl: 'home.html',
-	styleUrls: ['home.css'],
+	styleUrls: ['home.scss'],
 	providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS],
 	directives: [
-		AlertComponent,
-		NotificationComponent,
-		CAROUSEL_DIRECTIVES,
 		CORE_DIRECTIVES,
 		FORM_DIRECTIVES ]
 })

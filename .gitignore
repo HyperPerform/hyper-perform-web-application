@@ -159,4 +159,5 @@ TSWLatexianTemp*
 .idea/
 dist/
 node_modules/
+coverage
 typings/

@@ -1,6 +1,6 @@
 // Karma configuration
 // Generated on Wed Jul 15 2015 09:44:02 GMT+0200 (Romance Daylight Time)
-'use strict';
+
 
 var argv = require('yargs').argv;
 

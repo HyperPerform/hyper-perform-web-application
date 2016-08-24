@@ -161,3 +161,6 @@ dist/
 node_modules/
 coverage
 typings/
+.tmp/
+bower_components/
+release/

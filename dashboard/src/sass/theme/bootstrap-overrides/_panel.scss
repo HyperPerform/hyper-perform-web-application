@@ -47,10 +47,36 @@ $panel-heading-font-size: 16px;
   background-attachment: fixed;
 }
 
+.panel-heading.github {
+  background-color: #40AFEF;
+  color: ghostwhite !important;
+  font-weight: bolder;
+}
+
+.panel-heading.travis {
+  background-color: #8bc34a;
+  color: ghostwhite !important;
+  font-weight: bolder;
+}
+
+.panel-heading.issues {
+  background-color: #FF7043;
+  color: ghostwhite !important;
+  font-weight: bolder;
+}
+
+
+.panel-heading.entry {
+  background-color: #7D9EAF;
+  color: ghostwhite !important;
+  font-weight: bolder;
+}
+
 .panel {
   > .panel-body {
     padding: 15px 22px;
     height: 100%;
+
   }
   > .panel-heading {
     color: $default-text;
@@ -60,6 +86,8 @@ $panel-heading-font-size: 16px;
   > .panel-footer {
     color: $default-text;
   }
+  height: 180%;
+
 }
 
 .panel-heading, .panel-footer {
@@ -126,7 +154,9 @@ $panel-heading-font-size: 16px;
   background-color: $bootstrap-panel-bg;
   .panel-body{
     color: $bootstrap-panel-text;
+
   }
+  height: 100%;
 }
 
 .accordion-panel.panel {
@@ -171,6 +201,10 @@ $panel-heading-font-size: 16px;
   font-weight: $font-light;
 }
 
+.large {
+  size: 100px;
+
+}
 /*
 .panel-group .panel {
   border-radius: 0;

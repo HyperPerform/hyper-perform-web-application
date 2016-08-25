@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "homepage": "https://github.com/ClaudioMDS/hyper-perform/",
   "authors": [
-    "avinashsingh786", "rohanchhipa", "jasondgordon"
+    "avinashsingh786",
+    "rohanchhipa",
+    "jasondgordon"
   ],
   "description": "Hyperperform Dashboard",
-
   "dependencies": {
+    "highcharts": "*",
+    "highcharts-ng": "*",
     "Chart.js": "~1.0.2",
     "Ionicons": "ionicons#~2.0.1",
     "amcharts": "~3.15.2",

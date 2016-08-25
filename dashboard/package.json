@@ -45,5 +45,8 @@
   "scripts": {
     "postinstall": "bower install",
     "run": "gulp serve"
+  },
+  "dependencies": {
+    "echarts": "^3.2.3"
   }
 }

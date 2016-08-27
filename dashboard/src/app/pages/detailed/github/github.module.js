@@ -14,10 +14,11 @@
         .state('detailed.github', {
           url: '/github',
           templateUrl: 'app/pages/detailed/github/github.html',
-          title: 'Github',
+          title: 'GitHub',
           sidebarMeta: {
-            order: 200,
-          },
+            icon: 'fa fa-github',
+            order: 200
+          }
         });
   }
 

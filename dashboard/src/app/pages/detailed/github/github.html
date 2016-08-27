@@ -1,7 +1,9 @@
 <div ng-controller="githubCtrl">
-        <div class="row">
-            <div class="col-md-6">
-                <div ba-panel ba-panel-title="GitHub Details" ba-panel-class="with-scroll">
+    <div class="panel bootstrap-panel">
+        <div class="panel-heading github">GitHub Details</div>
+            <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
                     <div class="horizontal-scroll">
                         <div class="form-group select-page-size-wrap ">
                             <label>Rows on page
@@ -50,14 +52,11 @@
                         </table>
                     </div>
                 </div>
-            </div>
-
-            <div  class="col-md-6" ng-controller="gitGraph">
-
-                <div   ba-panel ba-panel-title="Commits over time" ba-panel-class="with-scroll ">
-                    <canvas height="233%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
-                            chart-legend="false" chart-series="series" ></canvas>
+                <div  class="col-md-6" ng-controller="gitGraph">
+                    <canvas height="232%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                                chart-legend="false" chart-series="series" ></canvas>
                 </div>
             </div>
         </div>
+    </div>
 </div>

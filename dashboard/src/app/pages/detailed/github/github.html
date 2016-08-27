@@ -1,0 +1,55 @@
+<div ng-controller="githubCtrl">
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<div ba-panel ba-panel-title="GitHub Details" ba-panel-class="with-scroll">-->
+                    <div class="horizontal-scroll">
+                        <div class="form-group select-page-size-wrap ">
+                            <label>Rows on page
+                                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                        ng-model="gitDataSize" ng-options="i for i in [5,10,15,20,25]">
+                                </select>
+                            </label>
+                        </div>
+                        <table class="table" st-table="gitData">
+                            <thead>
+                            <tr class="sortable ">
+                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                                <th st-sort="username">Username</th>
+                                <th st-sort="repository">Repository</th>
+                                <th st-sort="date">Timestamp</th>
+                                <th st-sort="commitSize">Commits</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="repository" placeholder="Search Repository" class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="date" placeholder="Search Date" class="input-sm form-control search-input"
+                                           type="search"/></th>
+                                <th><input st-search="commitSize" placeholder="Search Commits" class="input-sm form-control search-input" type="search"/>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr  ng-repeat="item in gitData">
+                                <td class="table-id">{{item.id}}</td>
+                                <td>{{item.username}}</td>
+                                <td>{{item.repository}}</td>
+                                <td>{{item.date}}</td>
+                                <td>{{item.commitSize}}</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="gitDataSize" st-displayed-pages="5"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->

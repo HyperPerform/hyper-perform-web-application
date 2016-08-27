@@ -5,7 +5,7 @@
 
   function githubCtrl($scope, $http)
   {
-    $scope.gitDataSize = 10;
+    $scope.gitDataSize = 5;
     var git = [
         {
             "id": 1,
@@ -16,10 +16,304 @@
         },
         {
             "id": 2,
-            "username": "Wad",
+            "username": "Rohan",
+            "repository": "COS332",
+            "date": "2016-03-10",
+            "commitSize": 2
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS284",
+            "date": "2016-03-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-05-10",
+            "commitSize": 13
+        },
+        {
+            "id": 5,
+            "username": "Rohan",
+            "repository": "COS332",
+            "date": "2016-06-12",
+            "commitSize": 20
+        }
+        ,{
+            "id": 6,
+            "username": "Avinash",
             "repository": "COS332",
             "date": "2016-02-19",
-            "commitSize": 2
+            "commitSize": 500
+        },
+        {
+            "id": 7,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
+        },
+        {
+            "id": 3,
+            "username": "Brad",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 20
+        }
+        ,{
+            "id": 4,
+            "username": "Avinash",
+            "repository": "COS332",
+            "date": "2016-02-19",
+            "commitSize": 500
         },
         {
             "id": 3,

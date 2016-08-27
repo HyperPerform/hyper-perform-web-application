@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row" ng-controller="pacrtl">
 
         <div class="col-md-3 col-sm-3">
             <div class="panel bootstrap-panel">
@@ -9,7 +9,7 @@
                         <i class="fa fa-github fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large">26%</div>
+                        <div class="large" *ng-if="summary">{{ summary.github }}%</div>
                         <div>Commit Rate</div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         <i class="fa fa-gears fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large">26%</div>
+                        <div class="large" *ng-if="summary">{{ summary.travis }}%</div>
                         <div>Build Ratio</div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <i class="fa fa-bug fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large">50%</div>
+                        <div class="large" *ng-if="summary">{{ summary.issues }}%</div>
                         <div>Issue Ratio</div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <i class="fa fa-credit-card fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large">26%</div>
+                        <div class="large">{{ summary.entry }}%</div>
                         <div>Time On Site</div>
                     </div>
                 </div>
@@ -73,10 +73,12 @@
         </div>
 
 
-    <div class="col-lg-6 col-md-4" ng-controller="chartJs2DCtrl">
+    <div class="col-lg-6 col-md-4" ng-controller="chartJs1DCtrl">
 
-    <div ba-panel ba-panel-title="PA Score" ba-panel-class="with-scroll ">
-            <highchart id="chart1" series="chart.series" title="chart.title" options="chart.options"></highchart>
+        <div ba-panel ba-panel-title="PA Score" ba-panel-class="with-scroll ">
+            <canvas id="doughnut" chart-options="options" class="chart chart-doughnut"
+                    chart-legend="true" chart-data="data" chart-labels="labels">
+            </canvas>
         </div>
     </div>
 </div>

@@ -1,0 +1,28 @@
+<div ng-controller="travisCtrl">
+
+	<div class="row" ng-repeat="repo in repos">
+	<div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="panel bootstrap-panel">
+            <div class="panel-heading travis">{{ repo[0].repo }}</div>
+            <div class="panel-body">
+            	<table class="table">
+            		<thead>
+            			<td>Commiter</td>
+            			<td>Branch</td>
+            			<td>Status</td>
+            			<td>Timestamp</td>
+            		</thead>
+
+            		<tr ng-repeat="event in repo" ng-class="{passed: event.status == 'Passed', failed: event.status == 'Failed'}">
+            			<td>{{ event.commiter }}</td>
+            			<td>{{ event.branch }}</td>
+            			<td>{{ event.status }}</td>
+            			<td>{{ event.timestamp }}</td>
+            		</tr>
+            	</table>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>

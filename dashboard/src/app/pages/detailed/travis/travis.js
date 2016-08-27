@@ -12,8 +12,9 @@
           templateUrl: 'app/pages/detailed/travis/travis.html',
           title: 'Travis',
           sidebarMeta: {
-            order: 200,
-          },
+            icon: 'fa-gears',
+            order: 200
+          }
         });
   }
 

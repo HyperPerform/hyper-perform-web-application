@@ -1,7 +1,7 @@
 <div ng-controller="githubCtrl">
-        <!--<div class="row">-->
-            <!--<div class="col-md-12">-->
-                <!--<div ba-panel ba-panel-title="GitHub Details" ba-panel-class="with-scroll">-->
+        <div class="row">
+            <div class="col-md-6">
+                <div ba-panel ba-panel-title="GitHub Details" ba-panel-class="with-scroll">
                     <div class="horizontal-scroll">
                         <div class="form-group select-page-size-wrap ">
                             <label>Rows on page
@@ -10,7 +10,7 @@
                                 </select>
                             </label>
                         </div>
-                        <table class="table" st-table="gitData">
+                        <table   class="table" st-table="gitData">
                             <thead>
                             <tr class="sortable ">
                                 <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -50,6 +50,14 @@
                         </table>
                     </div>
                 </div>
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+            </div>
+
+            <div  class="col-md-6" ng-controller="gitGraph">
+
+                <div   ba-panel ba-panel-title="Commits over time" ba-panel-class="with-scroll ">
+                    <canvas height="233%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                            chart-legend="false" chart-series="series" ></canvas>
+                </div>
+            </div>
+        </div>
+</div>

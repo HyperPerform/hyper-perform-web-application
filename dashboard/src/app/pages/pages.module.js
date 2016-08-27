@@ -12,7 +12,7 @@
     // 'BlurAdmin.pages.ui',
     // 'BlurAdmin.pages.form',
     'BlurAdmin.pages.tables',
-    'BlurAdmin.pages.charts',
+    // 'BlurAdmin.pages.charts',
     // 'BlurAdmin.pages.profile',
   ])
       .config(routeConfig);

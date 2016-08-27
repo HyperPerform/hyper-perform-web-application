@@ -16,8 +16,9 @@
           templateUrl: 'app/pages/detailed/entryexit/entryexit.html',
           title: 'Entry/Exit',
           sidebarMeta: {
-            order: 200,
-          },
+            icon: 'fa fa-credit-card',
+            order: 200
+          }
         });
   }
 

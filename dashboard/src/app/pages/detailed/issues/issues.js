@@ -16,8 +16,9 @@
           templateUrl: 'app/pages/detailed/issues/issues.html',
           title: 'Issues',
           sidebarMeta: {
-            order: 200,
-          },
+              icon: 'fa fa-bug',
+              order: 200
+          }
         });
   }
 

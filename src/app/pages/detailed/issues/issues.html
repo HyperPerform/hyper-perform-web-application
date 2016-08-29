@@ -1,9 +1,45 @@
-<div style="margin: auto; font-size: larger">Loading ... </div>
-<div class="progress">
+<div ng-controller="issuesCtrl">
+	<div class="row" ng-repeat="repo in repos">
+		<div class="panel bootstrap-panel">
 
-    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="99"
-         aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-        <span class="sr-only">Loading ...</span>
-    </div>
+			<a data-toggle='collapse' data-target='#{{ repo[0].repository }}'>
+				<div class="panel-heading issues" >
+					{{ repo[0].repository }}
+					<div class='pull-right'>
+						<span class='caret'></span>
+					</div>
+				</div>
+			</a>
+
+			<div class="panel-body" id='{{ repo[0].repository }}'>
+				<div class="row">
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<table class="table">
+							<thead>
+							<td>Issue ID</td>
+							<td>Status</td>
+							<td>Timestamp</td>
+							<td>Created By</td>
+							<td>Assignee</td>
+							</thead>
+
+							<tr ng-repeat="event in repo" ng-class="{passed: event.status == 'Passed', failed: event.status == 'Failed'}">
+								<td>{{ event.issueId }}</td>
+								<td>{{ event.action }}</td>
+								<td>{{ event.timestamp }}</td>
+								<td>{{ event.assignee }}</td>
+								<td>{{ event.createdBy }}</td>
+							</tr>
+						</table>
+					</div>
+
+				<!-- 	<div class="col-lg-4 col-md-4 col-sm-4" ng-controller="travisGraph">
+						<canvas id="doughnut" chart-options="options" class="chart chart-doughnut"
+								chart-legend="true" chart-data="data" chart-labels="labels">
+						</canvas>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-Sorry this module is not yet developed

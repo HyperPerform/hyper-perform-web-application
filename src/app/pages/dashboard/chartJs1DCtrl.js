@@ -91,7 +91,7 @@
           $scope.preciseCurrent = $scope.current;
         }else{
           var math = $window.Math;
-          $scope.preciseCurrent = math.min(amount, $scope.max);
+          $scope.preciseCurrent = math.min(amount, $scope.max).toFixed(2);
         }
       });
     };

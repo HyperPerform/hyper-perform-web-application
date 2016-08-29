@@ -72,15 +72,146 @@
             </div>
         </div>
 
+        <style>
+            *{
+                box-sizing: border-box;
+            }
 
-    <div class="col-lg-6 col-md-4" ng-controller="chartJs1DCtrl">
+            body{
+                font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
 
-        <div ba-panel ba-panel-title="PA Score" ba-panel-class="with-scroll ">
-            <canvas id="doughnut" chart-options="options" class="chart chart-doughnut"
-                    chart-legend="true" chart-data="data" chart-labels="labels">
-            </canvas>
+            .cf:before,
+            .cf:after {
+                content: " ";
+                display: table;
+            }
+
+            .cf:after {
+                clear: both;
+            }
+
+            .progress-wrapper{
+                position: relative;
+                margin:20px auto;
+                font-size: 40px;
+            }
+
+            .progress{
+                position: absolute;
+                color: turquoise;
+                font-weight: 100;
+                line-height: 0.8;
+            }
+
+            .container{
+                width: 100%;
+                max-width: 960px;
+                margin:50px auto 100px;
+                text-align: center;
+            }
+
+            button{
+                display: inline-block;
+                padding: 10px 20px;
+                background: #45ccce;
+                color:#fff;
+                font-size: 16px;
+                border:none;
+                cursor: pointer;
+                border-radius: 4px;
+                text-align: center;
+                margin: 0 5px 5px 0;
+            }
+
+            form{
+                text-align: left;
+                max-width: 350px;
+                margin: 30px auto;
+            }
+
+            form > div{
+                margin-bottom: 15px;
+            }
+
+            input, select{
+                float:right;
+                padding: 5px;
+                width: 150px;
+            }
+
+            input[type="checkbox"]{
+                width: auto;
+            }
+
+            input[type="color"]{
+                height: 30px;
+            }
+
+            .back{
+                position: fixed;
+                top:5px;
+                right:5px;
+            }
+
+            @media(max-width: 480px){
+                .back{
+                    position: static;
+                    display: block;
+                    text-align: center;
+                }
+
+                input, select{
+                    width: 100%;
+                    margin-top: 5px;
+                    float:none;
+                }
+
+                .container{
+                    margin-top: 25px;
+                }
+            }
+        </style>
+        <div class="col-lg-6 col-md-4" ng-controller="chartJs1DCtrl">
+
+            <div class="panel bootstrap-panel paScore">
+                <div class="panel-heading">PA Score</div>
+                <!--<canvas id="doughnut" chart-options="options" class="chart chart-doughnut"-->
+                <!--chart-legend="true" chart-data="data" chart-labels="labels">-->
+                <!--</canvas>-->
+                <div class="panel-body">
+                    <div class="container" ng-controller="chartJs1DCtrl">
+                        <div class="progress-wrapper">
+                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
+                            <round-progress
+                                    max="max"
+                                    current="current"
+                                    color="{{ getColor() }}"
+                                    bgcolor="{{ bgColor }}"
+                                    radius="{{ radius }}"
+                                    semi="isSemi"
+                                    rounded="rounded"
+                                    stroke="{{ stroke }}"
+                                    clockwise="clockwise"
+                                    responsive="responsive"
+                                    duration="{{ duration }}"
+                                    animation="{{ currentAnimation }}"
+                                    offset="{{ offset }}"
+                                    animation-delay="{{ animationDelay }}"
+                                    on-render="showPreciseCurrent">
+
+                                <svg>
+                                    <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="5%"  stop-color="red"/>
+                                        <stop offset="95%" stop-color="#0EA5A5"/>
+                                    </linearGradient>
+                                </svg>
+                            </round-progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 
 

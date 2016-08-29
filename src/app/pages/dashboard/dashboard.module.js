@@ -5,7 +5,7 @@
 (function () {
 
 
- var dashboard = angular.module('BlurAdmin.pages.dashboard', ['ui.bootstrap', 'highcharts-ng'])
+    var dashboard = angular.module('BlurAdmin.pages.dashboard', ['ui.bootstrap', 'highcharts-ng', 'angular-svg-round-progressbar'])
       .config(routeConfig).controller('pacrtl', loadPa);
 
 

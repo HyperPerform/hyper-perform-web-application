@@ -71,7 +71,6 @@
                         chart-legend="false" chart-series="series" chart-click="changeData"></canvas>
             </div>
         </div>
-
         <style>
             *{
                 box-sizing: border-box;
@@ -99,7 +98,7 @@
 
             .progress{
                 position: absolute;
-                color: turquoise;
+                color: #666666;
                 font-weight: 100;
                 line-height: 0.8;
             }
@@ -182,7 +181,7 @@
                 <div class="panel-body">
                     <div class="container" ng-controller="chartJs1DCtrl">
                         <div class="progress-wrapper">
-                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}/{{ max }}</div>
+                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}</div>
                             <round-progress
                                     max="max"
                                     current="current"

@@ -71,7 +71,7 @@
 
       return {
         'top': $scope.isSemi ? 'auto' : '50%',
-        'bottom': $scope.isSemi ? '-20%' : 'auto',
+        'bottom': $scope.isSemi ? '-15%' : 'auto',
         'left': '50%',
         'height': '20%',
         'transform': transform,
@@ -91,7 +91,7 @@
           $scope.preciseCurrent = $scope.current;
         }else{
           var math = $window.Math;
-          $scope.preciseCurrent = math.min(amount, $scope.max);
+          $scope.preciseCurrent = math.min(amount, $scope.max).toFixed(2);
         }
       });
     };

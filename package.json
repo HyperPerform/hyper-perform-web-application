@@ -41,7 +41,8 @@
     "uglify-save-license": "~0.4.1",
     "wiredep": "~2.2.2",
     "wrench": "~1.5.8",
-    "highcharts-ng": "~0.0.12"
+    "highcharts-ng": "~0.0.12",
+    "angular-svg-round-progressbar": "~0.4.7"
   },
   "scripts": {
     "postinstall": "bower install",

@@ -3,7 +3,7 @@
   function travisCtrl($scope, $http, $window) 
   {
   	var travisData;
-
+	$('#after').hide();
  //  	var config = {
 	// 	// params: {name: "Rohan", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "travis"},
 	// 	// headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
@@ -26,5 +26,8 @@
 	.then(function(response){
   		travisData = response.data.travisDetails;
   		$scope.repos = travisData.data;
+		$('#loading').fadeOut(1000, function(){ $(this).remove();});
+		$('#after').delay(500).fadeIn(3000, function(){ });
+
   	});
   }

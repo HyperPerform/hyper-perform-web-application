@@ -336,7 +336,7 @@
             $scope.gitData = response.data.gitDetails.data[0];
               // alert(response.data.gitDetails.data[0][0].repository);
 
-
+            $("#loading").remove();
         });
         git.push($scope.gitData);
 

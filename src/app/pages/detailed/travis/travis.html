@@ -1,3 +1,9 @@
+
+<div id="loading">
+	<h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
+	<img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
+</div>
+<div id="after" >
 <div ng-controller="travisCtrl">
 	<div class="row" ng-repeat="repo in repos">
 		<div class="panel bootstrap-panel">
@@ -32,12 +38,13 @@
 					</div>
 
 					<div class="col-lg-4 col-md-4 col-sm-4" ng-controller="travisGraph">
-						<canvas id="doughnut" chart-options="options" class="chart chart-doughnut"
-								chart-legend="true" chart-data="data" chart-labels="labels">
+						<canvas chart-colours="colors" chart-options="polarOptions" class="chart chart-pie"
+								chart-legend="true" chart-data="data" chart-labels="labels" >
 						</canvas>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>

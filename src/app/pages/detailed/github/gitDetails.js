@@ -12,6 +12,7 @@
       [28, 48, 40, 19, 88, 27, 45]
     ];
     $scope.series = ['Commits', 'Pushes'];
+    $scope.color = ["#ff5252", "#ffffff"];
 
 
   }

@@ -1,3 +1,8 @@
+<!--<div id="loading">-->
+    <!--<h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>-->
+    <!--<img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />-->
+<!--</div>-->
+
 <div ng-controller="githubCtrl">
     <div class="panel bootstrap-panel">
         <div class="panel-heading github">GitHub Details</div>
@@ -54,7 +59,7 @@
                 </div>
                 <div  class="col-md-6" ng-controller="gitGraph">
                     <canvas height="232%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
-                                chart-legend="false" chart-series="series" ></canvas>
+                                chart-legend="false" chart-series="series" chart-colors="##ff5252" ></canvas>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ angular.module('BlurAdmin.pages.detailed.issues').controller('issuesCtrl', issue
 
 function issuesCtrl($scope, $http) 
 {
+	$('#after').hide();
   	// $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails")
   	// .then(function(response){
   	// 	$scope.repos = response.data.gitIssueDetails.data;
@@ -18,5 +19,9 @@ function issuesCtrl($scope, $http)
 	.then(function(response){
   		// travisData = response.data.travisDetails;
   		$scope.repos = response.data.gitIssueDetails.data;
-  	});
+
+		$('#loading').fadeOut(1000, function(){ $(this).remove();});
+		$('#after').delay(500).fadeIn(3000, function(){ });
+
+	});
 }

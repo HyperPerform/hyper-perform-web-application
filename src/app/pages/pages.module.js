@@ -11,12 +11,12 @@
     'BlurAdmin.pages.dashboard',
     // 'BlurAdmin.pages.ui',
     // 'BlurAdmin.pages.form',
-    'BlurAdmin.pages.tables',
+    // 'BlurAdmin.pages.tables',
     // 'BlurAdmin.pages.charts',
     // 'BlurAdmin.pages.profile',
     'BlurAdmin.pages.detailed',
-  ])
-      .config(routeConfig);
+  ]);
+      // .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {

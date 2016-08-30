@@ -2,10 +2,56 @@
   height: 295px;
 }
 
+body{
+	overflow-x: hidden;
+}
+
+
+img{
+	position:absolute;
+	top:0;
+	bottom:0;
+	margin:auto;
+	min-height:50%;
+	left: 0;
+	right: 0;
+
+	margin-left: 45%;
+}
 .failed {
-	background-color: #FF9F9F;
+	//background-color: #FF9F9F;
+	//background-color: #Ffc976;
+	background-color: #ff5252;
+	color: white;
 }
 
 .passed {
-	background-color: #9FFFAF;
+	//background-color: #9FFFAF;
+	//background-color: #BFFF86;
+	color: black;
+}
+
+.imageRot {
+	-webkit-animation-name:             rotate;
+	-webkit-animation-duration:         1s;
+	-webkit-animation-iteration-count:  infinite;
+	-webkit-animation-timing-function: linear;
+}
+//@-moz-keyframes spin {
+//	100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+//}
+//@-webkit-keyframes spin {
+//	100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+//}
+//@keyframes spin {
+//	100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }
+//}
+
+@-webkit-keyframes rotate {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
 }

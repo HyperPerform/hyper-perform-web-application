@@ -73,6 +73,7 @@
         'top': $scope.isSemi ? 'auto' : '50%',
         'bottom': $scope.isSemi ? '-15%' : 'auto',
         'left': '50%',
+        'background-color': 'white',
         'height': '20%',
         'transform': transform,
         '-moz-transform': transform,

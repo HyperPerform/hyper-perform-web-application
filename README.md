@@ -21,9 +21,10 @@ The dashboard, powered by Angular, is a front-end method for connecting with the
 ###To install
 ```bash
 - npm install
+- gulp build
 ```
 
 ###To run
 ```bash
-- gulp build
+- gulp serve
 ```

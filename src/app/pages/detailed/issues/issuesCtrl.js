@@ -13,7 +13,8 @@ function issuesCtrl($scope, $http)
 		method: "POST",
 		data: JSON.stringify({name: "Rohans", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "issues"}),
 		headers: {
-			"Content-Type": "application/json"
+			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*"
 		}
 	})
 	.then(function(response){

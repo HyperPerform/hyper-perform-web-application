@@ -24,11 +24,13 @@
   }
 
    function loadPa($scope, $http) {
-       // alert("wowowowoowwo");
+       //
        $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary")
            .then(function(response) {
+               $('.fa-spinner, .fa-spin').fadeOut(500, function(){ $(this).remove();});
                $scope.summary = response.data;
-            // alert(response.data);
+           }, function(response){
+
            });
 
 

@@ -28,6 +28,6 @@
   		$scope.repos = travisData.data;
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').delay(500).fadeIn(3000, function(){ });
-
+		if ($scope.repos[0] == null) $('#after').html("<h1>No results found</h1>");
   	});
   }

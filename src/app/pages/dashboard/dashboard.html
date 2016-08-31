@@ -64,21 +64,14 @@
 
     </div>
 
-    <div class="row">
-        <div class="col-lg-6 col-md-4" ng-controller="chartJs2DCtrl">
-            <div ba-panel ba-panel-title="Line" ba-panel-class="with-scroll ">
-                <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
-                        chart-legend="false" chart-series="series" chart-click="changeData"></canvas>
-            </div>
-        </div>
-        <style>
+    <style>
             *{
                 box-sizing: border-box;
             }
 
             body{
                 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            }
+                }
 
             .cf:before,
             .cf:after {
@@ -171,14 +164,27 @@
                 }
             }
         </style>
-        <div class="col-lg-6 col-md-4" ng-controller="chartJs1DCtrl">
 
-            <div class="panel bootstrap-panel paScore">
-                <div class="panel-heading">PA Score</div>
-                <!--<canvas id="doughnut" chart-options="options" class="chart chart-doughnut"-->
-                <!--chart-legend="true" chart-data="data" chart-labels="labels">-->
-                <!--</canvas>-->
-                <div class="panel-body">
+    <div class="row">
+         <!-- <div ba-panel ba-panel-title="Overview" ba-panel-class="with-scroll "> -->
+         <div class="panel bootstrap-panel">
+            <div class="panel-heading">OVERVIEW </div>
+            <div class="panel-body">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-controller="chartJs2DCtrl" style="border-right: 1px lightgrey solid;">
+                    <h3 align="center">Line</h3>
+                    <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                                    chart-legend="false" chart-series="series" chart-click="changeData"></canvas>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+                <div class="visible-sm visible-xs">
+                <hr style="color:grey;">
+                </div>
+                <div class="visible-sm visible-xs" style="margin-top: 2%;">
+                    <h3 align="center">PA Score</h3>
+                </div>
+                <div class="visible-lg visible-md">
+                    <h3 align="center">PA Score</h3>
+                </div>
                     <div class="container" ng-controller="chartJs1DCtrl">
                         <div class="progress-wrapper">
                             <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}</div>
@@ -210,7 +216,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-</div>
+        </div> 
+    </div>
 
 

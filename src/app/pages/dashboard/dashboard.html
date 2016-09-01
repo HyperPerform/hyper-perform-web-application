@@ -9,7 +9,7 @@
                         <i class="fa fa-github fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin"> </i>{{ summary.github }}%</div>
+                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin fa-exclamation-triangle"> </i>{{ summary.github }}{{ p }}</div>
                         <div>Commit Rate</div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         <i class="fa fa-gears fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.travis }}%</div>
+                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.travis }}{{ p }}</div>
                         <div>Build Ratio</div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         <i class="fa fa-bug fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.issues }}%</div>
+                        <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.issues }}{{ p }}</div>
                         <div>Issue Ratio</div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <i class="fa fa-credit-card fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-xs-right">
-                        <div class="large"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.entry }}%</div>
+                        <div class="large"><i name="spinner" class="fa fa-spinner fa-spin"></i>{{ summary.entry }}{{ p }}</div>
                         <div>Time On Site</div>
                     </div>
                 </div>

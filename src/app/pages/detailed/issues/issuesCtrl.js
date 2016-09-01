@@ -24,6 +24,8 @@ function issuesCtrl($scope, $http)
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').delay(500).fadeIn(3000, function(){ });
 		if ($scope.repos[0] == null) $('#after').html("<h1>No results found</h1>");
-
+	}, function(response){
+		$('#loading').fadeOut(1000, function(){ $(this).remove();});
+		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
 	});
 }

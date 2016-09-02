@@ -354,7 +354,11 @@
               });
               $('#after').delay(500).fadeIn(3000, function () {
               });
-              if ($scope.repos[0] == null) $('#after').html("<h1>No results found</h1>");
+              if ($scope.repos[0] == null)
+              {
+                  $('#after').html("<h1>No results found</h1>");
+                  $scope.openToast('From: GitHub','No results found','warning');
+              }
           }, function (response) {
               $('#loading').fadeOut(1000, function () {
                   $(this).remove();

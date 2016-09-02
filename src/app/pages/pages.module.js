@@ -9,12 +9,12 @@
     'ui.router',
 
     'BlurAdmin.pages.dashboard',
-    // 'BlurAdmin.pages.ui',
+    'BlurAdmin.pages.notifications',
     // 'BlurAdmin.pages.form',
     // 'BlurAdmin.pages.tables',
     // 'BlurAdmin.pages.charts',
     // 'BlurAdmin.pages.profile',
-    'BlurAdmin.pages.detailed',
+    'BlurAdmin.pages.detailed'
   ]).config(routeConfig);
 
   /** @ngInject */

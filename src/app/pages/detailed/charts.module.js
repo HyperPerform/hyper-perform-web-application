@@ -10,7 +10,7 @@
       'BlurAdmin.pages.detailed.github',
       'BlurAdmin.pages.detailed.travis',
       'BlurAdmin.pages.detailed.issues',
-      'BlurAdmin.pages.detailed.entryexit',
+      'BlurAdmin.pages.detailed.entryexit'
   ])
       .config(routeConfig);
 
@@ -24,8 +24,8 @@
           title: 'Detailed',
           sidebarMeta: {
             icon: 'ion-stats-bars',
-            order: 150,
-          },
+            order: 150
+          }
         });
   }
 

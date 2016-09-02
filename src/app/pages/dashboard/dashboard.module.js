@@ -33,7 +33,7 @@
                $scope.p  = "%";
            }, function(response){
                $('.fa-spinner, .fa-spin').toggleClass().html("<i class='fa fa-exclamation-triangle' style='color: #F0AD4E'></i>");
-
+               $scope.openToast('From: Summary','Please check your internet connection','error');
            });
 
 

@@ -1,5 +1,9 @@
   angular.module('BlurAdmin.pages.detailed.travis').controller('travisCtrl', travisCtrl);
 
+  /** @ngInject */
+
+
+
   function travisCtrl($scope, $http, $window) 
   {
   	var travisData;
@@ -21,8 +25,11 @@
 		data: JSON.stringify({name: "Rohan", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "travis"}),
 		headers: {
 			"Content-Type": "application/json",
-			"Access-Control-Allow-Origin": "*"
-		}
+			"Access-Control-Allow-Origin": "*",
+			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+			'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+
+  }
 	})
 	.then(function(response){
 
@@ -34,5 +41,13 @@
   	}, function(response){
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
+		$scope.openToast('From: Travis','Please check your internet connection','error');
 	});
+
+
+
+
+	  // openToast();
   }
+
+

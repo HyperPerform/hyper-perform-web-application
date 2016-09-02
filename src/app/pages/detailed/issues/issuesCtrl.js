@@ -27,5 +27,6 @@ function issuesCtrl($scope, $http)
 	}, function(response){
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
+		$scope.openToast('From: Issues','Please check your internet connection','error');
 	});
 }

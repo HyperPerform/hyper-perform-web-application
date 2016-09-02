@@ -345,14 +345,9 @@
           }
       })
           .then(function (response) {
-              // alert(response.data.gitDetails.data[0]);
-              // for (var i =0; i < response.data.gitDetails.data; i++ )
-              // {
-              //     git.push(response.data.gitDetails.data.data);
-              // }
 
               git = response.data.gitDetails.data;
-
+              $scope.gitDataSize = 5;
               $scope.repos = git;
               $('#loading').fadeOut(1000, function () {
                   $(this).remove();
@@ -367,6 +362,7 @@
               $('#after').fadeIn(1000, function () {
                   $(this).html("<h1>An error occurred</h1>")
               });
+              $scope.openToast('From: GitHub','Please check your internet connection','error');
           });
       }
 

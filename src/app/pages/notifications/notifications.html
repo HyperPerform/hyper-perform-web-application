@@ -1,0 +1,65 @@
+
+<div  ng-controller="NotificationsPageCtrl">
+  <div id="after" >
+
+         <div class="panel bootstrap-panel">
+
+           <div class="panel-body">
+            <div class="row">
+
+              <div class="col-md-6">
+                <div class="horizontal-scroll">
+                  <div class="form-group select-page-size-wrap ">
+                    <label>Rows on page
+                      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                              ng-model="size" ng-options="i for i in [5,10,15,20,25]">
+                      </select>
+                    </label>
+                  </div>
+                  <table   class="table" st-table="notify">
+                    <thead>
+                    <tr class="sortable">
+                      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                      <th st-sort="title">Title</th>
+                      <th st-sort="message">Message</th>
+                      <th st-sort="timestamp">Timestamp</th>
+                      <th st-sort="type">Type</th>
+
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th><input st-search="title" placeholder="Search Title" class="input-sm form-control search-input"
+                                 type="search"/></th>
+                      <th><input st-search="message" placeholder="Search Message" class="input-sm form-control search-input"
+                                 type="search"/></th>
+                      <th><input st-search="timestamp" placeholder="Search Time" class="input-sm form-control search-input"
+                                 type="search"/></th>
+                      <th><input st-search="type" placeholder="Search Type" class="input-sm form-control search-input"
+                                 type="search"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in notify">
+                      <td class="table-id">{{item.id}}</td>
+                      <td>{{item.title}}</td>
+                      <td>{{item.message}}</td>
+                      <td>{{item.timestamp}}</td>
+                      <td ng-class="{error: item.type == 'Error', warning: item.type == 'Warning', success: item.type == 'Success'}">{{item.type}}</td>
+
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                      <td colspan="6" class="text-center">
+                        <div st-pagination="" st-items-by-page="size" st-displayed-pages="5"></div>
+                      </td>
+                    </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

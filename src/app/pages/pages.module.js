@@ -15,32 +15,16 @@
   ]).config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($urlRouterProvider, $routeProvider, $locationProvider) {
+  function routeConfig(/*$urlRouterProvider, $routeProvider, $locationProvider*/) {
 
       if(window.location.pathname == "/user")
           window.location.assign("#/dashboard");
       else if(window.location.pathname == "/")
-        window.location.pathname = "/login.html";
+        window.location.pathname = "/auth.html";
 
       // $urlRouterProvider
       //      .when("/dashboard", "#/dashboard")
       //       .when("/", window.location.pathname = "/login.html");
-
-      // $locationProvider.html5Mode(true);
-
-      /*******************************************************************************
-       * These lines are here because otherwise it tries to load the login.html page *
-       * with the dashboard template and it needs to be reloaded to make it work.    *
-       *                 $$$                                                         *
-       *                 $$$                                                         *
-       *               $$$$$$$                                                       *
-       *                $$$$                                                         *
-       *                 $$                                                          *
-       ******************$************************************************************/
-      // if(window.location.pathname == "/")
-      //   location.reload();
-
-
 
       // baSidebarServiceProvider.addStaticItem({
       /*title: 'Pages',

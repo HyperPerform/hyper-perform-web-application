@@ -187,8 +187,10 @@
                     <h3 align="center">PA Score</h3>
                 </div>
                     <div class="container" ng-controller="chartJs1DCtrl">
+                        <div>Score <br/> Out of {{ max }}</div>
                         <div class="progress-wrapper">
-                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}</div>
+                        
+                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}</div><br>
                             <round-progress
                                     max="max"
                                     current="current"
@@ -213,7 +215,12 @@
                                     </linearGradient>
                                 </svg>
                             </round-progress>
+                            <!--<div class="row" style="color: #0EA5A5;">-->
+                                <!--<p class="col-lg-6 col-md-6 col-sm-6 col-xs-6">0</p>-->
+                                <!--<p class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{ max }}</p>-->
+                            <!--</div>-->
                         </div>
+                       <!--<h4 align="center" style="color: #0EA5A5;">out of {{ max }}</h4>-->
                     </div>
                 </div>
             </div>

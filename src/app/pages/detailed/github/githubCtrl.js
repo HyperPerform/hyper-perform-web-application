@@ -366,7 +366,7 @@
               $('#after').fadeIn(1000, function () {
                   $(this).html("<h1>An error occurred</h1>")
               });
-              $scope.openToast('From: GitHub','Please check your internet connection','error');
+              $scope.openToast('From: GitHub','Unable to connect to the server','error');
           });
       }
 

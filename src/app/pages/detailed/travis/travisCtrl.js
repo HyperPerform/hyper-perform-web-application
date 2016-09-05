@@ -45,7 +45,7 @@
   	}, function(response){
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
-		$scope.openToast('From: Travis','Please check your internet connection','error');
+		$scope.openToast('From: Travis','Unable to connect to the server','error');
 	});
 
 

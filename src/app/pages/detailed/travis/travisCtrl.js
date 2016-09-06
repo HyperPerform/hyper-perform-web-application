@@ -1,4 +1,4 @@
-  angular.module('BlurAdmin.pages.detailed.travis').controller('travisCtrl', travisCtrl);
+  angular.module('HyperPerform.pages.detailed.travis').controller('travisCtrl', travisCtrl);
 
   /** @ngInject */
 

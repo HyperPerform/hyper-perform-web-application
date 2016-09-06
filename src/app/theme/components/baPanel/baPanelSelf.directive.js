@@ -8,7 +8,7 @@
   /**
    * Represents current element as panel, adding all necessary classes.
    */
-  angular.module('BlurAdmin.theme')
+  angular.module('HyperPerform.theme')
       .directive('baPanelSelf', baPanelSelf);
 
   /** @ngInject */

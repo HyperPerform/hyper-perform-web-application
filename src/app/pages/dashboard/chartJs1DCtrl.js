@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard').config(chartJsConfig)
+  angular.module('HyperPerform.pages.dashboard').config(chartJsConfig)
       .controller('chartJs1DCtrl', chartJs1DCtrl);
 
   function chartJsConfig(ChartJsProvider, baConfigProvider) {

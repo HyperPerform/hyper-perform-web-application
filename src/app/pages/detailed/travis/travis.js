@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed.travis', [])
+  angular.module('HyperPerform.pages.detailed.travis', [])
       .config(routeConfig);
 
   /** @ngInject */

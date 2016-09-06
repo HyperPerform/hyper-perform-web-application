@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.detailed.travis').config(chartJsConfig)
+    angular.module('HyperPerform.pages.detailed.travis').config(chartJsConfig)
         .controller('travisGraph', travisGraph);
 
     function chartJsConfig(ChartJsProvider, baConfigProvider) {

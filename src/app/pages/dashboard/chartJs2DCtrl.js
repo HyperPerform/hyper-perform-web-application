@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.dashboard')
+  angular.module('HyperPerform.pages.dashboard')
     .controller('chartJs2DCtrl', chartJs2DCtrl);
 
   /** @ngInject */

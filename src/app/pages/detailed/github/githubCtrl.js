@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed.github').controller('githubCtrl', githubCtrl);
+  angular.module('HyperPerform.pages.detailed.github').controller('githubCtrl', githubCtrl);
 
   function githubCtrl($scope, $http) {
       $scope.gitDataSize = 5;

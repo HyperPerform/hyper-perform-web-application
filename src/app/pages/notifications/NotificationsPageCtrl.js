@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.notifications')
+  angular.module('HyperPerform.pages.notifications')
       .controller('NotificationsPageCtrl', NotificationsPageCtrl);
 
   /** @ngInject */

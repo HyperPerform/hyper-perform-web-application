@@ -85,3 +85,12 @@ img{
 	}
 }
 
+hr {
+	display: block;
+	margin-before: 0em;
+	margin-after: 0.5em;
+	margin-start: auto;
+	margin-end: auto;
+	border-style: inset;
+	border-width: 3px;
+}

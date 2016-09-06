@@ -40,9 +40,24 @@
   // }
   angular.module('demo', ['angular-svg-round-progressbar']).controller('chartJs1DCtrl', chartJs1DCtrl);
 
-  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService){
+  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http){
 
-    $scope.current =        3.76;
+
+    $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore")
+        .then(function(response) {
+
+          $scope.current = response.data.score;
+          // alert(response.data.score);
+
+        }, function(response){
+
+          $scope.openToast('From: Dashboard','Failed to load PA Score','error');
+        });
+
+
+
+
+    // $scope.current =        3.76;
     $scope.max =            5;
     $scope.offset =         0;
     $scope.timerCurrent =   0;

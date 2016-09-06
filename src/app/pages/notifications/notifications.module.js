@@ -18,6 +18,7 @@
           title: 'Notifications',
           // abstract: true,
           sidebarMeta: {
+            icon: 'fa fa fa-bell',
             order: 150
           }
         });

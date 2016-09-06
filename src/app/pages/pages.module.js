@@ -6,12 +6,13 @@
     'ui.router',
     'ngRoute',
     'HyperPerform.pages.dashboard',
-    'HyperPerform.pages.notifications',
+
     // 'HyperPerform.pages.form',
     // 'HyperPerform.pages.tables',
     // 'HyperPerform.pages.charts',
     // 'HyperPerform.pages.profile',
-    'HyperPerform.pages.detailed'
+    'HyperPerform.pages.detailed',
+    'HyperPerform.pages.notifications',
   ]).config(routeConfig);
 
   /** @ngInject */

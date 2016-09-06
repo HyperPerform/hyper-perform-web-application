@@ -5,12 +5,12 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed', [
+  angular.module('HyperPerform.pages.detailed', [
 
-      'BlurAdmin.pages.detailed.github',
-      'BlurAdmin.pages.detailed.travis',
-      'BlurAdmin.pages.detailed.issues',
-      'BlurAdmin.pages.detailed.entryexit'
+      'HyperPerform.pages.detailed.github',
+      'HyperPerform.pages.detailed.travis',
+      'HyperPerform.pages.detailed.issues',
+      'HyperPerform.pages.detailed.entryexit'
   ])
       .config(routeConfig);
 

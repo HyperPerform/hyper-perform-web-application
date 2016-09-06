@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.theme')
+  angular.module('HyperPerform.theme')
       .directive('ngFileSelect', ngFileSelect);
 
   /** @ngInject */

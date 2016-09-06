@@ -1,4 +1,4 @@
-angular.module('BlurAdmin.pages.detailed.issues').controller('issuesCtrl', issuesCtrl);
+angular.module('HyperPerform.pages.detailed.issues').controller('issuesCtrl', issuesCtrl);
 
 function issuesCtrl($scope, $http) 
 {

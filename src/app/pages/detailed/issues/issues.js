@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed.issues', [])
+  angular.module('HyperPerform.pages.detailed.issues', [])
       .config(routeConfig).config(chartJsConfig);
 
   /** @ngInject */

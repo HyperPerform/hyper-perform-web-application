@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.theme.components')
+  angular.module('HyperPerform.theme.components')
       .directive('baSidebarToggleMenu', baSidebarToggleMenu)
       .directive('baSidebarCollapseMenu', baSidebarCollapseMenu)
       .directive('baSidebarTogglingItem', baSidebarTogglingItem)

@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed.github')
+  angular.module('HyperPerform.pages.detailed.github')
     .controller('gitGraph', gitGraph);
 
   function gitGraph($scope) {

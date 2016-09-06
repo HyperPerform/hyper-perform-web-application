@@ -1,11 +1,7 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
 (function () {
 
 
-    var dashboard = angular.module('BlurAdmin.pages.dashboard', ['ui.bootstrap', 'highcharts-ng', 'angular-svg-round-progressbar'])
+    var dashboard = angular.module('HyperPerform.pages.dashboard', ['ui.bootstrap', 'highcharts-ng', 'angular-svg-round-progressbar'])
       .config(routeConfig).controller('pacrtl', loadPa);
 
 

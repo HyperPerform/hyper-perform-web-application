@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('BlurAdmin', [
+angular.module('HyperPerform', [
   'ngAnimate',
   'ui.bootstrap',
   'ui.sortable',
@@ -14,6 +14,6 @@ angular.module('BlurAdmin', [
   'angular-progress-button-styles',
   'highcharts-ng',
 
-  'BlurAdmin.theme',
-  'BlurAdmin.pages'
+  'HyperPerform.theme',
+  'HyperPerform.pages'
 ]);

@@ -2,16 +2,16 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages', [
+  angular.module('HyperPerform.pages', [
     'ui.router',
     'ngRoute',
-    'BlurAdmin.pages.dashboard',
-    'BlurAdmin.pages.notifications',
-    // 'BlurAdmin.pages.form',
-    // 'BlurAdmin.pages.tables',
-    // 'BlurAdmin.pages.charts',
-    // 'BlurAdmin.pages.profile',
-    'BlurAdmin.pages.detailed'
+    'HyperPerform.pages.dashboard',
+    'HyperPerform.pages.notifications',
+    // 'HyperPerform.pages.form',
+    // 'HyperPerform.pages.tables',
+    // 'HyperPerform.pages.charts',
+    // 'HyperPerform.pages.profile',
+    'HyperPerform.pages.detailed'
   ]).config(routeConfig);
 
   /** @ngInject */

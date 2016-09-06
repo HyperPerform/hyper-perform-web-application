@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  angular.module('BlurAdmin.pages.detailed.entryexit', [])
+  angular.module('HyperPerform.pages.detailed.entryexit', [])
       .config(routeConfig).config(chartJsConfig);
 
   /** @ngInject */

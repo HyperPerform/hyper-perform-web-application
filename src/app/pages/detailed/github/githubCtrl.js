@@ -3,7 +3,7 @@
 
   angular.module('HyperPerform.pages.detailed.github').controller('githubCtrl', githubCtrl);
 
-  function githubCtrl($scope, $http) {
+  function githubCtrl($scope, $http, $window) {
       $scope.gitDataSize = 5;
       var git = [
           {
@@ -333,6 +333,7 @@
       $http({
           url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
           method: "POST",
+          // method: "GET",
           data: JSON.stringify({
               name: "Avinash",
               startDate: "2016-01-01 00:00:01",
@@ -349,6 +350,10 @@
               git = response.data.gitDetails.data;
               $scope.gitDataSize = 5;
               $scope.repos = git;
+
+              $scope.gitData = response.data.gitDetails.data[0];
+              $scope.graphs = response.data.gitDetails.graphData;
+
               $('#loading').fadeOut(1000, function () {
                   $(this).remove();
               });

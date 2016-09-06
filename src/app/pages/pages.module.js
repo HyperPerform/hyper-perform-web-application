@@ -1,13 +1,10 @@
-/**
- * @author v.lugovsky
- * created on 16.12.2015
- */
+
 (function () {
   'use strict';
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
-
+    'ngRoute',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.notifications',
     // 'BlurAdmin.pages.form',
@@ -18,29 +15,37 @@
   ]).config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
+  function routeConfig(/*$urlRouterProvider, $routeProvider, $locationProvider*/) {
 
-    baSidebarServiceProvider.addStaticItem({
-      // title: 'Pages',
-      // icon: 'ion-document',
-      // subMenu: [{
-      //   title: 'Sign In',
-      //   fixedHref: 'auth.html',
-      //   blank: true
-      // }, {
-      //   title: 'Sign Up',
-      //   fixedHref: 'reg.html',
-      //   blank: true
-      // }, {
-      //   title: 'User Profile',
-      //   stateRef: 'profile'
-      // }, {
-      //   title: '404 Page',
-      //   fixedHref: '404.html',
-      //   blank: true
-      // }]
-    });
+      if(window.location.pathname == "/user")
+          window.location.assign("#/dashboard");
+      else if(window.location.pathname == "/")
+        window.location.pathname = "/auth.html";
+
+      // $urlRouterProvider
+      //      .when("/dashboard", "#/dashboard")
+      //       .when("/", window.location.pathname = "/login.html");
+
+      // baSidebarServiceProvider.addStaticItem({
+      /*title: 'Pages',
+      icon: 'ion-document',
+      subMenu: [{
+        title: 'Sign In',
+        fixedHref: 'login.html',
+        blank: true
+      }, {
+        title: 'Sign Up',
+        fixedHref: 'reg.html',
+        blank: true
+      }, {
+        title: 'User Profile',
+        stateRef: 'profile'
+      }, {
+        title: '404 Page',
+        fixedHref: '404.html',
+        blank: true
+      }]*/
+    // });
 
   }
 

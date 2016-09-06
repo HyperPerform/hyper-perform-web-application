@@ -42,6 +42,14 @@
 			$('#after').html("<h1>No results found</h1>");
 			$scope.openToast('','No builds found','warning');
 		}
+
+		for (var i = 0; i < $scope.repos.length; i++)
+		{
+
+			$scope.tmp =  $scope.repos[i][0].repo;
+			$('#tabs').html($('#tabs').html() + "<a class='btn btn-primary' href='#"+$scope.tmp+"' >"+$scope.repos[i][0].repo+"</a> &nbsp;");
+		}
+
   	}, function(response){
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});
 		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });

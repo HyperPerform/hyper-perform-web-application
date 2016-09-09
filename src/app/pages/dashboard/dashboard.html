@@ -187,10 +187,9 @@
                     <h3 align="center">PA Score</h3>
                 </div>
                     <div class="container" ng-controller="chartJs1DCtrl">
-                        <div>Score <br/> Out of {{ max }}</div>
                         <div class="progress-wrapper">
-                        
-                            <div class="progress ng-cloak" ng-style="getStyle()">{{ preciseCurrent || current }}</div><br>
+                       
+                            <div class="progress ng-cloak cool-hwhip" ng-style="getStyle()">{{ preciseCurrent || current }}<b style="font-size: 15pt; color: #578E8E;">&nbsp;/&nbsp;{{ max }}</b></div><br>
                             <round-progress
                                     max="max"
                                     current="current"
@@ -209,9 +208,9 @@
                                     on-render="showPreciseCurrent">
 
                                 <svg>
-                                    <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
-                                        <stop offset="5%"  stop-color="red"/>
-                                        <stop offset="95%" stop-color="#0EA5A5"/>
+                                     <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="3%" stop-color="red"/>
+                                        <stop offset="97%" stop-color="#8bc34a"/>
                                     </linearGradient>
                                 </svg>
                             </round-progress>

@@ -18,10 +18,15 @@
   }
 }
 
-.blurCalendar{
-  height: 475px;
+.rooeeend {
+  visibility: hidden;
 }
 
+.cool-hwhip:hover {
+  .rooeeend {
+    visibility: visible;
+  }
+}
 //.fa-spinner{
 //  color: black;
 //}

@@ -54,13 +54,13 @@
 
 
 
-    // $scope.current =        3.76;
+    // $scope.current =        1.5;
     $scope.max =            5;
     $scope.offset =         0;
     $scope.timerCurrent =   0;
     $scope.uploadCurrent =  0;
-    $scope.stroke =         45;
-    $scope.radius =         130;
+    $scope.stroke =         55;
+    $scope.radius =         150;
     $scope.isSemi =         true;
     $scope.rounded =        false;
     $scope.responsive =     false;
@@ -90,7 +90,7 @@
         'transform': transform,
         '-moz-transform': transform,
         '-webkit-transform': transform,
-        'font-size': '25pt'
+        'font-size': '22pt'
       };
     };
 

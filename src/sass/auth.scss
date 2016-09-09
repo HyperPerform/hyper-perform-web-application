@@ -28,7 +28,7 @@ $text-color: #ffffff;
 }
 
 .auth-main {
-    background-image: url('../assets/img/blue-blur-background.jpg');
+  background-image: url('../assets/img/blue-blur-background.jpg');
   background-size: cover;
   display: flex;
   align-items: center;
@@ -77,7 +77,6 @@ $text-color: #ffffff;
 
   .log-submit {
     margin-left: 7.5%;
-
   }
 
   .form-el {
@@ -164,7 +163,4 @@ a.forgot-pass {
 
 .btn-auth {
   color: #ffffff!important;
-  //background-color: rgba(100, 201, 204, 0.3 );
-
-
 }

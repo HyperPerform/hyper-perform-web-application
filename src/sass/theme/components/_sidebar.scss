@@ -9,8 +9,9 @@ $angle-right: "\f101";
   z-index: 904;
   display: block;
   min-height: 100%;
-  background-color: $sidebar;
+  //background-color: $sidebar;
   height: 100%;
+  background-color: rgba(black, 0.85);
   position: fixed;
 }
 

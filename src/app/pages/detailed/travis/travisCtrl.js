@@ -3,11 +3,21 @@
   /** @ngInject */
 
 
-
+	var count = 1;
+  	// var totalRepo = 0;
   function travisCtrl($scope, $http, $window) 
   {
   	var travisData;
-	$('#after').hide();
+	  $scope.totalRepo = 0;
+	  $scope.travisDataSize = 3;
+	  $scope.searchCount = 1;
+
+
+	  $('#after').hide();
+
+
+
+
  //  	var config = {
 	// 	// params: {name: "Rohan", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "travis"},
 	// 	// headers : {'Content-Type' : 'application/x-www-form-urlencoded'}
@@ -57,7 +67,14 @@
 		$scope.openToast('From: Travis','Unable to connect to the server','error');
 	});
 
-
+	  $scope.showSearch = function (el)
+	  {
+		  $scope.searchCount++;
+		  // alert(el);
+		  if ( ($scope.searchCount % 2) == 0)
+			  $('#'+el+'Search').show();
+		  else $('#'+el+'Search').hide();
+	  };
 
 	  // openToast();
   }
@@ -67,3 +84,5 @@
   	// alert(el);
 	  $('html, body').animate({scrollTop: $("#"+el).offset().top - 135}, 2000);
   }
+
+

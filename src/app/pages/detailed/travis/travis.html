@@ -9,7 +9,7 @@
 <div id="tabs"></div>
 	<hr >
 <div ng-controller="travisCtrl" >
-	<div class="row" ng-repeat="repo in repos">
+	<div class="row" ng-repeat="repo in repos" >
 		<div class="panel bootstrap-panel">
 
 			<a data-toggle='collapse' data-target='#{{ repo[0].repo }}'>
@@ -23,25 +23,58 @@
 
 			<div class="panel-body" id='{{ repo[0].repo }}'>
 				<div class="row">
-					<div class="col-lg-8 col-md-8 col-sm-8">
-						<table class="table">
-							<thead>
-							<td>Commiter</td>
-							<td>Branch</td>
-							<td>Status</td>
-							<td>Timestamp</td>
-							</thead>
+					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+						<div class="horizontal-scroll">
+							<div class="form-group select-page-size-wrap ">
+								<label>Rows on page
+									<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+											ng-model="travisDataSize" ng-options="i for i in [3,5,10,15,20,25]">
+									</select>
+								</label>
+								<a class="cursor" ng-click="showSearch(repo[0].repo)"><i class="fa fa-search fa-2x"></i></a>
+							</div>
+							<table   class="table" st-table="repo">
+								<thead>
+								<tr class="sortable">
+									<th class="table-id" st-sort="id" st-sort-default="true">#</th>
+									<th st-sort="commiter">Commiter</th>
+									<th st-sort="branch">Branch</th>
+									<th st-sort="status">Build Status</th>
+									<th st-sort="timestamp">Timestamp</th>
+								</tr>
+								<tr class="searchDisp" id="{{repo[0].repo}}Search" >
 
-							<tr ng-repeat="event in repo" ng-class="{passed: event.status == 'Passed', failed: event.status == 'Failed'}">
-								<td>{{ event.commiter }}</td>
-								<td>{{ event.branch }}</td>
-								<td>{{ event.status }}</td>
-								<td>{{ event.timestamp }}</td>
-							</tr>
-						</table>
+									<th></th>
+									<th><input st-search="commiter" placeholder="Search Commiter" class="input-sm form-control search-input"
+											   type="search"/></th>
+									<th><input st-search="branch" placeholder="Search Branch" class="input-sm form-control search-input"
+											   type="search"/></th>
+									<th><input st-search="status" placeholder="Search Status" class="input-sm form-control search-input"
+											   type="search"/></th>
+									<th><input st-search="timestamp" placeholder="Search Date" class="input-sm form-control search-input" type="search"/>
+									</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="event in repo" ng-class="{passed: event.status == 'Passed', failed: event.status == 'Failed'}">
+									<td class="table-id">{{event.id}}</td>
+									<td>{{ event.commiter }}</td>
+									<td>{{ event.branch }}</td>
+									<td>{{ event.status }}</td>
+									<td>{{ event.timestamp }}</td>
+								</tr>
+								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="6" class="text-center">
+										<div st-pagination="" st-items-by-page="travisDataSize" st-displayed-pages="5"></div>
+									</td>
+								</tr>
+								</tfoot>
+							</table>
+						</div>
 					</div>
-
-					<div class="col-lg-4 col-md-4 col-sm-4" ng-controller="travisGraph">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-controller="travisGraph">
 						<canvas chart-colours="colors" chart-options="polarOptions" class="chart chart-pie"
 								chart-legend="true" chart-data="data" chart-labels="labels" >
 						</canvas>

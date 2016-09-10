@@ -335,7 +335,7 @@
           method: "POST",
           // method: "GET",
           data: JSON.stringify({
-              name: "Avinash",
+              name: "Rohan",
               startDate: "2016-01-01 00:00:01",
               endDate: "2016-12-30 23:59:59",
               type: "git"
@@ -348,7 +348,7 @@
           .then(function (response) {
 
               git = response.data.gitDetails.data;
-              $scope.gitDataSize = 5;
+              $scope.gitDataSize = 3;
               $scope.repos = git;
 
               $scope.gitData = response.data.gitDetails.data[0];
@@ -364,6 +364,15 @@
                   $('#after').html("<h1>No results found</h1>");
                   $scope.openToast('From: GitHub','No results found','warning');
               }
+
+              for (var i = 0; i < $scope.repos.length; i++)
+              {
+
+                  $scope.tmp =  $scope.repos[i][0].repository;
+                  var el = '"' +$scope.repos[i][0].repository + '"';
+                  $('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' href='#"+$scope.tmp+"' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
+              }
+
           }, function (response) {
               $('#loading').fadeOut(1000, function () {
                   $(this).remove();
@@ -374,5 +383,13 @@
               $scope.openToast('From: GitHub','Unable to connect to the server','error');
           });
       }
+
+
+    function scroll(el)
+    {
+        // alert(el);
+
+        $('html, body').animate({scrollTop: $("#"+el).offset().top - 135}, 2000);
+    }
 
   })();

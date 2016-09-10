@@ -18,6 +18,12 @@
           }
         });
   }
+    function login($http){
+
+
+
+
+    }
 
    function loadPa($scope, $http) {
        //
@@ -32,6 +38,23 @@
                $scope.openToast('From: Summary','Unable to connect to the server','error');
            });
 
+       // $http({
+       //     url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/login/verifyDetails",
+       //     method: "POST",
+       //     data: JSON.stringify({userEmail: "admin@hyperperform.me", userPassword: "hashedPass"}),
+       //     headers: {
+       //         "Content-Type": "application/json",
+       //         "Access-Control-Allow-Origin": "*",
+       //         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+       //         'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+       //
+       //     }
+       // })
+       //     .then(function (response) {
+       //         // alert(JSON.stringify(response.data));
+       //         alert(response.data.loggedin);
+       //         // window.location.href='/user';
+       //     });
 
 
     }

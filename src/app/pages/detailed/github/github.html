@@ -5,6 +5,8 @@
 </div>
 <div  ng-controller="NotificationsPageCtrl">
 <div id="after" >
+    <div id="tabs"></div>
+    <hr >
 <div ng-controller="githubCtrl">
     <div class="row" ng-repeat="repo in repos">
     <div class="panel bootstrap-panel">
@@ -26,7 +28,7 @@
                         <div class="form-group select-page-size-wrap ">
                             <label>Rows on page
                                 <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                                        ng-model="gitDataSize" ng-options="i for i in [5,10,15,20,25]">
+                                        ng-model="gitDataSize" ng-options="i for i in [3,5,10,15,20,25]">
                                 </select>
                             </label>
                         </div>

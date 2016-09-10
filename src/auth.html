@@ -9,9 +9,8 @@
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/Logo1.gif">
 
     <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
     <!-- bower:css -->
@@ -42,24 +41,64 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                        <input type="email" class="form-control input-md" id="inputEmail3" placeholder="Email">
+                        <input type="email" class="form-control input-md" value="" id="email" placeholder="Email">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                        <input type="password" class="form-control input-md" id="inputPassword3" placeholder="Password">
+                        <input type="password" class="form-control input-md" value="" id="password" placeholder="Password">
                     </div>
                 </div>
             </div>
             <div class="form-group">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el" id="error">
+
+                </div>
                 <div class="col-sm-offset-2 col-lg-10 col-md-10 col-sm-10 col-xs-10 log-submit">
-                    <button type="submit" class="btn btn-primary btn-auth" onclick="window.location.href='/user'">Login</button>
+                    <button type="submit" id="login" class="btn btn-primary btn-auth" onclick="auth()">Login</button>
                     <a href class="forgot-pass">Forgot password?</a>
                 </div>
             </div>
         </div>
+        <script>
+            function auth() {
+                document.getElementById('login').innerHTML = "<i class='fa fa-spinner fa-pulse '></i>";
+                var http = new XMLHttpRequest();
+                var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/login/verifyDetails";
+                var params = JSON.stringify({userEmail: document.getElementById('email').value, userPassword: document.getElementById('password').value});
+                http.open("POST", url, true);
+
+                //Send the proper header information along with the request
+                http.setRequestHeader("Content-type", "application/json");
+
+                http.onreadystatechange = function () {//Call a function when the state changes.
+                    if (http.readyState == 4 && http.status == 200) {
+//                        alert(http.responseText);
+                        if (http.responseText != "") {
+                            var arr = JSON.parse(http.responseText);
+
+//                            alert(arr.loggedin + "Dude");
+                            if (arr.loggedin == true) {
+                                window.location.href = '/user';
+                            }
+                            else {
+                                document.getElementById('login').innerHTML = "Login";
+                            }
+                        }
+                        else {
+                            document.getElementById('login').innerHTML = "Login";
+//                            document.getElementById('error').removeAttribute('class');
+                            document.getElementById('error').innerHTML = "Error: Invalid Email or Password<br/><br/>";
+                        }
+
+
+                    }
+                };
+                http.send(params);
+            }
+        </script>
     <!--</form>-->
 
         <!--<div class="auth-sep"><span><span>or Sign in with one click</span></span></div>-->

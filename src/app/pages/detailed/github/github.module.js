@@ -16,7 +16,7 @@
           templateUrl: 'app/pages/detailed/github/github.html',
           title: 'GitHub',
           sidebarMeta: {
-            icon: 'fa fa-github',
+            icon: 'fa-li fa fa-github',
             order: 200
           }
         });

@@ -47,8 +47,8 @@
 		{
 
 			$scope.tmp =  $scope.repos[i][0].repo;
-			var el = $scope.repos[i][0].repo;
-			$('#tabs').html($('#tabs').html() + "<a class='btn btn-primary' href='#"+$scope.tmp+"' >"+$scope.repos[i][0].repo+"</a> &nbsp;");
+			var el = '"' +$scope.repos[i][0].repo + '"';
+			$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' href='#"+$scope.tmp+"' >"+$scope.repos[i][0].repo+"</a> &nbsp;");
 		}
 
   	}, function(response){
@@ -59,13 +59,11 @@
 
 
 
-
-
-
 	  // openToast();
   }
 
   function scroll(el)
   {
-
+  	// alert(el);
+	  $('html, body').animate({scrollTop: $("#"+el).offset().top - 135}, 2000);
   }

@@ -31,6 +31,7 @@
                                         ng-model="gitDataSize" ng-options="i for i in [3,5,10,15,20,25]">
                                 </select>
                             </label>
+                            <a class="cursor" ng-click="showSearch(repo[0].repository)"><i class="fa fa-search fa-2x"></i></a>
                         </div>
                         <table   class="table" st-table="repo">
                             <thead>
@@ -41,7 +42,7 @@
                                 <th st-sort="date">Timestamp</th>
                                 <th st-sort="commitSize">Commits</th>
                             </tr>
-                            <tr>
+                            <tr class="searchDisp" id="{{repo[0].repository}}Search">
                                 <th></th>
                                 <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
                                            type="search"/></th>

@@ -5,6 +5,7 @@
 
   function githubCtrl($scope, $http, $window) {
       $scope.gitDataSize = 5;
+      $scope.searchCount = 1;
       var git = [
           {
               "id": 1,
@@ -382,7 +383,19 @@
               });
               $scope.openToast('From: GitHub','Unable to connect to the server','error');
           });
-      }
+
+
+          $scope.showSearch = function (el)
+          {
+              $scope.searchCount++;
+              // alert(el);
+              if ( ($scope.searchCount % 2) == 0)
+                  $('#'+el+'Search').show();
+              else $('#'+el+'Search').hide();
+          };
+
+
+  }
 
 
     function scroll(el)

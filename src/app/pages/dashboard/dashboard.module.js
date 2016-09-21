@@ -28,10 +28,16 @@
    function loadPa($scope, $http) {
        //
        $scope.p  = "";
-       $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary")
+       $http({
+          method: "GET",
+          url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
+          data: JSON.stringify({name: "u12345678", startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"})
+
+       })
            .then(function(response) {
                $('.fa-spinner, .fa-spin').fadeOut(500, function(){ $(this).remove();});
                $scope.summary = response.data;
+               alert(JSON.stringify($scope.summary));
                $scope.p  = "%";
            }, function(response){
                $('.fa-spinner, .fa-spin').toggleClass().html("<i class='fa fa-exclamation-triangle' style='color: #F0AD4E'></i>");

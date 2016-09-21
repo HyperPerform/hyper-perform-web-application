@@ -1,7 +1,64 @@
-<div id="loading">
-    <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
-    <img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
-</div>
-<div  ng-controller="NotificationsPageCtrl">
+<div ng-controller="NotificationsPageCtrl">
 
+    <div id="loading">
+        <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
+        <img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
     </div>
+
+    <div id="after">
+        <div id="tabs"></div>
+        <hr >
+        <div ng-controller="entryexitCtrl" >
+
+                    <div class="panel-body" >
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <div class="horizontal-scroll">
+                                    <div class="form-group select-page-size-wrap ">
+                                        <label>Rows on page
+                                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                                    ng-model="EntryDataSize" ng-options="i for i in [3,5,10,15,20,25]">
+                                            </select>
+                                        </label>
+                                        <a class="cursor" ng-click="showSearch()"><i class="fa fa-search fa-2x"></i></a>
+                                    </div>
+                                    <table   class="table" st-table="accessEvent">
+                                        <thead>
+                                        <tr class="sortable">
+                                            <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                                            <th st-sort="name">Name</th>
+                                            <th st-sort="timestamp">Timestamp</th>
+                                        </tr>
+                                        <tr class="searchDisp" id="Search" >
+
+                                            <th></th><th><input st-search="name" placeholder="Search Date" class="input-sm form-control search-input" type="search"/>
+                                        </th>
+                                            <th><input st-search="timestamp" placeholder="Search Date" class="input-sm form-control search-input" type="search"/>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="event in accessEvent" >
+                                            <td class="table-id">{{event.id}}</td>
+                                            <td>{{ accessEvent[0].name }}</td>
+                                            <td>{{ event.timestamp }}</td>
+
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
+                                            <td colspan="6" class="text-center">
+                                                <div st-pagination="" st-items-by-page="EntryDataSize" st-displayed-pages="5"></div>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+        </div>
+</div>
+

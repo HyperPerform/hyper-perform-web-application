@@ -54,7 +54,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr ng-repeat="item in repo">
+								<tr ng-repeat="item in repo" ng-class="{opened: item.action == 'assigned'}">
 									<td class="table-id">{{item.id}}</td>
 									<td>{{item.action}}</td>
 									<td>{{item.timestamp}}</td>

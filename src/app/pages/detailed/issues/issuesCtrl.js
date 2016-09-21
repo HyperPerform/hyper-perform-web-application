@@ -11,7 +11,7 @@ function issuesCtrl($scope, $http)
   	$http({
 		url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails", 
 		method: "POST",
-		data: JSON.stringify({name: "Rohans", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "issues"}),
+		data: JSON.stringify({name: "Rohan", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "issues"}),
 		headers: {
 			"Content-Type": "application/json",
 			"Access-Control-Allow-Origin": "*"
@@ -27,6 +27,13 @@ function issuesCtrl($scope, $http)
 		{
 			$('#after').html("<h1>No results found</h1>");
 			$scope.openToast('','No issues found','warning');
+		}
+		for (var i = 0; i < $scope.repos.length; i++)
+		{
+
+			$scope.tmp =  $scope.repos[i][0].repository;
+			var el = '"' +$scope.repos[i][0].repository + '"';
+			$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' href='#"+$scope.tmp+"' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
 		}
 	}, function(response){
 		$('#loading').fadeOut(1000, function(){ $(this).remove();});

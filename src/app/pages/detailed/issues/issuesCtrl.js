@@ -3,6 +3,8 @@ angular.module('HyperPerform.pages.detailed.issues').controller('issuesCtrl', is
 function issuesCtrl($scope, $http) 
 {
 	$('#after').hide();
+	$scope.issuesDataSize = 3;
+	$scope.searchCount = 1;
   	// $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails")
   	// .then(function(response){
   	// 	$scope.repos = response.data.gitIssueDetails.data;
@@ -40,4 +42,13 @@ function issuesCtrl($scope, $http)
 		$('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
 		$scope.openToast('From: Issues','Unable to connect to the server','error');
 	});
+
+	$scope.showSearch = function (el)
+	{
+		$scope.searchCount++;
+		// alert(el);
+		if ( ($scope.searchCount % 2) == 0)
+			$('#'+el+'Search').show();
+		else $('#'+el+'Search').hide();
+	};
 }

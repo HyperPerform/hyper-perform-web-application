@@ -9,7 +9,8 @@
         <div id="tabs"></div>
         <hr >
         <div ng-controller="entryexitCtrl" >
-
+            <div class="row">
+                <div class="panel bootstrap-panel">
                     <div class="panel-body" >
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -22,7 +23,7 @@
                                         </label>
                                         <a class="cursor" ng-click="showSearch()"><i class="fa fa-search fa-2x"></i></a>
                                     </div>
-                                    <table   class="table" st-table="accessEvent">
+                                    <table   class="table" st-table="aevent">
                                         <thead>
                                         <tr class="sortable">
                                             <th class="table-id" st-sort="id" st-sort-default="true">#</th>
@@ -37,11 +38,11 @@
                                             </th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr ng-repeat="event in accessEvent" >
-                                            <td class="table-id">{{event.id}}</td>
-                                            <td>{{ accessEvent[0].name }}</td>
-                                            <td>{{ event.timestamp }}</td>
+                                        <tbody ng-controller="entryexitCtrl">
+                                        <tr ng-repeat="item in aevent">
+                                            <td class="table-id">{{item.id}}</td>
+                                            <td>{{ item.name }}</td>
+                                            <td>{{item.timestamp}}</td>
 
                                         </tr>
                                         </tbody>
@@ -59,6 +60,8 @@
                         </div>
                     </div>
                 </div>
+             </div>
         </div>
+      </div>
 </div>
 

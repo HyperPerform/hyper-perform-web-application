@@ -26,13 +26,13 @@
     })
         .then(function(response){
 
-        alert(JSON.stringify(response.data));
+        // alert(JSON.stringify(response.data));
 
-          $scope.accessEvent = response.data.accessDetails.data;
-          alert(JSON.stringify($scope.accessEvent[0].name));
-          $('#loading').fadeOut(1000, function(){ $(this).remove();});
+          $scope.aevent = response.data.accessDetails.data;
+          // alert(JSON.stringify($scope.aevent));
+          $('#loading').fadeOut(1000  , function(){ $(this).remove();});
           $('#after').delay(500).fadeIn(3000, function(){ });
-          if ($scope.accessEvent[0] == null  )
+          if ($scope.aevent[0] == null  )
           {
             $('#after').html("<h1>No results found</h1>");
             $scope.openToast('','No logs found','warning');
@@ -45,7 +45,7 @@
           $scope.openToast('From: Entry/Exit','Unable to connect to the server','error');
         });
 
-    $scope.showSearch = function (el)
+    $scope.showSearch = function ( )
     {
       $scope.searchCount++;
       // alert(el);

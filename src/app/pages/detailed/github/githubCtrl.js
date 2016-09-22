@@ -6,6 +6,9 @@
   function githubCtrl($scope, $http, $window) {
       $scope.gitDataSize = 5;
       $scope.searchCount = 1;
+      $scope.changeCount = 1;
+      $scope.IconCount = 1;
+
       var git = [
           {
               "id": 1,
@@ -394,7 +397,42 @@
               else $('#'+el+'Search').hide();
           };
 
+          $scope.changeIcon = function (el)
+          {
+              $scope.IconCount++;
+              // alert(el);
+              if ( ($scope.IconCount % 2) == 0) {
+                  $('#' + el + 'icon').html("<i class='fa fa-caret-down'></i>");
+                  $('#' + el ).hide();
 
+
+              }
+              else
+              {
+                  $('#'+el+'icon').html("<i class='fa fa-caret-up'></i>");
+                  $('#' + el ).show();
+
+              }
+          };
+
+          $scope.changeView = function (el)
+          {
+              $scope.changeCount++;
+
+              if ( ($scope.changeCount % 2) == 0) {
+                  $('#' + el + 'switch').html("<i class='fa fa-table white' aria-hidden='true'></i>");
+                  $('#'+el+'table').hide();
+                  $('#'+el+'graph').show();
+                  // alert("Hide table");
+              }
+              else
+              {
+                  $('#'+el+'switch').html("<i class='fa fa-line-chart white' aria-hidden='true'></i>");
+                  $('#'+el+'graph').hide();
+                  $('#'+el+'table').show();
+                  // alert("Hide graph");
+              }
+          };
   }
 
 

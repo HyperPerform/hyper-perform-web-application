@@ -79,6 +79,9 @@ $text-color: #ffffff;
     margin-left: 7.5%;
   }
 
+  .pass-el {
+    margin-left: 2%;
+  }
   .form-el {
     margin-left: 10%;
   }
@@ -167,4 +170,52 @@ a.forgot-pass {
 #error
 {
   color: red;
+}
+
+/***** Top content *****/
+
+.inner-bg {
+  padding: 40px 0 170px 0;
+}
+
+.top-content .text {
+  color: #fff;
+}
+
+.top-content .text h1 { color: #fff; }
+
+.top-content .description {
+  margin: 20px 0 10px 0;
+}
+
+.top-content .description p { opacity: 0.8; }
+
+.top-content .description a {
+  color: #fff;
+}
+.top-content .description a:hover,
+.top-content .description a:focus { border-bottom: 1px dotted #fff; }
+
+.top-content .top-big-link {
+  margin-top: 35px;
+}
+
+.form-box {
+  padding-top: 40px;
+}
+
+form .form-bottom textarea {
+  height: 100px;
+}
+
+form .form-bottom button.btn {
+  min-width: 105px;
+}
+
+form .form-bottom .input-error {
+  border-color: #19b9e7;
+}
+
+form.registration-form fieldset {
+  display: none;
 }

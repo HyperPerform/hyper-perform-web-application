@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("assets/img/backgrounds/1.jpg");
+    $.backstretch("assets/img/blue-blur-background.jpg");
     
     $('#top-navbar-1').on('shown.bs.collapse', function(){
     	$.backstretch("resize");
@@ -26,7 +26,14 @@ jQuery(document).ready(function() {
     $('.registration-form .btn-next').on('click', function() {
     	var parent_fieldset = $(this).parents('fieldset');
     	var next_step = true;
-    	
+		var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		parent_fieldset.find('input[type="email"]').each(function() {
+			if ( filter.test($(this).val()) == false)
+			{
+				$(this).addClass('input-error');
+				next_step = false;
+			}
+		});
     	parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
     		if( $(this).val() == "" ) {
     			$(this).addClass('input-error');

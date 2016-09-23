@@ -15,7 +15,7 @@ gulp.task('inject-reload', ['inject'], function () {
   browserSync.reload();
 });
 
-gulp.task('inject', ['scripts', 'styles', 'injectAuth', 'inject404', 'copyVendorImages'], function () {
+gulp.task('inject', ['scripts', 'styles', 'injectAuth', 'injectMan', 'inject404', 'copyVendorImages'], function () {
   var injectStyles = gulp.src([
     path.join(conf.paths.tmp, '/serve/app/main.css'),
     path.join('!' + conf.paths.tmp, '/serve/app/vendor.css')
@@ -46,6 +46,13 @@ gulp.task('injectAuth', ['stylesAuth'], function () {
   return injectAlone({
     css: [path.join('!' + conf.paths.tmp, '/serve/app/vendor.css'), path.join(conf.paths.tmp, '/serve/app/auth.css')],
     paths: [path.join(conf.paths.src, '/auth.html'), path.join(conf.paths.src, '/reg.html')]
+  })
+});
+
+gulp.task('injectMan', ['stylesMan'], function () {
+  return injectAlone({
+    css: [path.join('!' + conf.paths.tmp, '/serve/app/vendor.css'), path.join(conf.paths.tmp, '/serve/app/man.css')],
+    paths: path.join(conf.paths.src, '/man.html')
   })
 });
 

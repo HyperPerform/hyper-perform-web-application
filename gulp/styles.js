@@ -23,6 +23,9 @@ gulp.task('styles', function () {
 gulp.task('stylesAuth', function () {
   return buildSingleScss(path.join(conf.paths.src, '/sass/auth.scss'));
 });
+gulp.task('stylesMan', function () {
+  return buildSingleScss(path.join(conf.paths.src, '/sass/man.scss'));
+});
 gulp.task('styles404', function () {
   return buildSingleScss(path.join(conf.paths.src, '/sass/404.scss'));
 });
@@ -36,6 +39,7 @@ var buildStyles = function () {
     path.join(conf.paths.src, '/sass/**/_*.scss'),
     '!' + path.join(conf.paths.src, '/sass/theme/conf/**/*.scss'),
     '!' + path.join(conf.paths.src, '/sass/404.scss'),
+    '!' + path.join(conf.paths.src, '/sass/man.scss'),
     '!' + path.join(conf.paths.src, '/sass/auth.scss')
   ], {read: false});
 

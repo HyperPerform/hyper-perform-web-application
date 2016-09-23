@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blur Admin</title>
+  <title>Registration</title>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/Logo1.gif">
   <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
   <!-- bower:css -->
   <!-- run `gulp inject` to automatically populate bower styles dependencies -->
@@ -29,7 +29,7 @@
     <div class="row">
       <!--<div class="col-sm-6 col-sm-offset-3 form-box">-->
       <div class="log-title" align="center">
-        <img class="main-logo" src="/assets/Logo1.gif" height="50px" alt="Logo" style="display: inline;">
+        <img class="main-logo" src="assets/Logo1.gif" height="50px" alt="Logo" style="display: inline;">
         <span id="hyper" style="color: #1F968B;"> Hyper</span><span id="perform">Perform</span>
       </div>
         <form role="form" action="" method="post" class="registration-form">
@@ -43,7 +43,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                    <input type="text" name="form-first-name" placeholder="First Name" class="form-first-name form-control">
+                    <input type="text" name="form-first-name" autofocus placeholder="First Name" class="form-first-name form-control">
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                    <input type="text" name="form-email" placeholder="Email Address" class="form-email form-control">
+                    <input type="email" id="email" name="form-email" placeholder="Email Address" class="form-email form-control">
                   </div>
                 </div>
               </div>
@@ -93,10 +93,10 @@
               <div class="form-group">
                 <div class="row" style="margin-left: 8%">
                   <!--<div class="col-lg-2 col-md-2"></div>-->
-                  <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10" style="padding-right: -10%">
+                  <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10" style="padding-right: 2%" >
                     <input type="password" name="password" placeholder="Password" class="form-control">
                   </div>
-                  <div class="col-lg-6 col-md-6 col-sm-10 col-xs-10">
+                  <div class="col-lg-5 col-md-5 col-sm-10 col-xs-10" style="padding-left: 2%; padding-right: 2%">
                     <input type="password" name="password" placeholder="Confirm Password" class="form-control">
                   </div>
                 </div>

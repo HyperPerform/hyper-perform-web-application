@@ -29,10 +29,13 @@
        //
        $scope.p  = "";
        $http({
-          method: "GET",
+          method: "POST",
           url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
-          data: JSON.stringify({name: "u12345678", startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"})
-
+          data: JSON.stringify({name: "Rohan", startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}),
+           headers: {
+               "Content-Type": "application/json",
+               "Access-Control-Allow-Origin": "*"
+           }
        })
            .then(function(response) {
                $('.fa-spinner, .fa-spin').fadeOut(500, function(){ $(this).remove();});

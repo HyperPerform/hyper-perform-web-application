@@ -172,9 +172,9 @@
             <div class="panel-heading">OVERVIEW </div>
             <div class="panel-body">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-controller="chartJs2DCtrl" style="border-right: 1px lightgrey solid;">
-                    <h3 align="center">Line</h3>
+                    <h3 align="center">Summary</h3>
                     <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
-                                    chart-legend="false" chart-series="series" chart-click="changeData"></canvas>
+                                    chart-legend="false" chart-series="series" chart-click="changeData" chart-colours="color"></canvas>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
                 <div class="visible-sm visible-xs">
@@ -219,7 +219,7 @@
                                 <!--<p class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{ max }}</p>-->
                             <!--</div>-->
                         </div>
-                       <!--<h4 align="center" style="color: #0EA5A5;">out of {{ max }}</h4>-->
+                         <div id="pascore"></div>
                     </div>
                 </div>
             </div>

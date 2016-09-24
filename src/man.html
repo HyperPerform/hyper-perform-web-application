@@ -31,18 +31,28 @@
   <link rel="stylesheet" href="app/main.css">
   <link rel="stylesheet" href="app/man.css">
 
- <!--  <script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(
         function() {
-          $("#emplTable").DataTable({
-            paging: false,
-            scroller: false,
-            searching: false,
-            info: false
+          $.get("http://10.0.0.11:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
+
+            var data = res.data;
+            for (var k = 0; k < res.size; k++)
+            {
+              var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
+              s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
+              s += "<td>" + "Web developer" + "</td>";
+              // s += "<td>" + 4 + "</td>";
+              s += "<td>" + data[k].score + "</td>";
+              s += "<td>" + data[k].performance + "</td>";
+
+              $("#tableBody").append(s);
+            }
+
           });
         }
       );
-  </script> -->
+  </script>
 
 </head>
 <body>
@@ -56,77 +66,7 @@
 <div class="container">
 
   <div class="row">
-    <!-- <div class="horizontal-scroll"> -->
-      <!-- <div class="form-group select-page-size-wrap ">
-        <label>Rows on page
-          <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                  ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-          </select>
-        </label>
-      </div>
-      <table class="table" id="emplTable">
-        <thead>
-        
-        <tr>
-          <th></th>
-          <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input"
-                     type="search"/></th>
-          <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input"
-                     type="search"/></th>
-          <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
-                     type="search"/></th>
-          <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search"/>
-          </th>
-          <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search"/>
-          </th>
-        </tr>
 
-        <tr>
-          <th class="table-id">#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Score</th>
-          <th>Category</th>
-        </tr>
-
-        </thead>
-
-        <tbody>
-        <tr>
-          <td class="table-id">1</td>
-          <td>Jack</td>
-          <td>Black</td>
-          <td><a class="email-link">jack.black@tenacious.com</a></td>
-          <td>2.1</td>
-          <td>Standard performer</td>
-        </tr>
-        <tr>
-          <td class="table-id">2</td>
-          <td>Walter</td>
-          <td>Bishop</td>
-          <td><a class="email-link">walter.bishop@fringe.com</a></td>
-          <td>4.7</td>
-          <td>High performer</td>
-        </tr>
-        <tr>
-          <td class="table-id">3</td>
-          <td>Yusei</td>
-          <td>Fudo</td>
-          <td><a class="email-link">yusei.fudo@starlight.com</a></td>
-          <td>1.7</td>
-          <td>Non-performer</td>
-        </tr>
-        </tbody>
-
-        <tfoot>
-        <tr>
-          <td colspan="6" class="text-center">
-            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
-          </td>
-        </tr>
-        </tfoot>
-      </table> -->
 
     <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
@@ -144,7 +84,7 @@
                         <th>Name</th>
                         <th>Position</th>
                         <!--<th>Office</th>-->
-                        <th>Age</th>
+                        <!-- <th>Age</th> -->
                         <!--<th>Start date</th>-->
                         <!--<th>Salary</th>-->
                         <th>Score</th>
@@ -153,12 +93,12 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody id="tableBody">
                       <tr>
                         <td>Tiger Nixon</td>
                         <td>System Architect</td>
                         <!--<td>Edinburgh</td>-->
-                        <td>61</td>
+                        <!-- <td>61</td> -->
                         <!--<td>2011/04/25</td>-->
                         <!--<td>$320,800</td>-->
                         <td>4.7</td>
@@ -168,7 +108,7 @@
                         <td>Garrett Winters</td>
                         <td>Web Developer</td>
                         <!--<td>Tokyo</td>-->
-                        <td>63</td>
+                        <!-- <td>63</td> -->
                         <!--<td>2011/07/25</td>-->
                         <!--<td>$170,750</td>-->
                         <td>1.7</td>
@@ -178,7 +118,7 @@
                         <td>Ashton Cox</td>
                         <td>Web Developer</td>
                         <!--<td>San Francisco</td>-->
-                        <td>66</td>
+                        <!-- <td>66</td> -->
                         <!--<td>2009/01/12</td>-->
                         <!--<td>$86,000</td>-->
                         <td>3</td>

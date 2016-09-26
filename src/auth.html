@@ -168,10 +168,11 @@
 
 //                            alert(arr.loggedin + "Dude");
                             if (arr.loggedin == true) {
+                                $('#msg').html("<h2>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
+
                                 modal.style.display = 'block';
 
-                                $('#msg').html("<h2>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
-//                                $('#modal').show();
+                               //                                $('#modal').show();
 //                                angular.module('HyperPerform', ['ngCookies'])
 //                                        .controller('cookieCtl', ['$cookies', cookieCtl]);
 //
@@ -205,7 +206,13 @@
 
 
                                 setCookie(arr.name, arr.position);
-//                                window.location.href = '/user';
+                                setTimeout(
+                                        function()
+                                        {
+                                            window.location.href = '/user';
+
+                                        }, 1000);
+
                             }
                             else {
                                 document.getElementById('login').innerHTML = "Login";

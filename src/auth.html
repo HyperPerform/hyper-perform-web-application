@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HyperPerform</title>
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
@@ -23,9 +24,72 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            text-align: center;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>
+<body ng-controller="login">
 <main class="auth-main">
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">×</span>
+            <p id="msg"> </p>
+        </div>
+
+    </div>
+
+    <!--<div class="modal-content" id="modal">-->
+        <!--<div class="modal-header bg-success">-->
+            <!--<i class="ion-checkmark modal-icon"></i><span>  </span>-->
+        <!--</div>-->
+        <!--<div class="modal-body text-center" id="msg"> </div>-->
+        <!--<div class="modal-footer">-->
+            <!--<button type="button" class="btn btn-success" > OK  </button>-->
+        <!--</div>-->
+    <!--</div>-->
+
     <div class="auth-block">
         <!--<div class="row">-->
             <!--<img class="col-lg-6 col-md-6" height="50px" src="assets/logo1.gif" alt="HyperPerform">-->
@@ -63,10 +127,33 @@
             </div>
         </div>
         <script>
+
+
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            };
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+//            $("#modal").hide();
+
             function auth() {
                 document.getElementById('login').innerHTML = "<i class='fa fa-spinner fa-pulse '></i>";
                 var http = new XMLHttpRequest();
-                var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/login/verifyDetails";
+                var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifyDetails";
                 var params = JSON.stringify({userEmail: document.getElementById('email').value, userPassword: document.getElementById('password').value});
                 http.open("POST", url, true);
 
@@ -75,13 +162,57 @@
 
                 http.onreadystatechange = function () {//Call a function when the state changes.
                     if (http.readyState == 4 && http.status == 200) {
-//                        alert(http.responseText);
+//                        alert(JSON.stringify(http.responseText));
                         if (http.responseText != "") {
                             var arr = JSON.parse(http.responseText);
 
 //                            alert(arr.loggedin + "Dude");
                             if (arr.loggedin == true) {
-                                window.location.href = '/user';
+                                $('#msg').html("<h2>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
+
+                                modal.style.display = 'block';
+
+                               //                                $('#modal').show();
+//                                angular.module('HyperPerform', ['ngCookies'])
+//                                        .controller('cookieCtl', ['$cookies', cookieCtl]);
+//
+//                                            function cookieCtl($scope, $cookies) {
+//                                                $scope.setInfo = function(email) {
+//                                                    $cookies.myFavorite = 'oatmeal';
+//                                                    alert(email);
+//                                                    alert($cookies.myFavorite);
+//                                                    alert($cookies);
+//                                                }
+//                                        }
+
+//                                function CookieCtrl($cookies, email, name, position ) {
+//                                    $cookies.email =  email;
+////                                    $cookieStore.put('name', name);
+////                                    $cookieStore.put('position', position);
+//                                    alert(email);
+//                                    alert($cookies.email);
+//                                }
+
+                                var cookies = document.cookie.split(";");
+                                for (var i = 0; i < cookies.length; i++)
+                                    setCookie(cookies[i].split("=")[0], '', -1);
+
+                                function setCookie(email, position, days) {
+                                    var d = new Date();
+                                    d.setTime(d.getTime() + (days*24*60*60*1000));
+                                    var expires = "expires="+d.toUTCString();
+                                    document.cookie = email + "=" + position + "; " + expires;
+                                }
+
+
+                                setCookie(arr.name, arr.position);
+                                setTimeout(
+                                        function()
+                                        {
+                                            window.location.href = '/user';
+
+                                        }, 1000);
+
                             }
                             else {
                                 document.getElementById('login').innerHTML = "Login";

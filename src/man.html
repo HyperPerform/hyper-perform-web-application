@@ -52,10 +52,11 @@
 
           $("#barCollapse").click(function(){
     
-              if ($("#sidebar").hasClass("hp-collapsed"))
-                $("#sidebar").removeClass("hp-collapsed");
-              else
-                $("#sidebar").addClass("hp-collapsed");
+              // if ($("#sidebar").hasClass("hp-collapsed"))
+              //   $("#sidebar").removeClass("hp-collapsed");
+              // else
+              //   $("#sidebar").addClass("hp-collapsed");
+              $("#sidebar").toggleClass("hp-collapsed");
           });
 
         }
@@ -68,7 +69,7 @@
       else
       if ($(window).width() >= 992)
         $("#sidebar").removeClass("hp-collapsed");
-      
+
     });
   </script>
 

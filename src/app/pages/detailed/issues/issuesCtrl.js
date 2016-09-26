@@ -9,11 +9,12 @@ function issuesCtrl($scope, $http)
   	// .then(function(response){
   	// 	$scope.repos = response.data.gitIssueDetails.data;
   	// });
+	var n = document.cookie.split("=")[0];
 
   	$http({
 		url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails", 
 		method: "POST",
-		data: JSON.stringify({name: "Rohan", startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "issues"}),
+		data: JSON.stringify({name: n, startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "issues"}),
 		headers: {
 			"Content-Type": "application/json",
 			"Access-Control-Allow-Origin": "*"

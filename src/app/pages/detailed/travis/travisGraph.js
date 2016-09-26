@@ -40,7 +40,7 @@
 
         $scope.polarOptions = {
             scaleShowLabelBackdrop: false,
-            segmentShowStroke: false,
+            segmentShowStroke: false
 
         };
 

@@ -49,9 +49,35 @@
             }
 
           });
+
+          $("#barCollapse").click(function(){
+    
+              if ($("#sidebar").hasClass("hp-collapsed"))
+                $("#sidebar").removeClass("hp-collapsed");
+              else
+                $("#sidebar").addClass("hp-collapsed");
+          });
+
         }
       );
+
+    $(window).resize(function(){
+
+      if ($(window).width() < 992)  
+        $("#sidebar").addClass("hp-collapsed");
+      else
+      if ($(window).width() >= 992)
+        $("#sidebar").removeClass("hp-collapsed");
+      
+    });
   </script>
+
+  <style type="text/css">
+    .hp-collapsed 
+    {
+      width: 0px !important;
+    }
+  </style>
 
 </head>
 <body>
@@ -59,7 +85,7 @@
 <nav class="navbar" style="border: none;">
   <div class="page-top" scroll-position="scrolled" >
     <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo1.gif" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
-    <a href="" class="collapse-menu-link ion-navicon"></a>
+    <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
   </div>
 </nav>
 
@@ -69,7 +95,7 @@
   <div class="row">
 
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <div class="al-sidebar ">
+      <div class="al-sidebar" id="sidebar">
         <ul class="al-sidebar-list" slimscroll="{height: '894px'}" slimscroll-watch="menuHeight">
 
           <li class="al-sidebar-list-item ng-scope">
@@ -85,7 +111,7 @@
           </li>
 
         </ul>
-        <div class="sidebar-hover-elem show-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}" ng-class="{'show-hover-elem': showHoverElem }" style="height: 42px;"></div>
+        <!-- <div class="sidebar-hover-elem show-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}" ng-class="{'show-hover-elem': showHoverElem }" style="height: 42px;"></div> -->
       </div>
       </div>
 

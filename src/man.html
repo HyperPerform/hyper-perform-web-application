@@ -51,12 +51,15 @@
           });
 
           $("#barCollapse").click(function(){
-    
-              // if ($("#sidebar").hasClass("hp-collapsed"))
-              //   $("#sidebar").removeClass("hp-collapsed");
-              // else
-              //   $("#sidebar").addClass("hp-collapsed");
               $("#sidebar").toggleClass("hp-collapsed");
+
+              var s = "";
+              if ($("#sidebar").hasClass("hp-collapsed"))
+                s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+              else
+                s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+
+              document.getElementById("managerialTable").className = s;
           });
 
         }
@@ -64,11 +67,17 @@
 
     $(window).resize(function(){
 
-      if ($(window).width() < 992)  
+      if ($(window).width() < 992)
+      {  
         $("#sidebar").addClass("hp-collapsed");
+        document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+      }
       else
       if ($(window).width() >= 992)
+      {
         $("#sidebar").removeClass("hp-collapsed");
+         document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+      }
 
     });
   </script>
@@ -117,7 +126,7 @@
       </div>
 
  
-      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="managerialTable">
                   <div class="x_panel">
                     <div class="x_title">
                       <h2>Employee List <small>Performance</small></h2>

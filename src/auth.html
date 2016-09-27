@@ -7,9 +7,12 @@
     <title>HyperPerform</title>
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
     <script>
-        var name = document.cookie.split("=")[0];
-        if (name == "hpkey")
-            window.location.href = '/user';
+        if (document.cookie != "" || document.cookie != null)
+        {
+            var name = document.cookie.split("=")[0];
+            if (name == "hpkey")
+                window.location.href = '/user';
+        }
     </script>
 
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -72,7 +75,7 @@
         }
     </style>
 </head>
-<body ng-controller="login">
+<body >
 <main class="auth-main">
 
     <!-- The Modal -->
@@ -133,11 +136,14 @@
             </div>
         </div>
         <script>
-            var name = document.cookie.split("=")[0];
-             if (name == "hpkey")
-                window.location.href = '/user';
+            $( "body" ).keydown(function( event ) {
+                if (event.which == 13) {
+                auth();
+                }
+            });
 
-            // Get the modal
+
+                // Get the modal
             var modal = document.getElementById('myModal');
 
 
@@ -200,7 +206,7 @@
 //                                    alert(email);
 //                                    alert($cookies.email);
 //                                }
-                                alert(document.cookie);
+//                                alert(document.cookie);
                                 var cookies = document.cookie.split(";");
                                 for (var i = 0; i < cookies.length; i++) {
                                     if (cookies[i].split("=")[0] == "hpkey")
@@ -214,7 +220,8 @@
                                 }
 
 
-                                setCookie(arr.name, arr.position, arr.name);
+                                setCookie(arr.email, arr.position, arr.name);
+//                                alert(document.cookie);
                                 setTimeout(
                                         function()
                                         {

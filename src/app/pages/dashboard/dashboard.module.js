@@ -26,12 +26,16 @@
     }
 
    function loadPa($scope, $http) {
-       var name = document.cookie.split("=")[0];
+
+       var name = document.cookie.split("=");
+        name = name[1];
+        name = name.split("#")[0];
+        // alert(name);
         if (name == "" || name == null)
             window.location.href = '/';
        //
        // alert(document.cookie);
-       var n = document.cookie.split("=")[0];
+       var n = document.cookie.split("=")[1].split("#")[0];
        // alert(n);
        $scope.p  = "";
        $http({

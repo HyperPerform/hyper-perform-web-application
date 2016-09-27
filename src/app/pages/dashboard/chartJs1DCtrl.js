@@ -39,8 +39,8 @@
 
   function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http){
 
-    var n = document.cookie.split("=")[0];
-    $http({
+      var n = document.cookie.split("=")[1].split("#")[0];
+      $http({
       method: "POST",
       url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
       data: JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}),

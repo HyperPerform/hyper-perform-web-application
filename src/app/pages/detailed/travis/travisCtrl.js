@@ -28,7 +28,7 @@
  //  		travisData = response.data.travisDetails;
  //  		$scope.repos = travisData.data;
  //  	});
-	  var n = document.cookie.split("=")[0];
+	  var n = document.cookie.split("=")[1].split("#")[0];
   	$http({
 		url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails", 
 		method: "POST",

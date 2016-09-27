@@ -149,7 +149,7 @@ $(window).resize(function(){
               <th>Name</th>
               <th>Email</th>
               <th>Position</th>
-              <th>Score</th>
+              <th class="sorting_asc">Score</th>
               <th>Performance</th>
             </tr>
             </thead>
@@ -227,8 +227,9 @@ $(window).resize(function(){
                 extend: "print",
                 className: "btn-sm"
               }],
-              responsive: !0
-            })
+              responsive: !0,
+              order: [[ 3, "asc" ]]
+            });//.order([ 3, 'asc' ] ).draw();
           },
           TableManageButtons = function() {
             "use strict";
@@ -248,7 +249,8 @@ $(window).resize(function(){
 
 
 
-    $('#datatable').dataTable();
+    var t = $('#datatable').DataTable();
+
     $('#datatable-keytable').DataTable({
       keys: true
     });

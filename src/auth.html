@@ -242,6 +242,13 @@
 
 
                     }
+                    else
+                    {
+                        document.getElementById('login').innerHTML = "Login";
+                        document.getElementById('error').innerHTML = "Error: Can't connect to the server <br/><br/>";
+
+                    }
+
                 };
                 http.send(params);
             }

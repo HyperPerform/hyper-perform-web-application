@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HyperPerform</title>
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
+    <script>
+        var name = document.cookie.split("=")[0];
+        if (name == "hpkey")
+            window.location.href = '/user';
+    </script>
+
     <script src="../bower_components/jquery/dist/jquery.js"></script>
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>-->
 
 
     <link rel="icon" type="image/png" sizes="96x96" href="assets/Logo1.gif">
@@ -127,7 +133,9 @@
             </div>
         </div>
         <script>
-
+            var name = document.cookie.split("=")[0];
+             if (name == "hpkey")
+                window.location.href = '/user';
 
             // Get the modal
             var modal = document.getElementById('myModal');
@@ -192,20 +200,21 @@
 //                                    alert(email);
 //                                    alert($cookies.email);
 //                                }
-
+                                alert(document.cookie);
                                 var cookies = document.cookie.split(";");
-                                for (var i = 0; i < cookies.length; i++)
-                                    setCookie(cookies[i].split("=")[0], '', -1);
-
-                                function setCookie(email, position, days) {
+                                for (var i = 0; i < cookies.length; i++) {
+                                    if (cookies[i].split("=")[0] == "hpkey")
+                                    setCookie(cookies[i].split("=")[0], '', '', -1);
+                                }
+                                function setCookie(email, position, name, days) {
                                     var d = new Date();
                                     d.setTime(d.getTime() + (days*24*60*60*1000));
                                     var expires = "expires="+d.toUTCString();
-                                    document.cookie = email + "=" + position + "; " + expires;
+                                    document.cookie = "hpkey="+email + "#" + position +"%" + name +"; " + expires;
                                 }
 
 
-                                setCookie(arr.name, arr.position);
+                                setCookie(arr.name, arr.position, arr.name);
                                 setTimeout(
                                         function()
                                         {

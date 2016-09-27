@@ -334,7 +334,7 @@
           }
       ];
       var n = document.cookie.split("=")[1].split("#")[0];
-      alert(n);
+      // alert(n);
       $http({
           url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
           method: "POST",
@@ -367,7 +367,7 @@
               if ($scope.repos[0] == null)
               {
                   $('#after').html("<h1>No results found</h1>");
-                  $scope.openToast('From: GitHub','No results found','warning');
+                  $scope.openToast('','No commits found','warning');
               }
 
               for (var i = 0; i < $scope.repos.length; i++)

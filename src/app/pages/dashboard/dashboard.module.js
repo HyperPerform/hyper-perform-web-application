@@ -27,6 +27,9 @@
 
    function loadPa($scope, $http) {
 
+       if (document.cookie == "" || document.cookie == null)
+           window.location.href = '/';
+
        var name = document.cookie.split("=");
         name = name[1];
         name = name.split("#")[0];

@@ -6,16 +6,17 @@
   function entryexitCtrl($scope, $http)
   {
 
-    $scope.EntryDataSize = 3;
+    $scope.EntryDataSize = 5;
     $scope.searchCount = 1;
-
+    $scope.changeCount = 1;
+    $scope.IconCount = 1;
 
     $('#after').hide();
       var n = document.cookie.split("=")[1].split("#")[0];
     $http({
       url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
       method: "POST",
-      data: JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "entry"}),
+      data: JSON.stringify({name: n, startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "entry"}),
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -29,6 +30,13 @@
         // alert(JSON.stringify(response.data));
 
           $scope.aevent = response.data.accessDetails.data;
+          $scope.labels = response.data.accessDetails.graphData.independent;
+          $scope.data = [
+            response.data.accessDetails.graphData.dependent
+          ];
+
+          // alert($scope.data);
+
           // alert(JSON.stringify($scope.aevent));
           $('#loading').fadeOut(1000  , function(){ $(this).remove();});
           $('#after').delay(500).fadeIn(3000, function(){ });
@@ -52,6 +60,44 @@
       if ( ($scope.searchCount % 2) == 0)
         $('#Search').show();
       else $('#Search').hide();
+    };
+
+    $scope.changeIcon = function (el)
+    {
+        $scope.IconCount++;
+        // alert(el);
+        // alert($("#" + el + "icon").html());
+        if ( ($scope.IconCount % 2) == 0) {
+            $('#' + el + 'icon').html("<i class='fa fa-caret-down'></i>");
+            $('#' + el ).hide();
+
+
+        }
+        else
+        {
+            $('#'+el+'icon').html("<i class='fa fa-caret-up'></i>");
+            $('#' + el ).show();
+
+        }
+    };
+
+    $scope.changeView = function (el)
+    {
+        $scope.changeCount++;
+
+        if ( ($scope.changeCount % 2) == 0) {
+            $('#' + el + 'switch').html("<i class='fa fa-table white' aria-hidden='true'></i>");
+            $('#'+el+'table').hide();
+            $('#'+el+'graph').show();
+            // alert("Hide table");
+        }
+        else
+        {
+            $('#'+el+'switch').html("<i class='fa fa-line-chart white' aria-hidden='true'></i>");
+            $('#'+el+'graph').hide();
+            $('#'+el+'table').show();
+            // alert("Hide graph");
+        }
     };
 
     // openToast();

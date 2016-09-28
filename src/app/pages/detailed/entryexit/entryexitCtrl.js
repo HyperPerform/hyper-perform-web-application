@@ -3,13 +3,14 @@
 
   angular.module('HyperPerform.pages.detailed.entryexit').controller('entryexitCtrl', entryexitCtrl);
 
-  function entryexitCtrl($scope, $http)
+  function entryexitCtrl($scope, $http, $window)
   {
-
-    $scope.EntryDataSize = 5;
+    var events =[];
+    $scope.entryDataSize = 3;
     $scope.searchCount = 1;
     $scope.changeCount = 1;
     $scope.IconCount = 1;
+      $scope.aevent = [];
 
     $('#after').hide();
       var n = document.cookie.split("=")[1].split("#")[0];
@@ -28,13 +29,14 @@
         .then(function(response){
 
         // alert(JSON.stringify(response.data));
-
-          $scope.aevent = response.data.accessDetails.data;
+            events = response.data.accessDetails.data;
+          $scope.aevent = events;
+          $scope.srcevent = events;
           $scope.labels = response.data.accessDetails.graphData.independent;
           $scope.data = [
             response.data.accessDetails.graphData.dependent
           ];
-
+            // $scope.entryDataSize = 3;
           // alert($scope.data);
 
           // alert(JSON.stringify($scope.aevent));

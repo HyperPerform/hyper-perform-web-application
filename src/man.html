@@ -22,7 +22,9 @@ $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManage
           {
             var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
             s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
-            s += "<td>" + data[k].email + "</td>";
+            s += (data[k].score < 2.0) ?
+            "<td><a style='color: black' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></td>" :
+            "<td><a href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></td>";
             s += "<td>" + data[k].role + "</td>";
             s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
             s += "<td>" + data[k].performance + "</td></tr>";
@@ -145,6 +147,7 @@ $(window).resize(function(){
            </p> -->
           <table id="datatable-buttons" class="table table-striped table-bordered">
             <thead>
+
             <tr style="background-color: #666666; color: #F0F3F4">
               <th>Name</th>
               <th>Email</th>
@@ -158,7 +161,7 @@ $(window).resize(function(){
             <tbody id="tableBody">
             <tr>
               <td>Tiger Nixon</td>
-              <td>tiger@gmail.com</td>
+              <td><a href='mailto:tiger@gmail.com'>tiger@gmail.com</a></td>
               <td>System Architect</td>
               <!--<td>Edinburgh</td>-->
               <!-- <td>61</td> -->
@@ -169,7 +172,7 @@ $(window).resize(function(){
             </tr>
             <tr class="bg-red">
               <td>Garrett Winters</td>
-              <td>garrett.winters@gmail.com</td>
+              <td><a style="color: black" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></td>
               <td>Web Developer</td>
               <!--<td>Tokyo</td>-->
               <!-- <td>63</td> -->
@@ -180,7 +183,7 @@ $(window).resize(function(){
             </tr>
             <tr>
               <td>Ashton Cox</td>
-              <td>ash.cox@gmail.com</td>
+              <td><a href='mailto:ash.cox@gmail.com'>ash.cox@gmail.com</a></td>
               <td>Web Developer</td>
               <!--<td>San Francisco</td>-->
               <!-- <td>66</td> -->
@@ -200,15 +203,15 @@ $(window).resize(function(){
 
   </div>
 </div>
-<script src="assets/js/datatables/jquery.dataTables.min.js"></script>
-<script src="assets/js/datatables/dataTables.bootstrap.js"></script>
-<script src="assets/js/datatables/dataTables.buttons.min.js"></script>
-<script src="assets/js/datatables/buttons.bootstrap.min.js"></script>
-<script src="assets/js/datatables/jszip.min.js"></script>
-<script src="assets/js/datatables/pdfmake.min.js"></script>
-<script src="assets/js/datatables/vfs_fonts.js"></script>
-<script src="assets/js/datatables/buttons.html5.min.js"></script>
-<script src="assets/js/datatables/buttons.print.min.js"></script>
+  <script src="assets/js/datatables/jquery.dataTables.min.js"></script>
+  <script src="assets/js/datatables/dataTables.bootstrap.js"></script>
+  <script src="assets/js/datatables/dataTables.buttons.min.js"></script>
+  <script src="assets/js/datatables/buttons.bootstrap.min.js"></script>
+  <script src="assets/js/datatables/jszip.min.js"></script>
+  <script src="assets/js/datatables/pdfmake.min.js"></script>
+  <script src="assets/js/datatables/vfs_fonts.js"></script>
+  <script src="assets/js/datatables/buttons.html5.min.js"></script>
+  <script src="assets/js/datatables/buttons.print.min.js"></script>
 <!-- pace -->
 <!--<script src="js/pace/pace.min.js"></script>-->
 <script>

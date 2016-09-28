@@ -18,9 +18,9 @@
   /** @ngInject */
   function routeConfig(/*$urlRouterProvider, $routeProvider, $locationProvider*/) {
 
-      if(window.location.pathname == "/user")
-          window.location.assign("#/dashboard");
-      else if(window.location.pathname == "/")
+      // if(window.location.pathname == "/user")
+          // window.location.assign("#/dashboard");
+       if(window.location.pathname == "/")
         window.location.pathname = "/auth.html";
 
       // $urlRouterProvider

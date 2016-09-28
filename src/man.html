@@ -12,60 +12,47 @@
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
   <script type="text/javascript">
-//        $(document).ready(
-//                function() {
-$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
-
-          var data = res.data;
+    //        $(document).ready(
+    //                function() {
+    $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
+      var data = res.data;
 //            alert(JSON.stringify(data));
-          for (var k = 0; k < res.size; k++)
-          {
-            var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
-            s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
-            s += "<td>" + data[k].email + "</td>";
-            s += "<td>" + data[k].role + "</td>";
-            s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
-            s += "<td>" + data[k].performance + "</td></tr>";
-
-            $("#tableBody").html($("#tableBody").html() + s);
+      for (var k = 0; k < res.size; k++)
+      {
+        var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
+        s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
+        s += "<td>" + data[k].email + "</td>";
+        s += "<td>" + data[k].role + "</td>";
+        s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
+        s += "<td>" + data[k].performance + "</td></tr>";
+        $("#tableBody").html($("#tableBody").html() + s);
 //                $("#tableBody").append(s);
-          }
-
+      }
 //              });
-
-          $("#barCollapse").click(function(){
-            $("#sidebar").toggleClass("hp-collapsed");
-
-            var s = "";
-            if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
-              s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-            else
-              s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
-
-            document.getElementById("managerialTable").className = s;
-          });
-          loadTable();
-        });
-
-$(window).resize(function(){
-
-  if ($(window).width() < 992)
-  {
-    $("#sidebar").addClass("hp-collapsed");
-    document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-  }
-  else
-  if ($(window).width() >= 992)
-  {
-    $("#sidebar").removeClass("hp-collapsed");
-    document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
-  }
-
-});
-
-
-
-
+      $("#barCollapse").click(function(){
+        $("#sidebar").toggleClass("hp-collapsed");
+        var s = "";
+        if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
+          s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+        else
+          s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+        document.getElementById("managerialTable").className = s;
+      });
+      loadTable();
+    });
+    $(window).resize(function(){
+      if ($(window).width() < 992)
+      {
+        $("#sidebar").addClass("hp-collapsed");
+        document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+      }
+      else
+      if ($(window).width() >= 992)
+      {
+        $("#sidebar").removeClass("hp-collapsed");
+        document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+      }
+    });
   </script>
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.css" />
@@ -108,27 +95,30 @@ $(window).resize(function(){
 
 
 
-<div class="container-fluid">
+<div class="container-fluid ">
   <div class="row">
-
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <div class="al-sidebar" id="sidebar">
+      <div class="al-sidebar left-col" id="sidebar">
         <ul class="al-sidebar-list" slimscroll="{height: '894px'}" slimscroll-watch="menuHeight">
 
           <li class="al-sidebar-list-item ng-scope">
-            <a class="al-sidebar-list-link" href="">
+            <a class="al-sidebar-list-link" href="/man.html">
+              <i class="ion-android-people"></i><span>Employee List</span>
+            </a>
+          </li>
+
+          <li class="al-sidebar-list-item ng-scope">
+            <a class="al-sidebar-list-link" href="/forecast.html">
               <i class="ion-briefcase"></i><span>Forecasts</span>
             </a>
           </li>
 
           <li class="al-sidebar-list-item ng-scope">
-            <a class="al-sidebar-list-link" href="">
+            <a class="al-sidebar-list-link" href="/reg.html">
               <i class="ion-person-stalker"></i><span>User Management</span>
             </a>
           </li>
-
         </ul>
-        <!-- <div class="sidebar-hover-elem show-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}" ng-class="{'show-hover-elem': showHoverElem }" style="height: 42px;"></div> -->
       </div>
     </div>
 
@@ -145,7 +135,7 @@ $(window).resize(function(){
            </p> -->
           <table id="datatable-buttons" class="table table-striped table-bordered">
             <thead>
-            <tr style="background-color: #666666; color: #F0F3F4">
+            <tr style="background-color: #209E91; color: #F0F3F4">
               <th>Name</th>
               <th>Email</th>
               <th>Position</th>
@@ -212,7 +202,6 @@ $(window).resize(function(){
 <!-- pace -->
 <!--<script src="js/pace/pace.min.js"></script>-->
 <script>
-
   var handleDataTableButtons = function() {
             "use strict";
             0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
@@ -241,16 +230,8 @@ $(window).resize(function(){
           }();
 </script>
 <script type="text/javascript">
-
-
-
-    function loadTable() {
-
-
-
-
+  function loadTable() {
     var t = $('#datatable').DataTable();
-
     $('#datatable-keytable').DataTable({
       keys: true
     });
@@ -266,9 +247,8 @@ $(window).resize(function(){
       fixedHeader: true
     });
 //  });
-
-  TableManageButtons.init();
-    }
+    TableManageButtons.init();
+  }
 </script>
 </body>
 </html>

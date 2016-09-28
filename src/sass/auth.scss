@@ -10,8 +10,8 @@ html {
 }
 
 body {
-  //@include main-background();
-  //background: rgba(0,0,0,0.6);
+  background-image: url('../assets/img/blue-blur-background.jpg');
+  background-size: cover;
   height: 100%;
 }
 
@@ -28,8 +28,6 @@ $text-color: #ffffff;
 }
 
 .auth-main {
-  background-image: url('../assets/img/blue-blur-background.jpg');
-  background-size: cover;
   display: flex;
   align-items: center;
   height: 100%;

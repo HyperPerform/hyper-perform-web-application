@@ -19,20 +19,20 @@
           s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
         else
           s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
-        document.getElementById("managerialTable").className = s;
+//        document.getElementById("managerialTable").className = s;
       });
 
       $(window).resize(function(){
       if ($(window).width() < 992)
       {
         $("#sidebar").addClass("hp-collapsed");
-        document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+//        document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
       }
       else
       if ($(window).width() >= 992)
       {
         $("#sidebar").removeClass("hp-collapsed");
-        document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+//        document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
       }
     });
   </script>
@@ -108,7 +108,7 @@
               <img class="main-logo" src="assets/Logo1.gif" height="50px" alt="Logo" style="display: inline;">
               <span id="hyper" style="color: #1F968B;"> Hyper</span><span id="perform">Perform</span>
             </div>
-              <form role="form" action="" method="post" class="registration-form">
+              <form role="form" method="post" class="registration-form">
                 <fieldset>
                   <div class="form-top" align="center">
                     <div class="form-top-left">
@@ -119,14 +119,14 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                          <input type="text" name="form-first-name" autofocus placeholder="First Name" class="form-first-name form-control">
+                          <input type="text" id="name" name="form-first-name" autofocus placeholder="First Name" class="form-first-name form-control">
                         </div>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                          <input type="text" name="form-last-name" placeholder="Surname" class="form-last-name form-control">
+                          <input type="text" id="surname" name="form-last-name" placeholder="Surname" class="form-last-name form-control">
                         </div>
                       </div>
                     </div>
@@ -139,6 +139,7 @@
                     </div>
                     <div class="row">
                       <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
+                        <div id="error" style="color: red"> </div>
                         <button type="button" class="btn btn-next btn-primary btn-auth">Next</button>
                       </div>
                     </div>
@@ -155,14 +156,14 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                    <input type="text" name="form-git-username" placeholder="Git Username" class="form-first-name form-control">
+                    <input type="text" id="git" name="form-git-username" placeholder="Git Username" class="form-first-name form-control">
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
-                    <input type="text" name="form-hp-username" placeholder="HyperPerform Username" class="form-last-name form-control">
+                    <input type="text" id="username" name="form-hp-username" placeholder="HyperPerform Username" class="form-last-name form-control">
                   </div>
                 </div>
               </div>
@@ -182,6 +183,7 @@
               </div>
               <div class="row">
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
+                  <br />
                   <div id="error1" style="color: red"> </div>
                   <br />
                   <button type="button" class="btn btn-previous btn-primary btn-auth">Previous</button>
@@ -218,7 +220,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
                   <div id="error2" style="color: red"></div>
                   <button type="button" class="btn btn-previous btn-primary btn-auth">Previous</button>
-                  <button type="submit" onclick="auth()" class="btn btn-primary btn-auth">Sign Up</button>
+                  <a onclick="auth()" class="btn btn-primary btn-auth">Sign Up</a>
                 </div>
               </div>
             </div>

@@ -242,7 +242,7 @@
 
 
                     }
-                    else
+                    else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
                     {
                         document.getElementById('login').innerHTML = "Login";
                         document.getElementById('error').innerHTML = "Error: Can't connect to the server <br/><br/>";

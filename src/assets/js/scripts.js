@@ -21,17 +21,7 @@ jQuery(document).ready(function() {
     $('.registration-form input[type="text"], .registration-form input[type="password"], .registration-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });
-    ////////////////////////////////
-	$("#password").keypress(function(event) {
-		var p = $("#password").val();
-		var pp = $("#rpassword").val();
-		if (pp == p)
-		{
-			$('#check').html("<i class='fa fa-check' style='color: green' aria-hidden='true'></i>");
 
-		}
-		else $('#check').html("<i class='fa fa-cross' style='color: red' aria-hidden='true'></i>");
-	});
 
     // next step
     $('.registration-form .btn-next').on('click', function() {
@@ -54,9 +44,20 @@ jQuery(document).ready(function() {
     		}
     		else {
     			$(this).removeClass('input-error');
+
     		}
+			if ($("#rpassword").val() != "" ) {
+				if ($("#rpassword").val() != $("#password").val()) {
+					next_step = false;
+					$("#error1").html("Error: Passwords do not match");
+				}
+				if($("#password").val().length < 6) {
+					next_step = false;
+					$("#error1").html("Error: Password must be at least 6 characters");
+				}
+			}
     	});
-    	
+
     	if( next_step ) {
     		parent_fieldset.fadeOut(400, function() {
 	    		$(this).next().fadeIn();
@@ -76,7 +77,7 @@ jQuery(document).ready(function() {
     
     // submit
     $('.registration-form').on('submit', function(e) {
-    	
+
     	$(this).find('input[type="text"], input[type="password"], textarea').each(function() {
     		if( $(this).val() == "" ) {
     			e.preventDefault();
@@ -109,19 +110,61 @@ jQuery(document).ready(function() {
 		var data = res;
 		// alert(JSON.stringify(data));
 		var s = "";
-		for (var i = 0; i < data.length; i++)
+		for (var i = data.length-1; i >= 0; i--)
 		{
+
 			s+= "<option>" + data[i] + "</option> ";
 		}
 
-		$('#rol').html("<select class='form-control' id='roles'>" + s +" </select>");
+		$('#rol').html("<select class='form-control' id='role'>" + s +" </select>");
 
 	});
 
-	function auth()
-	{
+	$(document).keyup(function(event) {
+		var p = $("#password").val();
+		var pp = $("#rpassword").val();
+		if (pp == p && pp.length > 5)
+		{
+			$('#check').html("<i class='fa fa-check' style='color: green' aria-hidden='true'></i>");
+		}
+		else $('#check').html("<i class='fa fa-times' style='color: red' aria-hidden='true'></i>");
 
-	}
+		if (p.length < 6)
+			$('#error1').html("Error: Password must be at least 6 characters");
+		else $('#error1').html("");
+	});
+
+
 
     
 });
+
+function auth()
+{
+	// "{\"userName\":\"rohan\", \"userSurname\":\"chhipa\",
+	// \"userEmail\":\"rohanchhipa@live.com\", \"userPassword\":\"1234\",
+	// \"role\":\"Employee\", \"position\":\"SoftwareDeveloper\"}";
+	var s = "{";
+	s += "\"userName\": \"" + $('#name').val();
+	s += "\", \"userSurname\": \"" + $('#surname').val();
+	s += "\", \"userEmail\": \"" + $('#email').val();
+	s += "\", \"userPassword\": \"" + $('#password').val();
+	s += "\", \"role\": \"" + $('#role').val();
+	s += "\", \"position\": \"" + $('#position').val();
+	s += "\"}";
+	var b = JSON.parse(s);
+	// alert(b);
+	
+	$.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp", {data: s}, function(data, status){
+		alert("Data: " + data + "\nStatus: " + status);
+	});
+
+	// $.ajax({
+	// 	type: "POST",
+	// 	url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp",
+	// 	data: JSON.stringify(b),
+	// 	success: alert(),
+	// 	dataType: "application/json"
+	// });
+
+}

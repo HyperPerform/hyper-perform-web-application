@@ -141,30 +141,68 @@ jQuery(document).ready(function() {
 
 function auth()
 {
-	// "{\"userName\":\"rohan\", \"userSurname\":\"chhipa\",
-	// \"userEmail\":\"rohanchhipa@live.com\", \"userPassword\":\"1234\",
-	// \"role\":\"Employee\", \"position\":\"SoftwareDeveloper\"}";
-	var s = "{";
+	// "{\"userName\":\"rohan\", \"userSurname\":\"chhipa\", \"userEmail\":\"rohanchhipa@live.com\", \"userPassword\":\"1234\", \"role\":\"Employee\", \"position\":\"SoftwareDeveloper\"}";
+	var s = "{ ";
 	s += "\"userName\": \"" + $('#name').val();
 	s += "\", \"userSurname\": \"" + $('#surname').val();
 	s += "\", \"userEmail\": \"" + $('#email').val();
 	s += "\", \"userPassword\": \"" + $('#password').val();
 	s += "\", \"role\": \"" + $('#role').val();
-	s += "\", \"position\": \"" + $('#position').val();
-	s += "\"}";
+	s += "\", \"position\": \"" + $('#position').val().split(' ').join('');
+	s += "\" }";
 	var b = JSON.parse(s);
-	// alert(b);
+	// alert(JSON.stringify(b));
 	
-	$.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp", {data: s}, function(data, status){
-		alert("Data: " + data + "\nStatus: " + status);
-	});
-
-	// $.ajax({
-	// 	type: "POST",
-	// 	url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp",
-	// 	data: JSON.stringify(b),
-	// 	success: alert(),
-	// 	dataType: "application/json"
+	// $.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp", {data: s}, function(data, status){
+	// 	alert("Data: " + data + "\nStatus: " + status);
 	// });
 
+	$.ajax({
+		type: "POST",
+		url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp",
+		data: JSON.stringify(b),
+		// success: function(res, status){alert(res + " " + status)},
+		// failure: function(res, status){alert(res + " " + status)},
+		// always:  function(res, status){alert(res + " " + status)},
+		// dataType: "json",
+		headers: {"Content-Type": "application/json"}
+	}).always(function(data) {
+		// alert(data.responseText);
+		$('#msg').html("<h2> <i style='color: #1F968B'>"+ data.responseText + "</i></h2>");
+
+		modal.style.display = 'block';
+		if (data.responseText == "Success")
+		{
+			setTimeout(
+				function()
+				{
+					location.reload();
+
+				}, 1000);
+		}
+
+
+	});
+
+
 }
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+};

@@ -31,9 +31,13 @@
 									</select>
 								</label>
 								<a class="cursor" ng-click="showSearch(repo[0].repository)"><i class="fa fa-search fa-2x"></i></a>
+
 							</div>
 							<table   class="table" st-table="repo">
 								<thead>
+								<tr>
+									<th colspan="2"><input st-search="" class="form-control" placeholder="Global Search ..." type="text"/></th>
+								</tr>
 								<tr class="sortable">
 									<th class="table-id" st-sort="id" st-sort-default="true">#</th>
 									<th st-sort="action">Status</th>

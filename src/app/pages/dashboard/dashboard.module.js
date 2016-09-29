@@ -41,6 +41,7 @@
        var n = document.cookie.split("=")[1].split("#")[0];
        // alert(n);
        $scope.p  = "";
+       $scope.h = " H";
        $http({
           method: "POST",
           url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",

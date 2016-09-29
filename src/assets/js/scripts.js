@@ -21,7 +21,18 @@ jQuery(document).ready(function() {
     $('.registration-form input[type="text"], .registration-form input[type="password"], .registration-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });
-    
+    ////////////////////////////////
+	$("#password").keypress(function(event) {
+		var p = $("#password").val();
+		var pp = $("#rpassword").val();
+		if (pp == p)
+		{
+			$('#check').html("<i class='fa fa-check' style='color: green' aria-hidden='true'></i>");
+
+		}
+		else $('#check').html("<i class='fa fa-cross' style='color: red' aria-hidden='true'></i>");
+	});
+
     // next step
     $('.registration-form .btn-next').on('click', function() {
     	var parent_fieldset = $(this).parents('fieldset');
@@ -32,6 +43,8 @@ jQuery(document).ready(function() {
 			{
 				$(this).addClass('input-error');
 				next_step = false;
+				$('#error').html("Error: Email is not valid<br/><br/>");
+				$('#email').focus();
 			}
 		});
     	parent_fieldset.find('input[type="text"], input[type="password"], textarea').each(function() {
@@ -56,6 +69,8 @@ jQuery(document).ready(function() {
     $('.registration-form .btn-previous').on('click', function() {
     	$(this).parents('fieldset').fadeOut(400, function() {
     		$(this).prev().fadeIn();
+			$('#error').html("");
+			$('#email').removeClass('input-error');
     	});
     });
     
@@ -73,6 +88,40 @@ jQuery(document).ready(function() {
     	});
     	
     });
-    
+
+
+	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(res) {
+
+		var data = res;
+           // alert(JSON.stringify(data));
+		var s = "";
+		for (var i = 0; i < data.length; i++)
+		{
+			s+= "<option>" + data[i] + "</option> ";
+		}
+
+		$('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
+
+	});
+
+	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getRoles", function(res) {
+
+		var data = res;
+		// alert(JSON.stringify(data));
+		var s = "";
+		for (var i = 0; i < data.length; i++)
+		{
+			s+= "<option>" + data[i] + "</option> ";
+		}
+
+		$('#rol').html("<select class='form-control' id='roles'>" + s +" </select>");
+
+	});
+
+	function auth()
+	{
+
+	}
+
     
 });

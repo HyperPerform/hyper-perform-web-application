@@ -22,7 +22,7 @@
             var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
             s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
             s += (data[k].score < 2.0) ?
-            "<td><a style='color: black' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></td>" :
+            "<td><b><a style='color: white; text-decoration: underline;' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></b></td>" :
             "<td><a href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></td>";
             s += "<td>" + data[k].role + "</td>";
             s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
@@ -112,7 +112,7 @@
 
           <li class="al-sidebar-list-item ng-scope">
             <a class="al-sidebar-list-link" href="/forecast.html">
-              <i class="ion-briefcase"></i><span>Forecasts</span>
+              <i class="ion-briefcase"></i><span>Forecasting</span>
             </a>
           </li>
 
@@ -131,7 +131,7 @@
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="managerialTable">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Employee List <small>Performance</small></h2>
+          <h2>Employee List</h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -164,7 +164,7 @@
             </tr>
             <tr class="bg-red">
               <td>Garrett Winters</td>
-              <td><a style="color: black" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></td>
+              <td><b><a style="color: white;" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></b></td>
               <td>Web Developer</td>
               <!--<td>Tokyo</td>-->
               <!-- <td>63</td> -->

@@ -142,8 +142,11 @@ jQuery(document).ready(function() {
 function auth()
 {
 	// "{\"userName\":\"rohan\", \"userSurname\":\"chhipa\", \"userEmail\":\"rohanchhipa@live.com\", \"userPassword\":\"1234\", \"role\":\"Employee\", \"position\":\"SoftwareDeveloper\"}";
+	var n = document.cookie.split("=")[1].split("#")[0];
+	// alert(n);
 	var s = "{ ";
-	s += "\"userName\": \"" + $('#name').val();
+	s += "\"managerEmail\": \"" + n;
+	s += "\", \"userName\": \"" + $('#name').val();
 	s += "\", \"userSurname\": \"" + $('#surname').val();
 	s += "\", \"userEmail\": \"" + $('#email').val();
 	s += "\", \"userPassword\": \"" + $('#password').val();

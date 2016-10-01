@@ -12,11 +12,20 @@
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
   <script type="text/javascript">
-    //        $(document).ready(
-    //                function() {
-    $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
-      var data = res.data;
-//            alert(JSON.stringify(data));
+    $(document).ready(function(){
+      $("#barCollapse").click(function(){
+        $("#sidebar").toggleClass("hp-collapsed");
+        var s = "";
+        if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
+          s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+        else
+          s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+        document.getElementById("managerialTable").className = s;
+      });
+    });
+                 
+    $.get("http://10.0.0.11:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
+      	  var data = res.data;
           for (var k = 0; k < res.size; k++)
           {
             var s = (data[k].score < 2.0) ? "<tr class='bg-red'>" : "<tr>";
@@ -29,18 +38,8 @@
             s += "<td>" + data[k].performance + "</td></tr>";
 
             $("#tableBody").html($("#tableBody").html() + s);
-//                $("#tableBody").append(s);
-      }
-//              });
-      $("#barCollapse").click(function(){
-        $("#sidebar").toggleClass("hp-collapsed");
-        var s = "";
-        if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
-          s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-        else
-          s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
-        document.getElementById("managerialTable").className = s;
-      });
+     	 }
+
       loadTable();
     });
     $(window).resize(function(){
@@ -128,7 +127,7 @@
     </div>
 
 
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="managerialTable">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="managerialTable">
       <div class="x_panel">
         <div class="x_title">
           <h2>Employee List</h2>

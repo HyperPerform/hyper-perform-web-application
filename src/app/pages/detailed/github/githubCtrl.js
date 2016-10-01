@@ -13,7 +13,14 @@
       $('#after').hide();
 
       $scope.loadGit = function() {
+          $('#after').hide();
+          $('#loading').show();
+          $('#tabs').html("");
 
+          var t1 = $('#time1').html();
+          var t2 = $('#time2').html();
+          var d1 = $('#date1').html().trim();
+          var d2 = $('#date2').html().trim();
           var n = document.cookie.split("=")[1].split("#")[0];
           // alert(n);
           $http({
@@ -22,8 +29,8 @@
               // method: "GET",
               data: JSON.stringify({
                   name: n,
-                  startDate: "2016-01-01 00:00:01",
-                  endDate: "2016-12-30 23:59:59",
+                  startDate: d1 + t1,
+                  endDate: d2 + t2,
                   type: "git"
               }),
               headers: {
@@ -33,15 +40,15 @@
           })
               .then(function (response) {
 
-                  git = response.data.gitDetails.data;
+
                   $scope.gitDataSize = 3;
-                  $scope.repos = git;
+                  $scope.repos = response.data.gitDetails.data;
 
                   $scope.gitData = response.data.gitDetails.data[0];
                   $scope.graphs = response.data.gitDetails.graphData;
 
                   $('#loading').fadeOut(1000, function () {
-                      $(this).remove();
+                      $(this).hide();
                   });
                   $('#after').delay(500).fadeIn(3000, function () {
                   });
@@ -118,6 +125,13 @@
                   // alert("Hide graph");
               }
           };
+
+      setTimeout(
+          function()
+          {
+              $scope.loadGit();
+
+          }, 1000);
   }
 
 
@@ -276,4 +290,5 @@
     }
 
 
-  })();
+
+})();

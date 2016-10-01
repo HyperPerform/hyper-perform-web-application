@@ -12,49 +12,71 @@
     $scope.IconCount = 1;
       $scope.aevent = [];
 
-    $('#after').hide();
-      var n = document.cookie.split("=")[1].split("#")[0];
-    $http({
-      url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
-      method: "POST",
-      data: JSON.stringify({name: n, startDate: "2016-01-01 00:00:01", endDate: "2016-12-30 23:59:59", type: "entry"}),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+      $('#after').hide();
+      $scope.loadEntry = function() {
 
+          $('#after').hide();
+          $('#loading').show();
+          $('#tabs').html("");
+
+          var t1 = $('#time1').html();
+          var t2 = $('#time2').html();
+          var d1 = $('#date1').html().trim();
+          var d2 = $('#date2').html().trim();
+          var n = document.cookie.split("=")[1].split("#")[0];
+          $http({
+              url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
+              method: "POST",
+              data: JSON.stringify(
+                  {
+                      name: n,
+                      startDate: d1 + t1,
+                      endDate: d2 + t2,
+                      type: "entry"
+                  }),
+              headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*",
+                  'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+                  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With'
+
+              }
+          })
+              .then(function (response) {
+
+                  // alert(JSON.stringify(response.data));
+                  events = response.data.accessDetails.data;
+                  $scope.aevent = events;
+                  $scope.srcevent = events;
+                  $scope.labels = response.data.accessDetails.graphData.independent;
+                  $scope.data = [
+                      response.data.accessDetails.graphData.dependent
+                  ];
+                  // $scope.entryDataSize = 3;
+                  // alert($scope.data);
+
+                  // alert(JSON.stringify($scope.aevent));
+                  $('#loading').fadeOut(1000, function () {
+                      $(this).hide();
+                  });
+                  $('#after').delay(500).fadeIn(3000, function () {
+                  });
+                  if ($scope.aevent[0] == null) {
+                      $('#after').html("<h1>No results found</h1>");
+                      $scope.openToast('', 'No logs found', 'warning');
+                  }
+
+
+              }, function (response) {
+                  $('#loading').fadeOut(1000, function () {
+                      $(this).remove();
+                  });
+                  $('#after').fadeIn(1000, function () {
+                      $(this).html("<h1>An error occurred</h1>")
+                  });
+                  $scope.openToast('From: Entry/Exit', 'Unable to connect to the server', 'error');
+              });
       }
-    })
-        .then(function(response){
-
-        // alert(JSON.stringify(response.data));
-            events = response.data.accessDetails.data;
-          $scope.aevent = events;
-          $scope.srcevent = events;
-          $scope.labels = response.data.accessDetails.graphData.independent;
-          $scope.data = [
-            response.data.accessDetails.graphData.dependent
-          ];
-            // $scope.entryDataSize = 3;
-          // alert($scope.data);
-
-          // alert(JSON.stringify($scope.aevent));
-          $('#loading').fadeOut(1000  , function(){ $(this).remove();});
-          $('#after').delay(500).fadeIn(3000, function(){ });
-          if ($scope.aevent[0] == null  )
-          {
-            $('#after').html("<h1>No results found</h1>");
-            $scope.openToast('','No logs found','warning');
-          }
-
-
-        }, function(response){
-          $('#loading').fadeOut(1000, function(){ $(this).remove();});
-          $('#after').fadeIn(1000, function(){$(this).html("<h1>An error occurred</h1>") });
-          $scope.openToast('From: Entry/Exit','Unable to connect to the server','error');
-        });
-
     $scope.showSearch = function ( )
     {
       $scope.searchCount++;
@@ -102,7 +124,13 @@
         }
     };
 
-    // openToast();
+      setTimeout(
+          function()
+          {
+              $scope.loadEntry();
+
+          }, 1000);
+
   }
 
 

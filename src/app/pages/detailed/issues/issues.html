@@ -1,10 +1,10 @@
 <div  ng-controller="calendarPicker">
-	<div class="row">
+	<div class="row" >
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
 
 			StartDate:
 			<p class="input-group">
-				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
 				<span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -14,12 +14,14 @@
 
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
 
+		<div id="date1" style="display: none"> {{dt1 | date:'yyyy-MM-dd' }} </div>
+		<div id="time1" style="display: none"> {{mytime1 | date:'HH:mm:ss' }}</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
 
 			EndDate:
 			<p class="input-group">
-				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+				<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
 				<span class="input-group-btn">
             <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
@@ -28,24 +30,24 @@
 
 
 		<div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+		<div id="date2" style="display: none"> {{dt2 | date:'yyyy-MM-dd' }} </div>
+		<div id="time2" style="display: none"> {{mytime2 | date:'HH:mm:ss' }}</div>
 
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 load">
-			<button class="btn btn-success " onclick="loadData()">Load <i class="fa fa-cog" aria-hidden="true"></i></button>
-		</div>
 	</div>
 </div>
-
-
+<div  ng-controller="NotificationsPageCtrl">
 <div id="loading">
 	<h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
 	<img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
 </div>
-<div  ng-controller="NotificationsPageCtrl">
-<div id="after">
-	<div id="tabs"></div>
-	<hr >
-<div ng-controller="issuesCtrl">
 
+
+<div ng-controller="issuesCtrl">
+	<button class='btn btn-success load' id="loadbtn" ng-click='loadIssues()'>Load <i class='fa fa-cog' aria-hidden='true'></i></button>
+
+	<div id="after">
+		<div id="tabs"></div>
+		<hr >
 	<div class="row" ng-repeat="repo in repos">
 		<div class="panel bootstrap-panel">
 

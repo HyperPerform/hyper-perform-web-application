@@ -13,12 +13,12 @@
       $scope.aevent = [];
 
       $('#after').hide();
+      $('#loadbtn').hide();
       $scope.loadEntry = function() {
 
           $('#after').hide();
           $('#loading').show();
-          $('#tabs').html("");
-
+          $('#loadbtn').hide();
           var t1 = $('#time1').html();
           var t2 = $('#time2').html();
           var d1 = $('#date1').html().trim();
@@ -59,7 +59,8 @@
                   $('#loading').fadeOut(1000, function () {
                       $(this).hide();
                   });
-                  $('#after').delay(500).fadeIn(3000, function () {
+                  $('#after').delay(500).fadeIn(1000, function () {
+                      $('#loadbtn').show();
                   });
                   if ($scope.aevent[0] == null) {
                       $('#after').html("<h1>No results found</h1>");
@@ -69,14 +70,15 @@
 
               }, function (response) {
                   $('#loading').fadeOut(1000, function () {
-                      $(this).remove();
+                      $(this).hide();
                   });
                   $('#after').fadeIn(1000, function () {
                       $(this).html("<h1>An error occurred</h1>")
                   });
                   $scope.openToast('From: Entry/Exit', 'Unable to connect to the server', 'error');
               });
-      }
+
+      };
     $scope.showSearch = function ( )
     {
       $scope.searchCount++;

@@ -31,7 +31,7 @@
     <link href="assets/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="app/main.css">
     <link rel="stylesheet" href="app/man.css">
-    <link rel="stylesheet" href="app/auth.css">
+    <!--<link rel="stylesheet" href="app/auth.css">-->
 
     <script type="text/javascript">
 
@@ -95,7 +95,6 @@
                 var k = 'a';
                 $.each(res, function(i, val)
                 {
-
                     var intName = JSON.stringify(val["@attributes"].name);
                     intName = intName.substring(1, intName.length - 1);
                     var posName = new Array(), posVal = new Array(), posTime = new Array();
@@ -122,6 +121,8 @@
                                  "<div class=\"clearfix\"></div>" +
                             "</div></div>";
                     toAppend += "<div class=\"x_content\">" +
+                            "<button id=\"add" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\"></button>" +
+                "<button id=\"rem" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\"></button>" +
                     "<table class=\"table table-bordered\" id=\"\">" +
                        "<thead>" +
                             "<tr>" +

@@ -33,18 +33,36 @@
     <link rel="stylesheet" href="app/man.css">
 
     <script type="text/javascript">
+
+        $(document).ready(function(){
+         $("#barCollapse").click(function(){
+           $("#sidebar").toggleClass("hp-collapsed");
+           var s = "";
+
+           // if ($("#sidebar").hasClass("hp-collapsed") && $(window).width() < 992)
+           //   s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+           // else
+           if ($(window).width() < 992)
+             s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+           else
+             s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+
+           document.getElementById("forecastDiv").className = s;
+         });
+        });
+
        $(window).resize(function(){
 
             if ($(window).width() < 992)
             {
                 $("#sidebar").addClass("hp-collapsed");
-                document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+                document.getElementById("forecastDiv").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
             }
             else
             if ($(window).width() >= 992)
             {
                 $("#sidebar").removeClass("hp-collapsed");
-                document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+                document.getElementById("forecastDiv").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
             }
 
         });
@@ -96,7 +114,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="forecastDiv">
             <div class="row">
 <!-------------------------------------- BEGIN COMMITS ------------------------------------------>
                 <div class="x_panel">

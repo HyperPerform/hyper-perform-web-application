@@ -12,27 +12,30 @@
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
   <script type="text/javascript">
-      $("#barCollapse").click(function(){
-        $("#sidebar").toggleClass("hp-collapsed");
-        var s = "";
-        if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
-          s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
-        else
-          s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
-//        document.getElementById("managerialTable").className = s;
+      
+      $(document).ready(function(){
+        $("#barCollapse").click(function(){
+          $("#sidebar").toggleClass("hp-collapsed");
+          var s = "";
+          if ($("#sidebar").hasClass("hp-collapsed") || $(window).width() < 992)
+            s = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+          else
+            s = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+         document.getElementById("regBlock").className = s;
+        });
       });
 
       $(window).resize(function(){
       if ($(window).width() < 992)
       {
         $("#sidebar").addClass("hp-collapsed");
-//        document.getElementById("managerialTable").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+       document.getElementById("regBlock").className = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
       }
       else
       if ($(window).width() >= 992)
       {
         $("#sidebar").removeClass("hp-collapsed");
-//        document.getElementById("managerialTable").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
+       document.getElementById("regBlock").className = "col-lg-9 col-md-9 col-sm-9 col-xs-9";
       }
     });
   </script>
@@ -158,7 +161,7 @@
     </div>
 
 
-    <div style="margin-top: 8%" class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+    <div style="margin-top: 8%" class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="regBlock">
       <main class="auth-main">
         <div class="auth-block">
           <div class="row">

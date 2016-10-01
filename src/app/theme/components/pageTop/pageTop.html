@@ -8,15 +8,20 @@
   <!--</div>-->
 
   <div class="user-profile clearfix">
+
     <div class="al-user-profile" uib-dropdown>
-      
+
       <a uib-dropdown-toggle class="profile-toggle-link">
-        <img ng-src="{{::( 'Nasta' | profilePicture )}}">
+
+
+        <img  ng-src="{{::( 'Nasta' | profilePicture )}}">
+        <p style="font-size: 120%;position: absolute;right: 30%;text-align: center;z-index: 5; background-color: transparent" id="profileName"></p>
+
       </a>
       <ul   class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
         <li><i class="dropdown-arr"></i></li>
         <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
-        <li><a href><i class="fa fa-cog"></i>Settings</a></li>
+        <!--<li><a href><i class="fa fa-cog"></i>Settings</a></li>-->
         <li><a href class="signout" onclick="logout()"><i class="fa fa-power-off"></i>Sign out</a></li>
       </ul>
     </div>
@@ -24,7 +29,10 @@
   </div>
 </div>
 <script>
-
+if (document.cookie != "") {
+  var n = document.cookie.split("=")[1].split("%")[1].split(";")[0];
+  $('#profileName').html(n);
+}
   function setCookie(email, position, name, days) {
     var d = new Date();
     d.setTime(d.getTime() + (days*24*60*60*1000));

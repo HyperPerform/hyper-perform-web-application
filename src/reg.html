@@ -14,6 +14,12 @@
   <script type="text/javascript">
       
       $(document).ready(function(){
+
+        $("#sidebar").ready(function(){
+            if ($(window).width() < 992)
+             $("#sidebar").toggleClass("hp-collapsed");
+         });
+
         $("#barCollapse").click(function(){
           $("#sidebar").toggleClass("hp-collapsed");
           var s = "";

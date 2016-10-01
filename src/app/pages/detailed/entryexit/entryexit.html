@@ -1,3 +1,41 @@
+<div  ng-controller="calendarPicker">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
+
+            StartDate:
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
+
+            EndDate:
+            <p class="input-group">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+
+
+        <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 load">
+            <button class="btn btn-success " onclick="loadData()">Load <i class="fa fa-cog" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>
+
+
 <div  ng-controller="NotificationsPageCtrl" >
 
     <div id="loading">

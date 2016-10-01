@@ -1,6 +1,10 @@
 @import "common.scss";
 @import "theme/_layout.scss";
 
+body {
+  background-image: url('../assets/img/blue-blur-background.jpg');
+  background-size: cover;
+}
 .x_panel {
   position: relative;
   width: 100%;

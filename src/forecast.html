@@ -92,10 +92,13 @@
 //                $('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
                 var fd = $("#forecastDiv");
-                var k = 'a';
+
                 $.each(res, function(i, val)
                 {
                     var intName = JSON.stringify(val["@attributes"].name);
+                    var intColour = JSON.stringify(val["@attributes"].color);
+//                    console.log(JSON.stringify(val));
+                    intColour = intColour.substring(1, intColour.length - 1);
                     intName = intName.substring(1, intName.length - 1);
                     var posName = new Array(), posVal = new Array(), posTime = new Array();
                     for(var j = 0; j < val.positions.position.length; j++)
@@ -114,7 +117,7 @@
                         "<div class=\"x_title\">" +
                             "<div class=\"row\">" +
                                 "<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">" +
-                                    "<h2>" + intName + "<small>Forecast details</small></h2>" +
+                                    "<h2 style=\"color:" + intColour + "\">" + intName + "<small>Forecast details</small></h2>" +
                                 "</div><ul class=\"nav navbar-right panel_toolbox\">" +
                                     "<li><a class=\"collapse-link\" onclick='collapse($(this))'><i class=\"fa fa-chevron-up\"></i></a>" +
                                     "</li></ul>" +
@@ -124,7 +127,7 @@
                             "<button id=\"add" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\"></button>" +
                 "<button id=\"rem" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\"></button>" +
                     "<table class=\"table table-bordered\" id=\"\">" +
-                       "<thead>" +
+                       "<thead style=\"background-color:" + intColour + "; color: white;\">" +
                             "<tr>" +
                                 "<th>Position</th>" +
                                 "<th>Value</th>" +

@@ -91,7 +91,7 @@ jQuery(document).ready(function() {
     });
 
 
-	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(res) {
+	$.get("https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(res) {
 
 		var data = res;
            // alert(JSON.stringify(data));
@@ -105,7 +105,7 @@ jQuery(document).ready(function() {
 
 	});
 
-	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getRoles", function(res) {
+	$.get("https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/getRoles", function(res) {
 
 		var data = res;
 		// alert(JSON.stringify(data));
@@ -162,7 +162,7 @@ function auth()
 
 	$.ajax({
 		type: "POST",
-		url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp",
+		url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/verifySignUp",
 		data: JSON.stringify(b),
 		// success: function(res, status){alert(res + " " + status)},
 		// failure: function(res, status){alert(res + " " + status)},

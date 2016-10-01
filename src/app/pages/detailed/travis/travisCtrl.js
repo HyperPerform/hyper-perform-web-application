@@ -38,7 +38,7 @@
 		// );
 		var n = document.cookie.split("=")[1].split("#")[0];
 		$http({
-			url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
+			url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
 			method: "POST",
 			data: JSON.stringify({
 				name: n,

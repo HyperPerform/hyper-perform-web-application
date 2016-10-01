@@ -44,7 +44,7 @@
        $scope.h = " H";
        $http({
           method: "POST",
-          url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
+          url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
           data: JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}),
            headers: {
                "Content-Type": "application/json",

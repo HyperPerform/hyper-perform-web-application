@@ -75,11 +75,11 @@
         });
 
 
-       	$.getJSON("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
+       	$.getJSON("https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
        	{
             var toAppend = "";
             var s = "";
-            $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(posi) {
+            $.get("https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(posi) {
 
                 var data = posi;
 //                 alert(JSON.stringify(data));

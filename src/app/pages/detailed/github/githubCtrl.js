@@ -10,384 +10,67 @@
       $scope.changeCount = 1;
       $scope.IconCount = 1;
 
-      var git = [
-          {
-              "id": 1,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 50
-          },
-          {
-              "id": 2,
-              "username": "Rohan",
-              "repository": "COS332",
-              "date": "2016-03-10",
-              "commitSize": 2
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS284",
-              "date": "2016-03-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-05-10",
-              "commitSize": 13
-          },
-          {
-              "id": 5,
-              "username": "Rohan",
-              "repository": "COS332",
-              "date": "2016-06-12",
-              "commitSize": 20
-          }
-          , {
-              "id": 6,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 7,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          },
-          {
-              "id": 3,
-              "username": "Brad",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 20
-          }
-          , {
-              "id": 4,
-              "username": "Avinash",
-              "repository": "COS332",
-              "date": "2016-02-19",
-              "commitSize": 500
-          }
-      ];
-      var n = document.cookie.split("=")[1].split("#")[0];
-      // alert(n);
-      $http({
-          url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
-          method: "POST",
-          // method: "GET",
-          data: JSON.stringify({
-              name: n,
-              startDate: "2016-01-01 00:00:01",
-              endDate: "2016-12-30 23:59:59",
-              type: "git"
-          }),
-          headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*"
-          }
-      })
-          .then(function (response) {
+      $('#after').hide();
 
-              git = response.data.gitDetails.data;
-              $scope.gitDataSize = 3;
-              $scope.repos = git;
+      $scope.loadGit = function() {
 
-              $scope.gitData = response.data.gitDetails.data[0];
-              $scope.graphs = response.data.gitDetails.graphData;
-
-              $('#loading').fadeOut(1000, function () {
-                  $(this).remove();
-              });
-              $('#after').delay(500).fadeIn(3000, function () {
-              });
-              if ($scope.repos[0] == null)
-              {
-                  $('#after').html("<h1>No results found</h1>");
-                  $scope.openToast('','No commits found','warning');
+          var n = document.cookie.split("=")[1].split("#")[0];
+          // alert(n);
+          $http({
+              url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
+              method: "POST",
+              // method: "GET",
+              data: JSON.stringify({
+                  name: n,
+                  startDate: "2016-01-01 00:00:01",
+                  endDate: "2016-12-30 23:59:59",
+                  type: "git"
+              }),
+              headers: {
+                  "Content-Type": "application/json",
+                  "Access-Control-Allow-Origin": "*"
               }
+          })
+              .then(function (response) {
 
-              for (var i = 0; i < $scope.repos.length; i++)
-              {
+                  git = response.data.gitDetails.data;
+                  $scope.gitDataSize = 3;
+                  $scope.repos = git;
 
-                  $scope.tmp =  $scope.repos[i][0].repository;
-                  var el = '"' +$scope.repos[i][0].repository + '"';
-                  $('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
-              }
+                  $scope.gitData = response.data.gitDetails.data[0];
+                  $scope.graphs = response.data.gitDetails.graphData;
 
-          }, function (response) {
-              $('#loading').fadeOut(1000, function () {
-                  $(this).remove();
+                  $('#loading').fadeOut(1000, function () {
+                      $(this).remove();
+                  });
+                  $('#after').delay(500).fadeIn(3000, function () {
+                  });
+                  if ($scope.repos[0] == null)
+                  {
+                      $('#after').html("<h1>No results found</h1>");
+                      $scope.openToast('','No commits found','warning');
+                  }
+
+                  for (var i = 0; i < $scope.repos.length; i++)
+                  {
+
+                      $scope.tmp =  $scope.repos[i][0].repository;
+                      var el = '"' +$scope.repos[i][0].repository + '"';
+                      $('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
+                  }
+
+              }, function (response) {
+                  $('#loading').fadeOut(1000, function () {
+                      $(this).remove();
+                  });
+                  $('#after').fadeIn(1000, function () {
+                      $(this).html("<h1>An error occurred</h1>")
+                  });
+                  $scope.openToast('From: GitHub','Unable to connect to the server','error');
               });
-              $('#after').fadeIn(1000, function () {
-                  $(this).html("<h1>An error occurred</h1>")
-              });
-              $scope.openToast('From: GitHub','Unable to connect to the server','error');
-          });
+
+
+      };
 
 
           $scope.showSearch = function (el)
@@ -451,7 +134,8 @@
         ////////////////////
         ////////// TIME ////
         ////////////////////
-        $scope.mytime = new Date(2016, 8, 1);
+        $scope.mytime1 = new Date();
+        $scope.mytime2 = new Date();
 
         $scope.hstep = 1;
         $scope.mstep = 15;
@@ -470,32 +154,44 @@
             var d = new Date();
             d.setHours( 14 );
             d.setMinutes( 0 );
-            $scope.mytime = d;
+            $scope.mytime1 = d;
+            $scope.mytime2 = d;
         };
 
         $scope.changed = function () {
-            $log.log('Time changed to: ' + $scope.mytime);
+            $log.log('Time changed to: ' + $scope.mytime1);
+        };
+
+        $scope.getFirst = function() {
+          return $scope.mytime1;
+        };
+
+        $scope.getSecond = function() {
+            return $scope.mytime2;
         };
 
         $scope.clear = function() {
-            $scope.mytime = null;
+            $scope.mytime1 = null;
+            $scope.mytime2 = null;
         };
 
         ////////////////////
         /////////// DATE ///
         ////////////////////
         $scope.today = function() {
-            $scope.dt = new Date();
+            $scope.dt1 = new Date(2015, 1, 1);
+            $scope.dt2 = new Date();
         };
         $scope.today();
 
         $scope.clear = function() {
-            $scope.dt = null;
+            $scope.dt1 = null;
+            $scope.dt2 = null;
         };
 
         $scope.inlineOptions = {
             customClass: getDayClass,
-            minDate: new Date(),
+            minDate: new Date(2016, 8, 1),
             showWeeks: true
         };
 
@@ -530,7 +226,7 @@
         };
 
         $scope.setDate = function(year, month, day) {
-            $scope.dt = new Date(year, month, day);
+            $scope.dt1 = new Date(year, month, day);
         };
 
         $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];

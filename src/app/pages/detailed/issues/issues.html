@@ -84,6 +84,7 @@
 									<th st-sort="timestamp">Timestamp</th>
 									<th st-sort="assignee">Assignee</th>
 									<th st-sort="createdBy">CreatedBy</th>
+									<th>Url</th>
 								</tr>
 								<tr class="searchDisp" id="{{repo[0].repository}}Search">
 									<th></th>
@@ -104,6 +105,7 @@
 									<td>{{item.timestamp}}</td>
 									<td>{{item.assignee}}</td>
 									<td>{{item.createdBy}}</td>
+									<td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
 								</tr>
 								</tbody>
 								<tfoot>

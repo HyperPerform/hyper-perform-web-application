@@ -46,6 +46,16 @@
                   $scope.repos = response.data.gitDetails.data;
 
                   $scope.gitData = response.data.gitDetails.data[0];
+                  // alert(JSON.stringify($scope.repos));
+                  for ( i = 0 ;i < $scope.repos.length; i++)
+                  {
+                      for (var k = 0; k < $scope.repos[i].length; k++) {
+                          $scope.repos[i][k].repository = $scope.repos[i][k].repository.split("/")[1];
+                          // alert($scope.repos[i][k].repository);
+                      }
+                  }
+
+
                   $scope.graphs = response.data.gitDetails.graphData;
 
                   $('#loading').fadeOut(1000, function () {

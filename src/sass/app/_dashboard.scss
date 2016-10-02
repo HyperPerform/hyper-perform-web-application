@@ -106,4 +106,10 @@ a.tabs:hover
   position: fixed;
 }
 
+.clickCursor {
+  cursor: pointer;
+}
 
+.clickCursor:hover {
+  color: blue;
+}

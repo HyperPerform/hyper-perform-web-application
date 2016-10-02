@@ -34,7 +34,7 @@
     <!--<link rel="stylesheet" href="app/auth.css">-->
 
     <script type="text/javascript">
-
+        var row = "";
         $(document).ready(function(){
 
          $("#sidebar").ready(function(){
@@ -92,70 +92,101 @@
 //                $('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
                 var fd = $("#forecastDiv");
+                row += "<tr>";
+                row += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "<select class=\"form-control\">" + s + " </select>";
 
-                $.each(res, function(i, val)
+                row += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"0\">";
+                row += "</td>";
+                row += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\">";
+
+                row += "<select class=\"form-control input-sm\">" +
+                        "<option>Day</option>" +
+                        "<option>Week</option>" +
+                        "<option>Month</option>" +
+                        "</select>";
+
+                row += "</td>";
+
+                $.each($.parseJSON(res.data), function(i, val)
                 {
+
                     var intName = JSON.stringify(val["@attributes"].name);
-                    var intColour = JSON.stringify(val["@attributes"].color);
-//                    console.log(JSON.stringify(val));
-                    intColour = intColour.substring(1, intColour.length - 1);
                     intName = intName.substring(1, intName.length - 1);
+                    var intColour;// = JSON.stringify(val["@attributes"].color);
+                    if (intName == "GitCommits")
+                        intColour = "#40AFEF";
+                    else if (intName == "GitIssues")
+                        intColour = "#FF7043";
+                    else if (intName == "TravisBuild")
+                        intColour = "#8BC34A";
+                    else if (intName == "EntryExit")
+                        intColour = "#7D9EAF";
+                    else
+                    {
+                        do
+                        {
+                            intColour = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+                        }
+                        while (intColour == "#FFFFFF");
+
+                    }
+
                     var posName = new Array(), posVal = new Array(), posTime = new Array();
-                    for(var j = 0; j < val.positions.position.length; j++)
+                    for (var j = 0; j < val.positions.position.length; j++)
                     {
                         posName[j] = JSON.stringify(val.positions.position[j]["@attributes"].name);
                         posVal[j] = JSON.stringify(val.positions.position[j].value);
                         posTime[j] = JSON.stringify(val.positions.position[j].time);
-//                        console.log(posTime[j]);
                     }
-
-//                    for(var j = 0; j < posName.length; j++)
-//                        console.log(intName + " " + posName[j] + " " + posVal[j]);
 
                     toAppend += "<div class=\"row\">";
                     toAppend += "<div class=\"x_panel\">" +
-                        "<div class=\"x_title\">" +
+                            "<div class=\"x_title\">" +
                             "<div class=\"row\">" +
-                                "<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">" +
-                                    "<h2 style=\"color:" + intColour + "\">" + intName + "<small>Forecast details</small></h2>" +
-                                "</div><ul class=\"nav navbar-right panel_toolbox\">" +
-                                    "<li><a class=\"collapse-link\" onclick='collapse($(this))'><i class=\"fa fa-chevron-up\"></i></a>" +
-                                    "</li></ul>" +
-                                 "<div class=\"clearfix\"></div>" +
+                            "<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">" +
+                            "<h2 style=\"color:" + intColour + "\">" + intName + "<small>Forecast details</small></h2>" +
+                            "</div><ul class=\"nav navbar-right panel_toolbox\">" +
+                            "<li><a class=\"collapse-link\" onclick='collapse($(this))'><i class=\"fa fa-chevron-up\"></i></a>" +
+                            "</li></ul>" +
+                            "<div class=\"clearfix\"></div>" +
                             "</div></div>";
+                    console.log(intName);
                     toAppend += "<div class=\"x_content\">" +
-                            "<button id=\"add" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\"></button>" +
-                "<button id=\"rem" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\"></button>" +
-                    "<table class=\"table table-bordered\" id=\"\">" +
-                       "<thead style=\"background-color:" + intColour + "; color: white;\">" +
+                            "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "')\"></button>" +
+                            "<button id=\"rem" + intName.replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\" onclick=\"rem('new" + intName.replace(/\s/g, '') + "')\"></button>" +
+                            "<table class=\"table table-bordered\">" +
+                            "<thead style=\"background-color:" + intColour + "; color: white;\">" +
                             "<tr>" +
-                                "<th>Position</th>" +
-                                "<th>Value</th>" +
-                                "<th>Time</th>" +
+                            "<th>Position</th>" +
+                            "<th>Value</th>" +
+                            "<th>Time</th>" +
                             "</tr>" +
-                      "</thead>";
-                    toAppend += "<tbody>";
-                    for(var j = 0; j < posName.length; j++)
+                            "</thead>";
+                    toAppend += "<tbody id=\"" + intName + "\">";
+
+                    for (var j = 0; j < posName.length; j++)
                     {
                         toAppend += "<tr>";
                         toAppend += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
 
                         var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
 
-                        toAppend +=     "<select class=\"form-control " + currpos + "\">" + s +" </select>";
+                        toAppend += "<select class=\"form-control " + currpos + "\">" + s + " </select>";
                         $('.' + currpos).val(posName[j].substring(1, posName[j].length - 1));
 
                         toAppend += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
-                        toAppend +=     "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"" + posVal[j] + "\">";
+                        toAppend += "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"" + posVal[j] + "\">";
                         toAppend += "</td>";
                         toAppend += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\">";
 
                         var currtime = posTime[j].substring(1, posTime[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
                         toAppend += "<select class=\"form-control input-sm " + currtime + "\">" +
-                            "<option>Day</option>" +
-                            "<option>Week</option>" +
-                            "<option>Month</option>" +
-                        "</select>";
+                                "<option>Day</option>" +
+                                "<option>Week</option>" +
+                                "<option>Month</option>" +
+                                "</select>";
                         console.log(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
                         $('.' + currtime).val(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
 
@@ -163,8 +194,9 @@
 
 
                     }
+                    toAppend += "</table>";
+                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" style=\"float:right; margin-top:10px;\">Update</button>";
                     fd.append(toAppend);
-
                     toAppend = "";
                 });
             });
@@ -630,7 +662,8 @@
 <script>
     // Collapse ibox function
 
-    function collapse(t) {
+    function collapse(t)
+    {
         var x_panel = t.closest('div.x_panel');
         var button = t.find('i');
         var content = x_panel.find('div.x_content');
@@ -641,41 +674,45 @@
         setTimeout(function () {
             x_panel.resize();
         }, 50);
-    };
+    }
 
-    $('#addCommits').click(function () {
-        var ct = "<tr id='1'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#commits tbody").append(ct);
-    });
-    $('#remCommits').click(function () {
-        $("#1").remove();
-    });
-    $('#addIssues').click(function () {
-        var ct = "<tr id='2'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#issues tbody").append(ct);
-    });
-    $('#remIssues').click(function () {
-        $("#2").remove();
-    });
-    $('#addBuilds').click(function () {
-        var ct = "<tr id='3'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#builds tbody").append(ct);
-    });
-    $('#remBuilds').click(function () {
-        $("#3").remove();
-    });
-
-    $('#addEE').click(function () {
-        var ct = "<tr id='4'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#entryexit tbody").append(ct);
-    });
-    $('#remEE').click(function () {
-        $("#4").remove();
-    });
+    function add(tabId)
+    {
+//        var ct = "<tr id='1'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//        console.log(tabId.toString());
+        var rowTmp = row.replace("<tr>", "<tr id=\"new" + tabId + "\">");
+        console.log(row + "\n" + rowTmp);
+        $("#" + tabId).append(rowTmp.toString());
+    }
+    function rem(tabId)
+    {
+        $("#" + tabId).remove();
+    }
+//    $('#addIssues').click(function () {
+//        var ct = "<tr id='2'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#issues tbody").append(ct);
+//    });
+//    $('#remIssues').click(function () {
+//        $("#2").remove();
+//    });
+//    $('#addBuilds').click(function () {
+//        var ct = "<tr id='3'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#builds tbody").append(ct);
+//    });
+//    $('#remBuilds').click(function () {
+//        $("#3").remove();
+//    });
+//
+//    $('#addEE').click(function () {
+//        var ct = "<tr id='4'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#entryexit tbody").append(ct);
+//    });
+//    $('#remEE').click(function () {
+//        $("#4").remove();
+//    });
 </script>
 </body>
 </html>

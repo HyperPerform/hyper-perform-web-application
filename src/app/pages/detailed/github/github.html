@@ -81,11 +81,12 @@
                         <table   class="table table-striped" st-table="repo">
                             <thead>
                             <tr class="sortable">
-                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+                                <th class="table-id" st-sort="id" >#</th>
                                 <th st-sort="username">Username</th>
                                 <th st-sort="repository">Repository</th>
-                                <th st-sort="date">Timestamp</th>
+                                <th st-sort="date" st-sort-default="reverse">Timestamp</th>
                                 <th st-sort="commitSize">Commits</th>
+                                <th st-sort="message">Message</th>
                                 <th>Url</th>
                             </tr>
                             <tr class="searchDisp" id="{{repo[0].repository}}Search">
@@ -98,6 +99,8 @@
                                            type="search"/></th>
                                 <th><input st-search="commitSize" placeholder="Search Commits" class="input-sm form-control search-input" type="search"/>
                                 </th>
+                                <th><input st-search="message" placeholder="Search Message" class="input-sm form-control search-input" type="search"/>
+                                </th>
 
                             </tr>
                             </thead>
@@ -108,6 +111,7 @@
                                 <td>{{item.repository}}</td>
                                 <td>{{item.date}}</td>
                                 <td>{{item.commitSize}}</td>
+                                <td>{{item.message}}</td>
                                 <td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
                             </tr>
                             </tbody>

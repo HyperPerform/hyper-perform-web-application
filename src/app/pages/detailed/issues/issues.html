@@ -80,13 +80,17 @@
 								</tr>
 								<tr class="sortable">
 									<th class="table-id" st-sort="id" st-sort-default="true">#</th>
+									<th st-sort="title">Title</th>
 									<th st-sort="action">Status</th>
 									<th st-sort="timestamp">Timestamp</th>
 									<th st-sort="assignee">Assignee</th>
 									<th st-sort="createdBy">CreatedBy</th>
+									<th>Url</th>
 								</tr>
 								<tr class="searchDisp" id="{{repo[0].repository}}Search">
 									<th></th>
+									<th><input st-search="title" placeholder="Search Title" class="input-sm form-control search-input"
+											   type="search"/></th>
 									<th><input st-search="action" placeholder="Search Status" class="input-sm form-control search-input"
 											   type="search"/></th>
 									<th><input st-search="timestamp" placeholder="Search Date" class="input-sm form-control search-input"
@@ -100,10 +104,12 @@
 								<tbody>
 								<tr ng-repeat="item in repo" ng-class="{opened: item.action == 'assigned'}">
 									<td class="table-id">{{item.id}}</td>
+									<td>{{item.title}}</td>
 									<td>{{item.action}}</td>
 									<td>{{item.timestamp}}</td>
 									<td>{{item.assignee}}</td>
 									<td>{{item.createdBy}}</td>
+									<td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
 								</tr>
 								</tbody>
 								<tfoot>

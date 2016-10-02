@@ -2,6 +2,14 @@
   0% {
     transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
   }
+  50%
+  {
+    transform: rotate(-180deg);
+  }
+  75%
+  {
+    transform: rotate(random(360deg));
+  }
   100% {
     transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
   }
@@ -9,6 +17,13 @@
 @-moz-keyframes spin {
   0% {
     -moz-transform: rotate(0deg); /* Firefox 16+*/
+  }
+  50%{
+    -moz-transform: rotate(-180deg); /* Firefox 16+*/
+  }
+  75%
+  {
+    transform: rotate(random(360deg));
   }
   100% {
     -moz-transform: rotate(360deg); /* Firefox 16+*/
@@ -18,6 +33,13 @@
 @keyframes spin {
   0% {
     transform: rotate(0deg); /* Firefox 16+, IE 10+, Opera */
+  }
+  50% {
+    transform: rotate(-180deg); /* Firefox 16+, IE 10+, Opera */
+  }
+  75%
+  {
+    transform: rotate(random(360deg));
   }
   100% {
     transform: rotate(360deg); /* Firefox 16+, IE 10+, Opera */
@@ -31,9 +53,13 @@
   width: 100%;
   height: 100%;
   z-index: 1000;
-  //background: #000000;
-  background-color: rgba(0, 0, 0, 0.75);
+  background: #242424;
+  //background-color: rgba(0, 0, 0, 0.8);
+  //background-image: url("../assets/img/texture-cool.jpg");
+  //background-size: cover;
   backface-visibility: hidden;
+
+  
   & > div {
     display: block;
     position: relative;

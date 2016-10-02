@@ -86,6 +86,7 @@
                                 <th st-sort="repository">Repository</th>
                                 <th st-sort="date">Timestamp</th>
                                 <th st-sort="commitSize">Commits</th>
+                                <th>Url</th>
                             </tr>
                             <tr class="searchDisp" id="{{repo[0].repository}}Search">
                                 <th></th>
@@ -97,6 +98,7 @@
                                            type="search"/></th>
                                 <th><input st-search="commitSize" placeholder="Search Commits" class="input-sm form-control search-input" type="search"/>
                                 </th>
+
                             </tr>
                             </thead>
                             <tbody>
@@ -106,6 +108,7 @@
                                 <td>{{item.repository}}</td>
                                 <td>{{item.date}}</td>
                                 <td>{{item.commitSize}}</td>
+                                <td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
                             </tr>
                             </tbody>
                             <tfoot>

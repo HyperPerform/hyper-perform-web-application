@@ -34,7 +34,7 @@
     <!--<link rel="stylesheet" href="app/auth.css">-->
 
     <script type="text/javascript">
-
+        var row = "";
         $(document).ready(function(){
 
          $("#sidebar").ready(function(){
@@ -75,12 +75,12 @@
         });
 
 
-       	$.getJSON("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
+       	$.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
        	{
             var toAppend = "";
             var s = "";
-            $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(posi) {
-
+            $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(posi)
+            {
                 var data = posi;
 //                 alert(JSON.stringify(data));
 
@@ -92,6 +92,22 @@
 //                $('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
                 var fd = $("#forecastDiv");
+                row += "<tr>";
+                row += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "<select class=\"form-control\">" + s + " </select>";
+
+                row += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"0\">";
+                row += "</td>";
+                row += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\">";
+
+                row += "<select class=\"form-control input-sm\">" +
+                        "<option>Day</option>" +
+                        "<option>Week</option>" +
+                        "<option>Month</option>" +
+                        "</select>";
+
+                row += "</td>";
 
                 $.each($.parseJSON(res.data), function(i, val)
                 {
@@ -116,19 +132,14 @@
                         while (intColour == "#FFFFFF");
 
                     }
-                    //                    console.log(JSON.stringify(val));
-
 
                     var posName = new Array(), posVal = new Array(), posTime = new Array();
-                    for (var j = 0; j < val.positions.position.length; j++) {
+                    for (var j = 0; j < val.positions.position.length; j++)
+                    {
                         posName[j] = JSON.stringify(val.positions.position[j]["@attributes"].name);
                         posVal[j] = JSON.stringify(val.positions.position[j].value);
                         posTime[j] = JSON.stringify(val.positions.position[j].time);
-                        //                        console.log(posTime[j]);
                     }
-
-                    //                    for(var j = 0; j < posName.length; j++)
-                    //                        console.log(intName + " " + posName[j] + " " + posVal[j]);
 
                     toAppend += "<div class=\"row\">";
                     toAppend += "<div class=\"x_panel\">" +
@@ -141,10 +152,11 @@
                             "</li></ul>" +
                             "<div class=\"clearfix\"></div>" +
                             "</div></div>";
+                    console.log(intName);
                     toAppend += "<div class=\"x_content\">" +
-                            "<button id=\"add" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\"></button>" +
-                            "<button id=\"rem" + intName.substring(1, intName.length - 1).replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\"></button>" +
-                            "<table class=\"table table-bordered\" id=\"\">" +
+                            "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "')\"></button>" +
+                            "<button id=\"rem" + intName.replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\" onclick=\"rem('new" + intName.replace(/\s/g, '') + "')\"></button>" +
+                            "<table class=\"table table-bordered\">" +
                             "<thead style=\"background-color:" + intColour + "; color: white;\">" +
                             "<tr>" +
                             "<th>Position</th>" +
@@ -152,8 +164,10 @@
                             "<th>Time</th>" +
                             "</tr>" +
                             "</thead>";
-                    toAppend += "<tbody>";
-                    for (var j = 0; j < posName.length; j++) {
+                    toAppend += "<tbody id=\"" + intName + "\">";
+
+                    for (var j = 0; j < posName.length; j++)
+                    {
                         toAppend += "<tr>";
                         toAppend += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
 
@@ -180,8 +194,9 @@
 
 
                     }
+                    toAppend += "</table>";
+                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" style=\"float:right; margin-top:10px;\">Update</button>";
                     fd.append(toAppend);
-
                     toAppend = "";
                 });
             });
@@ -642,7 +657,8 @@
 <script>
     // Collapse ibox function
 
-    function collapse(t) {
+    function collapse(t)
+    {
         var x_panel = t.closest('div.x_panel');
         var button = t.find('i');
         var content = x_panel.find('div.x_content');
@@ -653,41 +669,45 @@
         setTimeout(function () {
             x_panel.resize();
         }, 50);
-    };
+    }
 
-    $('#addCommits').click(function () {
-        var ct = "<tr id='1'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#commits tbody").append(ct);
-    });
-    $('#remCommits').click(function () {
-        $("#1").remove();
-    });
-    $('#addIssues').click(function () {
-        var ct = "<tr id='2'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#issues tbody").append(ct);
-    });
-    $('#remIssues').click(function () {
-        $("#2").remove();
-    });
-    $('#addBuilds').click(function () {
-        var ct = "<tr id='3'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#builds tbody").append(ct);
-    });
-    $('#remBuilds').click(function () {
-        $("#3").remove();
-    });
-
-    $('#addEE').click(function () {
-        var ct = "<tr id='4'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-
-        $("#entryexit tbody").append(ct);
-    });
-    $('#remEE').click(function () {
-        $("#4").remove();
-    });
+    function add(tabId)
+    {
+//        var ct = "<tr id='1'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//        console.log(tabId.toString());
+        var rowTmp = row.replace("<tr>", "<tr id=\"new" + tabId + "\">");
+        console.log(row + "\n" + rowTmp);
+        $("#" + tabId).append(rowTmp.toString());
+    }
+    function rem(tabId)
+    {
+        $("#" + tabId).remove();
+    }
+//    $('#addIssues').click(function () {
+//        var ct = "<tr id='2'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#issues tbody").append(ct);
+//    });
+//    $('#remIssues').click(function () {
+//        $("#2").remove();
+//    });
+//    $('#addBuilds').click(function () {
+//        var ct = "<tr id='3'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#builds tbody").append(ct);
+//    });
+//    $('#remBuilds').click(function () {
+//        $("#3").remove();
+//    });
+//
+//    $('#addEE').click(function () {
+//        var ct = "<tr id='4'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
+//
+//        $("#entryexit tbody").append(ct);
+//    });
+//    $('#remEE').click(function () {
+//        $("#4").remove();
+//    });
 </script>
 </body>
 </html>

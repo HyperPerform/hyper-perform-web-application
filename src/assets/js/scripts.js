@@ -152,6 +152,7 @@ function auth()
 	s += "\", \"userPassword\": \"" + $('#password').val();
 	s += "\", \"role\": \"" + $('#role').val();
 	s += "\", \"position\": \"" + $('#position').val().split(' ').join('');
+	s += "\", \"gitUserName\": \"" + $('#git').val();
 	s += "\" }";
 	var b = JSON.parse(s);
 	// alert(JSON.stringify(b));

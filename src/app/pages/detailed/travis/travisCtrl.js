@@ -18,6 +18,16 @@
 	  $('#after').hide();
 	  $('#loadbtn').hide();
 	$scope.loadTravis = function() {
+		if (document.cookie != "" ) {
+			if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+			{
+				window.location.href = "/auth.html";
+			}
+
+		}
+		else window.location.href = "/auth.html";
+
+
 
 		$('#after').hide();
 		$('#loadbtn').hide();
@@ -36,7 +46,7 @@
 		// 		type: "travis"
 		// 	})
 		// );
-		var n = document.cookie.split("=")[1].split("#")[0];
+		var n = getCookie('hpkey').split("#")[0];
 		$http({
 			url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
 			method: "POST",
@@ -85,7 +95,7 @@
 				});
 				$scope.openToast('From: Travis', 'Unable to connect to the server', 'error');
 			});
-
+		$('#myModal').modal('hide');
 	};
 
 

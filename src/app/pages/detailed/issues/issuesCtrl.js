@@ -14,6 +14,17 @@ function issuesCtrl($scope, $http)
 	$('#loadbtn').hide();
 	$scope.loadIssues = function() {
 
+		if (document.cookie != "" ) {
+			if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+			{
+				window.location.href = "/auth.html";
+			}
+
+		}
+		else window.location.href = "/auth.html";
+
+
+
 		$('#loadbtn').hide();
 		$('#after').hide();
 		$('#loading').show();
@@ -23,7 +34,7 @@ function issuesCtrl($scope, $http)
 		var t2 = $('#time2').html();
 		var d1 = $('#date1').html().trim();
 		var d2 = $('#date2').html().trim();
-		var n = document.cookie.split("=")[1].split("#")[0];
+		var n = getCookie('hpkey').split("#")[0];
 		$http({
 			url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
 			method: "POST",
@@ -63,7 +74,7 @@ function issuesCtrl($scope, $http)
 				$scope.openToast('From: Issues', 'Unable to connect to the server', 'error');
 			});
 
-
+		$('#myModal').modal('hide');
 	};
 	$scope.showSearch = function (el)
 	{

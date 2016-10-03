@@ -1,41 +1,64 @@
-<div  ng-controller="calendarPicker">
-    <div class="row" >
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
-
-            StartDate:
-            <p class="input-group">
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-            </p>
-        </div>
-
-
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-
-        <div id="date1" style="display: none"> {{dt1 | date:'yyyy-MM-dd' }} </div>
-        <div id="time1" style="display: none"> {{mytime1 | date:'HH:mm:ss' }}</div>
-
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 date">
-
-            EndDate:
-            <p class="input-group">
-                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-            </p>
-        </div>
-
-
-        <div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-        <div id="date2" style="display: none"> {{dt2 | date:'yyyy-MM-dd' }} </div>
-        <div id="time2" style="display: none"> {{mytime2 | date:'HH:mm:ss' }}</div>
-
-    </div>
-</div>
 <div  ng-controller="NotificationsPageCtrl" >
+<div  ng-controller="calendarPicker">
+    <div ng-controller="entryexitCtrl">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success right" data-toggle="modal" data-target="#myModal">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="ion-checkmark modal-icon"></i> Date Picker</h4>
+                </div>
+                <div class="modal-body">
+                    <div  ng-controller="calendarPicker">
+                        <div class="row" >
+                            <div class="col-lg-1 col-md-1"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
+                                <span style="color: dodgerblue;">StartDate:</span>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                                </p>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                            <div id="date1" style="display: none"> {{dt1 | date:'yyyy-MM-dd' }} </div>
+                            <div id="time1" style="display: none"> {{mytime1 | date:'HH:mm:ss' }}</div>
+                        </div>
+                        <br /> <hr/>
+                        <div class="row" >
+                            <div class="col-lg-! col-md-1"></div>
+                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
+                                <span style="color: dodgerblue" >EndDate:</span>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                    <span class="input-group-btn">
+                         <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                                </p>
+                            </div>
+                            <div  class="col-lg-4 col-md-4 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                            <div id="date2" style="display: none"> {{dt2 | date:'yyyy-MM-dd' }} </div>
+                            <div id="time2" style="display: none"> {{mytime2 | date:'HH:mm:ss' }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" >
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="loadEntry()">Load <i class="fa fa-cog"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="loading">
         <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
@@ -43,8 +66,7 @@
     </div>
 
     <div ng-controller="entryexitCtrl" >
-    <button class='btn btn-success loadEntry' id="loadbtn" ng-click='loadEntry()'>Load <i class='fa fa-cog' aria-hidden='true'></i></button>
-
+        <br/><br/><br/>
     <div id="after" >
         <div id="tabs"></div>
         <hr >

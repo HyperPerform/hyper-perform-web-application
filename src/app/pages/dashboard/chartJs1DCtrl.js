@@ -37,9 +37,16 @@
   // }
   angular.module('demo', ['angular-svg-round-progressbar']).controller('chartJs1DCtrl', chartJs1DCtrl);
 
-  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http){
-
-      var n = document.cookie.split("=")[1].split("#")[0];
+  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http, $rootScope){
+    $rootScope.$on("pa", function(){
+      $scope.loadPA();
+    });
+    $scope.loadPA = function() {
+      var n = getCookie('hpkey').split("#")[0];
+      var t1 = $('#time1').html();
+      var t2 = $('#time2').html();
+      var d1 = $('#date1').html().trim();
+      var d2 = $('#date2').html().trim();
       $http({
       method: "POST",
       url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
@@ -52,24 +59,31 @@
 
           $scope.current = response.data.score;
 
-          // $scope.current = 3;
-          if ($scope.current < 2.5)
-            $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
+        // $scope.current = 3;
+        if ($scope.current < 2.5)
+          $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
 
-          if ($scope.current >= 2.5 && $scope.current < 4.0)
-            $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
+        if ($scope.current >= 2.5 && $scope.current < 4.0)
+          $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
 
-          if ($scope.current >= 4.0)
-            $scope.performance = "<h4 align='center' style='color: lawngreen;'>High Performer</h4>";
+        if ($scope.current >= 4.0)
+          $scope.performance = "<h4 align='center' style='color: lawngreen;'>High Performer</h4>";
 
-      // alert(response.data.score);
-          $('#pascore').html($scope.performance);
+        // alert(response.data.score);
+        $('#pascore').html($scope.performance);
 
-        }, function(response){
+      }, function (response) {
 
-          $scope.openToast('From: Dashboard','Failed to load PA Score','error');
-        });
+        $scope.openToast('From: Dashboard', 'Failed to load PA Score', 'error');
+      });
+      $('#myModal').modal('hide');
+    };
+    setTimeout(
+        function()
+        {
 
+          $scope.loadPA();
+        }, 1000);
 
 
 

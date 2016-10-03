@@ -13,6 +13,17 @@
       $('#after').hide();
       $('#loadbtn').hide();
       $scope.loadGit = function() {
+
+          if (document.cookie != "" ) {
+              if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+              {
+                  window.location.href = "/auth.html";
+              }
+
+          }
+          else window.location.href = "/auth.html";
+
+
           $('#loadbtn').hide();
           $('#after').hide();
           $('#loading').show();
@@ -22,7 +33,7 @@
           var t2 = $('#time2').html();
           var d1 = $('#date1').html().trim();
           var d2 = $('#date2').html().trim();
-          var n = document.cookie.split("=")[1].split("#")[0];
+          var n = getCookie('hpkey').split("#")[0];
           // alert(n);
           $http({
               url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",
@@ -88,7 +99,7 @@
                   $scope.openToast('From: GitHub','Unable to connect to the server','error');
               });
 
-
+          $('#myModal').modal('hide');
       };
 
 

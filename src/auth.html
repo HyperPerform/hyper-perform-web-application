@@ -7,11 +7,27 @@
     <title>HyperPerform</title>
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
     <script>
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length,c.length);
+                }
+            }
+            return "";
+        }
+
         if (document.cookie != "" || document.cookie != "")
         {
-            var name = document.cookie.split("=")[0];
-            if (name == "hpkey")
-                window.location.href = '/user#/dashboard';
+            if (getCookie('hpkey') != "")
+                window.location.href = "/user#/dashboard";
+            if (getCookie('hpman') != "")
+                window.location.href = "/man.html";
         }
     </script>
 
@@ -214,18 +230,23 @@
                                 }
                                 function setCookie(email, position, name, days) {
                                     var d = new Date();
-                                    d.setTime(d.getTime() + (days*24*60*60*1000));
+                                    d.setTime(d.getTime() + (days*60*60*1000));
                                     var expires = "expires="+d.toUTCString();
+                                    if (position == "Manager")
+                                        document.cookie = "hpman="+email + "#" + position +"%" + name +"; " + expires;
+                                        else
                                     document.cookie = "hpkey="+email + "#" + position +"%" + name +"; " + expires;
                                 }
 
 
-                                setCookie(arr.email, arr.position, arr.name);
+                                setCookie(arr.email, arr.position, arr.name, 1);
 //                                alert(document.cookie);
                                 setTimeout(
                                         function()
                                         {
-                                            window.location.href = '/user#/dashboard';
+                                            if (arr.position == "Manager")
+                                                window.location.href = '/man.html';
+                                                else window.location.href = '/user#/dashboard';
 
                                         }, 1000);
 

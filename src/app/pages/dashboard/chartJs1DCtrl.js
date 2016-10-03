@@ -1,4 +1,3 @@
-
 (function () {
   'use strict';
 
@@ -48,16 +47,17 @@
       var d1 = $('#date1').html().trim();
       var d2 = $('#date2').html().trim();
       $http({
-      method: "POST",
-      url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
-      data: JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    })    .then(function(response) {
+        method: "POST",
+        url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
+        data: JSON.stringify({name: n, startDate: d1 + t1, endDate: d2 + t2}),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        }
+      }).then(function (response) {
 
-          $scope.current = response.data.score;
+        $scope.current = response.data.score;
+        // alert($scope.current);
 
         // $scope.current = 3;
         if ($scope.current < 2.5)

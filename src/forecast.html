@@ -151,8 +151,10 @@
                             "<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">" +
                             "<h2 style=\"color:" + intColour + "\">" + intName + "<small>Forecast details</small></h2>" +
                             "</div><ul class=\"nav navbar-right panel_toolbox\">" +
-                            "<li><button class=\"btn btn-link collapse-link\" onclick='collapse($(this))' data-toggle=\"tooltip\" title=\"Minimise/Maximise Panel\" style=\"color: #b5b5b5\"><i class=\"fa fa-chevron-up\"></i></button>" +
-                            "</li></ul>" +
+                            "<li><button class=\"btn btn-link collapse-link\" onclick='collapse($(this))' data-toggle=\"tooltip\" title=\"Minimise/Maximise Panel\"  style=\"color: #b5b5b5\"><i class=\"fa fa-chevron-up\"></i></button>" +
+                            "</li>" +
+                            "<li><button type=\"submit\" class=\"btn btn-link\" data-toggle=\"tooltip\" title=\"Delete Integration\" onclick=\"delForecast('" + intName + "')\"  style=\"color: #b5b5b5\"><i class=\"fa fa-close\"></i></button></li>" +
+                            "</ul>" +
                             "<div class=\"clearfix\"></div>" +
                             "</div></div>";
 //                    console.log(intName);
@@ -178,7 +180,7 @@
                         var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
 
                         toAppend += "<select class=\"form-control " + currpos + "\">" + s + " </select>";
-                        
+
                         $('.' + currpos).val(posName[j].substring(1, posName[j].length - 1));
 
                         toAppend += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 valOf\">";
@@ -200,7 +202,7 @@
 
                     }
                     toAppend += "</table>";
-                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" onclick=\"subForecast('" + intName + "')\" style=\"float:right; margin-top:10px;\">Update</button>";
+                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" onclick=\"subForecast('" + intName + "')\"  style=\"float:right; margin-top:10px;\">Update</button>";
                     fd.append(toAppend);
                     toAppend = "";
 

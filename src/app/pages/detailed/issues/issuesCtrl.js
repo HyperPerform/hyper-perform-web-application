@@ -63,7 +63,7 @@ function issuesCtrl($scope, $http)
 				$scope.openToast('From: Issues', 'Unable to connect to the server', 'error');
 			});
 
-
+		$('#myModal').modal('hide');
 	};
 	$scope.showSearch = function (el)
 	{

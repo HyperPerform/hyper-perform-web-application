@@ -19,7 +19,7 @@
   }
 
 
-   function loadPa($scope, $http) {
+   function loadPa($scope, $http, $rootScope) {
        function getCookie(cname) {
            var name = cname + "=";
            var ca = document.cookie.split(';');
@@ -67,6 +67,7 @@
                });
 
            $('#myModal').modal('hide');
+           $rootScope.$emit("pa", {});
 
        };
 

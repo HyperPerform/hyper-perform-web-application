@@ -38,7 +38,7 @@
     <script type="text/javascript">
         var row = "";
         $(document).ready(function(){
-
+            $('#after').hide();
             $("#sidebar").ready(function(){
                 if ($(window).width() < 992)
                 $("#sidebar").toggleClass("hp-collapsed");
@@ -205,7 +205,13 @@
                     toAppend = "";
 
 
+                    setTimeout(
+                            function()
+                            {
+                                $('#after').show();
+                                $('#loading').remove();
 
+                            }, 1000);
                 });
             });
        	});
@@ -261,7 +267,7 @@
         <div id="loading" style="right: 40%; position: absolute" >
             <i class="fa fa-spinner fa-pulse fa-5x fa-fw" style="color: ghostwhite"></i> <h2 style="color: white">Loading ...</h2>
         </div>
-
+        <div id="after" style="display: none;">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="forecastDiv">
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">

@@ -381,46 +381,47 @@
 
     function delIntegration(tabId)
     {
-        var toDelete = {"integrationName":tabId};
-        var http = new XMLHttpRequest();
-        var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/deleteIntegration";
-        http.open("POST", url, true);
+        var txt;
+        var r = confirm("Are you sure you want to delete " + tabId);
+        if (r == true)
+        {
+            var toDelete = {"integrationName": tabId};
+            var http = new XMLHttpRequest();
+            var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/deleteIntegration";
+            http.open("POST", url, true);
 
-        //Send the proper header information along with the request
-        http.setRequestHeader("Content-type", "application/json");
+            //Send the proper header information along with the request
+            http.setRequestHeader("Content-type", "application/json");
 
-        http.onreadystatechange = function ()
-        {//Call a function when the state changes.
-            if (http.readyState == 4 && http.status == 200)
-            {
-                var arr = JSON.parse(http.responseText);
-                alert(http.responseText);
-                if (arr.deleted == true)
-                {
-                    $('#msg').html("<h2>  Successfully Deleted Integration " + tabId + "</h2>");
-                    $('#msg').css("color", "#209E91");
-                    $('#myModal').modal('show');
-                    setTimeout(function(){window.location.reload(true)}, 1500);
+            http.onreadystatechange = function () {//Call a function when the state changes.
+                if (http.readyState == 4 && http.status == 200) {
+                    var arr = JSON.parse(http.responseText);
+                    if (arr.deleted == true) {
+                        $('#msg').html("<h2>  Successfully Deleted Integration " + tabId + "</h2>");
+                        $('#msg').css("color", "#209E91");
+                        $('#myModal').modal('show');
+                        setTimeout(function () {
+                            window.location.reload(true)
+                        }, 1500);
+                    }
+                    else {
+                        $('#msg').html("<h2> Error: Was unable to delete " + tabId + " \nPlease try again later.</h2>");
+                        $('#msg').css("color", "red");
+                        $('#myModal').modal('show');
+                    }
+
+
                 }
-                else
-                {
-                    $('#msg').html("<h2> Error: Was unable to delete " + tabId + " \nPlease try again later.</h2>");
+                else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0) {
+
+                    $('#msg').html("<h2> Error: Can't connect to the server</h2>");
                     $('#msg').css("color", "red");
                     $('#myModal').modal('show');
                 }
 
-
-            }
-            else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
-            {
-
-                $('#msg').html("<h2> Error: Can't connect to the server</h2>");
-                $('#msg').css("color", "red");
-                $('#myModal').modal('show');
-            }
-
-        };
-        http.send(JSON.stringify(toDelete));
+            };
+            http.send(JSON.stringify(toDelete));
+        }
     }
 
      function buildJsonStr(tabId)

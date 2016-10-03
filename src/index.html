@@ -5,15 +5,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard</title>
-  <script src="assets/js/login.js"></script>
+  <!--<script src="assets/js/login.js"></script>-->
 
   <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>-->
-  <!--<script type="application/javascript">-->
-    <!--if (document.cookie == "" || document.cookie == null)-->
-      <!--window.location.href = '/auth.html';-->
-<!--//    else if (document.cookie.split("=")[0] != "hpkey");-->
-<!--//    name = name[1];-->
-    <!--</script>-->
+  <script type="application/javascript">
+
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length,c.length);
+        }
+      }
+      return "";
+    }
+    if (document.cookie != "" ) {
+      if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+      {
+        window.location.href = "/auth.html";
+      }
+
+    }
+    else window.location.href = "/auth.html";
+
+
+    // NB !!!! uncomment before demo
+//    $(window).focus(function() { this.location.reload(); });
+    </script>
 
   <script src="../bower_components/highcharts/highcharts.js"></script>
   <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -23,7 +46,7 @@
   <script src="../bower_components/angular-route/angular-route.js"></script>
   <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="assets/js/login.js"></script>
+
 
   <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
 

@@ -76,7 +76,7 @@
 
         });
 
-
+        var numUsed = 0;
        	$.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
        	{
             var toAppend = "";
@@ -85,7 +85,7 @@
             {
                 var data = posi;
 //                 alert(JSON.stringify(data));
-                var count = data.length;
+                var count = data.length - 1;
                 for (var i = 0; i < data.length; i++)
                 {
                     if(data[i] != "Manager")
@@ -158,8 +158,8 @@
                             "</div></div>";
 //                    console.log(intName);
                     toAppend += "<div class=\"x_content\">";
-
-                    toAppend += "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "'," + count + "," + posName.length + ")\"></button>" +
+                    numUsed = posName.length;
+                    toAppend += "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "'," + count + ")\"></button>" +
                             "<button id=\"rem" + intName.replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\" onclick=\"rem('new" + intName.replace(/\s/g, '') + "')\"></button>";
                     toAppend += "<table class=\"table table-bordered\" id=\"" + intName + "\">" +
                             "<thead style=\"background-color:" + intColour + "; color: white;\">" +
@@ -310,13 +310,23 @@
 
     function add(tabId, cnt)
     {
-
-        var rowTmp = row.replace("<tr>", "<tr id=\"new" + tabId + "\">");
-        $("#" + tabId + " tbody").append(rowTmp.toString());
+        if(numUsed == cnt)
+        {
+            $('#msg').html("<h2> Sorry, you can't add more rows than there are positions.</h2>");
+            $('#msg').css("color", "orange");
+            $('#myModal').modal('show');
+        }
+        else
+        {
+            numUsed++;
+            var rowTmp = row.replace("<tr>", "<tr id=\"new" + tabId + "\">");
+            $("#" + tabId + " tbody").append(rowTmp.toString());
+        }
     }
     function rem(tabId)
     {
         $("#" + tabId).remove();
+        numUsed--;
     }
 
 //    function change()

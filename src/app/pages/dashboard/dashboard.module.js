@@ -37,6 +37,17 @@
 
        $scope.loadDashboard = function() {
 
+           if (document.cookie != "" ) {
+               if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+               {
+                   window.location.href = "/auth.html";
+               }
+
+           }
+           else window.location.href = "/auth.html";
+
+
+
            var t1 = $('#time1').html();
            var t2 = $('#time2').html();
            var d1 = $('#date1').html().trim();

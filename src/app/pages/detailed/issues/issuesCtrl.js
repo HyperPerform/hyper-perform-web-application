@@ -14,6 +14,17 @@ function issuesCtrl($scope, $http)
 	$('#loadbtn').hide();
 	$scope.loadIssues = function() {
 
+		if (document.cookie != "" ) {
+			if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+			{
+				window.location.href = "/auth.html";
+			}
+
+		}
+		else window.location.href = "/auth.html";
+
+
+
 		$('#loadbtn').hide();
 		$('#after').hide();
 		$('#loading').show();

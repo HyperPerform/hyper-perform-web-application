@@ -18,6 +18,16 @@
 	  $('#after').hide();
 	  $('#loadbtn').hide();
 	$scope.loadTravis = function() {
+		if (document.cookie != "" ) {
+			if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+			{
+				window.location.href = "/auth.html";
+			}
+
+		}
+		else window.location.href = "/auth.html";
+
+
 
 		$('#after').hide();
 		$('#loadbtn').hide();

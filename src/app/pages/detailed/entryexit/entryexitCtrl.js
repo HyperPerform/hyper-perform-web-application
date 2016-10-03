@@ -77,7 +77,7 @@
                   });
                   $scope.openToast('From: Entry/Exit', 'Unable to connect to the server', 'error');
               });
-
+          $('#myModal').modal('hide');
       };
     $scope.showSearch = function ( )
     {
@@ -124,6 +124,7 @@
             $('#'+el+'table').show();
             // alert("Hide graph");
         }
+
     };
 
       setTimeout(

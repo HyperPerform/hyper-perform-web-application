@@ -11,6 +11,8 @@
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="assets/js/login.js"></script>
+
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
 
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
@@ -255,405 +257,405 @@
         </div>
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="forecastDiv">
-            <!--<div class="row">-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; BEGIN COMMITS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-                <!--<div class="x_panel">-->
-                    <!--<div class="x_title">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
-                                <!--<h2 style="color:#40AFEF;">Git Commits <small>Forecast details</small></h2>-->
+            <div class="row">
+<!-------------------------------------- BEGIN COMMITS ------------------------------------------>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <h2 style="color:#40AFEF;">Git Commits <small>Forecast details</small></h2>
+                            </div>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                        </div>
+                    </div>
+                        <div class="x_content">
+                            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">-->
+                                <button id="addCommits" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
+                            <button id="remCommits" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
                             <!--</div>-->
-                                <!--<ul class="nav navbar-right panel_toolbox">-->
-                                    <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
-                                    <!--</li>-->
-                                <!--</ul>-->
-                                <!--<div class="clearfix"></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                        <!--<div class="x_content">-->
-                            <!--&lt;!&ndash;<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">&ndash;&gt;-->
-                                <!--<button id="addCommits" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>-->
-                            <!--<button id="remCommits" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                            <!--<table class="table table-bordered" id="commits">-->
-                                <!--<thead style="background-color:#40AFEF; color:white;">-->
-                                <!--<tr>-->
-                                    <!--<th>Position</th>-->
-                                    <!--<th>Value</th>-->
-                                    <!--<th>Time</th>-->
-                                <!--</tr>-->
-                                <!--</thead>-->
-                                <!--<tbody>-->
-                                <!--<tr>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                            <table class="table table-bordered" id="commits">
+                                <thead style="background-color:#40AFEF; color:white;">
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Value</th>
+                                    <th>Time</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm" >-->
-                                            <!--<option>Web Developer</option>-->
-                                            <!--<option>Software Developer</option>-->
-                                            <!--<option>Multimedia</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                        <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                        <select class="form-control input-sm" >
+                                            <option>Web Developer</option>
+                                            <option>Software Developer</option>
+                                            <option>Multimedia</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                    </td>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm" >-->
-                                            <!--<option>Day</option>-->
-                                            <!--<option>Week</option>-->
-                                            <!--<option>Month</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                        <select class="form-control input-sm" >
+                                            <option>Day</option>
+                                            <option>Week</option>
+                                            <option>Month</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm" >-->
-                                            <!--<option>Web Developer</option>-->
-                                            <!--<option>Software Developer</option>-->
-                                            <!--<option>Multimedia</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                        <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                        <select class="form-control input-sm" >
+                                            <option>Web Developer</option>
+                                            <option>Software Developer</option>
+                                            <option>Multimedia</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                    </td>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm">-->
-                                            <!--<option>Day</option>-->
-                                            <!--<option>Week</option>-->
-                                            <!--<option>Month</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                        <select class="form-control input-sm">
+                                            <option>Day</option>
+                                            <option>Week</option>
+                                            <option>Month</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm">-->
-                                            <!--<option>Web Developer</option>-->
-                                            <!--<option>Software Developer</option>-->
-                                            <!--<option>Multimedia</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                        <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                    <!--</td>-->
-                                    <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                        <select class="form-control input-sm">
+                                            <option>Web Developer</option>
+                                            <option>Software Developer</option>
+                                            <option>Multimedia</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                    </td>
+                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <!--<select class="form-control input-sm">-->
-                                            <!--<option>Day</option>-->
-                                            <!--<option>Week</option>-->
-                                            <!--<option>Month</option>-->
-                                        <!--</select>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--</tbody>-->
-                            <!--</table>-->
-                            <!--<button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; END COMMITS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--<div class="row">-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; BEGIN ISSUES &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-                <!--<div class="x_panel">-->
-                    <!--<div class="x_title">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
-                                <!--<h2 style="color:#FF7043">Git Issues <small>Forecast details</small></h2>-->
+                                        <select class="form-control input-sm">
+                                            <option>Day</option>
+                                            <option>Week</option>
+                                            <option>Month</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
+                        </div>
+                    </div>
+                </div>
+<!-------------------------------------- END COMMITS ------------------------------------------>
+            <div class="row">
+<!-------------------------------------- BEGIN ISSUES ------------------------------------------>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <h2 style="color:#FF7043">Git Issues <small>Forecast details</small></h2>
+                            </div>
+                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
                             <!--</div>-->
-                            <!--&lt;!&ndash;<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">&ndash;&gt;-->
-                            <!--<ul class="nav navbar-right panel_toolbox">-->
-                                <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                            <!--<div class="clearfix"></div>-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="x_content">-->
-                        <!--<button id="addIssues" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>-->
-                        <!--<button id="remIssues" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>-->
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <button id="addIssues" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
+                        <button id="remIssues" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
 
-                        <!--<table class="table table-bordered" id="issues">-->
-                            <!--<thead style="background-color:#FF7043; color:white;">-->
-                            <!--<tr>-->
-                                <!--<th>Position</th>-->
-                                <!--<th>Value</th>-->
-                                <!--<th>Time</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                        <table class="table table-bordered" id="issues">
+                            <thead style="background-color:#FF7043; color:white;">
+                            <tr>
+                                <th>Position</th>
+                                <th>Value</th>
+                                <th>Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                        <!--<button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; END ISSUES &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--<div class="row">-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; BEGIN TRAVIS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-                <!--<div class="x_panel">-->
-                    <!--<div class="x_title">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
-                                <!--<h2 style="color:#8BC34A">Travis Builds <small>Forecast details</small></h2>-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
+                    </div>
+                </div>
+            </div>
+<!-------------------------------------- END ISSUES ------------------------------------------>
+            <div class="row">
+<!-------------------------------------- BEGIN TRAVIS ------------------------------------------>
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <h2 style="color:#8BC34A">Travis Builds <small>Forecast details</small></h2>
+                            </div>
+                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
                             <!--</div>-->
-                            <!--&lt;!&ndash;<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">&ndash;&gt;-->
-                            <!--<ul class="nav navbar-right panel_toolbox">-->
-                                <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                            <!--<div class="clearfix"></div>-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="x_content">-->
-                        <!--<button id="addTravisBuild" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>-->
-                        <!--<button id="remTravisBuild" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>-->
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <button id="addTravisBuild" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
+                        <button id="remTravisBuild" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
 
-                        <!--<table class="table table-bordered" id="builds">-->
-                            <!--<thead style="background-color:#8BC34A; color:white;">-->
-                            <!--<tr>-->
-                                <!--<th>Position</th>-->
-                                <!--<th>Value</th>-->
-                                <!--<th>Time</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                        <table class="table table-bordered" id="builds">
+                            <thead style="background-color:#8BC34A; color:white;">
+                            <tr>
+                                <th>Position</th>
+                                <th>Value</th>
+                                <th>Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                        <!--<button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-<!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; END TRAVIS &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--<div class="row">-->
-<!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; BEGIN ENTRY/EXIT -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-                <!--<div class="x_panel">-->
-                    <!--<div class="x_title">-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
-                                <!--<h2 style="color:#7D9EAF">Entry/Exit <small>Forecast details</small></h2>-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
+                    </div>
+                </div>
+            </div>
+<!-------------------------------------- END TRAVIS ------------------------------------------>
+            <div class="row">
+<!----------------------------------- BEGIN ENTRY/EXIT --------------------------------------->
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <h2 style="color:#7D9EAF">Entry/Exit <small>Forecast details</small></h2>
+                            </div>
+                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
                             <!--</div>-->
-                            <!--&lt;!&ndash;<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">&ndash;&gt;-->
-                            <!--<ul class="nav navbar-right panel_toolbox">-->
-                                <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-                            <!--<div class="clearfix"></div>-->
-                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="x_content">-->
-                        <!--<button id="addEE" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>-->
-                        <!--<button id="remEE" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>-->
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <button id="addEE" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
+                        <button id="remEE" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
 
-                        <!--<table class="table table-bordered" id="entryexit">-->
-                            <!--<thead style="background-color:#7D9EAF; color:white;">-->
-                            <!--<tr>-->
-                                <!--<th>Position</th>-->
-                                <!--<th>Value</th>-->
-                                <!--<th>Time</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                        <table class="table table-bordered" id="entryexit">
+                            <thead style="background-color:#7D9EAF; color:white;">
+                            <tr>
+                                <th>Position</th>
+                                <th>Value</th>
+                                <th>Time</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm pos" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-3 col-md-3 col-sm-4 col-xs-3">-->
+                                    <select class="form-control input-sm pos" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel1">-->
-                                        <!--<option>Web Developer</option>-->
-                                        <!--<option>Software Developer</option>-->
-                                        <!--<option>Multimedia</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">-->
-                                    <!--<input class="form-control input-sm" type="number" min="0" value="20"/>-->
-                                <!--</td>-->
-                                <!--<td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
+                                    <select class="form-control input-sm" id="sel1">
+                                        <option>Web Developer</option>
+                                        <option>Software Developer</option>
+                                        <option>Multimedia</option>
+                                    </select>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
+                                </td>
+                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                    <!--<select class="form-control input-sm" id="sel2">-->
-                                        <!--<option>Day</option>-->
-                                        <!--<option>Week</option>-->
-                                        <!--<option>Month</option>-->
-                                    <!--</select>-->
-                                <!--</td>-->
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                        <!--<button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>-->
-                    <!--</div>-->
-                <!--</div>-->
-<!--&lt;!&ndash;-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; END ENTRY/EXIT -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-            <!--</div>-->
+                                    <select class="form-control input-sm" id="sel2">
+                                        <option>Day</option>
+                                        <option>Week</option>
+                                        <option>Month</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
+                    </div>
+                </div>
+<!----------------------------------- END ENTRY/EXIT --------------------------------------->
+            </div>
         </div>
     </div> <!-- Row -->
 </div> <!-- Container Fluid -->

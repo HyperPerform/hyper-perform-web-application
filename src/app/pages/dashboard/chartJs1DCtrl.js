@@ -58,7 +58,7 @@
       }).then(function (response) {
 
         $scope.current = response.data.score;
-        alert($scope.current);
+        // alert($scope.current);
 
         // $scope.current = 3;
         if ($scope.current < 2.5)

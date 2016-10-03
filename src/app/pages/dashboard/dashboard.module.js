@@ -17,29 +17,38 @@
           }
         });
   }
-    function login($scope, $cookieStore){
 
-        // alert($cookieStore.get('email'));
-
-
-
-    }
 
    function loadPa($scope, $http) {
-
-       if (document.cookie == "" || document.cookie == null)
-           window.location.href = '/';
-
-       var name = document.cookie.split("=");
-        name = name[1];
-        name = name.split("#")[0];
-        // alert(name);
-        if (name == "" || name == null)
-            window.location.href = '/';
+       function getCookie(cname) {
+           var name = cname + "=";
+           var ca = document.cookie.split(';');
+           for(var i = 0; i <ca.length; i++) {
+               var c = ca[i];
+               while (c.charAt(0)==' ') {
+                   c = c.substring(1);
+               }
+               if (c.indexOf(name) == 0) {
+                   return c.substring(name.length,c.length);
+               }
+           }
+           return "";
+       }
+       // if (document.cookie == "" || document.cookie == null)
+       //     window.location.href = '/';
+       //
+       // var name = document.cookie.split("=");
+       //  name = name[1];
+       //  name = name.split("#")[0];
+       //  // alert(name);
+       //  if (name == "" || name == null)
+       //      window.location.href = '/';
        //
        // alert(document.cookie);
-       var n = document.cookie.split("=")[1].split("#")[0];
+
+       var n = getCookie('hpkey').split("#")[0];
        // alert(n);
+       // alert(JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}));
        $scope.p  = "";
        $scope.h = " H";
        $http({

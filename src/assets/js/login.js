@@ -2,7 +2,7 @@
  * Created by avinash on 2016/10/03.
  */
 
-
+$('#profileName').html(getCookie('hpman').split('%')[1]);
 if (document.cookie != "" || document.cookie != "") {
     if (getCookie('hpman') == "" || getCookie('hpman') == null)
     {
@@ -58,7 +58,7 @@ function openDash(email, name)
     // window.location.href = '/';
     var win = window.open('/user#/dashboard', '_blank');
     win.focus();
-    alert(JSON.stringify(document.cookie));
+    // alert(JSON.stringify(document.cookie));
 
 }
 
@@ -71,6 +71,6 @@ function storageChange (event) {
 }
 window.addEventListener('storage', storageChange, false);
 
-$(window).focus(function() { this.location.reload(); });
+
 
 

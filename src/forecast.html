@@ -39,9 +39,9 @@
         var row = "";
         $(document).ready(function(){
 
-         $("#sidebar").ready(function(){
-            if ($(window).width() < 992)
-             $("#sidebar").toggleClass("hp-collapsed");
+            $("#sidebar").ready(function(){
+                if ($(window).width() < 992)
+                $("#sidebar").toggleClass("hp-collapsed");
          });
 
          $("#barCollapse").click(function(){
@@ -85,28 +85,30 @@
             {
                 var data = posi;
 //                 alert(JSON.stringify(data));
-
+                var count = data.length;
                 for (var i = 0; i < data.length; i++)
                 {
                     if(data[i] != "Manager")
-                        s += "<option>" + data[i] + "</option> ";
+                        s += "<option value=\"" + data[i] + "\">" + data[i] + "</option> ";
                 }
+
+//                s += "<option style=\"color: #209E91;\">+ Add Position</option>";
 //                $('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
                 var fd = $("#forecastDiv");
                 row += "<tr>";
-                row += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 pos\">";
                 row += "<select class=\"form-control\">" + s + " </select>";
 
-                row += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                row += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 valOf\">";
                 row += "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"0\">";
                 row += "</td>";
-                row += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\">";
+                row += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 time\">";
 
                 row += "<select class=\"form-control input-sm\">" +
-                        "<option>Day</option>" +
-                        "<option>Week</option>" +
-                        "<option>Month</option>" +
+                        "<option value='Day'>Day</option>" +
+                        "<option value='Week'>Week</option>" +
+                        "<option value='Month'>Month</option>" +
                         "</select>";
 
                 row += "</td>";
@@ -154,11 +156,12 @@
                             "</li></ul>" +
                             "<div class=\"clearfix\"></div>" +
                             "</div></div>";
-                    console.log(intName);
-                    toAppend += "<div class=\"x_content\">" +
-                            "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "')\"></button>" +
-                            "<button id=\"rem" + intName.replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\" onclick=\"rem('new" + intName.replace(/\s/g, '') + "')\"></button>" +
-                            "<table class=\"table table-bordered\">" +
+//                    console.log(intName);
+                    toAppend += "<div class=\"x_content\">";
+
+                    toAppend += "<button id=\"add" + intName.replace(/\s/g, '') + "\"class=\"btn btn-link fa fa-plus\" style=\"float:right; color:lawngreen\" onclick=\"add('" + intName + "'," + count + "," + posName.length + ")\"></button>" +
+                            "<button id=\"rem" + intName.replace(/\s/g, '') + "\" class=\"btn btn-link fa fa-minus\" style=\"float:right; color:red\" onclick=\"rem('new" + intName.replace(/\s/g, '') + "')\"></button>";
+                    toAppend += "<table class=\"table table-bordered\" id=\"" + intName + "\">" +
                             "<thead style=\"background-color:" + intColour + "; color: white;\">" +
                             "<tr>" +
                             "<th>Position</th>" +
@@ -166,22 +169,22 @@
                             "<th>Time</th>" +
                             "</tr>" +
                             "</thead>";
-                    toAppend += "<tbody id=\"" + intName + "\">";
+                    toAppend += "<tbody>";
 
                     for (var j = 0; j < posName.length; j++)
                     {
-                        toAppend += "<tr>";
-                        toAppend += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                        toAppend += "<tr id=\"new" + intName + "\">";
+                        toAppend += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 pos\">";
 
                         var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
 
                         toAppend += "<select class=\"form-control " + currpos + "\">" + s + " </select>";
                         $('.' + currpos).val(posName[j].substring(1, posName[j].length - 1));
 
-                        toAppend += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\">";
+                        toAppend += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 valOf\">";
                         toAppend += "<input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"" + posVal[j] + "\">";
                         toAppend += "</td>";
-                        toAppend += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3\">";
+                        toAppend += "<td class=\"col-lg-3 col-md-3 col-sm-3 col-xs-3 time\">";
 
                         var currtime = posTime[j].substring(1, posTime[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
                         toAppend += "<select class=\"form-control input-sm " + currtime + "\">" +
@@ -189,7 +192,7 @@
                                 "<option>Week</option>" +
                                 "<option>Month</option>" +
                                 "</select>";
-                        console.log(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
+//                        console.log(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
                         $('.' + currtime).val(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
 
                         toAppend += "</td>";
@@ -197,9 +200,12 @@
 
                     }
                     toAppend += "</table>";
-                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" style=\"float:right; margin-top:10px;\">Update</button>";
+                    toAppend += "<button type=\"submit\" class=\"btn btn-primary fa fa-check\" onclick=\"subForecast('" + intName + "')\" style=\"float:right; margin-top:10px;\">Update</button>";
                     fd.append(toAppend);
                     toAppend = "";
+
+
+
                 });
             });
        	});
@@ -257,405 +263,23 @@
         </div>
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="forecastDiv">
-            <div class="row">
-<!-------------------------------------- BEGIN COMMITS ------------------------------------------>
-                <div class="x_panel">
-                    <div class="x_title">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                <h2 style="color:#40AFEF;">Git Commits <small>Forecast details</small></h2>
-                            </div>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body" id="msg">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                         </div>
                     </div>
-                        <div class="x_content">
-                            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">-->
-                                <button id="addCommits" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
-                            <button id="remCommits" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
-                            <!--</div>-->
-                            <table class="table table-bordered" id="commits">
-                                <thead style="background-color:#40AFEF; color:white;">
-                                <tr>
-                                    <th>Position</th>
-                                    <th>Value</th>
-                                    <th>Time</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                                        <select class="form-control input-sm" >
-                                            <option>Web Developer</option>
-                                            <option>Software Developer</option>
-                                            <option>Multimedia</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                    </td>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                        <select class="form-control input-sm" >
-                                            <option>Day</option>
-                                            <option>Week</option>
-                                            <option>Month</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                        <select class="form-control input-sm" >
-                                            <option>Web Developer</option>
-                                            <option>Software Developer</option>
-                                            <option>Multimedia</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                    </td>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                        <select class="form-control input-sm">
-                                            <option>Day</option>
-                                            <option>Week</option>
-                                            <option>Month</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                        <select class="form-control input-sm">
-                                            <option>Web Developer</option>
-                                            <option>Software Developer</option>
-                                            <option>Multimedia</option>
-                                        </select>
-                                    </td>
-                                    <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                        <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                    </td>
-                                    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                        <select class="form-control input-sm">
-                                            <option>Day</option>
-                                            <option>Week</option>
-                                            <option>Month</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
-                        </div>
-                    </div>
-                </div>
-<!-------------------------------------- END COMMITS ------------------------------------------>
-            <div class="row">
-<!-------------------------------------- BEGIN ISSUES ------------------------------------------>
-                <div class="x_panel">
-                    <div class="x_title">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                <h2 style="color:#FF7043">Git Issues <small>Forecast details</small></h2>
-                            </div>
-                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <div class="x_content">
-                        <button id="addIssues" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
-                        <button id="remIssues" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
-
-                        <table class="table table-bordered" id="issues">
-                            <thead style="background-color:#FF7043; color:white;">
-                            <tr>
-                                <th>Position</th>
-                                <th>Value</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
-                    </div>
                 </div>
             </div>
-<!-------------------------------------- END ISSUES ------------------------------------------>
-            <div class="row">
-<!-------------------------------------- BEGIN TRAVIS ------------------------------------------>
-                <div class="x_panel">
-                    <div class="x_title">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                <h2 style="color:#8BC34A">Travis Builds <small>Forecast details</small></h2>
-                            </div>
-                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <div class="x_content">
-                        <button id="addTravisBuild" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
-                        <button id="remTravisBuild" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
 
-                        <table class="table table-bordered" id="builds">
-                            <thead style="background-color:#8BC34A; color:white;">
-                            <tr>
-                                <th>Position</th>
-                                <th>Value</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
-                    </div>
-                </div>
-            </div>
-<!-------------------------------------- END TRAVIS ------------------------------------------>
-            <div class="row">
-<!----------------------------------- BEGIN ENTRY/EXIT --------------------------------------->
-                <div class="x_panel">
-                    <div class="x_title">
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                <h2 style="color:#7D9EAF">Entry/Exit <small>Forecast details</small></h2>
-                            </div>
-                            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">-->
-                            <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <!--</div>-->
-                        </div>
-                    </div>
-                    <div class="x_content">
-                        <button id="addEE" class="btn btn-link fa fa-plus" style="float:right; color:lawngreen"></button>
-                        <button id="remEE" class="btn btn-link fa fa-minus" style="float:right; color:red"></button>
-
-                        <table class="table table-bordered" id="entryexit">
-                            <thead style="background-color:#7D9EAF; color:white;">
-                            <tr>
-                                <th>Position</th>
-                                <th>Value</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm pos" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel1">
-                                        <option>Web Developer</option>
-                                        <option>Software Developer</option>
-                                        <option>Multimedia</option>
-                                    </select>
-                                </td>
-                                <td class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
-                                    <input class="form-control input-sm" type="number" min="0" value="20"/>
-                                </td>
-                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-                                    <select class="form-control input-sm" id="sel2">
-                                        <option>Day</option>
-                                        <option>Week</option>
-                                        <option>Month</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <button type="submit" class="btn btn-primary fa fa-check" style="background-color: lawngreen; border-color:lawngreen; float:right; margin-top:10px;"></button>
-                    </div>
-                </div>
-<!----------------------------------- END ENTRY/EXIT --------------------------------------->
-            </div>
+        </div>
         </div>
     </div> <!-- Row -->
 </div> <!-- Container Fluid -->
@@ -678,43 +302,132 @@
         }, 50);
     }
 
-    function add(tabId)
+    function add(tabId, cnt)
     {
-//        var ct = "<tr id='1'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-//        console.log(tabId.toString());
+
         var rowTmp = row.replace("<tr>", "<tr id=\"new" + tabId + "\">");
-        console.log(row + "\n" + rowTmp);
-        $("#" + tabId).append(rowTmp.toString());
+        $("#" + tabId + " tbody").append(rowTmp.toString());
     }
     function rem(tabId)
     {
         $("#" + tabId).remove();
     }
-//    $('#addIssues').click(function () {
-//        var ct = "<tr id='2'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-//
-//        $("#issues tbody").append(ct);
-//    });
-//    $('#remIssues').click(function () {
-//        $("#2").remove();
-//    });
-//    $('#addBuilds').click(function () {
-//        var ct = "<tr id='3'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-//
-//        $("#builds tbody").append(ct);
-//    });
-//    $('#remBuilds').click(function () {
-//        $("#3").remove();
-//    });
-//
-//    $('#addEE').click(function () {
-//        var ct = "<tr id='4'><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel1\"><option>Web Developer</option><option>Software Developer</option><option>Multimedia</option></select></td><td class=\"col-lg-2 col-md-2 col-sm-3 col-xs-3\"><input class=\"form-control input-sm\" type=\"number\" min=\"0\" value=\"20\"/></td><td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4\"><select class=\"form-control input-sm\" id=\"sel2\"><option>Day</option><option>Week</option><option>Month</option></select></td></tr>";
-//
-//        $("#entryexit tbody").append(ct);
-//    });
-//    $('#remEE').click(function () {
-//        $("#4").remove();
-//    });
+
+//    function change()
+//    {
+//        var person = prompt("Please enter the name of the new position", "Systems Analyst");
+//    }
+
+    function subForecast(tabId)
+    {
+        var toUpdate = buildJsonStr(tabId);
+        console.log(toUpdate);
+        var http = new XMLHttpRequest();
+        var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/updateIntegrations";
+        http.open("POST", url, true);
+
+        //Send the proper header information along with the request
+        http.setRequestHeader("Content-type", "application/json");
+
+        http.onreadystatechange = function ()
+        {//Call a function when the state changes.
+            alert(http.status);
+            if (http.readyState == 4 && http.status == 200)
+            {
+                var arr = JSON.parse(http.responseText);
+
+                if (arr.updated == true)
+                {
+                    $('#msg').html("<h2>  Successfully Updated " + tabId + "</h2>");
+                    $('#msg').css("color", "#209E91");
+                    $('#myModal').modal('show');
+//                        modal.style.display = 'block';
+
+//                    }
+//                    else {
+//                        document.getElementById('login').innerHTML = "Login";
+//                    }
+//                }
+//                else {
+//                    document.getElementById('login').innerHTML = "Login";
+////                            document.getElementById('error').removeAttribute('class');
+//                    document.getElementById('error').innerHTML = "Error: Invalid Email or Password<br/><br/>";
+                }
+                else
+                {
+                    $('#msg').html("<h2> Error: Was not able to update. \nPlease try again.</h2>");
+                    $('#msg').css("color", "red");
+                    $('#myModal').modal('show');
+                }
+
+
+            }
+            else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
+            {
+
+                $('#msg').html("<h2> Error: Can't connect to the server</h2>");
+                $('#msg').css("color", "red");
+                $('#myModal').modal('show');
+            }
+
+        };
+        http.send(toUpdate);
+    }
+
+     function buildJsonStr(tabId)
+     {
+         var jsonStr = "{\n" +
+                "   \"@attributes\": \n" +
+                "    {\n" +
+                "      \"name\": \"" +  tabId + "\"\n" +
+                "     },\n" +
+                "     \"positions\": \n" +
+                "     {\n" +
+                "      \"position\": \n" +
+                "      [\n";
+
+        var position = new Array(), positionName = new Array(), values = new Array(), times = new Array();
+
+        $.each($("#" + tabId + " .pos select"), function(i, val)
+        {
+            console.log(val.value);
+            positionName[i] = "\"" + val.value + "\"";
+        });
+
+        $.each($("#" + tabId + " .valOf input"), function(i, val)
+        {
+            console.log("Value is: " + val.value);
+            values[i] = val.value;
+        });
+
+        $.each($("#" + tabId + " .time select"), function(i, val)
+        {
+            times[i] ="\"" + val.value.toLowerCase() + "\"";
+            console.log("Time is: " + val.value);
+        });
+
+        for (var i = 0; i < positionName.length; i++)
+        {
+            position[i] = "{\n" +
+                    "   \"@attributes\":\n" +
+                    "   {\n" +
+                    "       \"name\": " + positionName[i] + "\n" +
+                    "   },\n" +
+                    "   \"time\":" + times[i] + ",\n" +
+                    "   \"value\":" + values[i] + "\n" +
+                    "   }";
+
+            if(i < positionName.length - 1)
+                    position[i] += ",";
+
+            jsonStr += position[i];
+        }
+        jsonStr += "]\n" +
+                "     }\n" +
+                "    }";
+
+         return jsonStr;
+    }
 </script>
 </body>
 </html>

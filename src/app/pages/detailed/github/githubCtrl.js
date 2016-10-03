@@ -22,7 +22,7 @@
           var t2 = $('#time2').html();
           var d1 = $('#date1').html().trim();
           var d2 = $('#date2').html().trim();
-          var n = document.cookie.split("=")[1].split("#")[0];
+          var n = getCookie('hpkey').split("#")[0];
           // alert(n);
           $http({
               url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails",

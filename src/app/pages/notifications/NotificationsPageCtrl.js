@@ -10,6 +10,31 @@
 
   /** @ngInject */
   function NotificationsPageCtrl($scope, toastr, toastrConfig) {
+    function getCookie(cname) {
+      var name = cname + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length,c.length);
+        }
+      }
+      return "";
+    }
+
+    if (document.cookie != "" ) {
+      if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
+      {
+        window.location.href = "/auth.html";
+      }
+
+    }
+    else window.location.href = "/auth.html";
+
+
     var defaultConfig = angular.copy(toastrConfig);
     $scope.types = ['success', 'error', 'info', 'warning'];
 

@@ -34,7 +34,7 @@
       	  var data = res.data;
           for (var k = 0; k < res.size; k++)
           {
-            var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")' class='bg-red cursor'>" : "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")'>";
+            var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")' class='bg-red cursor'>" :"<tr class='cursor' onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")'>";
             s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
             s += (data[k].score < 2.0) ?
             "<td><b><a style='color: white; text-decoration: underline;' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></b></td>" :
@@ -96,8 +96,14 @@
 
 
   <style type="text/css">
-    .cursor{
-      cursor: pointer;
+    .cursor:hover{
+      cursor: pointer !important;
+      background-color: #00b3ee !important;
+    }
+
+    .bg-red:hover {
+      cursor: pointer !important;
+      background-color: #00b3ee !important;
     }
     .hp-collapsed
     {
@@ -188,39 +194,39 @@
 
 
             <tbody id="tableBody">
-            <tr>
-              <td>Tiger Nixon</td>
-              <td><a href='mailto:tiger@gmail.com'>tiger@gmail.com</a></td>
-              <td>System Architect</td>
-              <!--<td>Edinburgh</td>-->
-              <!-- <td>61</td> -->
-              <!--<td>2011/04/25</td>-->
-              <!--<td>$320,800</td>-->
-              <td>4.7</td>
-              <td>High Performer</td>
-            </tr>
-            <tr class="bg-red">
-              <td>Garrett Winters</td>
-              <td><b><a style="color: white;" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></b></td>
-              <td>Web Developer</td>
-              <!--<td>Tokyo</td>-->
-              <!-- <td>63</td> -->
-              <!--<td>2011/07/25</td>-->
-              <!--<td>$170,750</td>-->
-              <td>1.7</td>
-              <td>Non Performer</td>
-            </tr>
-            <tr>
-              <td>Ashton Cox</td>
-              <td><a href='mailto:ash.cox@gmail.com'>ash.cox@gmail.com</a></td>
-              <td>Web Developer</td>
-              <!--<td>San Francisco</td>-->
-              <!-- <td>66</td> -->
-              <!--<td>2009/01/12</td>-->
-              <!--<td>$86,000</td>-->
-              <td>3</td>
-              <td>Standard Performer</td>
-            </tr>
+            <!--<tr>-->
+              <!--<td>Tiger Nixon</td>-->
+              <!--<td><a href='mailto:tiger@gmail.com'>tiger@gmail.com</a></td>-->
+              <!--<td>System Architect</td>-->
+              <!--&lt;!&ndash;<td>Edinburgh</td>&ndash;&gt;-->
+              <!--&lt;!&ndash; <td>61</td> &ndash;&gt;-->
+              <!--&lt;!&ndash;<td>2011/04/25</td>&ndash;&gt;-->
+              <!--&lt;!&ndash;<td>$320,800</td>&ndash;&gt;-->
+              <!--<td>4.7</td>-->
+              <!--<td>High Performer</td>-->
+            <!--</tr>-->
+            <!--<tr class="bg-red">-->
+              <!--<td>Garrett Winters</td>-->
+              <!--<td><b><a style="color: white;" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></b></td>-->
+              <!--<td>Web Developer</td>-->
+              <!--&lt;!&ndash;<td>Tokyo</td>&ndash;&gt;-->
+              <!--&lt;!&ndash; <td>63</td> &ndash;&gt;-->
+              <!--&lt;!&ndash;<td>2011/07/25</td>&ndash;&gt;-->
+              <!--&lt;!&ndash;<td>$170,750</td>&ndash;&gt;-->
+              <!--<td>1.7</td>-->
+              <!--<td>Non Performer</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+              <!--<td>Ashton Cox</td>-->
+              <!--<td><a href='mailto:ash.cox@gmail.com'>ash.cox@gmail.com</a></td>-->
+              <!--<td>Web Developer</td>-->
+              <!--&lt;!&ndash;<td>San Francisco</td>&ndash;&gt;-->
+              <!--&lt;!&ndash; <td>66</td> &ndash;&gt;-->
+              <!--&lt;!&ndash;<td>2009/01/12</td>&ndash;&gt;-->
+              <!--&lt;!&ndash;<td>$86,000</td>&ndash;&gt;-->
+              <!--<td>3</td>-->
+              <!--<td>Standard Performer</td>-->
+            <!--</tr>-->
 
 
 

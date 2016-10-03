@@ -47,7 +47,16 @@
   <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
-
+  <script>
+    $(window).focus(function()
+    {
+      if (document.cookie != "" ) {
+        if (getCookie('hpkey') != "" || getCookie('hpman') != "") {
+          this.location.reload();
+        }
+      }
+    });
+  </script>
   <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
 
   <!-- build:css({.tmp/serve,src}) styles/vendor.css -->

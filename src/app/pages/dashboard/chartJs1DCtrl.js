@@ -37,39 +37,54 @@
   // }
   angular.module('demo', ['angular-svg-round-progressbar']).controller('chartJs1DCtrl', chartJs1DCtrl);
 
-  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http){
-
+  function chartJs1DCtrl($scope, $interval, $timeout, $window, roundProgressService, $http, $rootScope){
+    $rootScope.$on("pa", function(){
+      $scope.loadPA();
+    });
+    $scope.loadPA = function() {
       var n = getCookie('hpkey').split("#")[0];
+      var t1 = $('#time1').html();
+      var t2 = $('#time2').html();
+      var d1 = $('#date1').html().trim();
+      var d2 = $('#date2').html().trim();
       $http({
-      method: "POST",
-      url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
-      data: JSON.stringify({name: n, startDate: "2006-01-01 00:00:01", endDate: "2016-12-30 23:59:59"}),
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
-      }
-    })    .then(function(response) {
+        method: "POST",
+        url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
+        data: JSON.stringify({name: n, startDate: d1 + t1, endDate: d2 + t2}),
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*"
+        }
+      }).then(function (response) {
 
-          $scope.current = response.data.score;
+        $scope.current = response.data.score;
+        alert($scope.current);
 
-          // $scope.current = 3;
-          if ($scope.current < 2.5)
-            $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
+        // $scope.current = 3;
+        if ($scope.current < 2.5)
+          $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
 
-          if ($scope.current >= 2.5 && $scope.current < 4.0)
-            $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
+        if ($scope.current >= 2.5 && $scope.current < 4.0)
+          $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
 
-          if ($scope.current >= 4.0)
-            $scope.performance = "<h4 align='center' style='color: lawngreen;'>High Performer</h4>";
+        if ($scope.current >= 4.0)
+          $scope.performance = "<h4 align='center' style='color: lawngreen;'>High Performer</h4>";
 
-      // alert(response.data.score);
-          $('#pascore').html($scope.performance);
+        // alert(response.data.score);
+        $('#pascore').html($scope.performance);
 
-        }, function(response){
+      }, function (response) {
 
-          $scope.openToast('From: Dashboard','Failed to load PA Score','error');
-        });
+        $scope.openToast('From: Dashboard', 'Failed to load PA Score', 'error');
+      });
+      $('#myModal').modal('hide');
+    };
+    setTimeout(
+        function()
+        {
 
+          $scope.loadPA();
+        }, 1000);
 
 
 

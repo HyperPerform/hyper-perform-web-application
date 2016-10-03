@@ -34,7 +34,7 @@
       	  var data = res.data;
           for (var k = 0; k < res.size; k++)
           {
-            var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")' class='bg-red cursor'>" : "<tr>";
+            var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")' class='bg-red cursor'>" : "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")'>";
             s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
             s += (data[k].score < 2.0) ?
             "<td><b><a style='color: white; text-decoration: underline;' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></b></td>" :

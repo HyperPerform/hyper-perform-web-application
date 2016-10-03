@@ -1,3 +1,5 @@
+
+
 <div  class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
   <a href="#/dashboard" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo1.gif" height="30px" alt="Logo" style="display: inline;"><span> Hyper</span>Perform</a>
   <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
@@ -28,25 +30,16 @@
     <!--<msg-center></msg-center>-->
   </div>
 </div>
+
 <script>
-if (document.cookie != "") {
-  var n = document.cookie.split("=")[1].split("%")[1].split(";")[0];
-  $('#profileName').html(n);
-}
-  function setCookie(email, position, name, days) {
-    var d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = "hpkey="+email + "#" + position +"%" + name +"; " + expires;
-  }
-
   function logout() {
-    var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-      if (cookies[i].split("=")[0] == "hpkey")
-        setCookie(cookies[i].split("=")[0], '', '', -1);
-    }
-
+    var d = new Date();
+    d.setTime(d.getTime() + (-1*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    var email = "", position = "", name ="";
+    document.cookie = "hpkey="+email + "#" + position +"%" + name +"; " + expires;
     window.location.href = '/';
   }
+$('#profileName').html(getCookie('hpkey').split('%')[1]);
+//  documen.getElementById('profileName').innerHTML = getCookie('hpkey').split('%')[1];
 </script>

@@ -85,7 +85,7 @@
 				});
 				$scope.openToast('From: Travis', 'Unable to connect to the server', 'error');
 			});
-
+		$('#myModal').modal('hide');
 	};
 
 

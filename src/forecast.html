@@ -115,7 +115,6 @@
 
                 $.each($.parseJSON(res.data), function(i, val)
                 {
-
                     var intName = JSON.stringify(val["@attributes"].name);
                     intName = intName.substring(1, intName.length - 1);
                     var intColour;// = JSON.stringify(val["@attributes"].color);
@@ -152,7 +151,7 @@
                             "<div class=\"col-lg-5 col-md-5 col-sm-5 col-xs-5\">" +
                             "<h2 style=\"color:" + intColour + "\">" + intName + "<small>Forecast details</small></h2>" +
                             "</div><ul class=\"nav navbar-right panel_toolbox\">" +
-                            "<li><a class=\"collapse-link\" onclick='collapse($(this))'><i class=\"fa fa-chevron-up\"></i></a>" +
+                            "<li><button class=\"btn btn-link collapse-link\" onclick='collapse($(this))' data-toggle=\"tooltip\" title=\"Minimise/Maximise Panel\" style=\"color: #b5b5b5\"><i class=\"fa fa-chevron-up\"></i></button>" +
                             "</li></ul>" +
                             "<div class=\"clearfix\"></div>" +
                             "</div></div>";
@@ -179,6 +178,7 @@
                         var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
 
                         toAppend += "<select class=\"form-control " + currpos + "\">" + s + " </select>";
+                        
                         $('.' + currpos).val(posName[j].substring(1, posName[j].length - 1));
 
                         toAppend += "</td>" + "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 valOf\">";
@@ -337,7 +337,6 @@
     function subForecast(tabId)
     {
         var toUpdate = buildJsonStr(tabId);
-        console.log(toUpdate);
         var http = new XMLHttpRequest();
         var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/updateIntegrations";
         http.open("POST", url, true);
@@ -347,7 +346,6 @@
 
         http.onreadystatechange = function ()
         {//Call a function when the state changes.
-            alert(http.status);
             if (http.readyState == 4 && http.status == 200)
             {
                 var arr = JSON.parse(http.responseText);
@@ -357,17 +355,6 @@
                     $('#msg').html("<h2>  Successfully Updated " + tabId + "</h2>");
                     $('#msg').css("color", "#209E91");
                     $('#myModal').modal('show');
-//                        modal.style.display = 'block';
-
-//                    }
-//                    else {
-//                        document.getElementById('login').innerHTML = "Login";
-//                    }
-//                }
-//                else {
-//                    document.getElementById('login').innerHTML = "Login";
-////                            document.getElementById('error').removeAttribute('class');
-//                    document.getElementById('error').innerHTML = "Error: Invalid Email or Password<br/><br/>";
                 }
                 else
                 {

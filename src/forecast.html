@@ -392,8 +392,17 @@
     }
     function rem(tabId)
     {
-        $("#" + tabId).remove();
-        numUsed--;
+        if(numUsed > 1)
+        {
+            $("#" + tabId).remove();
+            numUsed--;
+        }
+        else
+        {
+            $('#msg').html("<h2> Sorry, you have to have at least 1 row in the table.</h2>");
+            $('#msg').css("color", "orange");
+            $('#myModal').modal('show');
+        }
     }
 
 //    function change()

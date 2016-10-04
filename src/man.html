@@ -30,12 +30,26 @@
       });
     });
 
+
+
+
     function loadList() {
       $('#after').hide();
       $('#loading').show();
-      $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function (res) {
+      var d1 = $('#datetimepicker6').data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+      var d2 = $('#datetimepicker7').data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+//      alert(d1.toString('YYYY-MM-DD HH:mm:ss'));
+      var d = JSON.stringify({startDate: d1, endDate: d2});
+//      alert(d);
 
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList",
+          data: d,
+          headers: {"Content-Type": "application/json"}
+        }).always(function(res) {
         var data = res.data;
+//        alert(data);
         $('#datatable').DataTable().clear();
         $("#datatable-buttons").DataTable().clear();
         $('#datatable').DataTable().destroy();
@@ -56,6 +70,7 @@
 
         setTimeout(
                 function () {
+
                   $('#after').show();
                   $('#loading').hide();
                   loadTable();
@@ -65,7 +80,8 @@
       });
       $('#myModal').modal('hide');
     }
-    loadList();
+
+
     $(window).resize(function(){
       if ($(window).width() < 992)
       {
@@ -245,12 +261,19 @@
     <script type="text/javascript">
       $(function () {
         $('#datetimepicker6').datetimepicker({
-          date: "2016-01-01 00:00:00"
+          date: "2016-01-01 00:00:00",
+          sideBySide: true,
+          format: "YYYY-MM-DD hh:mm"
+
         });
         $('#datetimepicker7').datetimepicker({
 //          useCurrent: false //Important! See issue #1075
-          date: new Date()
+          date: new Date(),
+          sideBySide: true,
+          format: "YYYY-MM-DD hh:mm",
+          useCurrent: false
         });
+
 
         $("#datetimepicker6").on("dp.change", function (e) {
           $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
@@ -399,6 +422,9 @@
     TableManageButtons.init();
   }
 
+  $(document).ready(function(){
+    loadList();
+  })
 </script>
 </body>
 </html>

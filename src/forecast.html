@@ -10,7 +10,6 @@
 
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="assets/js/login.js"></script>
 
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
@@ -77,10 +76,10 @@
         });
 
         var numUsed = 0;
+        var s = "";
        	$.post("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/getIntegrations", function(res)
        	{
             var toAppend = "";
-            var s = "";
             $.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(posi)
             {
                 var data = posi;
@@ -91,7 +90,7 @@
                     if(data[i] != "Manager")
                         s += "<option value=\"" + data[i] + "\">" + data[i] + "</option> ";
                 }
-
+                $(".sel").html(s);
 //                s += "<option style=\"color: #209E91;\">+ Add Position</option>";
 //                $('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
@@ -111,7 +110,7 @@
                         "<option value='Month'>Month</option>" +
                         "</select>";
 
-                row += "</td>";
+                row += "</td></tr>";
 
                 $.each($.parseJSON(res.data), function(i, val)
                 {
@@ -234,6 +233,9 @@
     <div class="page-top" scroll-position="scrolled" >
         <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo1.gif" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
         <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
+        <nav class="navbar-nav navbar-right" style="margin-top:1%;">
+            <button class="btn btn-link fa fa-plus" data-toggle="modal" title="Add Integration" style="color: #209E91; font-size:16pt; text-decoration: none" data-target="#addIntegration"></button>
+        </nav>
     </div>
 </nav>
 
@@ -272,7 +274,7 @@
         <div id="after" style="display: none;">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="forecastDiv">
             <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                <div class="modal-dialog" >
 
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -286,6 +288,69 @@
 
                 </div>
             </div>
+
+            <div id="addIntegration" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Integration</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row" >
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                                <input type="text" class="input-md form-control" id="newIntName" placeholder="Integration Name" style="border:0.5px solid darkgrey">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="x_content">
+                                        <table class="table table-bordered tabTmp">
+                                            <thead style="background-color: #209E91; color:white">
+                                                <tr>
+                                                    <th>Position</th>
+                                                    <th>Value</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                            </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pos">
+                                                <select class="form-control sel pos"></select>
+
+                                                </td>
+                                                <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4 valOf">
+                                                    <input class="form-control input-sm valOf" type="number" min="0" value="0">
+                                                </td>
+                                                <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3 time">
+
+                                                <select class="form-control input-sm time">
+                                                <option value='Day'>Day</option>
+                                                <option value='Week'>Week</option>
+                                                <option value='Month'>Month</option>
+                                                </select>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary fa fa-plus" onclick="addIntegration()" data-dismiss="modal">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         </div>
@@ -422,6 +487,55 @@
             };
             http.send(JSON.stringify(toDelete));
         }
+    }
+
+    function addIntegration()
+    {
+        var tabId = $("#newIntName").val();
+        $(".tabTmp").attr("id", tabId);
+        var toAdd = buildJsonStr(tabId);
+        console.log(toAdd);
+        var http = new XMLHttpRequest();
+        var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/addIntegration";
+        http.open("POST", url, true);
+
+        //Send the proper header information along with the request
+        http.setRequestHeader("Content-type", "application/json");
+
+        http.onreadystatechange = function ()
+        {//Call a function when the state changes.
+            if (http.readyState == 4 && http.status == 200)
+            {
+                var arr = JSON.parse(http.responseText);
+
+                if (arr.added == true)
+                {
+                    $('#msg').html("<h2>  Successfully Added " + tabId + "</h2>");
+                    $('#msg').css("color", "#209E91");
+                    $('#myModal').modal('show');
+                    setTimeout(function () {
+                        window.location.reload(true)
+                    }, 1500);
+                }
+                else
+                {
+                    $('#msg').html("<h2> Error: Was not able to add integration. \nPlease try again later.</h2>");
+                    $('#msg').css("color", "red");
+                    $('#myModal').modal('show');
+                }
+
+
+            }
+            else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
+            {
+
+                $('#msg').html("<h2> Error: Can't connect to the server</h2>");
+                $('#msg').css("color", "red");
+                $('#myModal').modal('show');
+            }
+
+        };
+        http.send(toAdd);
     }
 
      function buildJsonStr(tabId)

@@ -62,32 +62,32 @@
         // alert($scope.current);
 
         // $scope.current = 3;
-        if ($scope.current <= 2.0) {
+        if ($scope.current < 2.0) {
           $scope.gradient = false;
           $scope.currentColor = 'red';
           $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
         }
-        if ($scope.current > 2.0 && $scope.current < 2.5) {
+        if ($scope.current >= 2.0 && $scope.current < 3.0) {
           $scope.gradient = true;
           $scope.stopColor = "<stop offset=\"33%\" stop-color=\"red\"/>" +
               "<stop offset=\"90%\" stop-color=\"#FF7200\"/>";
 
-          $scope.performance = "<h4 align='center' style='color: red;'>Non Performer</h4>";
+          $scope.performance = "<h4 align='center' style='color: #FF9200;'>Standard Performer</h4>";
         }
-        if($scope.current >= 2.5 && $scope.current < 3.0) {
-          $scope.gradient = true;
-          $scope.stopColor = "<stop offset=\"20%\" stop-color=\"#FF7200\"/>" +
-              "<stop offset=\"80%\" stop-color=\"#FFAB00\"/>";
-          $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
-        }
-        if ($scope.current >= 3.0 && $scope.current < 4.0) {
+        // if($scope.current >= 3.0 && $scope.current < 4.0) {
+        //   $scope.gradient = true;
+        //   $scope.stopColor = "<stop offset=\"20%\" stop-color=\"#FF7200\"/>" +
+        //       "<stop offset=\"80%\" stop-color=\"#FFAB00\"/>";
+        //   $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Standard Plus Performer</h4>";
+        // }
+        if ($scope.current >= 3.0 && $scope.current <= 4.0) {
           $scope.gradient = true;
           $scope.stopColor = "<stop offset=\"30%\" stop-color=\"#FF9200\"/>" +
               "<stop offset=\"99%\" stop-color=\"lawngreen\"/>";
 
-          $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Average Performer</h4>";
+          $scope.performance = "<h4 align='center' style='color: #0EA5A5;'>Standard Plus Performer</h4>";
         }
-        if ($scope.current >= 4.0) {
+        if ($scope.current > 4.0) {
           $scope.gradient = true;
 
           $scope.stopColor = "<stop offset=\"20%\" stop-color=\"#00FF44\"/>" +

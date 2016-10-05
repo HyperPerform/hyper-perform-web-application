@@ -21,7 +21,9 @@ function setCookie(email, position, name, days) {
         document.cookie = "hpman="+email + "#" + position +"%" + name +"; " + expires;
     }
     else {
+        window.localStorage.setItem('logged_in', false);
         document.cookie = "hpkey=" + email + "#" + position + "%" + name + "; " + expires;
+        window.localStorage.setItem('logged_in', true);
     }
 }
 
@@ -62,15 +64,12 @@ function openDash(email, name)
 
 }
 
-function storageChange (event) {
-    if(event.key == 'logged_in') {
-        // window.location.reload();
-        alert('You have been logged out: ' + event.newValue);
-        // window.location.reload();
+
+$(document).on('cookieUpdate', function(){
+    if (getCookie('hpman') == "") {
+        this.location.reload();
     }
-}
-window.addEventListener('storage', storageChange, false);
+});
 
-
-
+$(document).trigger('cookieUpdate');
 

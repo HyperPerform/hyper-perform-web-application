@@ -10,7 +10,7 @@
 
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="assets/js/login.js"></script>
+
 
   <script type="text/javascript">
       
@@ -65,7 +65,7 @@
   <link href="assets/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="app/main.css">
   <link rel="stylesheet" href="app/auth.css">
-
+  <script src="assets/js/login.js"></script>
 
 
   <style type="text/css">
@@ -88,64 +88,71 @@
     }
 
 
-       /* The Modal (background) */
-     .modal {
-       display: none; /* Hidden by default */
-       position: fixed; /* Stay in place */
-       z-index: 1; /* Sit on top */
-       padding-top: 100px; /* Location of the box */
-       left: 0;
-       top: 0;
-       width: 100%; /* Full width */
-       height: 100%; /* Full height */
-       overflow: auto; /* Enable scroll if needed */
-       background-color: rgb(0,0,0); /* Fallback color */
-       background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-     }
+       /*!* The Modal (background) *!*/
+     /*.modal {*/
+       /*display: none; !* Hidden by default *!*/
+       /*position: fixed; !* Stay in place *!*/
+       /*z-index: 1; !* Sit on top *!*/
+       /*padding-top: 100px; !* Location of the box *!*/
+       /*left: 0;*/
+       /*top: 0;*/
+       /*width: 100%; !* Full width *!*/
+       /*height: 100%; !* Full height *!*/
+       /*overflow: auto; !* Enable scroll if needed *!*/
+       /*background-color: rgb(0,0,0); !* Fallback color *!*/
+       /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
+     /*}*/
 
-    /* Modal Content */
-    .modal-content {
-      background-color: #fefefe;
-      /*margin: auto;*/
-      padding: 20px;
-      border: 1px solid #888;
-      width: 30%;
-      top: -102%;
-      left: 70%;
-      /*right: 2%;*/
+    /*!* Modal Content *!*/
+    /*.modal-content {*/
+      /*background-color: #fefefe;*/
+      /*!*margin: auto;*!*/
+      /*padding: 20px;*/
+      /*border: 1px solid #888;*/
+      /*width: 30%;*/
+      /*top: -102%;*/
+      /*left: 70%;*/
+      /*!*right: 2%;*!*/
+      /*!*float: right;*!*/
+      /*text-align: center;*/
+    /*}*/
+
+    /*!* The Close Button *!*/
+    /*.close {*/
+      /*color: #aaaaaa;*/
       /*float: right;*/
-      text-align: center;
-    }
+      /*font-size: 28px;*/
+      /*font-weight: bold;*/
+    /*}*/
 
-    /* The Close Button */
-    .close {
-      color: #aaaaaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
+    /*.close:hover,*/
+    /*.close:focus {*/
+      /*color: #000;*/
+      /*text-decoration: none;*/
+      /*cursor: pointer;*/
+    /*}*/
 
   </style>
 
 </head>
 <body>
+<!--<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">-->
+  <!--Launch demo modal-->
+<!--</button>-->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body" id="msg">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" style="color: black">×</span>
-    <p id="msg"> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
   </div>
-
 </div>
 
 <nav class="navbar" style="border: none;">
@@ -317,7 +324,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 form-el">
                   <div id="error2" style="color: red"></div>
                   <button type="button" class="btn btn-previous btn-primary btn-auth">Previous</button>
-                  <a onclick="auth()" class="btn btn-primary btn-auth">Sign Up</a>
+                  <a id="authbtn" onclick="auth()" class="btn btn-primary btn-auth">Sign Up</a>
                 </div>
               </div>
             </div>
@@ -330,10 +337,11 @@
     </div>
   </div>
 <!-- Javascript -->
-<script src="assets/js/jquery-1.11.1.min.js"></script>
-<script src="assets/js/jquery.backstretch.min.js"></script>
+<!--<script src="assets/js/jquery-1.11.1.min.js"></script>-->
+<!--<script src="assets/js/jquery.backstretch.min.js"></script>-->
 <script src="assets/js/scripts.js">
   $('#profileName').html(getCookie('hpman').split('%')[1]);
+  $('#myModal').modal('show');
 </script>
 
 </body>

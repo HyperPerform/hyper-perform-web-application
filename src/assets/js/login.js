@@ -1,8 +1,5 @@
-/**
- * Created by avinash on 2016/10/03.
- */
 
-$('#profileName').html(getCookie('hpman').split('%')[1]);
+$('.profileName').html(getCookie('hpman').split('%')[1]);
 if (document.cookie != "" || document.cookie != "") {
     if (getCookie('hpman') == "" || getCookie('hpman') == null)
     {

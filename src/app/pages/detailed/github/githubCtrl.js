@@ -55,7 +55,7 @@
 
                   $scope.gitDataSize = 3;
                   $scope.repos = response.data.gitDetails.data;
-
+console.log($scope.repos[0]);
                   $scope.gitData = response.data.gitDetails.data[0];
                   // alert(JSON.stringify($scope.repos));
                   for ( i = 0 ;i < $scope.repos.length; i++)

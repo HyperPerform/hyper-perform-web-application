@@ -13,7 +13,7 @@
       $('#after').hide();
       $('#loadbtn').hide();
       $scope.loadGit = function() {
-
+          $("#cal").hide();
           if (document.cookie != "" ) {
               if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
               {
@@ -55,7 +55,7 @@
 
                   $scope.gitDataSize = 3;
                   $scope.repos = response.data.gitDetails.data;
-console.log($scope.repos[0]);
+// console.log($scope.repos[0]);
                   $scope.gitData = response.data.gitDetails.data[0];
                   // alert(JSON.stringify($scope.repos));
                   for ( i = 0 ;i < $scope.repos.length; i++)
@@ -100,6 +100,10 @@ console.log($scope.repos[0]);
               });
 
           $('#myModal').modal('hide');
+          setTimeout(function(){
+              $("#cal").show();
+          },2000);
+
       };
 
 

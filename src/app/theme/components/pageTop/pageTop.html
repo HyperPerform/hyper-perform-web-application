@@ -15,10 +15,10 @@
 
       <a uib-dropdown-toggle class="profile-toggle-link">
 
-
-        <img  ng-src="{{::( 'Nasta' | profilePicture )}}">
-        <p style="font-size: 120%;position: absolute;right: 30%;text-align: center;z-index: 5; background-color: transparent" id="profileName"></p>
-
+      <ul>
+        <li><img  height="" ng-src="{{::( 'Nasta' | profilePicture )}}"></li>
+        <li><p style="font-size: 120%;position: absolute; margin-left: -90%;z-index: 5; background-color: transparent" class="profileName"></p></li>
+      </ul>
       </a>
       <ul   class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
         <li><i class="dropdown-arr"></i></li>
@@ -46,6 +46,6 @@
     document.cookie = "hpkey="+email + "#" + position +"%" + name +"; " + expires;
     window.location.href = '/';
   }
-$('#profileName').html(getCookie('hpkey').split('%')[1]);
+$('.profileName').html(getCookie('hpkey').split('%')[1]);
 //  documen.getElementById('profileName').innerHTML = getCookie('hpkey').split('%')[1];
 </script>

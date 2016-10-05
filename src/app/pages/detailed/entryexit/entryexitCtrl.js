@@ -15,6 +15,7 @@
       $('#after').hide();
       $('#loadbtn').hide();
       $scope.loadEntry = function() {
+          $("#cal").hide();
           if (document.cookie != "" ) {
               if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
               {
@@ -87,6 +88,11 @@
                   $scope.openToast('From: Entry/Exit', 'Unable to connect to the server', 'error');
               });
           $('#myModal').modal('hide');
+
+          setTimeout(function(){
+              $("#cal").show();
+          },2000);
+
       };
     $scope.showSearch = function ( )
     {

@@ -51,11 +51,20 @@
     $(window).focus(function()
     {
       if (document.cookie != "" ) {
-        if (getCookie('hpkey') != "" || getCookie('hpman') != "") {
+        if (getCookie('hpkey') != "" && getCookie('hpman') != "") {
           this.location.reload();
         }
       }
     });
+
+    $(document).on('cookieUpdate', function(){
+      if (getCookie('hpkey') == "") {
+        this.location.reload();
+      }
+    });
+
+    $(document).trigger('cookieUpdate');
+
   </script>
   <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo2.png">
 

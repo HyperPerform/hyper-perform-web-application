@@ -13,7 +13,7 @@ function issuesCtrl($scope, $http)
 	$('#after').hide();
 	$('#loadbtn').hide();
 	$scope.loadIssues = function() {
-
+	$("#cal").hide();
 		if (document.cookie != "" ) {
 			if (getCookie('hpkey') == "" || getCookie('hpkey') == null)
 			{
@@ -75,6 +75,10 @@ function issuesCtrl($scope, $http)
 			});
 
 		$('#myModal').modal('hide');
+		setTimeout(function(){
+			$("#cal").show();
+		},2000);
+
 	};
 	$scope.showSearch = function (el)
 	{

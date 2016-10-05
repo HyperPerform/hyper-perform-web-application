@@ -51,7 +51,7 @@
     $(window).focus(function()
     {
       if (document.cookie != "" ) {
-        if (getCookie('hpkey') != "" || getCookie('hpman') != "") {
+        if (getCookie('hpkey') != "" && getCookie('hpman') != "") {
           this.location.reload();
         }
       }

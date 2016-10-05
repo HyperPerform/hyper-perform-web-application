@@ -62,7 +62,7 @@
 
     <div id="loading">
         <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
-        <img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
+        <img class="imageRot img-responsive"   id="theimage" src="assets/Logo2.png" alt=""  />
     </div>
 
     <div ng-controller="entryexitCtrl" >
@@ -77,7 +77,7 @@
                     <div class="panel-heading entry white" id="{{ aevent[0].name }}" >
                         Timesheets
                         <div class='pull-right'>
-                           <a ng-click="changeView('entryexit')" id="entryexitswitch"> <i class="fa fa-line-chart white"  ></i></a>
+                           <a ng-click="changeView('entryexit')" id="entryexitswitch"> <i class="fa fa-table white"  ></i></a>
                             &nbsp
                             <a ng-click="changeIcon('entryexit')" id="entryexiticon" class="white" >
                             <i class='fa fa-caret-up'></i>
@@ -87,7 +87,7 @@
 
                     <div class="panel-body" id='entryexit' >
                         <div class="row">
-                            <div id="entryexittable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div id="entryexittable" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp">
                                 <div class="horizontal-scroll">
                                     <div class="form-group select-page-size-wrap ">
                                         <label>Rows on page
@@ -136,7 +136,7 @@
                                 </div>
                             </div>
 
-                            <div id="entryexitgraph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp">
+                            <div id="entryexitgraph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                 <canvas height="100%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="false" chart-series="series" chart-colors="##ff5252" ></canvas>
                             </div>
 

@@ -61,7 +61,7 @@
 
 <div id="loading">
     <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
-    <img class="imageRot img-responsive"   id="theimage" src="assets/Logo1.gif" alt=""  />
+    <img class="imageRot img-responsive"   id="theimage" src="assets/Logo2.png" alt=""  />
 </div>
 
 
@@ -78,7 +78,7 @@
             <div class="panel-heading github white" >
                 {{ repo[0].repository }}
                 <div class='pull-right'>
-                   <a ng-click="changeView(repo[0].repository)" id="{{repo[0].repository}}switch"> <i class="fa fa-line-chart white"  ></i></a>
+                   <a ng-click="changeView(repo[0].repository)" id="{{repo[0].repository}}switch"> <i class="fa fa-table white"  ></i></a>
                     &nbsp
                     <a ng-click="changeIcon(repo[0].repository)" id="{{repo[0].repository}}icon" class="white" >
                     <i class='fa fa-caret-up'></i>
@@ -90,8 +90,8 @@
             <div class="panel-body" id='{{ repo[0].repository }}'>
                 <div class="row">
 
-                <div id="{{repo[0].repository}}table" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="horizontal-scroll">
+                <div id="{{repo[0].repository}}table" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp">
+                    <div class="horizontal-scroll ">
                         <div class="form-group select-page-size-wrap ">
                             <label>Rows on page
                                 <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
@@ -147,7 +147,7 @@
                         </table>
                     </div>
                 </div>
-                <div  id="{{repo[0].repository}}graph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp" ng-controller="gitGraph">
+                <div  id="{{repo[0].repository}}graph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="gitGraph">
                     <canvas height="100%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
                                 chart-legend="false" chart-series="series" chart-colors="##ff5252" ></canvas>
                 </div>

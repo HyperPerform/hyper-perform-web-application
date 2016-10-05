@@ -67,7 +67,7 @@
 			.then(function (response) {
 
 				travisData = response.data.travisDetails;
-				// alert(JSON.stringify(travisData.data[0]));
+				console.log(travisData.data);
 				$scope.repos = travisData.data;
 				$('#loading').fadeOut(1000, function () {
 					$(this).hide();

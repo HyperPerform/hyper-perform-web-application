@@ -29,35 +29,58 @@
         document.getElementById("managerialTable").className = s;
       });
     });
-                 
-    $.get("https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList", function(res){
-      	  var data = res.data;
-          for (var k = 0; k < res.size; k++)
-          {
-            var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")' class='bg-red cursor'>" :"<tr class='cursor' onclick='openDash(\""+ data[k].email + "\", \""+ data[k].firstname +"\")'>";
-            s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
-            s += (data[k].score < 2.0) ?
-            "<td><b><a style='color: white; text-decoration: underline;' href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></b></td>" :
-            "<td><a href='mailto:" + data[k].email + "'>"+ data[k].email +"</a></td>";
-            s += "<td>" + data[k].role + "</td>";
-            s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
-            s += "<td>" + data[k].performance + "</td></tr>";
-
-            $("#tableBody").html($("#tableBody").html() + s);
-     	 }
 
 
 
-      setTimeout(
-              function()
-              {
-                $('#after').show();
-                $('#loading').remove();
-                loadTable();
 
-              }, 1000);
+    function loadList() {
+      $('#after').hide();
+      $('#loading').show();
+      var d1 = $('#datetimepicker6').data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+      var d2 = $('#datetimepicker7').data("DateTimePicker").date().format("YYYY-MM-DD HH:mm:ss");
+//      alert(d1.toString('YYYY-MM-DD HH:mm:ss'));
+      var d = JSON.stringify({startDate: d1, endDate: d2});
+//      alert(d);
 
-    });
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getManagedList",
+          data: d,
+          headers: {"Content-Type": "application/json"}
+        }).always(function(res) {
+        var data = res.data;
+//        alert(data);
+        $('#datatable').DataTable().clear();
+        $("#datatable-buttons").DataTable().clear();
+        $('#datatable').DataTable().destroy();
+        $("#datatable-buttons").DataTable().destroy();
+        for (var k = 0; k < res.size; k++) {
+          var s = (data[k].score < 2.0) ? "<tr onclick='openDash(\"" + data[k].email + "\", \"" + data[k].firstname + "\")' class='bg-red cursor'>" : "<tr class='cursor' onclick='openDash(\"" + data[k].email + "\", \"" + data[k].firstname + "\")'>";
+          s += "<td>" + data[k].firstname + " " + data[k].lastname + "</td>";
+          s += (data[k].score < 2.0) ?
+          "<td><b><a style='color: white; text-decoration: underline;' href='mailto:" + data[k].email + "'>" + data[k].email + "</a></b></td>" :
+          "<td><a href='mailto:" + data[k].email + "'>" + data[k].email + "</a></td>";
+          s += "<td>" + data[k].role + "</td>";
+          s += "<td>" + parseFloat(data[k].score).toFixed(1) + "</td>";
+          s += "<td>" + data[k].performance + "</td></tr>";
+
+          $("#tableBody").html( $("#tableBody").html() + s);
+        }
+
+
+        setTimeout(
+                function () {
+
+                  $('#after').show();
+                  $('#loading').hide();
+                  loadTable();
+
+                }, 1000);
+
+      });
+      $('#myModal').modal('hide');
+    }
+
 
     $(window).resize(function(){
       if ($(window).width() < 992)
@@ -86,7 +109,7 @@
   <link rel="stylesheet" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
   <link rel="stylesheet" href="../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
   <link rel="stylesheet" href="../bower_components/jstree/dist/themes/default/style.css" />
-  <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo1.gif">
+  <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo2.png">
 
   <link href="assets/js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
   <link href="assets/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -94,6 +117,9 @@
   <link rel="stylesheet" href="app/man.css">
 
 
+  <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
   <style type="text/css">
     .cursor:hover{
@@ -117,7 +143,7 @@
 
 <nav class="navbar" style="border: none;">
   <div class="page-top" scroll-position="scrolled" >
-    <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo1.gif" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
+    <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo2.png" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
     <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
 
   <ul class="navbar-nav navbar-right" style="position: fixed; right: 4%; top: 5%">
@@ -169,6 +195,99 @@
         <!-- <div class="sidebar-hover-elem show-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}" ng-class="{'show-hover-elem': showHoverElem }" style="height: 42px;"></div> -->
       </div>
     </div>
+
+
+
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success right" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel"><i class="ion-checkmark modal-icon"></i> Date Picker</h4>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+              <div class='col-md-5'>
+                <div class="form-group">
+                  <span style="color: dodgerblue" >Start Date:</span>
+                  <div class='input-group date' id='datetimepicker6'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+              <div class='col-md-5'>
+                <div class="form-group">
+                  <span style="color: dodgerblue" >End Date:</span>
+                  <div class='input-group date' id='datetimepicker7'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+          <div class="modal-footer" >
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="loadList()">Load <i class="fa fa-cog"></i></button>
+          </div>
+            </div>
+        </div>
+        </div>
+      </div>
+
+
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker6').datetimepicker({
+          date: "2016-01-01 00:00:00",
+          sideBySide: true,
+          format: "YYYY-MM-DD hh:mm"
+
+        });
+        $('#datetimepicker7').datetimepicker({
+//          useCurrent: false //Important! See issue #1075
+          date: new Date(),
+          sideBySide: true,
+          format: "YYYY-MM-DD hh:mm",
+          useCurrent: false
+        });
+
+
+        $("#datetimepicker6").on("dp.change", function (e) {
+          $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+          $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+      });
+    </script>
+
+
+
+
+
 
     <div id="after" style="display: none;">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="managerialTable" >
@@ -302,6 +421,10 @@
 //  });
     TableManageButtons.init();
   }
+
+  $(document).ready(function(){
+    loadList();
+  })
 </script>
 </body>
 </html>

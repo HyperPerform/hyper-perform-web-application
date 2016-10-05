@@ -8,7 +8,7 @@
     var events =[];
     $scope.entryDataSize = 3;
     $scope.searchCount = 1;
-    $scope.changeCount = 1;
+    $scope.changeCount = 0;
     $scope.IconCount = 1;
       $scope.aevent = [];
 

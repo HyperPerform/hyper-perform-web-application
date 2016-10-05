@@ -7,7 +7,7 @@
   function githubCtrl($scope, $http, $window) {
       $scope.gitDataSize = 5;
       $scope.searchCount = 1;
-      $scope.changeCount = 1;
+      $scope.changeCount = 0;
       $scope.IconCount = 1;
 
       $('#after').hide();
@@ -55,7 +55,7 @@
 
                   $scope.gitDataSize = 3;
                   $scope.repos = response.data.gitDetails.data;
-
+console.log($scope.repos[0]);
                   $scope.gitData = response.data.gitDetails.data[0];
                   // alert(JSON.stringify($scope.repos));
                   for ( i = 0 ;i < $scope.repos.length; i++)

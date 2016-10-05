@@ -69,6 +69,7 @@ $(document).on('cookieUpdate', function(){
     if (getCookie('hpman') == "") {
         this.location.reload();
     }
+    $('#profileName').html(getCookie('hpman').split('%')[1]);
 });
 
 $(document).trigger('cookieUpdate');

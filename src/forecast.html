@@ -234,7 +234,16 @@
         <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo2.png" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
         <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
         <nav class="navbar-nav navbar-right" style="margin-top:1%;">
-            <button class="btn btn-link fa fa-plus" data-toggle="modal" title="Add Integration" style="color: #209E91; font-size:16pt; text-decoration: none" data-target="#addIntegration"></button>
+
+                 <a class='dropdown-toggle' style="float: right" data-toggle='dropdown' ><p style="font-size: 120%;text-align: center;" id="profileName"></p>
+                    <img src='assets/img/app/profile/admin.png' style="float: right; right: 10px" class='img-circle' height="50" width="50"/>
+                </a>
+                <ul class='dropdown-menu'>
+                    <li>
+                        <a class='navbar-text' onclick="logout()" ><span class='glyphicon glyphicon-log-out'></span> Logout </a>
+                    </li>
+                </ul>
+            <button class="btn btn-link fa fa-plus add" data-toggle="modal" title="Add Integration" style="color: #209E91; font-size:16pt; text-decoration: none" data-target="#addIntegration"></button>
         </nav>
     </div>
 </nav>
@@ -601,6 +610,8 @@
 
          return jsonStr;
     }
+
+    $('#profileName').html(getCookie('hpman').split('%')[1]);
 </script>
 </body>
 </html>

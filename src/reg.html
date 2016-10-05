@@ -152,6 +152,21 @@
   <div class="page-top" scroll-position="scrolled" >
     <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo2.png" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
     <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
+
+    <ul class="navbar-nav navbar-right" style="position: fixed; right: 4%; top: 5%">
+      <a class='dropdown-toggle' data-toggle='dropdown' >
+        <p style="font-size: 120%;position: absolute;right: 60%; top: -20%;text-align: center;z-index: 5; background-color: transparent" id="profileName"></p>
+        <img src='assets/img/app/profile/admin.png' class='img-circle' height="50" width="50"/>
+        <!--<span class='caret'></span>-->
+      </a>
+      <ul class='dropdown-menu'>
+        <li>
+          <a class='navbar-text' onclick="logout()" ><span class='glyphicon glyphicon-log-out'></span> Logout </a>
+        </li>
+      </ul>
+
+    </ul>
+
   </div>
 </nav>
   <div class="row">
@@ -317,7 +332,9 @@
 <!-- Javascript -->
 <script src="assets/js/jquery-1.11.1.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
-<script src="assets/js/scripts.js"></script>
+<script src="assets/js/scripts.js">
+  $('#profileName').html(getCookie('hpman').split('%')[1]);
+</script>
 
 </body>
 </html>

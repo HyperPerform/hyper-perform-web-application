@@ -148,7 +148,9 @@ a.collapse-menu-link {
 
 @media screen and (max-width: $resXS) {
   .page-top {
-    padding: 0 20px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-left:10px;
   }
 }
 

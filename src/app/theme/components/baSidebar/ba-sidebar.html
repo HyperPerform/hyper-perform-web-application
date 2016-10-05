@@ -1,6 +1,9 @@
 <aside class="al-sidebar" ng-swipe-right="$baSidebarService.setMenuCollapsed(false)" ng-swipe-left="$baSidebarService.setMenuCollapsed(true)"
        ng-mouseleave="hoverElemTop=selectElemTop">
   <ul class="al-sidebar-list" slimscroll="{height: '{{menuHeight}}px'}" slimscroll-watch="menuHeight" >
+    <li class="visible-xs">
+      <h3 align="center" class="profileName" style="color: #209387;"></h3>
+    </li>
     <li ng-repeat="item in ::menuItems" class="al-sidebar-list-item"
         ng-class="::{'with-sub-menu': item.subMenu}" ui-sref-active="selected"
         ba-sidebar-toggling-item="item">
@@ -52,6 +55,14 @@
           </a>
         </li>
       </ul>
+    </li>
+    <li class="visible-xs hidden-sm-up">
+      <a ng-mouseenter="hoverItem($event, item)"
+         ui-state="subSubitem.stateRef || ''"
+         ng-if="::!subSubitem.disabled"
+         ng-href="{{::(subSubitem.fixedHref ? subSubitem.fixedHref: '')}}">
+      <button href="" class="btn btn-link" onclick="logout()">&nbsp;<i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sign out</button>
+        </a>
     </li>
   </ul>
   <div class="sidebar-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"

@@ -1,6 +1,6 @@
 
 jQuery(document).ready(function() {
-	
+
     /*
         Fullscreen background
     */
@@ -94,7 +94,7 @@ jQuery(document).ready(function() {
 	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getPositions", function(res) {
 
 		var data = res;
-           // alert(JSON.stringify(data));
+
 		var s = "";
 		for (var i = 0; i < data.length; i++)
 		{
@@ -103,12 +103,25 @@ jQuery(document).ready(function() {
 
 		$('#pos').html("<select class='form-control' id='position'>" + s +" </select>");
 
+	}).fail(function (res){
+
+
+			$('#msg').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
+			$("#myModal").modal('show');
+			$("#authbtn").hide();
+
 	});
+
 
 	$.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/getRoles", function(res) {
 
 		var data = res;
-		// alert(JSON.stringify(data));
+		if (data == "undefined" || data == "")
+		{
+			$('#msg').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
+			$("#myModal").modal('show');
+		}
+
 		var s = "";
 		for (var i = data.length-1; i >= 0; i--)
 		{
@@ -173,9 +186,15 @@ function auth()
 		headers: {"Content-Type": "application/json"}
 	}).always(function(data) {
 		// alert(data.responseText);
-		$('#msg').html("<h2> <i style='color: #1F968B'>"+ data.responseText + "</i></h2>");
-
-		modal.style.display = 'block';
+		if (data.responseText == "undefined")
+		{
+			$('#msg').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
+		}
+		else if (data.responseText == "Success")
+			$('#msg').html("<h2 class='text-center'> <i style='color: #1F968B' >"+ data.responseText + "</i></h2>");
+		else $('#msg').html("<h2 class='text-center'> <i style='color: red'>"+ data.responseText + "</i></h2>");
+		$("#myModal").modal('show');
+		// modal.style.display = 'block';
 		if (data.responseText == "Success")
 		{
 			setTimeout(
@@ -192,22 +211,22 @@ function auth()
 
 }
 
-// Get the modal
-var modal = document.getElementById('myModal');
-
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-	modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
-	}
-};
+// // Get the modal
+// var modal = document.getElementById('myModal');
+//
+//
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+//
+//
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+// 	modal.style.display = "none";
+// };
+//
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+// 	if (event.target == modal) {
+// 		modal.style.display = "none";
+// 	}
+// };

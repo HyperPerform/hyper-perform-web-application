@@ -157,7 +157,7 @@ function auth()
 	// "{\"userName\":\"rohan\", \"userSurname\":\"chhipa\", \"userEmail\":\"rohanchhipa@live.com\", \"userPassword\":\"1234\", \"role\":\"Employee\", \"position\":\"SoftwareDeveloper\"}";
 	// var n = document.cookie.split("=")[1].split("#")[0];
 	// alert(n);
-
+	$('#authbtn').html("<i class='fa fa-spinner fa-pulse '></i>");
 	var s = "{ ";
 	s += "\"managerEmail\": \"admin@hyperperform.me";
 	s += "\", \"userName\": \"" + $('#name').val();
@@ -189,10 +189,15 @@ function auth()
 		if (data.responseText == "undefined")
 		{
 			$('#msg').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
+			$('#authbtn').html("SignUp");
 		}
 		else if (data.responseText == "Success")
 			$('#msg').html("<h2 class='text-center'> <i style='color: #1F968B' >"+ data.responseText + "</i></h2>");
-		else $('#msg').html("<h2 class='text-center'> <i style='color: red'>"+ data.responseText + "</i></h2>");
+		else
+		{
+			$('#authbtn').html("SignUp");
+			$('#msg').html("<h2 class='text-center'> <i style='color: red'>"+ data.responseText + "</i></h2>");
+		}
 		$("#myModal").modal('show');
 		// modal.style.display = 'block';
 		if (data.responseText == "Success")

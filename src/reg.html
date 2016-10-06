@@ -159,28 +159,39 @@
   <div class="page-top" scroll-position="scrolled" >
     <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo2.png" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
     <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
-
-    <ul class="navbar-nav navbar-right" style="position: fixed; right: 4%; top: 5%">
-      <a class='dropdown-toggle' data-toggle='dropdown' >
-        <p style="font-size: 120%;position: absolute;right: 60%; top: -20%;text-align: center;z-index: 5; background-color: transparent" id="profileName"></p>
-        <img src='assets/img/app/profile/admin.png' class='img-circle' height="50" width="50"/>
+    <nav class="navbar-nav navbar-right al-user-profile" style="position: fixed; right: 4%;">
+      <a class='dropdown-toggle profile-toggle-link' data-toggle='dropdown' >
+        <ul class="visible-md visible-lg">
+          <li><img src='assets/img/app/profile/admin.png' class='img-circle' height="50" width="50"/></li>
+          <li><p style="font-size: 120%;position: absolute; margin-left: -80%;z-index: 5; background-color: transparent" class="profileName"></p></li>
+        </ul>
+        <ul   class="top-dropdown-menu profile-dropdown dropdown-menu" style="background-color:#209E91;" >
+          <li><i class="dropdown-arr"></i></li>
+          <!--<li><a href><i class="fa fa-cog"></i>Settings</a></li>-->
+          <li><a href class="signout" onclick="logout()" style="color:white"><i class="fa fa-power-off"></i>Sign out</a></li>
+        </ul>
         <!--<span class='caret'></span>-->
       </a>
-      <ul class='dropdown-menu'>
-        <li>
-          <a class='navbar-text' onclick="logout()" ><span class='glyphicon glyphicon-log-out'></span> Logout </a>
-        </li>
-      </ul>
+
+    </nav>
 
     </ul>
 
   </div>
 </nav>
+
+
+
+<div class="container-fluid ">
   <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
       <div class="al-sidebar left-col" id="sidebar">
         <ul class="al-sidebar-list" slimscroll="{height: '894px'}" slimscroll-watch="menuHeight">
+          <li class="al-sidebar-list-item ng-scope ">
+            <a align="center" class="al-sidebar-list-link profileName visible-sm visible-xs" style="color: #209387; font-size:18pt">
 
+            </a>
+          </li>
           <li class="al-sidebar-list-item ng-scope">
             <a class="al-sidebar-list-link" href="/man.html">
               <i class="ion-android-people"></i><span>Employee List</span>
@@ -196,6 +207,11 @@
           <li class="al-sidebar-list-item ng-scope">
             <a class="al-sidebar-list-link" href="/reg.html">
               <i class="ion-person-stalker"></i><span>User Management</span>
+            </a>
+          </li>
+          <li class="al-sidebar-list-item ng-scope">
+            <a href="" class="al-sidebar-list-link visible-sm visible-xs" onclick="logout()" style="color: deepskyblue">
+              <i class="fa fa-power-off"></i><span>Sign out</span>
             </a>
           </li>
         </ul>
@@ -336,12 +352,14 @@
       </main>
     </div>
   </div>
+</div>
 <!-- Javascript -->
 <!--<script src="assets/js/jquery-1.11.1.min.js"></script>-->
 <!--<script src="assets/js/jquery.backstretch.min.js"></script>-->
-<script src="assets/js/scripts.js">
-  $('#profileName').html(getCookie('hpman').split('%')[1]);
-  $('#myModal').modal('show');
+<script src="assets/js/scripts.js"></script>
+<script>
+  $('.profileName').html(getCookie('hpman').split('%')[1]);
+//  $('#myModal').modal('show');
 </script>
 
 </body>

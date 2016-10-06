@@ -64,19 +64,19 @@
 
 
 
-
-
-
-
-
-
-
-
+    <script>
+        $(document).ready(function(){
+            $("#github").popover({content: "The average number of commits, per the forecast", placement: "top"});
+            $("#travis").popover({content: "The percentage of successful builds, per the forecast", placement: "top"});
+            $("#issues").popover({content: "The percentage of issues closed versus opened, per the forecast", placement: "top"});
+            $("#entryexit").popover({content: "The number of hours on site, per the forecast", placement: "top"});
+        });
+    </script>
 
     <div class="row" >
     <br/><br/><br/>
         <div class="col-md-3 col-sm-3">
-            <a ng-href="#/detailed/github"><div class="panel bootstrap-panel">
+            <a ng-href="#/detailed/github" data-trigger="hover" id="github"><div class="panel bootstrap-panel" >
                 <div class="panel-heading github">GitHub</div>
                 <div class="panel-body">
                     <div class="col-xs-3">
@@ -91,7 +91,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3">
-            <a ng-href="#/detailed/travis"><div class="panel bootstrap-panel">
+            <a ng-href="#/detailed/travis" data-trigger="hover" id="travis"><div class="panel bootstrap-panel">
                 <div class="panel-heading travis">Travis</div>
                 <div class="panel-body">
                     <div class="col-xs-3">
@@ -106,7 +106,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3">
-            <a ng-href="#/detailed/issues"><div class="panel bootstrap-panel">
+            <a ng-href="#/detailed/issues" data-trigger="hover" id="issues"><div class="panel bootstrap-panel">
                 <div class="panel-heading issues">Issues</div>
                 <div class="panel-body">
                     <div class="col-xs-3">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3">
-            <a ng-href="#/detailed/entryexit"><div class="panel bootstrap-panel">
+            <a ng-href="#/detailed/entryexit" data-trigger="hover" id="entryexit"><div class="panel bootstrap-panel">
                 <div class="panel-heading entry">Entry/Exit</div>
                 <div class="panel-body">
                     <div class="col-xs-3">

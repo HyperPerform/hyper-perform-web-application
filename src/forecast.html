@@ -314,7 +314,7 @@
                                     <div class="x_title">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                                <input type="text" class="input-md form-control" id="newIntName" placeholder="Integration Name" style="border:0.5px solid darkgrey">
+                                                <input type="text" class="input-md form-control" id="newIntName" placeholder="Integration Name" style="border:0.5px solid darkgrey" data-toggle="popover" data-trigger="manual">
                                             </div>
                                         </div>
                                     </div>
@@ -354,7 +354,14 @@
                             </div>
                          </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary fa fa-plus" onclick="addIntegration()" data-dismiss="modal">Add</button>
+                            <button type="button" class="btn btn-primary fa fa-plus" onclick="addIntegration()">Add</button>
+                            <script>
+                                $(".close").click(function()
+                                {
+                                    $("#newIntName").popover("toggle");
+                                    $("#newIntName").css("border","0.5px solid darkgrey");
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -510,6 +517,13 @@
     function addIntegration()
     {
         var tabId = $("#newIntName").val();
+        if(tabId == "")
+        {
+            $("#newIntName").popover({content: "Error: can't be empty", placement: "top"});
+            $("#newIntName").popover("toggle");
+            $("#newIntName").css("border","1px solid red");
+            return;
+        }
         $(".tabTmp").attr("id", tabId);
         var toAdd = buildJsonStr(tabId);
         console.log(toAdd);
@@ -528,6 +542,9 @@
 
                 if (arr.added == true)
                 {
+                    $("#addIntegration").modal("hide");
+                    $("#newIntName").popover("toggle");
+                    $("#newIntName").css("border","0.5px solid darkgrey");
                     $('#msg').html("<h2>  Successfully Added " + tabId + "</h2>");
                     $('#msg').css("color", "#209E91");
                     $('#myModal').modal('show');
@@ -537,7 +554,10 @@
                 }
                 else
                 {
-                    $('#msg').html("<h2> Error: Was not able to add integration. \nPlease try again later.</h2>");
+                    $("#addIntegration").modal("hide");
+                    $("#newIntName").popover("toggle");
+                    $("#newIntName").css("border","0.5px solid darkgrey");
+                    $('#msg').html("<h2> Error: Was not able to add integration. It may already exist.</h2>");
                     $('#msg').css("color", "red");
                     $('#myModal').modal('show');
                 }
@@ -546,7 +566,9 @@
             }
             else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
             {
-
+                $("#addIntegration").modal("hide");
+                $("#newIntName").popover("toggle");
+                $("#newIntName").css("border","0.5px solid darkgrey");
                 $('#msg').html("<h2> Error: Can't connect to the server</h2>");
                 $('#msg').css("color", "red");
                 $('#myModal').modal('show');

@@ -120,13 +120,17 @@
 
     <!-- The Modal -->
     <div id="myModal" class="modal" role="dialog">
-
+        <div class="modal-dialog">
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">×</span>
-            <p id="msg"> </p>
+            <div class="modal-header">
+                 <span class="close">×</span>
+            </div>
+            <div class="modal-body">
+                  <p id="msg"> </p>
+            </div>
         </div>
-
+        </div>
     </div>
 
 
@@ -169,7 +173,7 @@
         <!--</div>-->
     <!--</div>-->
 
-    <div class="auth-block">
+    <div id="authblock" class="auth-block">
         <!--<div class="row">-->
             <!--<img class="col-lg-6 col-md-6" height="50px" src="assets/Logo2.png" alt="HyperPerform">-->
             <!--<h1 class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="hp">HyperPerform</h1>-->
@@ -215,7 +219,7 @@
 
             }
 
-            $( "body" ).keydown(function( event ) {
+            $( "#authblock" ).keydown(function( event ) {
                 if (event.which == 13) {
                 auth();
                 }
@@ -261,7 +265,7 @@
 
 //                            alert(arr.loggedin + "Dude");
                             if (arr.loggedin == true) {
-                                $('#msg').html("<h2>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
+                                $('#msg').html("<h2 class='text-center'>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
 
 //                                modal.style.display = 'block';
                                 $("#myModal").modal('show');
@@ -345,36 +349,36 @@
                 var b = "{ ";
                 b += "\"Email\": \"" + $("#mail").val();
                 b += "\" }";
-
+//                alert(JSON.stringify({ Email: $("#mail").val()}));
                 $.ajax({
                     type: "POST",
                     url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/forgotPassword",
-                    data: JSON.stringify(b),
+                    data: JSON.stringify({ email: $("#mail").val()}),
                     headers: {"Content-Type": "application/json"}
                 }).always(function(data) {
-
-                    if (data.responseText == "undefined")
+//                    alert(JSON.stringify(data));
+                    if (data == null || data === undefined || data.result == undefined)
                     {
                         $('#valid').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
 
                     }
-                    else if (data.responseText == "Success, you will shortly receive an email")
-                        $('#valid').html("<h2 class='text-center'> <i style='color: #1F968B' >"+ data.responseText + "</i></h2>");
+                    else if (data.result == "Success, you will shortly receive an email")
+                        $('#valid').html("<h2 class='text-center'> <i style='color: #1F968B' >"+ data.result + "</i></h2>");
                     else
                     {
-                        $('#valid').html("<h2 class='text-center'> <i style='color: red'>"+ data.responseText + "</i></h2>");
+                        $('#valid').html("<h2 class='text-center'> <i style='color: red'>"+ data.result + "</i></h2>");
                     }
 
                     // modal.style.display = 'block';
-                    if (data.responseText == "Success, you will shortly receive an email")
-                    {
+//                    if (data.result == "Success, you will shortly receive an email")
+//                    {
                         setTimeout(
                                 function()
                                 {
                                     location.reload();
 
-                                }, 1000);
-                    }
+                                }, 2000);
+//                    }
 
 
                 });

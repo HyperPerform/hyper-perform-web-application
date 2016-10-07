@@ -23,7 +23,15 @@
        if(window.location.pathname == "/")
         window.location.pathname = "/auth.html";
 
-      // $urlRouterProvider
+    $(document).on('manUpdate', function(){
+      if (getCookie("hpkey") == "")
+        window.location.reload();
+    });
+
+    $(document).trigger('manUpdate');
+
+
+    // $urlRouterProvider
       //      .when("/dashboard", "#/dashboard")
       //       .when("/", window.location.pathname = "/login.html");
 

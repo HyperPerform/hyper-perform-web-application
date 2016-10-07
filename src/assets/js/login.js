@@ -18,9 +18,7 @@ function setCookie(email, position, name, days) {
         document.cookie = "hpman="+email + "#" + position +"%" + name +"; " + expires;
     }
     else {
-        window.localStorage.setItem('logged_in', false);
         document.cookie = "hpkey=" + email + "#" + position + "%" + name + "; " + expires;
-        window.localStorage.setItem('logged_in', true);
     }
 }
 
@@ -63,10 +61,10 @@ function openDash(email, name)
 
 
 $(document).on('cookieUpdate', function(){
-    if (getCookie('hpman') == "") {
+    if (getCookie('hkey') == "" && getCookie('hman') != "") {
         this.location.reload();
     }
-    $('#profileName').html(getCookie('hpman').split('%')[1]);
+
 });
 
 $(document).trigger('cookieUpdate');

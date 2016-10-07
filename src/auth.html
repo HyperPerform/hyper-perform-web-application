@@ -352,7 +352,7 @@
 //                alert(JSON.stringify({ Email: $("#mail").val()}));
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/forgotPassword",
+                    url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/users/forgotPassword",
                     data: JSON.stringify({ email: $("#mail").val()}),
                     headers: {"Content-Type": "application/json"}
                 }).always(function(data) {

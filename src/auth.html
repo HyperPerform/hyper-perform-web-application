@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HyperPerform</title>
     <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo2.png">
+
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!--<script src="assets/js/login.js"></script>-->
+
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="../bower_components/animate.css/animate.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="../bower_components/jstree/dist/themes/default/style.css" />
+
+    <!--<link href="assets/js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />-->
+    <link href="assets/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="app/main.css">
+    <link rel="stylesheet" href="app/man.css">
     <script>
         function getCookie(cname) {
             var name = cname + "=";
@@ -31,7 +55,7 @@
         }
     </script>
 
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <!--<script src="../bower_components/jquery/dist/jquery.js"></script>-->
 
     <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>-->
 
@@ -50,52 +74,52 @@
     <!-- endinject -->
     <!-- endbuild -->
     <style>
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
+        /*!* The Modal (background) *!*/
+        /*.modal {*/
+            /*display: none; !* Hidden by default *!*/
+            /*position: fixed; !* Stay in place *!*/
+            /*z-index: 1; !* Sit on top *!*/
+            /*padding-top: 100px; !* Location of the box *!*/
+            /*left: 0;*/
+            /*top: 0;*/
+            /*width: 100%; !* Full width *!*/
+            /*height: 100%; !* Full height *!*/
+            /*overflow: auto; !* Enable scroll if needed *!*/
+            /*background-color: rgb(0,0,0); !* Fallback color *!*/
+            /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
+        /*}*/
 
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%;
-            text-align: center;
-        }
+        /*!* Modal Content *!*/
+        /*.modal-content {*/
+            /*background-color: #fefefe;*/
+            /*margin: auto;*/
+            /*padding: 20px;*/
+            /*border: 1px solid #888;*/
+            /*width: 30%;*/
+            /*text-align: center;*/
+        /*}*/
 
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
+        /*!* The Close Button *!*/
+        /*.close {*/
+            /*color: #aaaaaa;*/
+            /*float: right;*/
+            /*font-size: 28px;*/
+            /*font-weight: bold;*/
+        /*}*/
 
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        /*.close:hover,*/
+        /*.close:focus {*/
+            /*color: #000;*/
+            /*text-decoration: none;*/
+            /*cursor: pointer;*/
+        /*}*/
     </style>
 </head>
 <body >
 <main class="auth-main">
 
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal" role="dialog">
 
         <!-- Modal content -->
         <div class="modal-content">
@@ -103,6 +127,36 @@
             <p id="msg"> </p>
         </div>
 
+    </div>
+
+
+    <div id="forgotPass" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Forgot Password</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" >
+                        <div class="row" id="valid">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                <!--<h2 class="text-center">Enter your Email <h2>-->
+                                <input type="text" class="input-lg form-control" id="mail" placeholder="Your Email Address" style="border:0.5px solid darkgrey" data-toggle="popover" data-trigger="manual" auto-focus="true">
+                            </div>
+                        </div>
+                            </div>
+                    </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="sendP" class="btn btn-primary" onclick="sendPass()"><i class="fa fa-ticket"></i>Verify</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!--<div class="modal-content" id="modal">-->
@@ -147,11 +201,20 @@
                 </div>
                 <div class="col-sm-offset-2 col-lg-10 col-md-10 col-sm-10 col-xs-10 log-submit">
                     <button type="submit" id="login" class="btn btn-primary btn-auth" onclick="auth()">Login</button>
-                    <a href class="forgot-pass">Forgot password?</a>
+                    <a onclick="forgot()" class="forgot-pass">Forgot password?</a>
                 </div>
             </div>
         </div>
         <script>
+
+
+            function forgot()
+            {
+                $("#forgotPass").modal("show");
+                $("#mail").focus();
+
+            }
+
             $( "body" ).keydown(function( event ) {
                 if (event.which == 13) {
                 auth();
@@ -160,24 +223,24 @@
 
 
                 // Get the modal
-            var modal = document.getElementById('myModal');
-
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            };
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            };
+//            var modal = document.getElementById('myModal');
+//
+//
+//            // Get the <span> element that closes the modal
+//            var span = document.getElementsByClassName("close")[0];
+//
+//
+//            // When the user clicks on <span> (x), close the modal
+//            span.onclick = function() {
+//                modal.style.display = "none";
+//            };
+//
+//            // When the user clicks anywhere outside of the modal, close it
+//            window.onclick = function(event) {
+//                if (event.target == modal) {
+//                    modal.style.display = "none";
+//                }
+//            };
 //            $("#modal").hide();
 
             function auth() {
@@ -200,8 +263,8 @@
                             if (arr.loggedin == true) {
                                 $('#msg').html("<h2>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
 
-                                modal.style.display = 'block';
-
+//                                modal.style.display = 'block';
+                                $("#myModal").modal('show');
                                //                                $('#modal').show();
 //                                angular.module('HyperPerform', ['ngCookies'])
 //                                        .controller('cookieCtl', ['$cookies', cookieCtl]);
@@ -273,6 +336,14 @@
                 };
                 http.send(params);
             }
+
+            function sendPass()
+            {
+                alert("SEnd");
+                $("#sendP").html("<i class='fa fa-spinner fa-pulse '></i>");
+                $("#valid").html("<h2 class='text-center'> An Email will be send to you shortly</h2>");
+            }
+
         </script>
     <!--</form>-->
     </div>

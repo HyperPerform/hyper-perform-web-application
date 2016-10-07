@@ -235,18 +235,24 @@
     <div class="page-top" scroll-position="scrolled" >
         <a href="#" class="al-logo clearfix"><img class="main-logo" src="/assets/Logo2.png" alt="Logo" style="display: inline;" height="30px"><span> Hyper</span>Perform</a>
         <a href="#" class="collapse-menu-link ion-navicon" id="barCollapse"></a>
-        <nav class="navbar-nav navbar-right" style="margin-top:1%;">
-
-                 <a class='dropdown-toggle' style="float: right" data-toggle='dropdown' ><p style="font-size: 120%;text-align: center;" id="profileName"></p>
-                    <img src='assets/img/app/profile/admin.png' style="float: right; right: 10px" class='img-circle' height="50" width="50"/>
-                </a>
-                <ul class='dropdown-menu'>
-                    <li>
-                        <a class='navbar-text' onclick="logout()" ><span class='glyphicon glyphicon-log-out'></span> Logout </a>
-                    </li>
+        <nav class="navbar-nav navbar-right al-user-profile" style="position: fixed; right: 4%;">
+            <a class='dropdown-toggle profile-toggle-link' data-toggle='dropdown' >
+                <ul class="visible-md visible-lg">
+                    <li><img src='assets/img/app/profile/admin.png' class='img-circle' height="50" width="50"/></li>
+                    <li><p style="font-size: 120%;position: absolute; margin-left: -80%;z-index: 5; background-color: transparent" class="profileName"></p></li>
                 </ul>
-            <button class="btn btn-link fa fa-plus add" data-toggle="modal" title="Add Integration" style="color: #209E91; font-size:16pt; text-decoration: none" data-target="#addIntegration"></button>
-        </nav>
+                <ul   class="top-dropdown-menu profile-dropdown dropdown-menu" style="background-color:#209E91;" >
+                    <li><i class="dropdown-arr"></i></li>
+                    <!--<li><a href><i class="fa fa-cog"></i>Settings</a></li>-->
+                    <li><a href class="signout" onclick="logout()" style="color:white"><i class="fa fa-power-off"></i>Sign out</a></li>
+                </ul>
+                <!--<span class='caret'></span>-->
+            </a>
+            <button class="btn btn-link fa fa-plus add" data-toggle="modal" title="Add Integration" style="left:87%; padding: 0; color: #209E91; top:2.5%;font-size:16pt; text-decoration: none" data-target="#addIntegration"></button>
+            </nav>
+
+        </ul>
+
     </div>
 </nav>
 
@@ -257,7 +263,11 @@
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
             <div class="al-sidebar left-col" id="sidebar">
                 <ul class="al-sidebar-list" slimscroll="{height: '894px'}" slimscroll-watch="menuHeight">
+                    <li class="al-sidebar-list-item ng-scope ">
+                        <a align="center" class="al-sidebar-list-link profileName visible-sm visible-xs" style="color: #209387; font-size:18pt">
 
+                        </a>
+                    </li>
                     <li class="al-sidebar-list-item ng-scope">
                         <a class="al-sidebar-list-link" href="/man.html">
                             <i class="ion-android-people"></i><span>Employee List</span>
@@ -273,6 +283,11 @@
                     <li class="al-sidebar-list-item ng-scope">
                         <a class="al-sidebar-list-link" href="/reg.html">
                             <i class="ion-person-stalker"></i><span>User Management</span>
+                        </a>
+                    </li>
+                    <li class="al-sidebar-list-item ng-scope">
+                        <a href="" class="al-sidebar-list-link visible-sm visible-xs" onclick="logout()" style="color: deepskyblue">
+                            <i class="fa fa-power-off"></i><span>Sign out</span>
                         </a>
                     </li>
                 </ul>
@@ -316,7 +331,7 @@
                                     <div class="x_title">
                                         <div class="row">
                                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                                                <input type="text" class="input-md form-control" id="newIntName" placeholder="Integration Name" style="border:0.5px solid darkgrey">
+                                                <input type="text" class="input-md form-control" id="newIntName" placeholder="Integration Name" style="border:0.5px solid darkgrey" data-toggle="popover" data-trigger="manual">
                                             </div>
                                         </div>
                                     </div>
@@ -356,7 +371,14 @@
                             </div>
                          </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary fa fa-plus" onclick="addIntegration()" data-dismiss="modal">Add</button>
+                            <button type="button" class="btn btn-primary fa fa-plus" onclick="addIntegration()">Add</button>
+                            <script>
+                                $(".close").click(function()
+                                {
+                                    $("#newIntName").popover("toggle");
+                                    $("#newIntName").css("border","0.5px solid darkgrey");
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -512,6 +534,13 @@
     function addIntegration()
     {
         var tabId = $("#newIntName").val();
+        if(tabId == "")
+        {
+            $("#newIntName").popover({content: "Error: can't be empty", placement: "top"});
+            $("#newIntName").popover("toggle");
+            $("#newIntName").css("border","1px solid red");
+            return;
+        }
         $(".tabTmp").attr("id", tabId);
         var toAdd = buildJsonStr(tabId);
         console.log(toAdd);
@@ -530,6 +559,9 @@
 
                 if (arr.added == true)
                 {
+                    $("#addIntegration").modal("hide");
+                    $("#newIntName").popover("toggle");
+                    $("#newIntName").css("border","0.5px solid darkgrey");
                     $('#msg').html("<h2>  Successfully Added " + tabId + "</h2>");
                     $('#msg').css("color", "#209E91");
                     $('#myModal').modal('show');
@@ -539,7 +571,10 @@
                 }
                 else
                 {
-                    $('#msg').html("<h2> Error: Was not able to add integration. \nPlease try again later.</h2>");
+                    $("#addIntegration").modal("hide");
+                    $("#newIntName").popover("toggle");
+                    $("#newIntName").css("border","0.5px solid darkgrey");
+                    $('#msg').html("<h2> Error: Was not able to add integration. It may already exist.</h2>");
                     $('#msg').css("color", "red");
                     $('#myModal').modal('show');
                 }
@@ -548,7 +583,9 @@
             }
             else if (http.readyState == 1 || http.readyState == 0 || http.status == 404 || http.status == 0)
             {
-
+                $("#addIntegration").modal("hide");
+                $("#newIntName").popover("toggle");
+                $("#newIntName").css("border","0.5px solid darkgrey");
                 $('#msg').html("<h2> Error: Can't connect to the server</h2>");
                 $('#msg').css("color", "red");
                 $('#myModal').modal('show');
@@ -574,20 +611,20 @@
 
         $.each($("#" + tabId + " .pos select"), function(i, val)
         {
-            console.log(val.value);
+//            console.log(val.value);
             positionName[i] = "\"" + val.value + "\"";
         });
 
         $.each($("#" + tabId + " .valOf input"), function(i, val)
         {
-            console.log("Value is: " + val.value);
+//            console.log("Value is: " + val.value);
             values[i] = val.value;
         });
 
         $.each($("#" + tabId + " .time select"), function(i, val)
         {
             times[i] ="\"" + val.value.toLowerCase() + "\"";
-            console.log("Time is: " + val.value);
+//            console.log("Time is: " + val.value);
         });
 
         for (var i = 0; i < positionName.length; i++)
@@ -613,7 +650,7 @@
          return jsonStr;
     }
 
-    $('#profileName').html(getCookie('hpman').split('%')[1]);
+    $('.profileName').html(getCookie('hpman').split('%')[1]);
 </script>
 </body>
 </html>

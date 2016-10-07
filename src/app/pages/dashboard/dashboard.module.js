@@ -20,6 +20,13 @@
 
 
    function loadPa($scope, $http, $rootScope) {
+       $(document).on('manUpdate', function(){
+           if (getCookie("hpkey") == "")
+               window.location.reload();
+       });
+
+       $(document).trigger('manUpdate');
+
        function getCookie(cname) {
            var name = cname + "=";
            var ca = document.cookie.split(';');

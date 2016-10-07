@@ -339,9 +339,47 @@
 
             function sendPass()
             {
-                alert("SEnd");
+//                alert("SEnd");
                 $("#sendP").html("<i class='fa fa-spinner fa-pulse '></i>");
-                $("#valid").html("<h2 class='text-center'> An Email will be send to you shortly</h2>");
+//                $("#valid").html("<h2 class='text-center'> An Email will be send to you shortly</h2>");
+                var b = "{ ";
+                b += "\"Email\": \"" + $("#mail").val();
+                b += "\" }";
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/users/forgotPassword",
+                    data: JSON.stringify(b),
+                    headers: {"Content-Type": "application/json"}
+                }).always(function(data) {
+
+                    if (data.responseText == "undefined")
+                    {
+                        $('#valid').html("<h2 class='text-center'> <i style='color: red' > Error: Can't connect to the server</i></h2>");
+
+                    }
+                    else if (data.responseText == "Success, you will shortly receive an email")
+                        $('#valid').html("<h2 class='text-center'> <i style='color: #1F968B' >"+ data.responseText + "</i></h2>");
+                    else
+                    {
+                        $('#valid').html("<h2 class='text-center'> <i style='color: red'>"+ data.responseText + "</i></h2>");
+                    }
+
+                    // modal.style.display = 'block';
+                    if (data.responseText == "Success, you will shortly receive an email")
+                    {
+                        setTimeout(
+                                function()
+                                {
+                                    location.reload();
+
+                                }, 1000);
+                    }
+
+
+                });
+
+
             }
 
         </script>

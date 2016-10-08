@@ -5,8 +5,8 @@
 (function () {
   'use strict';
 
-  angular.module('HyperPerform.pages.notifications', [])
-      .config(routeConfig);
+  angular.module('HyperPerform.pages.notifications', []);
+      // .config(routeConfig);
 
   /** @ngInject */
   function routeConfig($stateProvider) {

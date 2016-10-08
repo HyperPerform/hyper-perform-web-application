@@ -66,10 +66,10 @@
 
     <script>
         $(document).ready(function(){
-            $("#github").popover({content: "The average number of commits, per the forecast", placement: "top"});
-            $("#travis").popover({content: "The percentage of successful builds, per the forecast", placement: "top"});
-            $("#issues").popover({content: "The percentage of issues closed versus opened, per the forecast", placement: "top"});
-            $("#entryexit").popover({content: "The number of hours on site, per the forecast", placement: "top"});
+            $("#github").popover({content: "The total number of commits", placement: "top"});
+            $("#travis").popover({content: "The percentage of successful builds", placement: "top"});
+            $("#issues").popover({content: "The percentage of issues closed versus opened", placement: "top"});
+            $("#entryexit").popover({content: "The number of hours on site", placement: "top"});
         });
     </script>
 
@@ -84,7 +84,7 @@
                     </div>
                     <div class="col-xs-9 text-xs-right">
                         <div class="large" *ng-if="summary"><i name="spinner" class="fa fa-spinner fa-spin fa-exclamation-triangle"> </i>{{ summary.github }}</div>
-                        <div>Commit Rate</div>
+                        <div>Total Commits</div>
                     </div>
                 </div>
             </div></a>

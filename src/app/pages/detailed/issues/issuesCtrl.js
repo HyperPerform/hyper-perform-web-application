@@ -62,7 +62,7 @@ function issuesCtrl($scope, $http)
 
 					$scope.tmp = $scope.repos[i][0].repository;
 					var el = '"' + $scope.repos[i][0].repository + '"';
-					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll(" + el + ");' >" + $scope.repos[i][0].repository + "</a> &nbsp;");
+					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='tabScroll(" + el + ");' >" + $scope.repos[i][0].repository + "</a> &nbsp;");
 				}
 			}, function (response) {
 				$('#loading').fadeOut(1000, function () {

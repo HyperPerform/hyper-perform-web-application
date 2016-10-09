@@ -9,7 +9,20 @@
       $scope.searchCount = 1;
       $scope.changeCount = 0;
       $scope.IconCount = 1;
+      $scope.in = 0;
 
+      $scope.sumCommit = function(val)
+      {
+
+          var sum = 0;
+
+          $scope.tmp = $scope.graphs[$scope.in].dependent;
+          for (var i = 0; i < $scope.tmp.length; i++) {
+              sum += $scope.tmp[i];
+          }
+          $scope.in++;
+          return sum;
+      };
       $('#after').hide();
       $('#loadbtn').hide();
       $scope.loadGit = function() {

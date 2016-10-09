@@ -84,8 +84,12 @@
 			.then(function (response) {
 
 				travisData = response.data.travisDetails;
+
 				console.log(travisData.data);
+
 				$scope.repos = travisData.data;
+				$scope.graphData = travisData.graphData;
+
 				$('#loading').fadeOut(1000, function () {
 					$(this).hide();
 				});

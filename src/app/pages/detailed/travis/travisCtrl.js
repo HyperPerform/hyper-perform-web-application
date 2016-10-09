@@ -14,7 +14,26 @@
 	  $scope.totalRepo = 0;
 	  $scope.travisDataSize = 3;
 	  $scope.searchCount = 1;
+	  $scope.in = 0;
 
+	  $scope.sumBuilds = function(val)
+	  {
+		  var sum = 0;
+
+		  $scope.tmp = $scope.repos[$scope.in];
+		  var passed = 0, failed = 0;
+		  for (var i = 0; i < $scope.tmp.length; i++) {
+			  sum += 1;
+			  if ($scope.tmp[i].status == 'Passed')
+				  passed++;
+			  else
+				  failed++;
+		  }
+		  $scope.in++;
+		  $scope.data = [passed, failed];
+		  return sum;
+
+	  };
 	  $('#after').hide();
 	  $('#loadbtn').hide();
 	$scope.loadTravis = function() {

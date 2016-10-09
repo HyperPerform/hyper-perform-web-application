@@ -11,7 +11,7 @@
       $scope.IconCount = 1;
       $scope.in = 0;
 
-      $scope.sumCommit = function(val)
+      $scope.sumCommit = function()
       {
 
           var sum = 0;

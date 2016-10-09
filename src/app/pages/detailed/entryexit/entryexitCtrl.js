@@ -94,6 +94,20 @@
           },2000);
 
       };
+
+    $scope.totalHours = function()
+    {
+        var sum = 0;
+        // alert(JSON.stringify($scope.data));
+        if ($scope.data[0] != null) {
+            for (var i = 0; i < $scope.data[0].length; i++) {
+                sum += $scope.data[0][i];
+            }
+            return sum;
+        }
+    };
+
+
     $scope.showSearch = function ( )
     {
       $scope.searchCount++;

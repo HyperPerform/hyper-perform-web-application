@@ -25,14 +25,17 @@
         $scope.colors = ["#8bc34a","#ff5252" ];
 
         $scope.labels = ["Success", "Failed"];
-        $scope.data = [0,0];
-        for (var k = 0; k < $scope.repo.length; k++)
-        {
-           if ($scope.repo[k].status == 'Passed')
-              $scope.data[0]++;
-           else
-              $scope.data[1]++;
-        }
+        $scope.data = $scope.graphData[$scope.$index];
+
+        // for (var k = 0; k < $scope.repo.length; k++)
+        // {
+        //    if ($scope.repo[k].status == 'Passed')
+        //       $scope.data[0]++;
+        //    else
+        //       $scope.data[1]++;
+        // }
+
+        // alert($scope.graphData[$scope.$index]);
 
         $scope.options = {
             segmentShowStroke: false

@@ -21,16 +21,13 @@
 		  var sum = 0;
 
 		  $scope.tmp = $scope.repos[$scope.in];
-		  var passed = 0, failed = 0;
+
 		  for (var i = 0; i < $scope.tmp.length; i++) {
 			  sum += 1;
-			  if ($scope.tmp[i].status == 'Passed')
-				  passed++;
-			  else
-				  failed++;
+
 		  }
 		  $scope.in++;
-		  $scope.data = [passed, failed];
+
 		  return sum;
 
 	  };

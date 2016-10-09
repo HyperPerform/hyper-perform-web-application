@@ -11,16 +11,18 @@
       $scope.IconCount = 1;
       $scope.in = 0;
 
-      $scope.sumCommit = function()
+      $scope.sumCommit = function(el)
       {
 
           var sum = 0;
+          var arr = el[$scope.in].dependent;
 
-          $scope.tmp = $scope.graphs[$scope.in].dependent;
-          for (var i = 0; i < $scope.tmp.length; i++) {
-              sum += $scope.tmp[i];
-          }
-          $scope.in++;
+              for (var i = 0; i < arr.length; i++) {
+                  sum += arr[i];
+              }
+              $scope.in++;
+
+
           return sum;
       };
       $('#after').hide();

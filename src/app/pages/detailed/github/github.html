@@ -78,6 +78,7 @@
             <div class="panel-heading github white" >
                 {{ repo[0].repository }}
                 <div class='pull-right'>
+                   <span class="commits">Total Commits:  {{ sumCommit(graphs)}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                    <a ng-click="changeView(repo[0].repository)" id="{{repo[0].repository}}switch"> <i class="fa fa-table white"  ></i></a>
                     &nbsp
                     <a ng-click="changeIcon(repo[0].repository)" id="{{repo[0].repository}}icon" class="white" >

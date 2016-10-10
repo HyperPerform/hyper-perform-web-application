@@ -12,7 +12,7 @@
     // 'HyperPerform.pages.charts',
     // 'HyperPerform.pages.profile',
     'HyperPerform.pages.detailed',
-    'HyperPerform.pages.notifications',
+    'HyperPerform.pages.notifications'
   ]).config(routeConfig);
 
   /** @ngInject */

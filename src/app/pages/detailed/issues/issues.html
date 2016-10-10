@@ -76,9 +76,16 @@
 			<a data-toggle='collapse' data-target='#{{ repo[0].repository }}'>
 				<div class="panel-heading issues" >
 					{{ repo[0].repository }}
+					<i class='fa fa-caret-down pull-right'></i>
 					<div class='pull-right'>
-						<i class='fa fa-caret-down'></i>
+						<div class="col-4 issues">
+						Opened: {{openIssues(repo)}}
+						</div>
+						<div class="col-4 issues">
+							Closed: {{closedIssues(repo)}}<br/>
+						</div>
 					</div>
+
 				</div>
 			</a>
 

@@ -5,10 +5,39 @@ function issuesCtrl($scope, $http)
 	$('#after').hide();
 	$scope.issuesDataSize = 3;
 	$scope.searchCount = 1;
+	$scope.in = 0;
   	// $http.get("http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getDetails")
   	// .then(function(response){
   	// 	$scope.repos = response.data.gitIssueDetails.data;
   	// });
+
+	$scope.openIssues = function(el)
+	{
+		var sum = 0;
+		//
+		var arr = $scope.repos[$scope.in];
+		// alert(JSON.stringify(arr));
+		for (var i = 0; i < arr.length; i++) {
+			sum += (arr[i].action == "assigned") ? 1 : 0;
+		}
+
+		return sum;
+	};
+
+	$scope.closedIssues = function(el)
+	{
+		var sum = 0;
+		// alert(JSON.stringify(el));
+		var arr = $scope.repos[$scope.in];
+
+		for (var i = 0; i < arr.length; i++) {
+			sum += (arr[i].action == "closed") ? 1 : 0;
+		}
+
+		$scope.in++;
+		return sum;
+	};
+
 
 	$('#after').hide();
 	$('#loadbtn').hide();
@@ -62,7 +91,7 @@ function issuesCtrl($scope, $http)
 
 					$scope.tmp = $scope.repos[i][0].repository;
 					var el = '"' + $scope.repos[i][0].repository + '"';
-					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll(" + el + ");' >" + $scope.repos[i][0].repository + "</a> &nbsp;");
+					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='tabScroll(" + el + ");' >" + $scope.repos[i][0].repository + "</a> &nbsp;");
 				}
 			}, function (response) {
 				$('#loading').fadeOut(1000, function () {

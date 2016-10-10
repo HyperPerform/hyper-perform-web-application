@@ -9,7 +9,22 @@
       $scope.searchCount = 1;
       $scope.changeCount = 0;
       $scope.IconCount = 1;
+      $scope.in = 0;
 
+      $scope.sumCommit = function(el)
+      {
+
+          var sum = 0;
+          var arr = el[$scope.in].dependent;
+
+              for (var i = 0; i < arr.length; i++) {
+                  sum += arr[i];
+              }
+              $scope.in++;
+
+
+          return sum;
+      };
       $('#after').hide();
       $('#loadbtn').hide();
       $scope.loadGit = function() {
@@ -86,7 +101,7 @@
 
                       $scope.tmp =  $scope.repos[i][0].repository;
                       var el = '"' +$scope.repos[i][0].repository + '"';
-                      $('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll("+el+");' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
+                      $('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='tabScroll("+el+");' >"+$scope.repos[i][0].repository+"</a> &nbsp;");
                   }
 
               }, function (response) {
@@ -162,7 +177,7 @@
   }
 
 
-    function scroll(el)
+    function tabScroll(el)
     {
         // alert(el);
 

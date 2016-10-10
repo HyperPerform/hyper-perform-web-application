@@ -14,7 +14,23 @@
 	  $scope.totalRepo = 0;
 	  $scope.travisDataSize = 3;
 	  $scope.searchCount = 1;
+	  $scope.in = 0;
 
+	  $scope.sumBuilds = function(val)
+	  {
+		  var sum = 0;
+
+		  $scope.tmp = $scope.repos[$scope.in];
+
+		  for (var i = 0; i < $scope.tmp.length; i++) {
+			  sum += 1;
+
+		  }
+		  $scope.in++;
+
+		  return sum;
+
+	  };
 	  $('#after').hide();
 	  $('#loadbtn').hide();
 	$scope.loadTravis = function() {
@@ -68,8 +84,12 @@
 			.then(function (response) {
 
 				travisData = response.data.travisDetails;
+
 				console.log(travisData.data);
+
 				$scope.repos = travisData.data;
+				$scope.graphData = travisData.graphData;
+
 				$('#loading').fadeOut(1000, function () {
 					$(this).hide();
 				});
@@ -85,7 +105,7 @@
 
 					$scope.tmp = $scope.repos[i][0].repo;
 					var el = '"' + $scope.repos[i][0].repo + '"';
-					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='scroll(" + el + ");' >" + $scope.repos[i][0].repo + "</a> &nbsp;");
+					$('#tabs').html($('#tabs').html() + "<a class='btn tabs' onclick='tabScroll(" + el + ");' >" + $scope.repos[i][0].repo + "</a> &nbsp;");
 				}
 			}, function (response) {
 				$('#loading').fadeOut(1000, function () {
@@ -122,7 +142,7 @@
 
   }
 
-  function scroll(el)
+  function tabScroll(el)
   {
   	// alert(el);
 	  $('html, body').animate({scrollTop: $("#"+el).offset().top - 135}, 2000);

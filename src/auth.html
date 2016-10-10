@@ -74,64 +74,77 @@
     <!-- endinject -->
     <!-- endbuild -->
     <style>
-        /*!* The Modal (background) *!*/
-        /*.modal {*/
+        /* The Modal (background) */
+        .modallog {
             /*display: none; !* Hidden by default *!*/
-            /*position: fixed; !* Stay in place *!*/
-            /*z-index: 1; !* Sit on top *!*/
-            /*padding-top: 100px; !* Location of the box *!*/
-            /*left: 0;*/
-            /*top: 0;*/
-            /*width: 100%; !* Full width *!*/
-            /*height: 100%; !* Full height *!*/
-            /*overflow: auto; !* Enable scroll if needed *!*/
-            /*background-color: rgb(0,0,0); !* Fallback color *!*/
-            /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
-        /*}*/
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
-        /*!* Modal Content *!*/
-        /*.modal-content {*/
-            /*background-color: #fefefe;*/
-            /*margin: auto;*/
-            /*padding: 20px;*/
-            /*border: 1px solid #888;*/
-            /*width: 30%;*/
-            /*text-align: center;*/
-        /*}*/
+        /* Modal Content */
+        .modal-logcontent {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+            text-align: center;
+        }
 
-        /*!* The Close Button *!*/
-        /*.close {*/
-            /*color: #aaaaaa;*/
-            /*float: right;*/
-            /*font-size: 28px;*/
-            /*font-weight: bold;*/
-        /*}*/
+        /* The Close Button */
+        .closelog {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .show{
+            display: block !important;
 
-        /*.close:hover,*/
-        /*.close:focus {*/
-            /*color: #000;*/
-            /*text-decoration: none;*/
-            /*cursor: pointer;*/
-        /*}*/
+        }
+
+        .hide {
+            display: none !important;
+        }
+        .closelog:hover,
+        .closelog:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body >
 <main class="auth-main">
 
     <!-- The Modal -->
-    <div id="myModal" class="modal" role="dialog">
-        <div class="modal-dialog">
+    <div id="myModal" class="modallog hidden">
+        <!--<div class="modal-dialog">-->
         <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                 <span class="close">×</span>
-            </div>
-            <div class="modal-body">
-                  <p id="msg"> </p>
-            </div>
-        </div>
+        <div class="modal-logcontent">
+
+                 <span class="closelog" onclick="close()">×</span>
+                             <p id="msg"> </p>
+
         </div>
     </div>
+
+    <script>
+        function close()
+        {
+            $("#myModal").toggleClass('show','hidden');
+        }
+
+
+    </script>
 
 
     <div id="forgotPass" class="modal" role="dialog">
@@ -268,7 +281,8 @@
                                 $('#msg').html("<h2 class='text-center'>  Hello, <i style='color: #1F968B'>"+ arr.name + "</i></h2>");
 
 //                                modal.style.display = 'block';
-                                $("#myModal").modal('show');
+                                $("#myModal").toggleClass('hidden','show');
+
                                //                                $('#modal').show();
 //                                angular.module('HyperPerform', ['ngCookies'])
 //                                        .controller('cookieCtl', ['$cookies', cookieCtl]);

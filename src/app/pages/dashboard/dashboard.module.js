@@ -65,7 +65,7 @@
            $scope.h = " H";
            $http({
                method: "POST",
-               url: "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
+               url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getSummary",
                data: JSON.stringify({name: n, startDate: d1 + t1, endDate: d2 + t2}),
                headers: {
                    "Content-Type": "application/json",
@@ -77,6 +77,12 @@
                        $(this).remove();
                    });
                    $scope.summary = response.data;
+
+                   // $scope.summary.github = parseFloat($scope.summary.github).toFixed(2);
+                   $scope.summary.travis = parseFloat($scope.summary.travis).toFixed(2);
+                   $scope.summary.issues = parseFloat($scope.summary.issues).toFixed(2);
+                   // $scope.summary.entryExit = parseFloat($scope.summary.entryExit).toFixed(2);
+
                    // alert(JSON.stringify($scope.summary));
                    $scope.p = "%";
                }, function (response) {

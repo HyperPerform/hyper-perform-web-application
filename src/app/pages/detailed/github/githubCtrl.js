@@ -235,7 +235,7 @@
         /////////// DATE ///
         ////////////////////
         $scope.today = function() {
-            $scope.dt1 = new Date(2015, 1, 1);
+            $scope.dt1 = new Date().setMonth(new Date().getMonth()-3);
             $scope.dt2 = new Date();
         };
         $scope.today();

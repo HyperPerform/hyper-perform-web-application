@@ -94,16 +94,19 @@
 				{
 					var su = 0;
 					var fa = 0;
+					var tot = 0;
 					for (var k = 0; k < $scope.repos[i].length; k++) {
-						if ($scope.repos[i][k].action == "Passed")
+						if ($scope.repos[i][k].status == "Passed")
 							su += 1;
-						if ($scope.repos[i][k].action == "Failed")
+						if ($scope.repos[i][k].status == "Failed")
 							fa += 1;
+
+						tot++;
 					}
 					for (var k = 0; k < $scope.repos[i].length; k++) {
 						$scope.repos[i][k].totalPassed = su;
 						$scope.repos[i][k].totalFailed = fa;
-						$scope.repos[i][k].totalBuild = fa+su;
+						$scope.repos[i][k].totalBuild = tot;
 
 					}
 				}

@@ -64,7 +64,18 @@
                   ];
                   // $scope.entryDataSize = 3;
                   // alert($scope.data);
+                  // for ( i = 0 ;i < $scope.aevent.length; i++)
+                  // {
+                      var ho = 0;
 
+                      for (var k = 0; k < $scope.data[0].length; k++) {
+                         ho += $scope.data[0][k];
+                        // alert(JSON.stringify($scope.data[0]));
+                      }
+                      for (var k = 0; k < $scope.aevent.length; k++) {
+                          $scope.aevent[k].totalHours = ho;
+
+                  }
                   // alert(JSON.stringify($scope.aevent));
                   $('#loading').fadeOut(1000, function () {
                       $(this).hide();

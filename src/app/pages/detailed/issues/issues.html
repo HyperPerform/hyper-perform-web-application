@@ -79,10 +79,10 @@
 					<i class='fa fa-caret-down pull-right'></i>
 					<div class='pull-right'>
 						<div class="col-4 issues">
-						Opened: {{openIssues(repo)}}
+						Opened: {{ repo[0].totalOpen }}
 						</div>
 						<div class="col-4 issues">
-							Closed: {{closedIssues(repo)}}<br/>
+							Closed: {{ repo[0].totalClosed }}<br/>
 						</div>
 					</div>
 

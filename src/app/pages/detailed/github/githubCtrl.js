@@ -81,6 +81,17 @@
                       }
                   }
 
+                  for ( i = 0 ;i < $scope.repos.length; i++)
+                  {
+                      var comm = 0;
+                      for (var k = 0; k < $scope.repos[i].length; k++) {
+                          comm += $scope.repos[i][k].commitSize;
+                      }
+                      for (var k = 0; k < $scope.repos[i].length; k++)
+                          $scope.repos[i][k].totalCommits = comm;
+
+                  }
+
 
                   $scope.graphs = response.data.gitDetails.graphData;
 

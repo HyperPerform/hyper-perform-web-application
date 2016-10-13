@@ -85,10 +85,29 @@
 
 				travisData = response.data.travisDetails;
 
-				console.log(travisData.data);
+				// console.log(travisData.data);
 
 				$scope.repos = travisData.data;
 				$scope.graphData = travisData.graphData;
+
+				for ( i = 0 ;i < $scope.repos.length; i++)
+				{
+					var su = 0;
+					var fa = 0;
+					for (var k = 0; k < $scope.repos[i].length; k++) {
+						if ($scope.repos[i][k].action == "Passed")
+							su += 1;
+						if ($scope.repos[i][k].action == "Failed")
+							fa += 1;
+					}
+					for (var k = 0; k < $scope.repos[i].length; k++) {
+						$scope.repos[i][k].totalPassed = su;
+						$scope.repos[i][k].totalFailed = fa;
+						$scope.repos[i][k].totalBuild = fa+su;
+
+					}
+				}
+
 
 				$('#loading').fadeOut(1000, function () {
 					$(this).hide();

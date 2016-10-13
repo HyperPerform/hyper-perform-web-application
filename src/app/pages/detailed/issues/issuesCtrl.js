@@ -77,6 +77,22 @@ function issuesCtrl($scope, $http)
 				// travisData = response.data.travisDetails;
 				$scope.repos = response.data.gitIssueDetails.data;
 
+				for ( i = 0 ;i < $scope.repos.length; i++)
+				{
+					var op = 0;
+					var cl = 0;
+					for (var k = 0; k < $scope.repos[i].length; k++) {
+						if ($scope.repos[i][k].action == "assigned")
+							op += 1;
+						if ($scope.repos[i][k].action == "closed")
+							cl += 1;
+					}
+					for (var k = 0; k < $scope.repos[i].length; k++) {
+						$scope.repos[i][k].totalOpen = op;
+						$scope.repos[i][k].totalClosed = cl;
+					}
+				}
+
 				$('#loading').fadeOut(1000, function () {
 					$(this).hide();
 				});

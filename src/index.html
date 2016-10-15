@@ -71,14 +71,25 @@
         // alert(JSON.stringify(res.contents.quotes[0].quote));
 //      $.getJSON("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=30&callback=", function(res) {
 
-      $.get("http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en", function(res){
-//            alert(JSON.stringify(res));
-            var text  =  res.quoteText;
+//      $.ajax({
+//        type: "GET",
+//        url: "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en",
+//        headers: {"Content-Type": "application/json", "Access-Control-Allow-Origin": "*"}
+//      }).always(function(res) {
 
-        if (res.quoteText != null)
-          $("#quote").html("<br/><br/> <i class='fa fa-quote-left' style='color: yellow' aria-hidden='true'></i> " + (text)
-                  + "<i class='fa fa-quote-right' style='color: yellow'></i> <br/><br/>" +
-                  " <p style='text-align: right !important; font-size: large;color: white'> - "+ res.quoteAuthor + "</p>");
+      $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
+//        $("body").append(a[0].content + "<p>— " + a[0].title + "</p>");
+
+
+//      alert(JSON.stringify(a)) ;
+            var text  =  a[0].content;
+            text = " " + text.substr(3);
+            text = text.substr(0 ,text.length - 5);
+//    alert(text);
+        if (text != null)
+          $("#quote").html("<br/><br/><p style='font-size: large'> <i class='fa fa-quote-left' style='color: yellow' aria-hidden='true'></i>" + (text)
+                  + "<i class='fa fa-quote-right' style='color: yellow'></i></p>  <br/>" +
+                  " <p style='text-align: right !important; font-size: medium; color: white'> - "+  a[0].title + "</p>");
               $("#qback").show();
 
         });

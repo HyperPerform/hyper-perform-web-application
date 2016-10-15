@@ -64,6 +64,25 @@
     });
 
     $(document).trigger('cookieUpdate');
+    //
+    setTimeout( function(){
+//      http://quotes.rest/qod.json?category=programming"
+//      $.get("http://api.forismatic.com/api/1.0/method=getQuote&key=457653&format=json&lang=en", function(res) {
+        // alert(JSON.stringify(res.contents.quotes[0].quote));
+//      $.getJSON("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=30&callback=", function(res) {
+
+      $.get("http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=json&lang=en", function(res){
+//            alert(JSON.stringify(res));
+            var text  =  res.quoteText;
+
+        if (res.quoteText != null)
+          $("#quote").html("<br/><br/> <i class='fa fa-quote-left' style='color: yellow' aria-hidden='true'></i> " + (text)
+                  + "<i class='fa fa-quote-right' style='color: yellow'></i> <br/>" +
+                  " <span style='float: right; color: white'> - "+ res.quoteAuthor + "</span>");
+              $("#qback").show();
+
+        });
+    }, 100);
 
   </script>
   <link rel="icon" type="image/gif" sizes="16x16" href="assets/img/app/profile/Logo2.png">
@@ -81,6 +100,12 @@
   <!-- endbuild -->
 </head>
 <body>
+<div id="qback" style="z-index: 9999; position: absolute; left: 10%; top: 25%;   height: 25%; width: 80%; right: 10%"  class="text-center">
+
+    <h3 class="white" id="quote"> </h3>
+
+</div>
+
 <div class="body-bg"></div>
 <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
 
@@ -103,8 +128,8 @@
   </footer>
   <back-top></back-top>
 </main>
-
-<div id="preloader" ng-show="!$pageFinishedLoading">
+<!--ng-show="!$pageFinishedLoading"-->
+<div id="preloader" >
   <div></div>
 </div>
 

@@ -226,7 +226,7 @@
           <div class="modal-body">
             <div class="container">
               <div class="row">
-              <div class='col-md-5'>
+              <div class='col-lg-5 col-md-5 col-sm-5 col-xs-5'>
                 <div class="form-group">
                   <span style="color: dodgerblue" >Start Date:</span>
                   <div class='input-group date' id='datetimepicker6'>
@@ -239,7 +239,7 @@
                 </div>
               </div>
               <div class="row">
-              <div class='col-md-5'>
+              <div class='col-lg-5 col-md-5 col-sm-5 col-xs-5'>
                 <div class="form-group">
                   <span style="color: dodgerblue" >End Date:</span>
                   <div class='input-group date' id='datetimepicker7'>
@@ -297,7 +297,8 @@
 
 
     <div id="after" style="display: none;">
-    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" id="managerialTable" >
+      <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="managerialTable" >
       <div class="x_panel">
         <div class="x_title">
           <h2>Employee List</h2>
@@ -307,7 +308,7 @@
           <!--  <p class="text-muted font-13 m-b-30">
              The table below shows the employees and their current performance.
            </p> -->
-          <table id="datatable-buttons" class="table table-striped table-bordered">
+          <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap">
             <thead>
             <tr style="background-color: #209E91; color: #F0F3F4">
               <th>Name</th>
@@ -320,42 +321,7 @@
 
 
             <tbody id="tableBody">
-            <!--<tr>-->
-              <!--<td>Tiger Nixon</td>-->
-              <!--<td><a href='mailto:tiger@gmail.com'>tiger@gmail.com</a></td>-->
-              <!--<td>System Architect</td>-->
-              <!--&lt;!&ndash;<td>Edinburgh</td>&ndash;&gt;-->
-              <!--&lt;!&ndash; <td>61</td> &ndash;&gt;-->
-              <!--&lt;!&ndash;<td>2011/04/25</td>&ndash;&gt;-->
-              <!--&lt;!&ndash;<td>$320,800</td>&ndash;&gt;-->
-              <!--<td>4.7</td>-->
-              <!--<td>High Performer</td>-->
-            <!--</tr>-->
-            <!--<tr class="bg-red">-->
-              <!--<td>Garrett Winters</td>-->
-              <!--<td><b><a style="color: white;" href='mailto:garrett.winters@gmail.com'>garrett.winters@gmail.com</a></b></td>-->
-              <!--<td>Web Developer</td>-->
-              <!--&lt;!&ndash;<td>Tokyo</td>&ndash;&gt;-->
-              <!--&lt;!&ndash; <td>63</td> &ndash;&gt;-->
-              <!--&lt;!&ndash;<td>2011/07/25</td>&ndash;&gt;-->
-              <!--&lt;!&ndash;<td>$170,750</td>&ndash;&gt;-->
-              <!--<td>1.7</td>-->
-              <!--<td>Non Performer</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-              <!--<td>Ashton Cox</td>-->
-              <!--<td><a href='mailto:ash.cox@gmail.com'>ash.cox@gmail.com</a></td>-->
-              <!--<td>Web Developer</td>-->
-              <!--&lt;!&ndash;<td>San Francisco</td>&ndash;&gt;-->
-              <!--&lt;!&ndash; <td>66</td> &ndash;&gt;-->
-              <!--&lt;!&ndash;<td>2009/01/12</td>&ndash;&gt;-->
-              <!--&lt;!&ndash;<td>$86,000</td>&ndash;&gt;-->
-              <!--<td>3</td>-->
-              <!--<td>Standard Performer</td>-->
-            <!--</tr>-->
-
-
-
+            <!-- -->
             </tbody>
           </table>
         </div>
@@ -364,6 +330,7 @@
   </div>
 </div>
 </div>
+
 
 
 
@@ -394,7 +361,7 @@
                 extend: "print",
                 className: "btn-sm"
               }],
-              responsive: !0,
+              responsive: true,
               order: [[ 3, "asc" ]]
             });//.order([ 3, 'asc' ] ).draw();
           },
@@ -409,22 +376,22 @@
 </script>
 <script type="text/javascript">
   function loadTable() {
-    var t = $('#datatable').DataTable();
+//    var t = $('#datatable').DataTable({responsive: true});
 
-    $('#datatable-keytable').DataTable({
-      keys: true
-    });
-    $('#datatable-responsive').DataTable();
-    $('#datatable-scroller').DataTable({
-      ajax: "js/datatables/json/scroller-demo.json",
-      deferRender: true,
-      scrollY: 380,
-      scrollCollapse: true,
-      scroller: true
-    });
-    var table = $('#datatable-fixed-header').DataTable({
-      fixedHeader: true
-    });
+//    $('#datatable-keytable').DataTable({
+//      keys: true
+//    });
+//    $('#datatable-responsive').DataTable();
+//    $('#datatable-scroller').DataTable({
+//      ajax: "js/datatables/json/scroller-demo.json",
+//      deferRender: true,
+//      scrollY: 380,
+//      scrollCollapse: true,
+//      scroller: true
+//    });
+//    var table = $('#datatable-fixed-header').DataTable({
+//      fixedHeader: true
+//    });
 //  });
     TableManageButtons.init();
   }
@@ -433,5 +400,6 @@
     loadList();
   })
 </script>
+  </div>
 </body>
 </html>

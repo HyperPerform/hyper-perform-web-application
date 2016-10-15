@@ -27,11 +27,13 @@
 
     $q.all(whatToWait).then(function () {
       $rootScope.$pageFinishedLoading = true;
+      $("#qback").hide();
     });
 
     $timeout(function () {
       if (!$rootScope.$pageFinishedLoading) {
         $rootScope.$pageFinishedLoading = true;
+        $("#qback").hide();
       }
     }, 7000);
 

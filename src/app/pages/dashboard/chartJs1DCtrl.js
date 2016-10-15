@@ -40,12 +40,16 @@
     $rootScope.$on("pa", function(){
       $scope.loadPA();
     });
+
     $scope.loadPA = function() {
+      $("#pa").hide();
       var n = getCookie('hpkey').split("#")[0];
       var t1 = $('#time1').html();
       var t2 = $('#time2').html();
       var d1 = $('#date1').html().trim();
       var d2 = $('#date2').html().trim();
+      $("#pa").hide();
+      $("#loading").show();
       $http({
         method: "POST",
         url: "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/report/getScore",
@@ -103,6 +107,8 @@
         $scope.openToast('From: Dashboard', 'Failed to load PA Score', 'error');
       });
       $('#myModal').modal('hide');
+      $("#loading").hide();
+      $("#pa").show();
     };
     setTimeout(
         function()

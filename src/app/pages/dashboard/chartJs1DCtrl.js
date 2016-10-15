@@ -101,14 +101,15 @@
         // alert(response.data.score);
         $("#gradient").html($scope.stopColor);
         $('#pascore').html($scope.performance);
+        $("#loading").hide();
+        $("#pa").show();
 
       }, function (response) {
 
         $scope.openToast('From: Dashboard', 'Failed to load PA Score', 'error');
       });
       $('#myModal').modal('hide');
-      $("#loading").hide();
-      $("#pa").show();
+
     };
     setTimeout(
         function()

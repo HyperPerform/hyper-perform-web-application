@@ -226,3 +226,22 @@ input .placeholder {
   font-size: 25px;
   /* etc. */
 }
+
+.admin {
+  background-color: dimgrey;
+}
+
+.info {
+  margin: 10px auto 0 !important;
+  //margin-bottom: 0 !important;
+}
+
+.cred {
+
+  color: whitesmoke;
+  float: right !important;
+  margin-top: 0 !important;
+  top: 10px !important;
+  right: 10px !important;
+  position: absolute !important;
+}

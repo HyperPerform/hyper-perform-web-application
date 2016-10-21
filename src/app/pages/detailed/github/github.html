@@ -1,160 +1,160 @@
 <div  ng-controller="NotificationsPageCtrl">
-<div  ng-controller="calendarPicker">
-    <div ng-controller="githubCtrl">
-        <!-- Button trigger modal -->
-        <button type="button" id="cal" class="btn btn-success right searchDisp" data-toggle="modal" data-target="#myModal">
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-        </button>
+    <div  ng-controller="calendarPicker">
+        <div ng-controller="githubCtrl">
+            <!-- Button trigger modal -->
+            <button type="button" id="cal" class="btn btn-success right searchDisp" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+            </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="ion-checkmark modal-icon"></i> Date Picker</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div  ng-controller="calendarPicker">
-                            <div class="row" >
-                                <div class="col-lg-1 col-md-1"></div>
-                                <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
-                                    <span style="color: dodgerblue;">StartDate:</span>
-                                    <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                                        <span class="input-group-btn">
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"><i class="ion-checkmark modal-icon"></i> Date Picker</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div  ng-controller="calendarPicker">
+                                <div class="row" >
+                                    <div class="col-lg-1 col-md-1"></div>
+                                    <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
+                                        <span style="color: dodgerblue;">StartDate:</span>
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                                            <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
-                                    </p>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                                    <div id="date1" style="display: none"> {{dt1 | date:'yyyy-MM-dd' }} </div>
+                                    <div id="time1" style="display: none"> {{mytime1 | date:'HH:mm:ss' }}</div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-2 col-xs-2 " uib-timepicker ng-model="mytime1" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-                                <div id="date1" style="display: none"> {{dt1 | date:'yyyy-MM-dd' }} </div>
-                                <div id="time1" style="display: none"> {{mytime1 | date:'HH:mm:ss' }}</div>
-                            </div>
-                            <br /> <hr/>
-                            <div class="row" >
-                                <div class="col-lg-! col-md-1"></div>
-                                <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
-                                    <span style="color: dodgerblue" >EndDate:</span>
-                                    <p class="input-group">
-                                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-                                        <span class="input-group-btn">
+                                <br /> <hr/>
+                                <div class="row" >
+                                    <div class="col-lg-! col-md-1"></div>
+                                    <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3 date">
+                                        <span style="color: dodgerblue" >EndDate:</span>
+                                        <p class="input-group">
+                                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                            <span class="input-group-btn">
                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
-                                    </p>
+                                        </p>
+                                    </div>
+                                    <div  class="col-lg-4 col-md-4 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+                                    <div id="date2" style="display: none"> {{dt2 | date:'yyyy-MM-dd' }} </div>
+                                    <div id="time2" style="display: none"> {{mytime2 | date:'HH:mm:ss' }}</div>
                                 </div>
-                                <div  class="col-lg-4 col-md-4 col-sm-2 col-xs-2" uib-timepicker ng-model="mytime2" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-                                <div id="date2" style="display: none"> {{dt2 | date:'yyyy-MM-dd' }} </div>
-                                <div id="time2" style="display: none"> {{mytime2 | date:'HH:mm:ss' }}</div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" >
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="loadGit()">Load <i class="fa fa-cog"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading">
+                <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
+                <img class="imageRot img-responsive"   id="theimage" src="assets/Logo2.png" alt=""  />
+            </div>
+
+            <div id="after" >
+                <div id="tabs"></div>
+                <hr >
+
+                <div class="row" ng-repeat="repo in repos">
+                    <div class="panel bootstrap-panel">
+
+
+                        <div class="panel-heading github white" >
+                            {{ repo[0].repository }}
+                            <div class='pull-right'>
+                                <span class="commits">Total Commits:  {{ repo[0].totalCommits }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a ng-click="changeView(repo[0].repository)" id="{{repo[0].repository}}switch"> <i class="fa fa-table white"  ></i></a>
+                                &nbsp
+                                <a ng-click="changeIcon(repo[0].repository)" id="{{repo[0].repository}}icon" class="white" >
+                                    <i class='fa fa-caret-up'></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--<div class="panel-body">-->
+                        <div class="panel-body" id='{{ repo[0].repository }}'>
+                            <div class="row">
+
+                                <div id="{{repo[0].repository}}table" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp">
+                                    <div class="horizontal-scroll ">
+                                        <div class="form-group select-page-size-wrap ">
+                                            <label>Rows on page
+                                                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                                        ng-model="gitDataSize" ng-options="i for i in [3,5,10,15,20,25]">
+                                                </select>
+                                            </label>
+                                            <a class="cursor" ng-click="showSearch(repo[0].repository)"><i class="fa fa-search fa-2x"></i></a>
+                                        </div>
+                                        <table   class="table table-striped" st-table="repo">
+                                            <thead>
+                                            <tr class="sortable">
+                                                <th class="table-id" st-sort="id" >#</th>
+                                                <th st-sort="username">Username</th>
+                                                <th st-sort="repository">Repository</th>
+                                                <th st-sort="date" st-sort-default="reverse">Timestamp</th>
+                                                <th st-sort="commitSize">Commits</th>
+                                                <th st-sort="message">Message</th>
+                                                <th>Url</th>
+                                            </tr>
+                                            <tr class="searchDisp" id="{{repo[0].repository}}Search">
+                                                <th></th>
+                                                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
+                                                           type="search"/></th>
+                                                <th><input st-search="repository" placeholder="Search Repository" class="input-sm form-control search-input"
+                                                           type="search"/></th>
+                                                <th><input st-search="date" placeholder="Search Date" class="input-sm form-control search-input"
+                                                           type="search"/></th>
+                                                <th><input st-search="commitSize" placeholder="Search Commits" class="input-sm form-control search-input" type="search"/>
+                                                </th>
+                                                <th><input st-search="message" placeholder="Search Message" class="input-sm form-control search-input" type="search"/>
+                                                </th>
+
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="item in repo">
+                                                <td class="table-id">{{item.id}}</td>
+                                                <td>{{item.username}}</td>
+                                                <td>{{item.repository}}</td>
+                                                <td>{{item.date}}</td>
+                                                <td>{{item.commitSize}}</td>
+                                                <td>{{item.message}}</td>
+                                                <td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <td colspan="6" class="text-center">
+                                                    <div st-pagination="" st-items-by-page="gitDataSize" st-displayed-pages="5"></div>
+                                                </td>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div  id="{{repo[0].repository}}graph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="gitGraph">
+                                    <canvas height="100%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
+                                            chart-legend="false" chart-series="series" chart-colors="##ff5252" ></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer" >
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="loadGit()">Load <i class="fa fa-cog"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-<div id="loading">
-    <h1 style="top: 0; bottom: 0; margin: auto; ">Loading ...</h1>
-    <img class="imageRot img-responsive"   id="theimage" src="assets/Logo2.png" alt=""  />
-</div>
-
-
-    <div>
-
-    <div id="after" >
-    <div id="tabs"></div>
-    <hr >
-
-    <div class="row" ng-repeat="repo in repos">
-    <div class="panel bootstrap-panel">
-
-
-            <div class="panel-heading github white" >
-                {{ repo[0].repository }}
-                <div class='pull-right'>
-                   <span class="commits">Total Commits:  {{ repo[0].totalCommits }}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                   <a ng-click="changeView(repo[0].repository)" id="{{repo[0].repository}}switch"> <i class="fa fa-table white"  ></i></a>
-                    &nbsp
-                    <a ng-click="changeIcon(repo[0].repository)" id="{{repo[0].repository}}icon" class="white" >
-                    <i class='fa fa-caret-up'></i>
-                    </a>
-                </div>
-            </div>
-
-        <!--<div class="panel-body">-->
-            <div class="panel-body" id='{{ repo[0].repository }}'>
-                <div class="row">
-
-                <div id="{{repo[0].repository}}table" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchDisp">
-                    <div class="horizontal-scroll ">
-                        <div class="form-group select-page-size-wrap ">
-                            <label>Rows on page
-                                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                                        ng-model="gitDataSize" ng-options="i for i in [3,5,10,15,20,25]">
-                                </select>
-                            </label>
-                            <a class="cursor" ng-click="showSearch(repo[0].repository)"><i class="fa fa-search fa-2x"></i></a>
-                        </div>
-                        <table   class="table table-striped" st-table="repo">
-                            <thead>
-                            <tr class="sortable">
-                                <th class="table-id" st-sort="id" >#</th>
-                                <th st-sort="username">Username</th>
-                                <th st-sort="repository">Repository</th>
-                                <th st-sort="date" st-sort-default="reverse">Timestamp</th>
-                                <th st-sort="commitSize">Commits</th>
-                                <th st-sort="message">Message</th>
-                                <th>Url</th>
-                            </tr>
-                            <tr class="searchDisp" id="{{repo[0].repository}}Search">
-                                <th></th>
-                                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input"
-                                           type="search"/></th>
-                                <th><input st-search="repository" placeholder="Search Repository" class="input-sm form-control search-input"
-                                           type="search"/></th>
-                                <th><input st-search="date" placeholder="Search Date" class="input-sm form-control search-input"
-                                           type="search"/></th>
-                                <th><input st-search="commitSize" placeholder="Search Commits" class="input-sm form-control search-input" type="search"/>
-                                </th>
-                                <th><input st-search="message" placeholder="Search Message" class="input-sm form-control search-input" type="search"/>
-                                </th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="item in repo">
-                                <td class="table-id">{{item.id}}</td>
-                                <td>{{item.username}}</td>
-                                <td>{{item.repository}}</td>
-                                <td>{{item.date}}</td>
-                                <td>{{item.commitSize}}</td>
-                                <td>{{item.message}}</td>
-                                <td><a  class="clickCursor" ng-href="{{item.url}}"> follow</a></td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <td colspan="6" class="text-center">
-                                    <div st-pagination="" st-items-by-page="gitDataSize" st-displayed-pages="5"></div>
-                                </td>
-                            </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-                <div  id="{{repo[0].repository}}graph" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-controller="gitGraph">
-                    <canvas height="100%" id="line" class="chart chart-line" chart-data="data" chart-labels="labels"
-                                chart-legend="false" chart-series="series" chart-colors="##ff5252" ></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-    </div></div>
+

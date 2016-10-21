@@ -124,7 +124,39 @@
 </head>
 <body >
 <main class="auth-main">
+    <div id="logcred" class="cred" >
 
+        <table class="table table-bordered">
+            <thead>
+            <tr><th colspan="2"><h4><b>Login Credentials</b></h4></th></tr>
+            <tr>
+
+                <th><b>Email</b></th>
+                <th><b>Password</b></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>tashan.avi@gmail.com</td>
+                <td>000000</td>
+            </tr>
+            <tr>
+                <td>rohan.chhipa@live.com</td>
+                <td>12345678</td>
+            </tr>
+
+            <tr>
+                <td>gordz.gordon@gmail.com</td>
+                <td>rEt3Ii</td>
+            </tr>
+            <tr class="admin">
+                <td>admin@hyperperform.me</td>
+                <td>1234</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
     <!-- The Modal -->
     <div id="myModal" class="modallog hidden">
         <!--<div class="modal-dialog">-->
@@ -138,6 +170,9 @@
     </div>
 
     <script>
+
+        $("#logcred").hide();
+
         function close()
         {
             $("#myModal").toggleClass('show','hidden');
@@ -218,12 +253,17 @@
                 </div>
                 <div class="col-sm-offset-2 col-lg-10 col-md-10 col-sm-10 col-xs-10 log-submit">
                     <button type="submit" id="login" class="btn btn-primary btn-auth" onclick="auth()">Login</button>
+                    <a onclick="loginfo()" class="info"><i  class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a>
                     <a onclick="forgot()" class="forgot-pass">Forgot password?</a>
                 </div>
             </div>
         </div>
         <script>
 
+            function loginfo()
+            {
+                $("#logcred").toggle();
+            }
 
             function forgot()
             {

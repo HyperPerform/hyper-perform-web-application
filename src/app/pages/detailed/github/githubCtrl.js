@@ -87,11 +87,12 @@
                       for (var k = 0; k < $scope.repos[i].length; k++) {
                           comm += $scope.repos[i][k].commitSize;
                       }
-                      for (var k = 0; k < $scope.repos[i].length; k++)
+                      for (var k = 0; k < $scope.repos[i].length; k++) {
                           $scope.repos[i][k].totalCommits = comm;
+                          $scope.repos[i][k].repository = $scope.repos[i][k].repository.split(".").join("-");
+                      }
 
                   }
-
 
                   $scope.graphs = response.data.gitDetails.graphData;
 

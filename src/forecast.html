@@ -114,6 +114,7 @@
 
                 $.each($.parseJSON(res.data), function(i, val)
                 {
+//                    alert(JSON.stringify(val));
                     var intName = JSON.stringify(val["@attributes"].name);
                     intName = intName.substring(1, intName.length - 1);
                     var intColour;// = JSON.stringify(val["@attributes"].color);
@@ -175,7 +176,7 @@
                     {
                         toAppend += "<tr id=\"new" + intName + "\">";
                         toAppend += "<td class=\"col-lg-4 col-md-4 col-sm-4 col-xs-4 pos\">";
-
+//                        alert(posName[j]);
                         var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
 
                         toAppend += "<select class=\"form-control " + currpos + "\">" + s + " </select>";
@@ -205,10 +206,18 @@
                     fd.append(toAppend);
                     toAppend = "";
 
+                    for (var j = 0; j < posName.length; j++)
+                    {
+                        var currpos = posName[j].substring(1, posName[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
+                        var currtime = posTime[j].substring(1, posTime[j].length - 1).replace(/\s/g, '');//bcs it comes through with ""
+                        $('.' + currpos).val(posName[j].substring(1, posName[j].length - 1));
+                        $('.' + currtime).val(posTime[j].toUpperCase().charAt(1) + posTime[j].substring(2, posTime[j].length - 1));
 
+                    }
                     setTimeout(
                             function()
                             {
+
                                 $('#after').show();
                                 $('#loading').remove();
 

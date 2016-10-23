@@ -267,18 +267,23 @@
 
     <script type="text/javascript">
       $(function () {
+
         $('#datetimepicker6').datetimepicker({
-          date: new Date("2016-01-01 00:00:00"),
-          sideBySide: true,
+          defaultDate: "2016-07-01 12:00",
+          sideBySide: false,
+          toolbarPlacement: 'top',
+          maxDate: new Date(),
           format: "YYYY-MM-DD hh:mm"
 
         });
         $('#datetimepicker7').datetimepicker({
 //          useCurrent: false //Important! See issue #1075
           date: new Date(),
-          sideBySide: true,
+          sideBySide: false,
           format: "YYYY-MM-DD hh:mm",
-          useCurrent: false
+          useCurrent: false,
+          maxDate: new Date(),
+          toolbarPlacement: 'top'
         });
 
 

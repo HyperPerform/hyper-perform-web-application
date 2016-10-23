@@ -447,7 +447,7 @@
     {
         var toUpdate = buildJsonStr(tabId);
         var http = new XMLHttpRequest();
-        var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/updateIntegration";
+        var url = "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/forecast/updateIntegration";
         http.open("POST", url, true);
 
         //Send the proper header information along with the request
@@ -545,7 +545,7 @@
         var toAdd = buildJsonStr(tabId);
         console.log(toAdd);
         var http = new XMLHttpRequest();
-        var url = "http://localhost:8080/hyperperform-system-1.0-SNAPSHOT/rs/forecast/addIntegration";
+        var url = "https://hyperperform.me:8443/hyperperform-system-1.0-SNAPSHOT/rs/forecast/addIntegration";
         http.open("POST", url, true);
 
         //Send the proper header information along with the request
